@@ -1,5 +1,5 @@
 import './index.css'
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore'
 
 export default function Login({db}){

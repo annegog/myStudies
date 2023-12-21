@@ -1,7 +1,7 @@
 // App.js
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { firebaseConfig } from './config/firebase';
+import { auth, firebaseConfig } from './config/firebase';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 

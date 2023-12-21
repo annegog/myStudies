@@ -1,5 +1,5 @@
 import './index.css'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore'
 import './index.css'
 import { logout } from '../../Utils/Methods';

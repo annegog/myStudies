@@ -1,40 +1,38 @@
-import './index.css'
+import './index.css';
 import React, { useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-export default function Login({db}){
-
+export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
-      // Handles the login functionality of the user
-    async function handleLogin (e){
-        e.preventDefault()
-        
-        // We create a doc that 'points' at collection 'users' with primary key user's input email 
-        const ref = doc(db, "users", email); 
-        // Now "Bring me, from the collection 'users' the document with name/value 'email'"
-        const res = await getDoc(ref);
+    const auth = getAuth();
 
-        //If the user with email = "email" and password = "passowrd" exists in the db...
-        if (res.exists() && res.data().email === email && res.data().password === password) {
-            // Get the role and email...
-            const user_role = res.data().role
-            const user_email = res.data().email
+    async function handleLogin(e) {
+        e.preventDefault();
 
-            // Store the email and role as keys in your browser local storage
-            localStorage.setItem('role', user_role)
-            localStorage.setItem('email', user_email)
+        try {
+            // Use Firebase Authentication to sign in the user
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
 
-            // Go to page /courses
-            window.location.href = './courses'
-            console.log("Found User:", res.data());
-        } else {
-            console.log("No such document!");
+            // Assuming you store the user's role in their profile, you can access it like this
+            // You may need to adjust this depending on how you've set up user roles
+            const user_role = user.role || 'user'; // Default to 'user' role if not specified
+
+            // Store the email and role in localStorage
+            localStorage.setItem('role', user_role);
+            localStorage.setItem('email', email);
+
+            // Redirect to the courses page
+            window.location.href = './courses';
+            console.log("User signed in:", user);
+        } catch (error) {
+            console.error("Error signing in:", error);
+            // Handle errors here, such as displaying a notification to the user
         }
     }
 
-    return(
+    return (
         <div className='login'>
             <form onSubmit={handleLogin} className='login-container'>
                 <h2>Login</h2>
@@ -60,5 +58,5 @@ export default function Login({db}){
                 <a href='/register'>Create new user</a>
             </form>
         </div>
-    )
+    );
 }

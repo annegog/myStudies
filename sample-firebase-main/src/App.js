@@ -8,6 +8,8 @@ import { getFirestore } from 'firebase/firestore';
 import Register from './component/Register';
 import Login from './component/Login';
 import Courses from './component/Courses';
+import Header from './component/Header';
+
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -15,6 +17,7 @@ const db = getFirestore(app);
 function App() {
   return (
     <div className="App">
+      <Header/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login db={db} />} />

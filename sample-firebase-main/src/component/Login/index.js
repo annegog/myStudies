@@ -35,8 +35,7 @@ export default function Login() {
     return (
         <div className='login'>
             <div className="login-header">
-                <img src="path_to_your_logo_image" alt="Logo" />
-                <img src="path_to_your_header_image" alt="Header" />
+                <img src="/images/akadimia.png" alt="Akadimia" />
             </div>
             <form onSubmit={handleLogin} className='login-container'>
                 <h2>Login</h2>

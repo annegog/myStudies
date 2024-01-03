@@ -1,18 +1,15 @@
 import React from "react";
 import { Route, Routes } from 'react-router-dom';
-import Navbar from "./components/Navbar";
-import LoginPage from "./LoginPage";
-import Footer from "./components/Footer";
+import LoginPage from "./pages/LoginPage";
+import MainPageS from "./pages/MainPage_students";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <main>
-        <LoginPage />
-      </main>
-      <Footer/>
-    </div>
+    <Routes>
+      <Route index element={<LoginPage/>} />
+      <Route path="/mainS" element={<MainPageS/>} />
+    </Routes>
+    
   );
 };
 

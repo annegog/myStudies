@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import LoginPage from "./components/LoginPage";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
           <LoginPage />
         </div>
       </main>
+      <Footer/>
     </div>
   );
 };

@@ -6,8 +6,8 @@ import athina from "../assets/uni_logo.png";
 
 const Footer = () => {
   return (
-    <footer class="bg-white">
-    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+    <footer className="bg-white mt-20 py-8">
+      <div className="mx-auto max-w-screen-xl p-4 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
               <a href="/" class="flex items-center">

@@ -1,6 +1,7 @@
 import React from "react";
+import { Route, Routes } from 'react-router-dom';
 import Navbar from "./components/Navbar";
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./LoginPage";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -8,9 +9,7 @@ const App = () => {
     <div>
       <Navbar />
       <main>
-        <div id="login">
-          <LoginPage />
-        </div>
+        <LoginPage />
       </main>
       <Footer/>
     </div>

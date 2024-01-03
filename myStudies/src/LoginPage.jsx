@@ -9,7 +9,7 @@ const LoginPage = () => {
         <div className="md:w-2/4 text-left ml-4">
           <h2 className="text-5xl font-semibold leading-tight">Καλως ήρθατε</h2>
           <p className="text-lightText mt-2 text-start">
-            στη διαδικτυακή περιοχή των γραμματειών του Εθνικού και
+            στη διαδικτυακή γραμματεία του Εθνικού και
             Καποδιστριακού Πανεπιστιμίου Αθηνών!
           </p>
         </div>

@@ -5,14 +5,52 @@ import Footer from "../components/Footer";
 import Donut from "../components/Donut";
 
 export default function MainPageS() {
+
+  const end_date = '01/04/2024';
+  const last_decl = '18/03/2025';
+  const open = true;
+  const dilosi = true;
+
   return (
     <div>
       <Navbar />
       <SecondNavbar />
-      <div className="mt-20 px-4 lg:px-16 xl:px-32">
-        {" "}
-        {/* Adjusted top margin and padding for responsiveness */}
-        {/* Your other content goes here */}
+      <div className="mt-10 px-4 lg:px-16 xl:px-32">
+        {open && !dilosi && (
+          <div className="justify-center items-center text-center">
+            <h2 className="text-xl font-semibold leading-none text-orange-400 pe-1 ">
+              Έχουν ανοίξει οι δηλώσεις μαθημάτων.
+              <br />
+              Όλοι οι φοιτητές καλούνται να πραγματοποιήσουν την δήλωση τους εως
+              και τις {end_date}.
+            </h2>
+            <div className="mt-2 md:justify-items-center gap-5">
+              <button
+                type="button"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center"
+              >
+                Δήλωση Μαθηματων
+              </button>
+            </div>
+          </div>
+        )}
+        {open && dilosi && (
+          <div className="justify-center items-center text-center">
+          <h2 className="text-xl font-semibold leading-none text-green-400 pe-1 ">
+          Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {last_decl}, μπορεί να γίνει τροποποίηση της.
+          </h2>
+          <h2 className="text-xl font-bold leading-none text-red-800 pe-1 ">Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση.
+</h2>
+          <div className="mt-2 md:justify-items-center gap-5">
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center"
+            >
+              Τροποποίηση Δήλωσης Μαθηματων
+            </button>
+          </div>
+        </div>
+        )}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-4 md:px-16 xl:px-32">
         <Donut />

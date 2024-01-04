@@ -9,10 +9,19 @@ import BookIcon from "@mui/icons-material/Bookmark";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StudyIcon from "@mui/icons-material/LibraryBooksOutlined";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+
 
 export default function NestedList() {
   const [open, setOpen] = React.useState(true);
   const [open2, setOpen2] = React.useState(false);
+  const [isHistoryModalOpen, setHistoryModalOpen] = React.useState(false);
+  const [isDetailsModalOpen, setDetailsModalOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -20,6 +29,22 @@ export default function NestedList() {
 
   const handleClick2 = () => {
     setOpen2(!open2);
+  };
+
+  const handleOpenHistoryModal = () => {
+    setHistoryModalOpen(true);
+  };
+
+  const handleCloseHistoryModal = () => {
+    setHistoryModalOpen(false);
+  };
+
+  const handleOpenDetailsModal = () => {
+    setDetailsModalOpen(true);
+  };
+
+  const handleCloseDetailsModal = () => {
+    setDetailsModalOpen(false);
   };
 
   const handleHistoryButtonClick = () => {
@@ -61,10 +86,7 @@ export default function NestedList() {
               <ListItemButton sx={{ pl: 4 }}>
                 <div className="flex items-center">
                   <ListItemText primary="μάθημα 1" />
-                  <button
-                    className= "ml-2"
-                    onClick={handleHistoryButtonClick}
-                  >
+                  <button className="ml-2" onClick={handleOpenHistoryModal}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -80,10 +102,7 @@ export default function NestedList() {
                       />
                     </svg>
                   </button>
-                  <button
-                    className="ml-2"
-                    onClick={handleDetailsButtonClick}
-                  >
+                  <button className="ml-2" onClick={handleOpenDetailsModal}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -130,6 +149,28 @@ export default function NestedList() {
           {/* λιστα */}
         </List>
       </Collapse>
+
+      {/* History Modal */}
+      <Dialog open={isHistoryModalOpen} onClose={handleCloseHistoryModal}>
+        <DialogTitle>Ιστορικό</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Content of the history modal...</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseHistoryModal}>ΚΛΕΙΣΙΜΟ</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Details Modal */}
+      <Dialog open={isDetailsModalOpen} onClose={handleCloseDetailsModal}>
+        <DialogTitle>Details</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Content of the details modal...</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDetailsModal}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </List>
   );
 }

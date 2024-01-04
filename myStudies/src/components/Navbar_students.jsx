@@ -24,7 +24,7 @@ const Navbar_students = () => {
 
         <div className="hidden items-end md:justify-items-end md:flex gap-5 font-medium p-1 text-lg">
           <Link
-            to="home"
+            to="/"
             spy={true}
             smooth={true}
             duration={500}
@@ -39,7 +39,7 @@ const Navbar_students = () => {
             duration={500}
             className="hover:text-[#3f6591] transition-all cursor-pointer"
           >
-            Profile
+            username
           </Link>
         </div>
 

@@ -29,7 +29,7 @@ export default function MainPageS() {
                 type="button"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center"
               >
-                Δήλωση Μαθηματων
+                Δήλωση Μαθημάτων
               </button>
             </div>
           </div>
@@ -46,7 +46,7 @@ export default function MainPageS() {
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center"
             >
-              Τροποποίηση Δήλωσης Μαθηματων
+              Τροποποίηση Δήλωσης Μαθημάτων
             </button>
           </div>
         </div>

@@ -24,7 +24,7 @@ const Navbar_students = () => {
 
         <div className="hidden items-end md:justify-items-end md:flex gap-5 font-medium p-1 text-lg">
           <Link
-            to="/"
+            to="/student"
             spy={true}
             smooth={true}
             duration={500}
@@ -33,7 +33,7 @@ const Navbar_students = () => {
             Αρχική Σελίδα
           </Link>
           <Link
-            to="about"
+            to="/student/profile"
             spy={true}
             smooth={true}
             duration={500}

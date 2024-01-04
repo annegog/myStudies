@@ -8,7 +8,8 @@ import Certifications from "./pages/CertificationsPage";
 const App = () => {
   return (
     <Routes>
-      <Route index element={<LoginPage/>} />
+      <Route index element={<MainPageS/>} />
+      <Route path="/login" element={<LoginPage/>}/>
       <Route path="/student" element={<MainPageS/>} />
       <Route path="/student/courses" element={<Courses/>}/>
       <Route path="/student/certifications" element={<Certifications/>}/>

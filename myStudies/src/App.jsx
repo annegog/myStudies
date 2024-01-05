@@ -5,6 +5,7 @@ import MainPageS from "./pages/MainPage_students";
 import Courses from "./pages/CoursesPage";
 import Certifications from "./pages/CertificationsPage";
 import Profile from "./pages/ProfilePage";
+import Grades from "./pages/GradesPage";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Route path="/student/courses" element={<Courses/>}/>
       <Route path="/student/certifications" element={<Certifications/>}/>
       <Route path="/student/profile" element={<Profile/>} />
+      <Route path="/student/grades" element={<Grades/>}/>
     </Routes>
     
   );

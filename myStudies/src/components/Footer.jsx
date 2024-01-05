@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="mx-auto max-w-screen-xl p-4 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-              <a href="/" class="flex items-center">
+              <a href="https://www.uoa.gr" class="flex items-center">
                   <img src={athina} class="h-14 me-3" alt="Uni Logo" />
                   <span class="self-center text-lγ font-thin whitespace-nowrap">ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ <br/> ΠΑΝΑΠΙΣΤΉΜΙΟ ΑΘΗΝΩΝ</span>
               </a>

@@ -18,7 +18,7 @@ import Button from "@mui/material/Button";
 
 
 export default function NestedList() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   const [isHistoryModalOpen, setHistoryModalOpen] = React.useState(false);
   const [isDetailsModalOpen, setDetailsModalOpen] = React.useState(false);
@@ -149,6 +149,91 @@ export default function NestedList() {
           {/* λιστα */}
         </List>
       </Collapse>
+
+
+      <ListItemButton onClick={handleClick}>
+        <ListItemIcon>
+          <BookIcon />
+        </ListItemIcon>
+        <ListItemText primary="Εξάμηνο 2" />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl: 4 }} onClick={handleClick2}>
+            <ListItemText primary="Υποχρεωτικά Μαθήματα" />
+            {open2 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          {/* Λίστα απο μαθηματα που είναι στο εξάμηνό αυτό και είναι υποχρεωτικά */}
+          <Collapse in={open2} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 4 }}>
+                <div className="flex items-center">
+                  <ListItemText primary="μάθημα 1" />
+                  <button className="ml-2" onClick={handleOpenHistoryModal}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
+                      />
+                    </svg>
+                  </button>
+                  <button className="ml-2" onClick={handleOpenDetailsModal}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List>
+      </Collapse>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl: 4 }} onClick={handleClick2}>
+            <ListItemText primary="Εργαστήρια" />
+            {open2 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          {/* λιστα */}
+          <Collapse in={open2} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemText primary="ααααα" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List>
+      </Collapse>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl: 4 }} onClick={handleClick2}>
+            <ListItemText primary="Μαθήματα Επιλογής" />
+            {open2 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          {/* λιστα */}
+        </List>
+      </Collapse>
+
 
       {/* History Modal */}
       <Dialog open={isHistoryModalOpen} onClose={handleCloseHistoryModal}>

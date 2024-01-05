@@ -1,8 +1,8 @@
 import React from "react";
+import Donut from "../components/Donut";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar_students";
 import SecondNavbar from "../components/SecondNavbar";
-import Footer from "../components/Footer";
-import Donut from "../components/Donut";
 
 export default function MainPageS() {
 

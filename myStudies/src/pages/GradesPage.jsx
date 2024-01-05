@@ -1,7 +1,7 @@
 import * as React from "react";
-import Navbar_students from "../components/Navbar_students";
-import SecondNavbar from "../components/SecondNavbar";
 import Footer from "../components/Footer";
+import SecondNavbar from "../components/SecondNavbar";
+import Navbar_students from "../components/Navbar_students";
 
 export default function Grades(props) {
   return (

@@ -1,7 +1,7 @@
+import * as React from "react";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar_students";
 import SecondNavbar from "../components/SecondNavbar";
-import Footer from "../components/Footer";
-import * as React from "react";
 
 export default function ProfilePage() {
   return (

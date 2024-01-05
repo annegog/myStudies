@@ -1,4 +1,4 @@
-# React + Vite
+# React + Vite + Express + MongoDB
 
 - cd myStudies 
 - ***npm install***

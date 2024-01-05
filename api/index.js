@@ -41,9 +41,9 @@ app.get('/test', async (req, res) => {
             password: 'password123',
             role: 'student',
             am: 12345,
-          });
-      
-          const user2 = new User({
+        });
+
+        const user2 = new User({
             first_name: 'Jane',
             last_name: 'Doe',
             username: 'jane_doe',
@@ -52,14 +52,14 @@ app.get('/test', async (req, res) => {
             password: 'password456',
             role: 'professor',
             am: 67890,
-          });
-      
-          // Save users to the database
-          await user1.save();
-          await user2.save();
-      
-          // Create sample course
-          const course1 = new Course({
+        });
+
+        // Save users to the database
+        await user1.save();
+        await user2.save();
+
+        // Create sample course
+        const course1 = new Course({
             title: 'Introduction to Programming',
             id_course: 'CS101',
             ects: 6,
@@ -76,13 +76,12 @@ app.get('/test', async (req, res) => {
             departmental_selection: false,
             internship: false,
             thesis: false,
-          });
-      
-          await course1.save();
-      
-          console.log('Data seeded successfully');
-        } catch (error) {
-          console.error('Error seeding data:', error.message);
-        }
-  });
-  
+        });
+
+        await course1.save();
+
+        console.log('Data seeded successfully');
+    } catch (error) {
+        console.error('Error seeding data:', error.message);
+    }
+});

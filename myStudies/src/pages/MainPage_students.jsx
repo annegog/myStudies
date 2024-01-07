@@ -9,7 +9,7 @@ export default function MainPageS() {
   const end_date = '01/04/2024';
   const last_decl = '18/03/2025';
   const open = true;
-  const dilosi = true;
+  const dilosi = false;
 
   return (
     <div>

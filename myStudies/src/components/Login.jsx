@@ -1,18 +1,50 @@
-import React, { useState } from "react";
-import img11 from "../assets/akadimia_big.png";
+import React, { useContext, useState } from 'react';
+import img11 from '../assets/akadimia_big.png';
+import { UserContext } from './UserContext';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  // State variables for email and password
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  // Event handler for form submission
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Add your login logic here using email and password
-    console.log("Logging in with:", email, password);
-    // You can replace the console.log statement with your actual login logic
-  };
+  async function handleLogin(ev) {
+    ev.preventDefault();
+    if (!username || !password) {
+      alert('Please enter both username and password.');
+      return;
+    }
+    try {
+      const { data } = await axios.post('/login', {
+        username,
+        password,
+      });
+
+      setUser(data);
+
+      // Assuming you have a 'role' field in the user data
+      if (data.role === 'student') {
+        navigate('/student'); // Redirect to the student page
+      } else if (data.role === 'professor') {
+        navigate('/professor'); // Redirect to the professor page
+      }
+    } catch (e) {
+      console.log(e.response);
+      if (e.response) {
+        if (e.response.status === 422) {
+          alert('Your password is WRONG! Try again.');
+        } else if (e.response.status === 404) {
+          alert('Your username is WRONG! Try again.');
+        } else {
+          alert('Login FAILED! Try again.');
+        }
+      } else {
+        alert('Login FAILED: ' + e.message);
+      }
+    }
+  }
 
   return (
     <div className="flex flex-col md:flex-row md:justify-between items-center md:mx-32 mx-5 mt-10">
@@ -33,11 +65,11 @@ const Login = () => {
               Χρήστης:
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="username"
+              id="username"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full border rounded-md p-2"
             />
           </div>
@@ -63,6 +95,7 @@ const Login = () => {
           <a href="/help" className="block text-center text-blue-600 mt-2">
             Ξέχασες τον κωδικό σου?
           </a>
+          {/* TODO: Add the link that this goes to  */}
         </form>
       </div>
     </div>

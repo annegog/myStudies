@@ -1,11 +1,22 @@
 const mongoose = require('mongoose');
 const Express = require('express');
 const cors = require('cors');
+
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
+
 require('dotenv').config();
 
 const User = require('./Models/User');
 const Course = require('./Models/Course');
 const app = Express();
+
+const bcryptSalt = bcrypt.genSaltSync(8);
+const jwtSecretUser = "jwtSecretUser1";
+app.use(Express.json());
+app.use(cookieParser());
 
 app.use(
     cors({
@@ -26,9 +37,70 @@ app.listen(4000, () => {
     console.log(`Server is running`);
 });
 
-// app.get('/test', (req, res) => {
-//     res.json('test');
-// });
+app.get('/test1', (req, res) => {
+    res.json('test');
+});
+
+/// verification functions for user
+const verifyJWTuser = (req, res, next) => {
+    const { token } = req.cookies;
+    if (token) {
+        jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
+            if (err) {
+                return res.status(401).json({ error: 'User Token verification failed' });
+            }
+            req.id = userData.id;
+            // console.log("correct verification for user ")
+            next();
+        });
+    } else {
+        res.status(401).json({ error: 'Token for user not provided' });
+    }
+};
+
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    const userDoc = await User.findOne({ username });
+    
+    if (userDoc) {
+        const passOK = bcrypt.compareSync(password, userDoc.password);
+        if (passOK) {
+            jwt.sign({
+                username: userDoc.username,
+                id: userDoc._id
+            }, jwtSecretUser, {}, (err, token) => {
+                if (err) throw err;
+                res.cookie('token', token).json(userDoc);
+            });
+
+        } else {
+            res.status(422).json('Wrong password');
+        }
+    } else {
+        res.status(404).json('User not found');
+    }
+});
+
+app.get('/profile', (req, res) => {
+    const { token } = req.cookies;
+    if (token) {
+        jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
+            // if (err) throw err;
+            if (userData && userData.id) {
+                const { first_name, last_name, username, profilephoto, phone, email, host, tenant, isApproved, isAdmin } = await User.findById(userData.id); //fetch from the database
+                res.json({ first_name, last_name, username, phone, email, role, am });
+            } else {
+                res.json(null);
+            }
+        });
+    } else {
+        res.json(null);
+    }
+});
+
+app.post('/logout', (req, res) => {
+    res.cookie('token', '').json(true);
+});
 
 app.get('/test', async (req, res) => {
     try {
@@ -38,7 +110,7 @@ app.get('/test', async (req, res) => {
             username: 'john_doe',
             phone: 1234567890,
             email: 'john@example.com',
-            password: 'password123',
+            password: bcrypt.hashSync('password123', bcryptSalt),
             role: 'student',
             am: 12345,
         });
@@ -49,7 +121,7 @@ app.get('/test', async (req, res) => {
             username: 'jane_doe',
             phone: 9876543210,
             email: 'jane@example.com',
-            password: 'password456',
+            password: bcrypt.hashSync('password456', bcryptSalt),
             role: 'professor',
             am: 67890,
         });

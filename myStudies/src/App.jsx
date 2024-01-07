@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from "./pages/LoginPage";
 import MainPageS from "./pages/MainPage_students";
@@ -6,6 +7,9 @@ import Courses from "./pages/CoursesPage";
 import Certifications from "./pages/CertificationsPage";
 import Profile from "./pages/ProfilePage";
 import Grades from "./pages/GradesPage";
+
+axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.withCredentials = true;
 
 const App = () => {
   return (

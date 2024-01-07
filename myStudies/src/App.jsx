@@ -1,8 +1,5 @@
 import React from "react";
-
-import { Route, Routes } from "react-router-dom";
-
-import Grades from "./pages/GradesPage";
+import { Route, Routes } from 'react-router-dom';
 import LoginPage from "./pages/LoginPage";
 import Courses from "./pages/CoursesPage";
 import Profile from "./pages/ProfilePage";
@@ -13,6 +10,9 @@ import Declarations from "./pages/DeclarationPage_students";
 import CertificationsStatus from "./pages/Certifications/Status";
 import CertificationsRequest from "./pages/Certifications/Request";
 import CertificationsHistory from "./pages/Certifications/History";
+
+axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.withCredentials = true;
 
 const App = () => {
     return (

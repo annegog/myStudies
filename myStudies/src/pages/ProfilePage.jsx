@@ -17,6 +17,12 @@ const ProfilePage = () => {
     const univeristy = "Πληροφορικής και Τηλεπικοινωνιών";
     const registrationDate = "Δευτέρα, 30 Σεπτεμβρίου 2024 - 10:00 π.μ."
 
+    const [activeInfo, setActiveInfo] = useState(null);
+
+    const toggleInfo = (info) => {
+        setActiveInfo(activeInfo === info ? null : info);
+    };
+
     return (
         <div>
             <Navbar/>

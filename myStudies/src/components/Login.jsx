@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import img11 from '../assets/akadimia_big.png';
+import Academia from '../assets/Academia.png';
 import { UserContext } from './UserContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';

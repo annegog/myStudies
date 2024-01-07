@@ -1,10 +1,11 @@
 import React from "react";
 import { Route, Routes } from 'react-router-dom';
+import axios from "axios";
 import LoginPage from "./pages/LoginPage";
 import Courses from "./pages/CoursesPage";
 import Profile from "./pages/ProfilePage";
 import MainPageS from "./pages/MainPage_students";
-
+import Grades from "./pages/GradesPage";
 import Certifications from "./pages/Certifications/Main";
 import Declarations from "./pages/DeclarationPage_students";
 import CertificationsStatus from "./pages/Certifications/Status";

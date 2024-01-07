@@ -28,7 +28,7 @@ const ProfilePage = () => {
             <Navbar/>
             <NavBarOptions userType = "student"/>
             <div className="flex w-full flex-col items-stretch mt-4 px-16 max-md:max-w-full max-md:px-5">
-                <div className="bg-zinc-300 flex justify-between gap-8 pl-16  pt-4 pb-7 rounded-3xl items-start max-md:max-w-full max-md:flex-wrap max-md:pl-5">
+                <div className="bg-zinc-300 flex justify-between gap-8 pl-16 pt-4 pb-7 rounded-3xl items-start max-md:max-w-full max-md:flex-wrap max-md:pl-5">
                     <div className="aspect-[0.99] object-contain object-center w-[108px] overflow-hidden shrink-0 max-w-full mt-2 rounded-[50%]">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

@@ -112,7 +112,7 @@ const Options = () => (
 );
 
 const GradePage = () => {
-    return(
+    return (
         <div>
             <Navbar_students/>
             <NavBarOptions userType={"student"}/>

@@ -98,6 +98,21 @@ app.get('/profile', (req, res) => {
     }
 });
 
+app.get('/courses', (req, res) => {
+    const { token } = req.cookies;
+    if (token) {
+        jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
+            if (userData && userData.id) {
+                res.json(userData);
+            } else {
+                res.json(null);
+            }
+        });
+    } else {
+        res.json(null);
+    }
+});
+
 app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true);
 });

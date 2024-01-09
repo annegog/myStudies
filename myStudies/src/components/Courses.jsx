@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const AccordionSection = ({ title, children, isOpen, onClick }) => {
+const AccordionSection = ({ title, courses, isOpen, onClick }) => {
   return (
     <div>
       <button
@@ -9,7 +10,14 @@ const AccordionSection = ({ title, children, isOpen, onClick }) => {
       >
         {title}
       </button>
-      {isOpen && <div className="content bg-gray-100 p-4">{children}</div>}
+      {isOpen && (
+        <div className="content bg-gray-100 rounded-2xl p-4">
+          {courses &&
+            courses.map((course) => (
+              <div key={course.id}>{/* Render course details here */}</div>
+            ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -17,6 +25,67 @@ const AccordionSection = ({ title, children, isOpen, onClick }) => {
 const Courses = () => {
   const [activeSemester, setActiveSemester] = useState(null);
   const [openSections, setOpenSections] = useState({});
+  const [courseData, setCourseData] = useState([]);
+
+  useEffect(() => {
+    const apiEndpoint = "/courses";
+    axios
+      .get(apiEndpoint)
+      .then((response) => {
+        setCourseData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching course data:", error);
+      });
+  }, []); // Empty dependency array ensures the effect runs only once
+
+
+//   // Function to organize courses by semester, type, and direction/major
+//   const organizeCourses = (courses) => {
+//     const organizedData = {};
+
+//     // Iterate over each course
+//     courses.forEach((course) => {
+//       const { semester, mandatory, lab, general, direction, major } = course;
+
+//       // Create semester key if not exists
+//       if (!organizedData[semester]) {
+//         organizedData[semester] = {
+//           required: [],
+//           labs: [],
+//           general: [],
+//           directionA: [],
+//           directionB: [],
+//         };
+//       }
+
+//       // Place the course into the appropriate category based on its type
+//       if (mandatory) {
+//         organizedData[semester].required.push(course);
+//       } else if (lab) {
+//         organizedData[semester].labs.push(course);
+//       } else if (general) {
+//         organizedData[semester].general.push(course);
+//       }
+
+//       // Place the course into the appropriate direction category
+//       if (direction === "A") {
+//         organizedData[semester].directionA.push(course);
+//       } else if (direction === "B") {
+//         organizedData[semester].directionB.push(course);
+//       }
+
+//       // Add more conditions as needed for other types or categories
+//     });
+
+//     return organizedData;
+//   };
+
+//   // Example usage
+//   const organizedCourses = organizeCourses(courseData);
+
+//   // Now 'organizedCourses' will contain an object with courses organized by semester, type, and direction/major
+//   console.log(organizedCourses);
 
   const toggleSemester = (semester) => {
     setActiveSemester(activeSemester === semester ? null : semester);
@@ -39,9 +108,20 @@ const Courses = () => {
             onClick={() => toggleSemester(semester)}
             className="flex flex-row text-left w-full text-lg py-2 focus:outline-none"
           >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1"
+              stroke="currentColor"
+              className="w-6 h-7"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
             Εξάμηνο {semester}
           </button>
           {activeSemester === semester && (

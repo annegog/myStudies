@@ -7,7 +7,8 @@ import Profile from "./pages/ProfilePage";
 import MainPageS from "./pages/MainPage_students";
 import Grades from "./pages/GradesPage";
 import Certifications from "./pages/Certifications/Main";
-import Declarations from "./pages/DeclarationPage_students";
+import DeclarationsStart from "./pages/Declarations/DeclarationPage_students";
+import DeclarationVerification from "./pages/Declarations/VerificationPage_students";
 import CertificationsStatus from "./pages/Certifications/Status";
 import CertificationsRequest from "./pages/Certifications/Request";
 import CertificationsHistory from "./pages/Certifications/History";
@@ -18,17 +19,18 @@ axios.defaults.withCredentials = true;
 const App = () => {
     return (
         <Routes>
-            <Route path="/" element={<LoginPage/>}/>
-            <Route path="/login" element={<LoginPage/>}/>
-            <Route path="/student" element={<MainPageS/>}/>
-            <Route path="/student/grades" element={<Grades/>}/>
-            <Route path="/student/courses" element={<Courses/>}/>
-            <Route path="/student/profile" element={<Profile/>}/>
-            <Route path="/student/declarations" element={<Declarations/>}/>
-            <Route path="/student/certifications" element={<Certifications/>}/>
-            <Route path="/student/certifications/status" element={<CertificationsStatus/>}/>
-            <Route path="/student/certifications/request" element={<CertificationsRequest/>}/>
-            <Route path="/student/certifications/history" element={<CertificationsHistory/>}/>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/student" element={<MainPageS />} />
+            <Route path="/student/grades" element={<Grades />} />
+            <Route path="/student/courses" element={<Courses />} />
+            <Route path="/student/profile" element={<Profile />} />
+            <Route path="/student/declarations/start" element={<DeclarationsStart />} />
+            <Route path="/student/declarations/verification" element={<DeclarationVerification />} />
+            <Route path="/student/certifications" element={<Certifications />} />
+            <Route path="/student/certifications/status" element={<CertificationsStatus />} />
+            <Route path="/student/certifications/request" element={<CertificationsRequest />} />
+            <Route path="/student/certifications/history" element={<CertificationsHistory />} />
         </Routes>
     );
 };

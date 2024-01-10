@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar_students from "../components/Navbar_students";
-import Footer from "../components/Footer";
-import NavBarOptions from "../components/NavBarOptions";
+import Navbar_students from "../../components/Navbar_students";
+import Footer from "../../components/Footer";
+import NavBarOptions from "../../components/NavBarOptions";
 
 const AccordionSection = ({ title, children, isOpen, onClick }) => {
     return (
@@ -35,8 +35,8 @@ const DeclarationPage = () => {
 
     return (
         <div className="declaration-page">
-            <Navbar_students/>
-            <NavBarOptions userType={"student"}/>
+            <Navbar_students />
+            <NavBarOptions userType={"student"} />
             <main className="main-content flex justify-center" >
                 <div className="w-full max-w-4xl">
                     {<div className="flex items-center justify-center mt-8 space-x-4">
@@ -112,10 +112,10 @@ const DeclarationPage = () => {
                         {/* General buttons */}
                         <div className="flex justify-center space-x-2 mt-4">
                             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                Προσθήκη Μαθήματος
+                                Προηγούμενο
                             </button>
                             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                Διαγραφή Μαθήματος
+                                Επόμενο
                             </button>
                         </div>
                     </div>

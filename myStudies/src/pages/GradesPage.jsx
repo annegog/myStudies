@@ -1,127 +1,167 @@
-import React from "react";
-
-import Footer from "../components/Footer";
-import SearchBar from "../components/SearchBar";
-import NavBarOptions from "../components/NavBarOptions";
+import React, { useState, useEffect } from 'react';
 import Navbar_students from "../components/Navbar_students";
+import Footer from "../components/Footer";
+import NavBarOptions from "../components/NavBarOptions";
 
-const Grades = () => (
-    <div className="flex flex-col items-start">
-        <div className="flex justify-between gap-5 px-5 items-start">
-            <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/de527f15c9662b2292577c3def0117663c8f379b5d2d0704aa16ba70c1879390?"
-                className="aspect-[1.77] object-contain object-center w-[23px] overflow-hidden shrink-0 max-w-full"
-            />
-            <div className="justify-center text-stone-400 text-opacity-80 text-xl font-medium grow shrink basis-auto mt-1"> ΙΣΤΟΡΙΚΟ ΒΑΘΜΟΛΟΓΙΩΝ </div>
-        </div>
+const Grades = () => {
+    const gradesData = {
+        1: { // Semester 1
+            "Course 1.1": 8,
+            "Course 1.2": 7,
+            // ... more courses
+        },
+        2: { // Semester 2
+            "Course 2.1": 9,
+            "Course 2.2": 4,
+            // ... more courses
+        },
+        // ... more semesters
+    };
 
-        <div className="bg-zinc-300 bg-opacity-10 self-stretch flex w-full items-stretch justify-between gap-5 mt-2.5 pr-20 pt-4 pb-10 rounded-3xl max-md:max-w-full max-md:flex-wrap max-md:pr-5">
-            <div className="flex grow basis-[0%] flex-col max-md:max-w-full">
-                <div className="self-stretch flex items-center justify-between gap-5 max-md:max-w-full max-md:flex-wrap">
-                    <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/d72f8cd748adade737b8d69791bf9394f6156cee12ad730b1f26d36b96147371?"
-                        className="aspect-[1.6] object-contain object-center w-6 overflow-hidden shrink-0 max-w-full my-auto"
-                    />
-                    <div className="justify-center text-black text-xl font-medium self-stretch grow shrink basis-auto max-md:max-w-full"> Εξεταστική Εαρινού Εξάμηνου 2024 - 2025 </div>
-                </div>
+    const [filter, setFilter] = useState('all'); // 'all', 'passed', or 'failed'
+    const [semesterFilter, setSemesterFilter] = useState('all'); // 'all', 'even', or 'odd'
+    const [showGradeFilters, setShowGradeFilters] = useState(false); // State to toggle grade filter visibility
+    const [showSemesterFilters, setShowSemesterFilters] = useState(false); // State to toggle semester filter visibility
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResult, setSearchResult] = useState(null);
 
-                <div className="self-stretch flex flex-col items-stretch mt-5 pl-9 max-md:max-w-full max-md:pl-5">
-                    <div className="justify-center text-orange-700 text-xl font-medium max-md:max-w-full"> Ηλεκτρομαγνητισμός, Οπτική, Σύγχρονη Φυσική (2ο) </div>
-                    <div className="justify-center text-green-500 text-xl font-medium ml-3 mt-5 max-md:max-w-full"> Δομές δεδομένων και Τεχνικές Προγραμματισμού (2ο) </div>
-                    <div className="justify-center text-orange-700 text-xl font-medium w-[615px] ml-3 mt-5 self-start max-md:ml-2.5"> Ανάλυση Ι (2ο) </div>
-                    <div className="justify-center text-green-500 text-xl font-medium ml-3 mt-5 self-start max-md:ml-2.5"> Αρχιτεκτονική Υπολογιστών (2ο) </div>
-                </div>
-                
-                <div className="self-stretch flex justify-between gap-5 mt-8 items-start max-md:max-w-full max-md:flex-wrap">
-                    <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8da8b5dba2c8f8fd9699954293c7ebce6a53b360a6bac6f0cd2fa44812fce204?"
-                        className="aspect-[1.5] object-contain object-center w-6 overflow-hidden shrink-0 max-w-full"
-                    />
-                    <div className="justify-center text-black text-xl font-medium grow shrink basis-auto max-md:max-w-full"> Εξεταστική Χειμερινού Εξάμηνου 2024 - 2025 </div>
-                </div>
+    // Function to get the appropriate color based on the grade
+    const getGradeColor = (grade) => grade >= 5 ? 'text-green-500' : 'text-red-500';
 
-                <div className="flex flex-col items-stretch ml-12 mt-5 self-start max-md:ml-2.5">
-                    <div className="justify-center text-green-500 text-xl font-medium"> Λογική Σχεδίαση (1ο) </div>
-                    <div className="justify-center text-green-500 text-xl font-medium mt-5"> Γραμμική Άλγεβρα (1ο) </div>
-                    <div className="justify-center text-red-400 text-xl font-medium mt-3"> Διακριτά Μαθηματικά (1ο) </div>
-                </div>
-            </div>
+    // Function to handle the search
+    const handleSearch = () => {
+        for (const semester of Object.keys(gradesData)) {
+            if (gradesData[semester][searchTerm]) {
+                setSearchResult({ semester, course: searchTerm, grade: gradesData[semester][searchTerm] });
+                return;
+            }
+        }
+        setSearchResult('not found');
+    };
 
-            <div className="flex basis-[0%] flex-col items-stretch mt-10 self-end max-md:hidden max-md:mt-10">
-                <div className="justify-center text-orange-700 text-xl font-medium whitespace-nowrap"> 4 </div>
-                <div className="justify-center text-green-500 text-xl font-medium whitespace-nowrap mt-6"> 6 </div>
-                <div className="justify-center text-red-500 text-xl font-medium whitespace-nowrap mt-6"> 3 </div>
-                <div className="justify-center text-green-500 text-xl font-medium whitespace-nowrap mt-6"> 7 </div>
-                <div className="text-green-500 text-xl font-medium whitespace-nowrap mt-20 max-md:mt-10"> 8 </div>
-                <div className="text-green-500 text-xl font-medium whitespace-nowrap mt-6"> 7 </div>
-                <div className="justify-center text-red-500 text-xl font-medium whitespace-nowrap mt-4"> 2 </div>
-            </div>
-        </div>
-    </div>
-);
 
-const Selection = ({title, description, imageSrc, secondImageSrc, customClass = ""}) => (
-    <div className={`flex grow basis-[0%] flex-col items-stretch self-start ${customClass}`}>
-        <div className="text-black text-center text-base font-medium">
-            {title}:
-        </div>
+    // Function to filter courses based on the current filter
+    const filterCourses = (courses) => {
+        return Object.entries(courses).filter(([_, grade]) => {
+            if (filter === 'all') return true;
+            if (filter === 'passed') return grade >= 5;
+            if (filter === 'failed') return grade < 5;
+        });
+    };
 
-        <div className={`bg-sky-900 bg-opacity-60 flex items-stretch justify-between gap-5 mt-1.5 pl-5 pr-3.5 py-1 rounded-3xl max-md:max-w-full max-md:flex-wrap ${customClass}`}>
-            <div className="bg-zinc-300 bg-opacity-50 flex items-stretch justify-between gap-4 px-3.5 py-1.5 rounded-3xl">
-                <div className="text-white text-center text-xl font-medium">
-                    {description}
-                </div>
-                
-                <img
-                    loading="lazy"
-                    src={imageSrc}
-                    className="aspect-[1.08] object-contain object-center w-3.5 overflow-hidden shrink-0 max-w-full self-start"
-                />
-            </div>
+    // Function to determine if a semester should be shown based on the current semester filter
+    const shouldShowSemester = (semester) => {
+        if (semesterFilter === 'all') return true;
+        const isEven = semester % 2 === 0;
+        return (semesterFilter === 'even' && isEven) || (semesterFilter === 'odd' && !isEven);
+    };
 
-            {secondImageSrc && (
-                <img
-                    loading="lazy"
-                    src={secondImageSrc}
-                    className="aspect-[1.5] object-contain object-center w-6 overflow-hidden self-center shrink-0 max-w-full my-auto"
-                />
-            )}
-        </div>
-    </div>
-);
-  
-const Options = () => (
-    <div style={{marginTop: "1rem"}} className="self-stretch flex w-full items-start justify-between gap-5 mt-3 px-5 max-md:max-w-full max-md:flex-wrap">
-        <Selection title="Προσπάθειες" description="Όλες" imageSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/20ca0acdaff4e2b82e8b347ff04ff1e818bebe77ff92385d246fcf9e096a37ba?" customClass="ml-2.5" />
-        <Selection title="Εξεταστική Περίοδος" description="Όλες" imageSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/20ca0acdaff4e2b82e8b347ff04ff1e818bebe77ff92385d246fcf9e096a37ba?" customClass="pl-20" />
-        <Selection title="Επιλεγμένα Μαθήματα" description="Όλα" imageSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/1bb43701a230c1e642df34da4331f567ea2ca9221efe319d49852430fbbedf7a?" secondImageSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/20ca0acdaff4e2b82e8b347ff04ff1e818bebe77ff92385d246fcf9e096a37ba?" />
-        <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/f7e2529cf5c2d095d47c796e0e94cbdce44bce8f6fa83633ba3755ed89f821c3?"
-            className="aspect-[1.12] object-contain object-center w-[55px] overflow-hidden self-stretch shrink-0 max-w-full"
-        />
-        <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/6371e434ecc5d20794223b705b7e6081bd4a11c69646ba3e7f3852647b143cda?"
-            className="aspect-[1.16] object-contain object-center w-11 overflow-hidden self-center shrink-0 max-w-full my-auto"
-        />
-    </div>
-);
-
-const GradePage = () => {
     return (
-        <div>
-            <Navbar_students/>
-            <NavBarOptions userType={"student"}/>
-            <SearchBar searchString={"Αναζήτηση Μαθημάτος"}/>
-            <Options/>
-            <Grades/>
-            <Footer/>
+        <div className="declaration-page">
+            <Navbar_students />
+            <NavBarOptions userType={"student"} />
+            <main className="main-content flex justify-center">
+                <div className="grades-table w-full max-w-4xl">
+                    {/* Search Bar */}
+                    <div className="flex justify-center mt-4">
+                        <input
+                            type="text"
+                            className="p-2 border border-gray-300"
+                            placeholder="Search for a subject..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <button
+                            className="bg-blue-500 text-white p-2 ml-2"
+                            onClick={handleSearch}
+                        >
+                            Search
+                        </button>
+                    </div>
+
+                    {/* Search Results */}
+                    {searchResult && (
+                        <div className="text-center my-4">
+                            {searchResult === 'not found' ? (
+                                <span>No subject found.</span>
+                            ) : (
+                                <div>
+                                    <span>Found: </span>
+                                    <span className={`font-medium ${getGradeColor(searchResult.grade)}`}>
+                                        {searchResult.course} - Grade: {searchResult.grade} (Semester: {searchResult.semester})
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                    {/* Filters Section */}
+                    <div className="bg-gray-100 p-4">
+                        <div className="flex flex-col md:flex-row justify-between">
+                            {/* Attempts Filter */}
+                            <div className="mb-2 md:mb-0 md:mr-2 flex-1">
+                                <div className="text-center font-bold cursor-pointer" onClick={() => setShowGradeFilters(!showGradeFilters)}>
+                                    Προσπάθειες
+                                    <span>{showGradeFilters ? '▲' : '▼'}</span>
+                                </div>
+                                {showGradeFilters && (
+                                    <div className="flex flex-col justify-center p-2 bg-white">
+                                        <button onClick={() => setFilter('all')} className={`my-1 px-4 py-2 ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>All</button>
+                                        <button onClick={() => setFilter('passed')} className={`my-1 px-4 py-2 ${filter === 'passed' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>Passed</button>
+                                        <button onClick={() => setFilter('failed')} className={`my-1 px-4 py-2 ${filter === 'failed' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>Failed</button>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Examination Period Filter */}
+                            <div className="flex-1">
+                                <div className="text-center font-bold cursor-pointer" onClick={() => setShowSemesterFilters(!showSemesterFilters)}>
+                                    Εξεταστική Περίοδος
+                                    <span>{showSemesterFilters ? '▲' : '▼'}</span>
+                                </div>
+                                {showSemesterFilters && (
+                                    <div className="flex flex-col justify-center p-2 bg-white">
+                                        <button onClick={() => setSemesterFilter('all')} className={`my-1 px-4 py-2 ${semesterFilter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>All Semesters</button>
+                                        <button onClick={() => setSemesterFilter('even')} className={`my-1 px-4 py-2 ${semesterFilter === 'even' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>Even Semesters</button>
+                                        <button onClick={() => setSemesterFilter('odd')} className={`my-1 px-4 py-2 ${semesterFilter === 'odd' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>Odd Semesters</button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Grades Table */}
+                    {Object.entries(gradesData)
+                        .filter(([semester, _]) => shouldShowSemester(parseInt(semester)))
+                        .map(([semester, courses]) => (
+                            <div key={semester} className={`mb-8 ${shouldShowSemester(parseInt(semester)) ? '' : 'hidden'}`}>
+                                <h2 className="text-center text-lg font-bold">Εξάμηνο {semester}</h2>
+                                <table className="w-full text-sm text-left">
+                                    <thead className="text-xs uppercase bg-gray-50">
+                                        <tr>
+                                            <th scope="col" className="py-3 px-6">Course</th>
+                                            <th scope="col" className="py-3 px-6">Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {filterCourses(courses).map(([course, grade]) => (
+                                            <tr key={course} className="bg-white border-b">
+                                                <td scope="row" className={`py-4 px-6 font-medium whitespace-nowrap ${getGradeColor(grade)}`}>
+                                                    {course}
+                                                </td>
+                                                <td className={`py-4 px-6 ${getGradeColor(grade)}`}>
+                                                    {grade}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ))}
+                </div>
+            </main>
+            <Footer />
         </div>
     );
-}
 
-export default GradePage;
+};
+export default Grades

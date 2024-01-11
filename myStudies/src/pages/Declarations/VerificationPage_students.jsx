@@ -362,7 +362,7 @@ const StepThree = ({ selectedSubjects }) => {
     // Function to navigate to the verification page
     const handleOkClick = () => {
         console.log("Ok button clicked");  // Debug log
-        navigate('/student/declarations/verification');
+        navigate('/student');
     };
 
     // Decide the message based on the conditions
@@ -380,6 +380,7 @@ const StepThree = ({ selectedSubjects }) => {
             <div className={`text-center p-4 ${mixedSemesters || totalSubjects > 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
                 {message}
             </div>
+
             {/* If no error, show the selected subjects */}
             {!mixedSemesters && totalSubjects <= 10 && Object.entries(subjectsBySemester).map(([semester, subjects]) => (
                 <div key={semester} className="mt-4">
@@ -391,6 +392,7 @@ const StepThree = ({ selectedSubjects }) => {
                     </ul>
                 </div>
             ))}
+
             {/* Show the Okay button based on conditions */}
             {!mixedSemesters && totalSubjects <= 10 && (
                 <div className="mt-4 flex justify-center">

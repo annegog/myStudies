@@ -14,7 +14,11 @@ const AccordionSection = ({ title, courses, isOpen, onClick }) => {
         <div className="content bg-gray-100 rounded-2xl p-4">
           {courses &&
             courses.map((course) => (
-              <div key={course.id}>{/* Render course details here */}</div>
+              <div key={course.id} className="text-black">
+                <h2>{course.title}</h2>
+                <p>ID: {course.id_course}</p>
+                <p>ECTS: {course.ects}</p>
+              </div>
             ))}
         </div>
       )}
@@ -26,13 +30,17 @@ const Courses = () => {
   const [activeSemester, setActiveSemester] = useState(null);
   const [openSections, setOpenSections] = useState({});
   const [courseData, setCourseData] = useState([]);
+  const [organizedCourses, setOrganizedCourses] = useState({});
 
   useEffect(() => {
-    const apiEndpoint = "/courses";
+    const apiEndpoint = "/api/courses";
     axios
       .get(apiEndpoint)
       .then((response) => {
         setCourseData(response.data);
+
+        const organizedData = organizeCourses(response.data);
+        setOrganizedCourses(organizedData);
       })
       .catch((error) => {
         console.error("Error fetching course data:", error);
@@ -40,46 +48,47 @@ const Courses = () => {
   }, []); // Empty dependency array ensures the effect runs only once
 
 
-//   // Function to organize courses by semester, type, and direction/major
-//   const organizeCourses = (courses) => {
-//     const organizedData = {};
 
-//     // Iterate over each course
-//     courses.forEach((course) => {
-//       const { semester, mandatory, lab, general, direction, major } = course;
+  // Function to organize courses by semester, type, and direction/major
+  const organizeCourses = (courses) => {
+    const organizedData = {};
 
-//       // Create semester key if not exists
-//       if (!organizedData[semester]) {
-//         organizedData[semester] = {
-//           required: [],
-//           labs: [],
-//           general: [],
-//           directionA: [],
-//           directionB: [],
-//         };
-//       }
+    // Iterate over each course
+    courses.forEach((course) => {
+      const { semester, mandatory, lab, general, direction } = course;
 
-//       // Place the course into the appropriate category based on its type
-//       if (mandatory) {
-//         organizedData[semester].required.push(course);
-//       } else if (lab) {
-//         organizedData[semester].labs.push(course);
-//       } else if (general) {
-//         organizedData[semester].general.push(course);
-//       }
+      // Create semester key if not exists
+      if (!organizedData[semester]) {
+        organizedData[semester] = {
+          required: [],
+          labs: [],
+          general: [],
+          directionA: [],
+          directionB: [],
+        };
+      }
 
-//       // Place the course into the appropriate direction category
-//       if (direction === "A") {
-//         organizedData[semester].directionA.push(course);
-//       } else if (direction === "B") {
-//         organizedData[semester].directionB.push(course);
-//       }
+      // Place the course into the appropriate category based on its type
+      if (mandatory) {
+        organizedData[semester].required.push(course);
+      } else if (lab) {
+        organizedData[semester].labs.push(course);
+      } else if (general) {
+        organizedData[semester].general.push(course);
+      }
 
-//       // Add more conditions as needed for other types or categories
-//     });
+      // Place the course into the appropriate direction category
+      if (direction === "A") {
+        organizedData[semester].directionA.push(course);
+      } else if (direction === "B") {
+        organizedData[semester].directionB.push(course);
+      }
 
-//     return organizedData;
-//   };
+      // Add more conditions as needed for other types or categories
+    });
+
+    return organizedData;
+  };
 
 //   // Example usage
 //   const organizedCourses = organizeCourses(courseData);

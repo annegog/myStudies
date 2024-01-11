@@ -102,20 +102,16 @@ app.get('/profile', (req, res) => {
 
 /************************************** Courses **************************************************/
 
-app.get('/courses', (req, res) => {
-    const { token } = req.cookies;
-    if (token) {
-        jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
-            if (userData && userData.id) {
-                res.json(userData);
-            } else {
-                res.json(null);
-            }
-        });
-    } else {
-        res.json(null);
+app.get('/api/courses', async (req, res) => {
+    try {
+      const courses = await Course.find();
+      res.json(courses);
+    } catch (error) {
+      console.error('Error fetching course data:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-});
+  });
+  
 
 app.get('/declarationsOpen', (req, res) => {
     const { token } = req.cookies;
@@ -144,16 +140,16 @@ app.post('/logout', (req, res) => {
 /************************************** TESTS ****************************************************/
 app.get('/test', async (req, res) => {
     try {
-        const user1 = new User({
-            first_name: 'John',
-            last_name: 'Doe',
-            username: 'john_doe',
-            phone: 1234567890,
-            email: 'john@example.com',
-            password: bcrypt.hashSync('password123', bcryptSalt),
-            role: 'student',
-            am: 12345,
-        });
+        // const user1 = new User({
+        //     first_name: 'John',
+        //     last_name: 'Doe',
+        //     username: 'john_doe',
+        //     phone: 1234567890,
+        //     email: 'john@example.com',
+        //     password: bcrypt.hashSync('password123', bcryptSalt),
+        //     role: 'student',
+        //     am: 12345,
+        // });
 
         const user2 = new User({
             first_name: 'Jane',
@@ -166,23 +162,23 @@ app.get('/test', async (req, res) => {
             am: 67890,
         });
 
-        // Save users to the database
-        await user1.save();
-        await user2.save();
+        // // Save users to the database
+        // await user1.save();
+        // await user2.save();
 
         // Create sample course
         const course1 = new Course({
-            title: 'Introduction to Programming',
-            id_course: 'CS101',
-            ects: 6,
-            semester: 1,
+            title: 'Test test test',
+            id_course: 'T001',
+            ects: 8,
+            semester: 5,
             professors: [user2._id], // Link to professor user2
             books: ['Programming Book 101', 'Programming Book 200'],
-            hours: 60,
+            hours: 80,
             mandatory: true,
             lab: false,
             general: false,
-            direction: '',
+            direction: 'A',
             major: '',
             project: false,
             departmental_selection: false,

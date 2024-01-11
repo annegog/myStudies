@@ -87,7 +87,7 @@ app.get('/profile', (req, res) => {
         jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
             // if (err) throw err;
             if (userData && userData.id) {
-                const { first_name, last_name, username, profilephoto, phone, email, host, tenant, isApproved, isAdmin } = await User.findById(userData.id); //fetch from the database
+                const { first_name, last_name, username, phone, email, role, am } = await User.findById(userData.id); //fetch from the database
                 res.json({ first_name, last_name, username, phone, email, role, am });
             } else {
                 res.json(null);

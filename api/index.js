@@ -63,7 +63,7 @@ const verifyJWTuser = (req, res, next) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const userDoc = await User.findOne({ username });
-    
+
     if (userDoc) {
         const passOK = bcrypt.compareSync(password, userDoc.password);
         if (passOK) {
@@ -104,14 +104,14 @@ app.get('/profile', (req, res) => {
 
 app.get('/api/courses', async (req, res) => {
     try {
-      const courses = await Course.find();
-      res.json(courses);
+        const courses = await Course.find();
+        res.json(courses);
     } catch (error) {
-      console.error('Error fetching course data:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error fetching course data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
-  
+});
+
 
 app.get('/declarationsOpen', (req, res) => {
     const { token } = req.cookies;
@@ -159,26 +159,36 @@ app.get('/test', async (req, res) => {
             email: 'jane@example.com',
             password: bcrypt.hashSync('password456', bcryptSalt),
             role: 'professor',
-            am: 67890,
+            am: 12345,
         });
 
         // // Save users to the database
         // await user1.save();
         // await user2.save();
 
-        // Create sample course
-        const course1 = new Course({
-            title: 'Test test test',
-            id_course: 'T001',
-            ects: 8,
-            semester: 5,
-            professors: [user2._id], // Link to professor user2
-            books: ['Programming Book 101', 'Programming Book 200'],
-            hours: 80,
+        const user3 = new User({
+            first_name: 'John',
+            last_name: 'Smith',
+            username: 'john_smith',
+            phone: 1234567890,
+            email: 'john@example.com',
+            password: bcrypt.hashSync('password789', bcryptSalt),
+            role: 'professor',
+            am: 12345,
+        });
+
+        const course2 = new Course({
+            title: 'Advanced Algorithms',
+            id_course: 'CS202',
+            ects: 7,
+            semester: 3,
+            professors: [user3._id],
+            books: ['Algorithm Book 201', 'Algorithm Book 202'],
+            hours: 70,
             mandatory: true,
             lab: false,
             general: false,
-            direction: 'A',
+            direction: '',
             major: '',
             project: false,
             departmental_selection: false,
@@ -186,7 +196,33 @@ app.get('/test', async (req, res) => {
             thesis: false,
         });
 
-        await course1.save();
+        const course3 = new Course({
+            title: 'Software Engineering',
+            id_course: 'CS305',
+            ects: 8,
+            semester: 5,
+            professors: [user2._id, user3._id],
+            books: ['Software Engineering Book 301', 'Software Engineering Book 302'],
+            hours: 80,
+            mandatory: true,
+            lab: false,
+            general: false,
+            direction: '',
+            major: '',
+            project: true,
+            departmental_selection: false,
+            internship: false,
+            thesis: false,
+        });
+
+        // Save the courses to the database
+        Promise.all([user3.save(), course2.save(), course3.save()])
+            .then(() => {
+                console.log('Sample courses created successfully');
+            })
+            .catch((error) => {
+                console.error('Error creating sample courses:', error);
+            });
 
         console.log('Data seeded successfully');
     } catch (error) {

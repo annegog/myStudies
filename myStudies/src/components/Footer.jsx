@@ -61,11 +61,11 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="flex justify-left mt-4">
+                {/* <div className="flex justify-left mt-4">
                     <img src={GreekFlag} alt="Greece Logo" style={{width: "90px", height: "70px"}} className="footer-image mx-2" />
                     <img src={EuropeFlag} alt="Europe Logo" style={{width: "90px", height: "70px"}}  className="footer-image mx-2" />
                 </div>
-                
+                 */}
             </div>
         </footer>
     );

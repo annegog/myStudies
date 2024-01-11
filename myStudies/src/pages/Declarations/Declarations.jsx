@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar_students from "../../components/Navbar_students";
+import React from "react";
+
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Footer from "../../components/Footer";
 import NavBarOptions from "../../components/NavBarOptions";
+import Navbar_students from "../../components/Navbar_students";
 
 const DeclarationPage = () => {
     // State for controlling which step the user is on
@@ -31,11 +34,10 @@ const DeclarationPage = () => {
                     <React.Fragment key={step}>
                         {/* Step Circle */}
                         <div className={`flex flex-col items-center`}>
-                            <div
-                                className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${step <= currentStep ? 'bg-blue-500' : 'bg-gray-300'}`}
-                            >
-                                {step}
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${step <= currentStep ? 'bg-blue-500' : 'bg-gray-300'}`}>
+                                {step} 
                             </div>
+
                             <div className="text-sm text-center mt-1">
                                 {step === 1 ? "Επιλογή Μαθημάτων" : step === 2 ? "Επισκόπηση" : "Οριστική Υποβολή"}
                             </div>
@@ -170,7 +172,6 @@ const courseData = {
     }
 };
 
-
 // Εδώ ορίζετε τα συστατικά για κάθε βήμα
 const StepOne = ({ onSubjectSelect, selectedSubjects }) => {
     const [activeSemester, setActiveSemester] = useState(null);
@@ -281,7 +282,6 @@ const StepOne = ({ onSubjectSelect, selectedSubjects }) => {
     );
 };
 
-
 const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
     const handleDeselectSubject = (subjectKey) => {
         onSubjectDeselect(subjectKey);
@@ -307,7 +307,7 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
             <h2>Selected Subjects</h2>
             {Object.entries(subjectsBySemester).map(([semester, subjects]) => (
                 <div key={semester}>
-                    <h3>Εξάμηνο {semester}</h3>
+                    <h3> Εξάμηνο {semester}</h3>
                     <ul className="pl-4"> {/* Add padding to the left of the list */}
                         {subjects.map((subject) => {
                             const subjectKey = `${semester}-${subject}`;
@@ -328,8 +328,6 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
         </div>
     );
 };
-
-
 
 const StepThree = ({ selectedSubjects }) => {
     const navigate = useNavigate();
@@ -362,7 +360,7 @@ const StepThree = ({ selectedSubjects }) => {
     // Function to navigate to the verification page
     const handleOkClick = () => {
         console.log("Ok button clicked");  // Debug log
-        navigate('/student/declarations/verification');
+        navigate('/student');
     };
 
     // Decide the message based on the conditions
@@ -380,6 +378,7 @@ const StepThree = ({ selectedSubjects }) => {
             <div className={`text-center p-4 ${mixedSemesters || totalSubjects > 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
                 {message}
             </div>
+
             {/* If no error, show the selected subjects */}
             {!mixedSemesters && totalSubjects <= 10 && Object.entries(subjectsBySemester).map(([semester, subjects]) => (
                 <div key={semester} className="mt-4">
@@ -391,6 +390,7 @@ const StepThree = ({ selectedSubjects }) => {
                     </ul>
                 </div>
             ))}
+
             {/* Show the Okay button based on conditions */}
             {!mixedSemesters && totalSubjects <= 10 && (
                 <div className="mt-4 flex justify-center">

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import Footer from "../components/Footer";
-import NestedList from "../components/NestedList";
 import Navbar from "../components/Navbar_students";
 import Courses from "../components/Courses";
 import NavBarOptions from "../components/NavBarOptions";

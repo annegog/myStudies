@@ -58,6 +58,8 @@ const verifyJWTuser = (req, res, next) => {
     }
 };
 
+/************************************** USERS ****************************************************/
+
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const userDoc = await User.findOne({ username });
@@ -85,9 +87,9 @@ app.get('/profile', (req, res) => {
     const { token } = req.cookies;
     if (token) {
         jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
-            // if (err) throw err;
+            if (err) throw err;
             if (userData && userData.id) {
-                const { first_name, last_name, username, phone, email, role, am } = await User.findById(userData.id); //fetch from the database
+                const { first_name, last_name, username, phone, email, role, am } = await User.findById(userData.id);
                 res.json({ first_name, last_name, username, phone, email, role, am });
             } else {
                 res.json(null);
@@ -97,6 +99,8 @@ app.get('/profile', (req, res) => {
         res.json(null);
     }
 });
+
+/************************************** Courses **************************************************/
 
 app.get('/courses', (req, res) => {
     const { token } = req.cookies;
@@ -113,10 +117,31 @@ app.get('/courses', (req, res) => {
     }
 });
 
+app.get('/declarationsOpen', (req, res) => {
+    const { token } = req.cookies;
+    if (token) {
+        jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
+            if (err) throw err;
+            if (userData && userData.id) {
+                const { first_name, last_name, username, phone, email, role, am } = await User.findById(userData.id);
+                res.json({ first_name, last_name, username, phone, email, role, am });
+            } else {
+                res.json(null);
+            }
+        });
+    } else {
+        res.json(null);
+    }
+});
+
+
+
 app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true);
 });
 
+
+/************************************** TESTS ****************************************************/
 app.get('/test', async (req, res) => {
     try {
         const user1 = new User({

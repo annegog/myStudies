@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ExamsSeasonSchema = new Schema({
-    data: Date,
-    ExamsSeason: Number,
+    endData: Date,
+    examsSeason: Number,
     
     // Add more 
 });

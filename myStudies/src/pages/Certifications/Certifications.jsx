@@ -7,8 +7,10 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar_students";
 import NavBarOptions from "../../components/NavBarOptions";
 
+
+
 const Certifications = () => {
-    // const [studentData, setStudentData] = useState(null);    {/* To have the info */}
+    // const [studentData, setStudentData] = useState(null);    {/* To have student's info */}
 
     const navigate = useNavigate();
 
@@ -24,6 +26,16 @@ const Certifications = () => {
         navigate("/student/certifications/history");
     };
 
+    const Button = ({buttonString, handleFunction}) => {
+        return (
+            <div className="Button">
+                <button type="button" className="text-center text-white font-medium bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-base px-5 py-3 "
+                    onClick={handleRequest}
+                > {buttonString} </button>
+            </div>
+        );
+    };
+
     return (
         <div className="Certifications Page">
             <Navbar/>
@@ -31,7 +43,10 @@ const Certifications = () => {
             <main className="Main Context of Certification Page">
                 <div className="mt-16 justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32 mb-36">
                     <div className="grid grid-flow-row justify-center mt-2 mb-2 gap-4">
-                        <button type="button" className="text-center text-white font-medium bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-base px-5 py-3 "
+                        <Button buttonString={"Αίτηση για παροχή πιστοποιητικού"} handleFunction={handleRequest}/>
+                        <Button buttonString={"Εμφάνιση της κατάστασης αιτήσεων για πιστοποιητικά"} handleFunction={handleStatus}/>
+                        <Button buttonString={"Ιστορικό Αιτήσεων"} handleFunction={handleHistory}/>
+                        {/* <button type="button" className="text-center text-white font-medium bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-base px-5 py-3 "
                             onClick={handleRequest}
                         > Αίτηση για παροχή πιστοποιητικού </button>
 
@@ -41,7 +56,7 @@ const Certifications = () => {
 
                         <button type="button" className="text-center text-white font-medium bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-base px-5 py-3 "
                             onClick={handleHistory}
-                        > Ιστορικό Αιτήσεων </button>
+                        > Ιστορικό Αιτήσεων </button> */}
                     </div>
                 </div>
             </main>

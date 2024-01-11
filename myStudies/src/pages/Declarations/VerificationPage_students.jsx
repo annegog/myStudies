@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar_students from "../../components/Navbar_students";
 import Footer from "../../components/Footer";
 import NavBarOptions from "../../components/NavBarOptions";
@@ -331,6 +332,7 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
 
 
 const StepThree = ({ selectedSubjects }) => {
+    const navigate = useNavigate();
     // Helper function to group subjects by semester
     const groupSubjectsBySemester = (selectedSubjects) => {
         return selectedSubjects.reduce((acc, subjectKey) => {
@@ -356,6 +358,12 @@ const StepThree = ({ selectedSubjects }) => {
     const subjectsBySemester = groupSubjectsBySemester(selectedSubjects);
     const totalSubjects = selectedSubjects.length;
     const mixedSemesters = hasMixedSemesterSelection(subjectsBySemester);
+
+    // Function to navigate to the verification page
+    const handleOkClick = () => {
+        console.log("Ok button clicked");  // Debug log
+        navigate('/student/declarations/verification');
+    };
 
     // Decide the message based on the conditions
     let message;
@@ -383,6 +391,17 @@ const StepThree = ({ selectedSubjects }) => {
                     </ul>
                 </div>
             ))}
+            {/* Show the Okay button based on conditions */}
+            {!mixedSemesters && totalSubjects <= 10 && (
+                <div className="mt-4 flex justify-center">
+                    <button
+                        onClick={handleOkClick}
+                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    >
+                        Εντάξει
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

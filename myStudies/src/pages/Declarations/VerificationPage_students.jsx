@@ -170,7 +170,6 @@ const courseData = {
     }
 };
 
-
 // Εδώ ορίζετε τα συστατικά για κάθε βήμα
 const StepOne = ({ onSubjectSelect, selectedSubjects }) => {
     const [activeSemester, setActiveSemester] = useState(null);
@@ -281,7 +280,6 @@ const StepOne = ({ onSubjectSelect, selectedSubjects }) => {
     );
 };
 
-
 const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
     const handleDeselectSubject = (subjectKey) => {
         onSubjectDeselect(subjectKey);
@@ -328,8 +326,6 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
         </div>
     );
 };
-
-
 
 const StepThree = ({ selectedSubjects }) => {
     const navigate = useNavigate();

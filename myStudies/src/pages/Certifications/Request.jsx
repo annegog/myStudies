@@ -34,7 +34,7 @@ const Status = () => {
     return (
         <div className="Certification Request Page">
             <Navbar/>
-            <NavBarOptions userType="student"/> {/* Instead of student string, giving the studentData.status */}
+            <NavBarOptions userType={"student"}/> {/* Instead of student string, giving the studentData.status */}
             <main className="main-content flex justify-center" >
                 <div className="w-full max-w-4xl">
                     <div className="flex items-center justify-center mt-8 space-x-4">

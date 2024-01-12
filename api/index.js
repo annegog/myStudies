@@ -83,6 +83,10 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.post('/logout', (req, res) => {
+    res.cookie('token', '').json(true);
+});
+
 app.get('/profile', (req, res) => {
     const { token } = req.cookies;
     if (token) {
@@ -101,6 +105,8 @@ app.get('/profile', (req, res) => {
 });
 
 /************************************** Courses **************************************************/
+
+// Getting all the courses from the database
 
 app.get('/api/courses', async (req, res) => {
     try {
@@ -131,13 +137,10 @@ app.get('/declarationsOpen', (req, res) => {
 });
 
 
-
-app.post('/logout', (req, res) => {
-    res.cookie('token', '').json(true);
-});
-
-
 /************************************** TESTS ****************************************************/
+
+// Inserting data to our database - test users and courses
+
 app.get('/test', async (req, res) => {
     try {
         const student1 = new User({
@@ -162,10 +165,10 @@ app.get('/test', async (req, res) => {
             city: 'Αθήνα',
             phone: 6977553311,
             postal: 55443,
-            temp_home: '-',
-            temp_city: '-',
-            temp_phone: '-',
-            postal_temp: '-',
+            temp_home: '',
+            temp_city: '',
+            temp_phone: '',
+            postal_temp: '',
         });
 
         const student2 = new User({
@@ -190,10 +193,10 @@ app.get('/test', async (req, res) => {
             city: 'Αθήνας',
             phone: 6911223344,
             postal: 11111,
-            temp_home: '-',
-            temp_city: '-',
-            temp_phone: '-',
-            postal_temp: '-',
+            temp_home: '',
+            temp_city: '',
+            temp_phone: '',
+            postal_temp: '',
         });
 
         const student3 = new User({
@@ -218,10 +221,10 @@ app.get('/test', async (req, res) => {
             city: 'Αθήνα',
             phone: 6988774411,
             postal: 12345,
-            temp_home: '-',
-            temp_city: '-',
-            temp_phone: '-',
-            postal_temp: '-',
+            temp_home: '',
+            temp_city: '',
+            temp_phone: '',
+            postal_temp: '',
         });
 
         const student4 = new User({
@@ -246,10 +249,10 @@ app.get('/test', async (req, res) => {
             city: 'Ηλιούπολη',
             phone: 6912312312,
             postal: 32154,
-            temp_home: '-',
-            temp_city: '-',
-            temp_phone: '-',
-            postal_temp: '-',
+            temp_home: '',
+            temp_city: '',
+            temp_phone: '',
+            postal_temp: '',
         });
 
         const student5 = new User({
@@ -274,10 +277,10 @@ app.get('/test', async (req, res) => {
             city: 'Ελληνικό',
             phone: 6978978978,
             postal: 45677,
-            temp_home: '-',
-            temp_city: '-',
-            temp_phone: '-',
-            postal_temp: '-',
+            temp_home: '',
+            temp_city: '',
+            temp_phone: '',
+            postal_temp: '',
         });
 
         const student6 = new User({
@@ -302,10 +305,10 @@ app.get('/test', async (req, res) => {
             city: 'Μαρούσι',
             phone: 6945632232,
             postal: 45655,
-            temp_home: '-',
-            temp_city: '-',
-            temp_phone: '-',
-            postal_temp: '-',
+            temp_home: '',
+            temp_city: '',
+            temp_phone: '',
+            postal_temp: '',
         });
 
         const professor = new User({
@@ -330,10 +333,10 @@ app.get('/test', async (req, res) => {
             city: 'Αθήνα',
             phone: 6911223344,
             postal: 12345,
-            temp_home: '-',
-            temp_city: '-',
-            temp_phone: '-',
-            postal_temp: '-',
+            temp_home: '',
+            temp_city: '',
+            temp_phone: '',
+            postal_temp: '',
         });
 
         const course1 = new Course({
@@ -393,53 +396,11 @@ app.get('/test', async (req, res) => {
             thesis: false,
         });
 
-        // const course2 = new Course({
-        //     title: 'Advanced Algorithms',
-        //     id_course: 'CS202',
-        //     ects: 7,
-        //     semester: 3,
-        //     professors: [user3._id],
-        //     books: ['Algorithm Book 201', 'Algorithm Book 202'],
-        //     hours: 70,
-        //     mandatory: true,
-        //     lab: false,
-        //     general: false,
-        //     direction: '',
-        //     major: '',
-        //     project: false,
-        //     departmental_selection: false,
-        //     internship: false,
-        //     thesis: false,
-        // });
-
-        // const course3 = new Course({
-        //     title: 'Software Engineering',
-        //     id_course: 'CS305',
-        //     ects: 8,
-        //     semester: 5,
-        //     professors: [user2._id, user3._id],
-        //     books: ['Software Engineering Book 301', 'Software Engineering Book 302'],
-        //     hours: 80,
-        //     mandatory: true,
-        //     lab: false,
-        //     general: false,
-        //     direction: '',
-        //     major: '',
-        //     project: true,
-        //     departmental_selection: false,
-        //     internship: false,
-        //     thesis: false,
-        // });
-
-        // // Save users to the database
-        // await user1.save();
-        // await user2.save();
-
         // Save the courses to the database
         Promise.all(
             [
                 student1.save(), student2.save(), student3.save(), student4.save(), student5.save(), student6.save(), professor.save(), 
-                course2.save(), course3.save()
+                course2.save(), course3.save(), course1.save()
             ])
             .then(() => {
                 console.log('Sample courses created successfully');

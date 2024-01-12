@@ -4,7 +4,10 @@ import { Route, Routes } from 'react-router-dom';
 
 import axios from "axios";
 import Grades from "./pages/GradesPage";
-import LoginPage from "./pages/LoginPage";
+
+import Help from "./pages/General/Help";
+import Login from "./pages/General/Login";
+
 import Courses from "./pages/CoursesPage";
 import Profile from "./pages/ProfilePage";
 import MainPageS from "./pages/MainPage_students";
@@ -26,8 +29,9 @@ const App = () => {
 
             {/* General */}
 
-            <Route path="/" element={<LoginPage/>}/>
-            <Route path="/login" element={<LoginPage/>}/>
+            {/* <Route path="/" element={<Login/>}/> */}
+            <Route path="/help" element={<Help/>}/>
+            <Route path="/login" element={<Login/>}/>
 
             {/* Student Main */}
 

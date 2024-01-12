@@ -85,6 +85,7 @@ const Login = () => {
                     </div>
 
                     <button type="submit" className="w-full bg-blue-900 text-white rounded-md p-2 hover:bg-blue-700"> Σύνδεση </button>
+                    
                     <a href="/help" className="block text-center text-blue-600 mt-2"> Ξέχασες τον κωδικό σου; </a>
 
                     {/* TODO: Add the link that this goes to  */}

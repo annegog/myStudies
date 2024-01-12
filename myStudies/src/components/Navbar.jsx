@@ -1,5 +1,7 @@
+import React from "react";
+
+import { useState } from "react";
 import { Link } from "react-scroll";
-import React, { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import universityLogo from "../assets/UniLogo.png";

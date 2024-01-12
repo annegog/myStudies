@@ -16,7 +16,7 @@ const MobileApp = () => {
         <div className="Mobile App">
             <Navbar/>
             <main className="Main Mobile App">
-                <div style={{marginTop: "1rem"}} className="bg-zinc-300 bg-opacity-50 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
+                <div style={{ marginTop: "1rem" }} className="bg-zinc-300 bg-opacity-50 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
                     <div className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full"> Mobile Εφαρμογή για τους προπτυχιακούς φοιτητές </div>
 
                     <div className="text-blue-900 text-xl self-start max-md:max-w-full"> 

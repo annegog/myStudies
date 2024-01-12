@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
 
-import Grades from "./pages/GradesPage";
+import Grades from "./pages/Grades/Grades";
 
 import MobileApp from "./pages/Help/MobileApp";
 import ConnectHelp from "./pages/Help/ConnectHelp";

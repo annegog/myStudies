@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Navbar_students from "../components/Navbar_students";
+import React from "react";
+
+import { useState, useEffect } from "react";
+
 import Footer from "../components/Footer";
 import NavBarOptions from "../components/NavBarOptions";
+import Navbar_students from "../components/Navbar_students";
 
 const Grades = () => {
     const gradesData = {
@@ -15,8 +18,14 @@ const Grades = () => {
             "Course 2.2": 4,
             // ... more courses
         },
-        // ... more semesters
+        3: { // Semester 2
+            "Course 2.1": 9,
+            "Course 2.2": 4,
+            // ... more courses
+        },
     };
+
+    {/* Data */}
 
     const [filter, setFilter] = useState('all'); // 'all', 'passed', or 'failed'
     const [semesterFilter, setSemesterFilter] = useState('all'); // 'all', 'even', or 'odd'
@@ -25,8 +34,10 @@ const Grades = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResult, setSearchResult] = useState(null);
 
+    {/* Functions */}
+    
     // Function to get the appropriate color based on the grade
-    const getGradeColor = (grade) => grade >= 5 ? 'text-green-500' : 'text-red-500';
+    const getGradeColor = (grade) => grade >= 5 ? 'text-green-500' : 'text-red-500';    
 
     // Function to handle the search
     const handleSearch = () => {
@@ -36,47 +47,46 @@ const Grades = () => {
                 return;
             }
         }
-        setSearchResult('not found');
+        setSearchResult("not found");
     };
-
 
     // Function to filter courses based on the current filter
     const filterCourses = (courses) => {
         return Object.entries(courses).filter(([_, grade]) => {
-            if (filter === 'all') return true;
-            if (filter === 'passed') return grade >= 5;
-            if (filter === 'failed') return grade < 5;
+            if (filter === "all") return true;
+            if (filter === "failed") return grade < 5;
+            if (filter === "passed") return grade >= 5;
         });
     };
 
     // Function to determine if a semester should be shown based on the current semester filter
     const shouldShowSemester = (semester) => {
-        if (semesterFilter === 'all') return true;
+        if (semesterFilter === "all") return true;
         const isEven = semester % 2 === 0;
-        return (semesterFilter === 'even' && isEven) || (semesterFilter === 'odd' && !isEven);
+        return (semesterFilter === "even" && isEven) || (semesterFilter === "odd" && !isEven);
     };
 
+    {/* Main */}
+
     return (
-        <div className="declaration-page">
-            <Navbar_students />
-            <NavBarOptions userType={"student"} />
+        <div className="Declarations">
+            <Navbar_students/>
+            <NavBarOptions userType={"student"}/>
             <main className="main-content flex justify-center">
                 <div className="grades-table w-full max-w-4xl">
+                    
                     {/* Search Bar */}
-                    <div className="flex justify-center mt-4">
+                    <div style={{ marginTop: "1rem" }} className="flex justify-center mt-4">
                         <input
                             type="text"
-                            className="p-2 border border-gray-300"
-                            placeholder="Search for a subject..."
+                            className="text-center p-2 rounded-lg border border-gray-300"
+                            placeholder="Αναζήτηση Μαθήματος"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
-                        <button
-                            className="bg-blue-500 text-white p-2 ml-2"
+                        <button className="bg-blue-500 rounded-lg text-white p-2 ml-2" 
                             onClick={handleSearch}
-                        >
-                            Search
-                        </button>
+                        > Search </button>
                     </div>
 
                     {/* Search Results */}
@@ -94,9 +104,11 @@ const Grades = () => {
                             )}
                         </div>
                     )}
+
                     {/* Filters Section */}
-                    <div className="bg-gray-100 p-4">
+                    <div style={{ marginTop: "1rem" }} className="bg-gray-100 rounded-lg p-4">
                         <div className="flex flex-col md:flex-row justify-between">
+
                             {/* Attempts Filter */}
                             <div className="mb-2 md:mb-0 md:mr-2 flex-1">
                                 <div className="text-center font-bold cursor-pointer" onClick={() => setShowGradeFilters(!showGradeFilters)}>
@@ -104,10 +116,10 @@ const Grades = () => {
                                     <span>{showGradeFilters ? '▲' : '▼'}</span>
                                 </div>
                                 {showGradeFilters && (
-                                    <div className="flex flex-col justify-center p-2 bg-white">
-                                        <button onClick={() => setFilter('all')} className={`my-1 px-4 py-2 ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>All</button>
-                                        <button onClick={() => setFilter('passed')} className={`my-1 px-4 py-2 ${filter === 'passed' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>Passed</button>
-                                        <button onClick={() => setFilter('failed')} className={`my-1 px-4 py-2 ${filter === 'failed' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>Failed</button>
+                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-gray-100">
+                                        <button onClick={() => setFilter('all')} className={`my-1 px-4 py-2 rounded-lg ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}> Όλα </button>
+                                        <button onClick={() => setFilter('passed')} className={`my-1 px-4 py-2 rounded-lg ${filter === 'passed' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}> Επιτυχίες </button>
+                                        <button onClick={() => setFilter('failed')} className={`my-1 px-4 py-2 rounded-lg ${filter === 'failed' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}> Αποτυχίες </button>
                                     </div>
                                 )}
                             </div>
@@ -119,13 +131,14 @@ const Grades = () => {
                                     <span>{showSemesterFilters ? '▲' : '▼'}</span>
                                 </div>
                                 {showSemesterFilters && (
-                                    <div className="flex flex-col justify-center p-2 bg-white">
-                                        <button onClick={() => setSemesterFilter('all')} className={`my-1 px-4 py-2 ${semesterFilter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>All Semesters</button>
-                                        <button onClick={() => setSemesterFilter('even')} className={`my-1 px-4 py-2 ${semesterFilter === 'even' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>Even Semesters</button>
-                                        <button onClick={() => setSemesterFilter('odd')} className={`my-1 px-4 py-2 ${semesterFilter === 'odd' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>Odd Semesters</button>
+                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-gray-100">
+                                        <button onClick={() => setSemesterFilter('all')} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}> Όλες </button>
+                                        <button onClick={() => setSemesterFilter('even')} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === 'even' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}> Εαρινού </button>
+                                        <button onClick={() => setSemesterFilter('odd')} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === 'odd' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}> Χειμερινού </button>
                                     </div>
                                 )}
                             </div>
+
                         </div>
                     </div>
 
@@ -133,13 +146,13 @@ const Grades = () => {
                     {Object.entries(gradesData)
                         .filter(([semester, _]) => shouldShowSemester(parseInt(semester)))
                         .map(([semester, courses]) => (
-                            <div key={semester} className={`mb-8 ${shouldShowSemester(parseInt(semester)) ? '' : 'hidden'}`}>
-                                <h2 className="text-center text-lg font-bold">Εξάμηνο {semester}</h2>
-                                <table className="w-full text-sm text-left">
-                                    <thead className="text-xs uppercase bg-gray-50">
+                            <div style={{ marginTop: "2rem" }} key={semester} className={`mb-8 ${shouldShowSemester(parseInt(semester)) ? '' : 'hidden'}`}>
+                                <h2 className="text-center text-lg font-bold"> {semester}o Εξάμηνο </h2>
+                                <table className="rounded-lg bg-gray-200 w-full text-sm text-left">
+                                    <thead className="text-xs">
                                         <tr>
-                                            <th scope="col" className="py-3 px-6">Course</th>
-                                            <th scope="col" className="py-3 px-6">Grade</th>
+                                            <th scope="col" className="py-3 px-6"> ΜΑΘΗΜΑΤΑ </th>
+                                            <th scope="col" className="py-3 px-6"> ΒΑΘΜΟΣ </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -156,13 +169,13 @@ const Grades = () => {
                                     </tbody>
                                 </table>
                             </div>
-                        ))}
+                        ))
+                    }
                 </div>
             </main>
             <Footer />
         </div>
     );
-
 };
 
 export default Grades

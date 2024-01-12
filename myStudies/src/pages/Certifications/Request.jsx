@@ -1,20 +1,13 @@
 import React from "react";
 
 import { useNavigate } from "react-router-dom";
-
-import Footer from "../../components/Footer";
-import BreadCrump from "../../components/BreadCrump";
-import Navbar from "../../components/Navbar_students";
-import NavBarOptions from "../../components/NavBarOptions";
 import { margin } from "@mui/system";
 
-const Status = () => {
-    const certificateSteps = [
-        {number: 1, title: "Επιλογή", active: true}, 
-        {number: 2, title: "Αντίγραφα", active: false},
-        {number: 3, title: "Αίτηση", active: false },
-    ];
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar_students";
+import NavBarOptions from "../../components/NavBarOptions";
 
+const Status = () => {
     // const [selectedCertificate, setSelectedCertificate] = useState("");
 
     // const handleCertificateSelection = (selection) => {

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
-const Help = () => {
+const ContactAdmin = () => {
     const navigate = useNavigate();
 
     const handleBack = () => {
@@ -13,10 +13,10 @@ const Help = () => {
     };
 
     return (
-        <div className="Help Contact with Admin">
+        <div className="Contact Admin">
             <Navbar/>
-            <main className="Main Help Contact with Admin">
-                <div style={{marginTop: "1rem"}} className="bg-zinc-300 bg-opacity-50 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
+            <main className="Main Contact Admin">
+                <div style={{ marginTop: "1rem" }} className="bg-zinc-300 bg-opacity-50 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
                     <div className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full"> Πως μπορώ να επικοινωνήσω με τον Διαχειριστή; </div>
 
                     <span className="text-black text-base italic max-w-full bg-green-200 bg-opacity-30 w-[800px] justify-center items-stretch mt-5 pl-3 pr-16 py-5 rounded-[35px] self-start max-md:max-w-full max-md:pl-5 max-md:pr-8">
@@ -34,4 +34,4 @@ const Help = () => {
     );
 };
 
-export default Help;
+export default ContactAdmin;

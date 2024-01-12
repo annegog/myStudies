@@ -1,12 +1,17 @@
 import React from "react";
-
-import { Route, Routes } from 'react-router-dom';
-
 import axios from "axios";
+
+import { Route, Routes } from "react-router-dom";
+
+import Login from "./pages/Login";
+
 import Grades from "./pages/GradesPage";
 
-import Help from "./pages/General/Help";
-import Login from "./pages/General/Login";
+import MobileApp from "./pages/Help/MobileApp";
+import ConnectHelp from "./pages/Help/ConnectHelp";
+import ContactAdmin from "./pages/Help/ContactAdmin";
+import CommonQuestions from "./pages/Help/CommonQuestions";
+
 
 import Courses from "./pages/CoursesPage";
 import Profile from "./pages/ProfilePage";
@@ -29,9 +34,15 @@ const App = () => {
 
             {/* General */}
 
-            {/* <Route path="/" element={<Login/>}/> */}
-            <Route path="/help" element={<Help/>}/>
+            <Route path="/" element={<Login/>}/>
             <Route path="/login" element={<Login/>}/>
+
+            {/* Help */}
+            
+            <Route path="/mobile-app" element={<MobileApp/>}/>
+            <Route path="/admin-contact" element={<ContactAdmin/>}/>
+            <Route path="/connection-help" element={<ConnectHelp/>}/>
+            <Route path="/common-questions" element={<CommonQuestions/>}/>
 
             {/* Student Main */}
 

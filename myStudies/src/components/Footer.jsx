@@ -23,15 +23,15 @@ const Footer = () => {
                             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase"> Οδηγίες </h2>
                             <ul class="text-gray-500 font-medium">
                                 <li class="mb-4">
-                                    <a href="" class="hover:underline"> Οδηγίες Σύνδεσης </a>
+                                    <a href="/connection-help" class="hover:underline"> Οδηγίες Σύνδεσης </a>
                                 </li>
 
                                 <li class="mb-4">
-                                    <a href="" class="hover:underline"> Συχνές Ερωτήσεις </a>
+                                    <a href="/common-questions" class="hover:underline"> Συχνές Ερωτήσεις </a>
                                 </li>
 
                                 <li>
-                                    <a href="" class="hover:underline "> Επικοινωνία με τον Διαχειριστή </a>
+                                    <a href="/admin-contact" class="hover:underline "> Επικοινωνία με τον Διαχειριστή </a>
                                 </li>
                             </ul>
                         </div>
@@ -40,7 +40,7 @@ const Footer = () => {
                             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">New in</h2>
                             <ul class="text-gray-500 font-medium">
                                 <li>
-                                    <a href="" class="hover:underline"> Mobile Εφαρμογή για <br/> Προπτυχιακούς Φοιτητές </a>
+                                    <a href="/mobile-app" class="hover:underline"> Mobile Εφαρμογή για <br/> Προπτυχιακούς Φοιτητές </a>
                                 </li>
                             </ul>
                         </div>

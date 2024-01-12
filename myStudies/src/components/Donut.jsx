@@ -5,10 +5,10 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js/auto";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Donut = () => {
+const Donut = ({ects}) => {
     const data = {
         labels: ["Κατοχυρωμένα ECTS"],
-        datasets: [{label: "ECTS", data: [28, 240 - 28], backgroundColor: ["lightblue", "lightcoral"], borderColor: ["lightblue", "lightcoral"]}],
+        datasets: [{label: "ECTS", data: [ects, 240 - ects], backgroundColor: ["lightblue", "lightcoral"], borderColor: ["lightblue", "lightcoral"]}],
     };
 
     const options = {};

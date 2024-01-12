@@ -98,7 +98,7 @@ const MainPage = () => {
 
       <div className="flex items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 md:px-16 xl:px-32">
-          <Donut />
+        <Donut ects={user.ects} />
           <div className="flex flex-col justify-center items-center space-y-20">
             <div
               style={{ width: "100%" }}
@@ -122,7 +122,7 @@ const MainPage = () => {
               </h2>
               <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
                 <div className="flex justify-between items-center pt-5"></div>
-                <p className="text-lg"> 4 </p>
+                <p className="text-lg"> {user.s_courses} </p>
               </div>
             </div>
           </div>

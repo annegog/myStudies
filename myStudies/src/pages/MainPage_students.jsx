@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 import Donut from "../components/Donut";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar_students";
+import Navbar from "../components/Navbar";
 import NavBarOptions from "../components/NavBarOptions";
+import { UserContext } from "../components/UserContext";
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);
   const [end_date, setEnd_date] = useState("01/04/2024");
   const [declaration, setDeclaration] = useState(false);
   const last_decl = "18/03/2025";
+  const [username, setUsername] = useState("ela");
+
+  const { user } = useContext(UserContext);
+  const {id} = useParams();
 
   // const navigate = useNavigate();
 
@@ -22,9 +28,19 @@ const MainPage = () => {
   //     navigate("");
   // };
 
+  useEffect(() => {
+    if (id) {
+      // axios.get("/student/" + id).then((response) => {
+      //   console.log(response);
+      //   setUsername(response.data.username);
+      //   console.log(username);
+      // });
+    }
+  }, [id]);
+
   return (
     <div>
-      <Navbar />
+      <Navbar/>
       <NavBarOptions userType={"student"} />
       <div className="mt-10 px-4 lg:px-16 xl:px-32">
         {open && !declaration && (
@@ -89,8 +105,7 @@ const MainPage = () => {
               className="p-10 bg-white rounded-lg text-center mt-5"
             >
               <h2 className="text-xl font-bold leading-none text-gray-900 pe-1 mb-5">
-                {" "}
-                Μέσος Όρος{" "}
+                Μέσος Όρος
               </h2>
               <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
                 <div className="flex justify-between items-center pt-5"></div>
@@ -103,8 +118,7 @@ const MainPage = () => {
               className="p-10 bg-white rounded-lg text-center"
             >
               <h2 className="text-xl font-bold leading-none text-gray-900 pe-1 mb-2">
-                {" "}
-                Περασμένα Μαθήματα{" "}
+                Περασμένα Μαθήματα
               </h2>
               <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
                 <div className="flex justify-between items-center pt-5"></div>

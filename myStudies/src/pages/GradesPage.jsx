@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar_students from "../components/Navbar_students";
+import Navbar_students from "../components/Navbar";
 import Footer from "../components/Footer";
 import NavBarOptions from "../components/NavBarOptions";
 

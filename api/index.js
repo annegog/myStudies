@@ -14,7 +14,8 @@ const Course = require('./Models/Course');
 const app = Express();
 
 const bcryptSalt = bcrypt.genSaltSync(8);
-const jwtSecretUser = "jwtSecretUser1";
+const jwtSecretUser = process.env.JWT_SECRET_USER;
+
 app.use(Express.json());
 app.use(cookieParser());
 
@@ -87,14 +88,14 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true);
 });
 
-app.get('/profile', (req, res) => {
+app.get('/student/profile', verifyJWTuser, (req, res) => {
     const { token } = req.cookies;
     if (token) {
         jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
             if (err) throw err;
             if (userData && userData.id) {
-                const { first_name, last_name, username, phone, email, role, am } = await User.findById(userData.id);
-                res.json({ first_name, last_name, username, phone, email, role, am });
+                const user = await User.findById(userData.id);
+                res.json(user);
             } else {
                 res.json(null);
             }
@@ -104,11 +105,22 @@ app.get('/profile', (req, res) => {
     }
 });
 
+app.get('/student/:id', verifyJWTuser, async (req, res) => {
+    const { id } = req.params;
+    try {
+        const user = await User.findById(id).exec();
+        console.log(user);
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching User' });
+    }
+});
+
 /************************************** Courses **************************************************/
 
 // Getting all the courses from the database
 
-app.get('/api/courses', async (req, res) => {
+app.get('/api/courses', verifyJWTuser, async (req, res) => {
     try {
         const courses = await Course.find();
         res.json(courses);
@@ -125,8 +137,8 @@ app.get('/declarationsOpen', (req, res) => {
         jwt.verify(token, jwtSecretUser, {}, async (err, userData) => {
             if (err) throw err;
             if (userData && userData.id) {
-                const { first_name, last_name, username, phone, email, role, am } = await User.findById(userData.id);
-                res.json({ first_name, last_name, username, phone, email, role, am });
+                const user = await User.findById(userData.id);
+                res.json(user);
             } else {
                 res.json(null);
             }
@@ -157,7 +169,7 @@ app.get('/test', async (req, res) => {
             birth_date: '23/06/2006',
             family: 'Άγαμος',
             siblings: 0,
-            army:'Όχι',
+            army: 'Όχι',
             birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
             ID: 'AK336699',
             ID_location: 'Κερατσινίου',
@@ -185,7 +197,7 @@ app.get('/test', async (req, res) => {
             birth_date: '11/09/2002',
             family: 'Άγαμος',
             siblings: 2,
-            army:'Όχι',
+            army: 'Όχι',
             birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
             ID: 'AI456773',
             ID_location: 'Αθηνών',
@@ -213,7 +225,7 @@ app.get('/test', async (req, res) => {
             birth_date: '22/12/2006',
             family: 'Άγαμη',
             siblings: 1,
-            army:'Όχι',
+            army: 'Όχι',
             birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
             ID: 'AK456456',
             ID_location: 'Πειραιά',
@@ -241,7 +253,7 @@ app.get('/test', async (req, res) => {
             birth_date: '12/05/2006',
             family: 'Άγαμη',
             siblings: 1,
-            army:'Όχι',
+            army: 'Όχι',
             birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
             ID: 'AK123123',
             ID_location: 'Ηλιούπολης',
@@ -269,7 +281,7 @@ app.get('/test', async (req, res) => {
             birth_date: '23/12/1997',
             family: 'Άγαμος',
             siblings: 1,
-            army:'Ναί',
+            army: 'Ναί',
             birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
             ID: 'AK789789',
             ID_location: 'Ελληνικό',
@@ -294,10 +306,10 @@ app.get('/test', async (req, res) => {
             am: 'sdi1900125',
             father: 'Βασίλης',
             mother: 'Ελένη',
-            birth_date: '23/01/2001',
+            birth_date: 23/1/2001,
             family: 'Άγαμη',
             siblings: 1,
-            army:'Ναί',
+            army: 'Ναί',
             birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
             ID: 'AK789789',
             ID_location: 'Μαρούσι',
@@ -325,7 +337,7 @@ app.get('/test', async (req, res) => {
             birth_date: '11/12/1980',
             family: 'Άγαμος',
             siblings: '-',
-            army:'Ναί',
+            army: 'Ναί',
             birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
             ID: 'AI998877',
             ID_location: 'Ηλιούπολης',
@@ -625,55 +637,13 @@ app.get('/test', async (req, res) => {
             thesis: false,
         });
 
-        // const course2 = new Course({
-        //     title: 'Advanced Algorithms',
-        //     id_course: 'CS202',
-        //     ects: 7,
-        //     semester: 3,
-        //     professors: [user3._id],
-        //     books: ['Algorithm Book 201', 'Algorithm Book 202'],
-        //     hours: 70,
-        //     mandatory: true,
-        //     lab: false,
-        //     general: false,
-        //     direction: '',
-        //     major: '',
-        //     project: false,
-        //     departmental_selection: false,
-        //     internship: false,
-        //     thesis: false,
-        // });
-
-        // const course3 = new Course({
-        //     title: 'Software Engineering',
-        //     id_course: 'CS305',
-        //     ects: 8,
-        //     semester: 5,
-        //     professors: [user2._id, user3._id],
-        //     books: ['Software Engineering Book 301', 'Software Engineering Book 302'],
-        //     hours: 80,
-        //     mandatory: true,
-        //     lab: false,
-        //     general: false,
-        //     direction: '',
-        //     major: '',
-        //     project: true,
-        //     departmental_selection: false,
-        //     internship: false,
-        //     thesis: false,
-        // });
-
-        // Save users to the database
-        // await student1.save();
-        // await user2.save();
-
         // Save to the database
         Promise.all(
             [
-                student1.save(), student2.save(), student3.save(), student4.save(), student5.save(), student6.save(), professor.save(), 
+                student1.save(), student2.save(), student3.save(), student4.save(), student5.save(), student6.save(), professor.save(),
                 major1.save(), major2.save(), major3.save(), major4.save(), major5.save(), major6.save(), major7.save(), major8.save(),
                 choice1.save(), choice2.save(), choice3.save(), choice4.save(),
-                lab1.save(), lab2.save(), lab3.save(), 
+                lab1.save(), lab2.save(), lab3.save(),
             ])
             .then(() => {
                 console.log('Sample courses created successfully');

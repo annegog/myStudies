@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/Footer";
 import BreadCrump from "../../components/BreadCrump";
-import Navbar from "../../components/Navbar_students";
+import Navbar from "../../components/Navbar";
 import NavBarOptions from "../../components/NavBarOptions";
 import { margin } from "@mui/system";
 

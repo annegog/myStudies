@@ -15,39 +15,35 @@ const Login = () => {
     
     const { setUser } = useContext(UserContext);
 
-    async function handleLogin(ev) {
-        ev.preventDefault();
-
-        if (!username || !password) {
-            alert("Please enter both username and password.");
-            return;
-        }
-        
-        try {
-            const { data } = await axios.post("/login", {username, password});
-            setUser(data);
-
-            if (data.role === "student") {          // Student's page
-                navigate("/student");   
-            } else if (data.role === "professor") { // Professor's page
-                navigate("/professor"); 
-            }
-        } catch (e) {
-            console.log(e.response);
-
-            if (e.response) {
-                if (e.response.status === 422) {
-                    alert("Your password is WRONG! Try again.");
-                } else if (e.response.status === 404) {
-                    alert("Your username is WRONG! Try again.");
-                } else {
-                    alert("Login FAILED! Try again.");
-                }
-            } else {
-                alert("Login FAILED: " + e.message);
-            }
-        }
+  async function handleLogin(ev) {
+    ev.preventDefault();
+    if (!username || !password) {
+      alert('Please enter both username and password.');
+      return;
     }
+    try {
+      const { data } = await axios.post('/login', {username,password,});
+      setUser(data);
+
+      if (data.role === 'student') {
+        navigate('/student/' + data._id); 
+      } else if (data.role === 'professor') {
+        navigate('/user-'+ data._id);
+      }
+    } catch (e) {
+      if (e.response) {
+        if (e.response.status === 422) {
+          alert('Your password is WRONG! Try again.');
+        } else if (e.response.status === 404) {
+          alert('Your username is WRONG! Try again.');
+        } else {
+          alert('Login FAILED! Try again.');
+        }
+      } else {
+        alert('Login FAILED: ' + e.message);
+      }
+    }
+  }
 
     return (
         <div className="flex flex-col md:flex-row md:justify-between items-center md:mx-32 mx-5 mt-10">

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/Footer";
 import NavBarOptions from "../../components/NavBarOptions";
-import Navbar_students from "../../components/Navbar_students";
+import Navbar from "../../components/Navbar";
 
 const DeclarationPage = () => {
     // State for controlling which step the user is on
@@ -94,7 +94,7 @@ const DeclarationPage = () => {
 
     return (
         <div className="declaration-page">
-            <Navbar_students />
+            <Navbar/>
             <NavBarOptions userType={"student"} />
             <main className="main-content flex justify-center">
                 <div className="w-full max-w-4xl">

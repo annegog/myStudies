@@ -12,7 +12,6 @@ import ConnectHelp from "./pages/Help/ConnectHelp";
 import ContactAdmin from "./pages/Help/ContactAdmin";
 import CommonQuestions from "./pages/Help/CommonQuestions";
 
-
 import Courses from "./pages/CoursesPage";
 import Profile from "./pages/ProfilePage";
 import MainPageS from "./pages/MainPage_students";
@@ -23,46 +22,49 @@ import CertificationsStatus from "./pages/Certifications/Status";
 import Certifications from "./pages/Certifications/Certifications";
 import CertificationsRequest from "./pages/Certifications/Request";
 import CertificationsHistory from "./pages/Certifications/History";
+import { UserContextProvider } from "./components/UserContext";
 
-
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
 
 const App = () => {
-    return (
-        <Routes>
+  return (
+    <UserContextProvider>
 
-            {/* General */}
+      <Routes>
+        {/* General */}
 
-            <Route path="/" element={<Login/>}/>
-            <Route path="/login" element={<Login/>}/>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
-            {/* Help */}
-            
-            <Route path="/mobile-app" element={<MobileApp/>}/>
-            <Route path="/admin-contact" element={<ContactAdmin/>}/>
-            <Route path="/connection-help" element={<ConnectHelp/>}/>
-            <Route path="/common-questions" element={<CommonQuestions/>}/>
+        {/* Help */}
 
-            {/* Student Main */}
+        <Route path="/mobile-app" element={<MobileApp />} />
+        <Route path="/admin-contact" element={<ContactAdmin />} />
+        <Route path="/connection-help" element={<ConnectHelp />} />
+        <Route path="/common-questions" element={<CommonQuestions />} />
 
-            <Route path="/student" element={<MainPageS/>}/>
-            <Route path="/student/grades" element={<Grades/>}/>
-            <Route path="/student/courses" element={<Courses/>}/>
-            <Route path="/student/profile" element={<Profile/>}/>
+        {/* Student Main */}
 
-            {/* Declarations */}
-            
-            <Route path="/student/declarations" element={<Declarations/>}/>
+        <Route path="/student/:id" element={<MainPageS />} />
+        <Route path="/student/grades" element={<Grades />} />
+        <Route path="/student/courses" element={<Courses />} />
+        <Route path="/student/profile" element={<Profile />} />
 
-            {/* Certificates */}
+        {/* Declarations */}
 
-            <Route path="/student/certifications" element={<Certifications/>} />
-            <Route path="/student/certifications/status" element={<CertificationsStatus/>}/>
-            <Route path="/student/certifications/request" element={<CertificationsRequest/>}/>
-            <Route path="/student/certifications/history" element={<CertificationsHistory/>}/>
-        </Routes>
-    );
+        <Route path="/student/declarations" element={<Declarations />} />
+
+        {/* Certificates */}
+
+        <Route path="/student/certifications" element={<Certifications />} />
+        <Route path="/student/certifications/status" element={<CertificationsStatus />} />
+        <Route path="/student/certifications/request" element={<CertificationsRequest />} />
+        <Route path="/student/certifications/history"element={<CertificationsHistory />} />
+      </Routes>
+
+    </UserContextProvider>
+  );
 };
 
 export default App;

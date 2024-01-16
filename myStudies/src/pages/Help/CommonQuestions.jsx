@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 import Navbar from "../../components/Navbar";
@@ -7,31 +6,49 @@ import Footer from "../../components/Footer";
 
 const CommonQuestions = () => {
     const navigate = useNavigate();
+    const [openQuestions, setOpenQuestions] = useState({});
 
     const handleBack = () => {
         navigate("/login");
     };
 
+    const toggleQuestion = (index) => {
+        setOpenQuestions(prevOpenQuestions => ({
+            ...prevOpenQuestions,
+            [index]: !prevOpenQuestions[index]
+        }));
+    };
+
     return (
         <div className="Common Questions">
-            <Navbar/>
+            <Navbar />
             <main className="Main Common Questions">
                 <div style={{ marginTop: "1rem" }} className="bg-zinc-300 bg-opacity-50 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
-                    <div className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full"> In Constraction </div>
 
-                    {/* <span className="text-black text-base italic max-w-full bg-green-200 bg-opacity-30 w-[800px] justify-center items-stretch mt-5 pl-3 pr-16 py-5 rounded-[35px] self-start max-md:max-w-full max-md:pl-5 max-md:pr-8">
-                        <p> 1. Στο πεδίο του <span className="font-bold"> Όνομα Χρήστη </span> συμπληρώστε τον A.M. που έχετε λάβει από τη σχολή. </p>
-                        <p> 2. Στο πεδίο του <span className="font-bold"> Κωδικός Πρόσβασής </span> συμπληρώστε τον κωδικό που έχετε λάβει από τη σχολή ή τον δικό σας στη περίπτωση που τον αλλάξατε. </p>
-                        <p> 3. Κάντε κλικ στο <span className="font-bold"> Είσοδος. </span> </p>
-                    </span> */}
+                    {[...Array(7)].map((_, index) => (
+                        <div key={index} className="w-full">
+                            <button
+                                onClick={() => toggleQuestion(index)}
+                                className="text-left w-full py-3 text-black text-xl font-semibold"
+                            >
+                                {`Question ${index + 1}`} <span>{openQuestions[index] ? "▲" : "▼"}</span>
+                            </button>
+                            {openQuestions[index] && (
+                                <div className="text-black text-base px-5 py-3 bg-gray-100 rounded-md">
+                                    {/* Replace the content below with actual content for each question */}
+                                    <p>Answer to question {index + 1}</p>
+                                </div>
+                            )}
+                        </div>
+                    ))}
 
-                    <button type="button" className="text-center text-white font-medium bg-sky-800 hover:bg-sky-900 focus:ring-4 focus:outline-none rounded-lg text-base mt-36 px-5 py-3" 
-                        onClick={handleBack}
+                    <button type="button" className="text-center text-white font-medium bg-sky-800 hover:bg-sky-900 focus:ring-4 focus:outline-none rounded-lg text-base mt-36 px-5 py-3"
+                        onClick={() => handleBack()}
                     > Επιστοφή στην Αρχική Σελίδα </button>
                 </div>
-            </main>
-            <Footer/>
-        </div>
+            </main >
+            <Footer />
+        </div >
     );
 };
 

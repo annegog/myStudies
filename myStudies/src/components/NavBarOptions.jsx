@@ -9,7 +9,7 @@ const Options = ({userType}) => {
     ]
 
     const teacherOptions = [
-        {path: "/teachers/grades", label: "ΒΑΘΜΟΛΟΓΙΟ"},
+        {path: "/professor/grades", label: "ΒΑΘΜΟΛΟΓΙΟ"},
     ]
 
     const links = userType === "student" ? studentOptions : teacherOptions;

@@ -44,8 +44,8 @@ const Grades = () => {
                         </div>
                         {activeCourse && (
                             <div className="Options">
-                                <button onClick={handleCreationGrades} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Δημιουργία Βαθμολογίου </button>
-                                <button onClick={handleCreationGrades} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προβολή Βαθμολογίου </button>
+                                <button  onClick={handleCreationGrades} className="bg-blue-500 text-black px-4 py-2 mr-10 rounded-3xl hover:bg-blue-600"> Δημιουργία Βαθμολογίου </button>
+                                <button  onClick={handleCreationGrades} className="bg-green-500 text-black px-4 py-2 mt-10 rounded-3xl hover:bg-blue-600"> Προβολή Βαθμολογίου </button>
                             </div>
                         )}
                     </div>

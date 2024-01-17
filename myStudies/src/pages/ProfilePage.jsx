@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../components/UserContext";
 
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar_students";
+import Navbar from "../components/Navbar";
 import NavBarOptions from "../components/NavBarOptions";
 
 const ProfilePage = () => {
@@ -32,8 +32,8 @@ const ProfilePage = () => {
 
     return (
         <div>
-            <Navbar />
-            <NavBarOptions userType="student" />
+            <Navbar/>
+            <NavBarOptions userType={"student"} />
             <div className="mt-4 px-4 lg:px-16 w-full">
 
                 <div className="bg-zinc-300 rounded-3xl p-4 flex flex-wrap justify-between items-center">

@@ -49,7 +49,7 @@ const App = () => {
 
         {/* Student Main */}
 
-        <Route path="/student/" element={<MainPageS />} />
+        <Route path="/student/:id" element={<MainPageS />} />
         <Route path="/student/grades" element={<Grades />} />
         <Route path="/student/courses" element={<Courses />} />
         <Route path="/student/profile" element={<Profile />} />

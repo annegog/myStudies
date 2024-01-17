@@ -2,33 +2,37 @@ import React from "react";
 
 import { useState, useContext } from "react";
 import { UserContext } from "../components/UserContext";
-
+import { useEffect } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar_students";
 import NavBarOptions from "../components/NavBarOptions";
+import axios from 'axios'; // assuming you're using axios for HTTP requests
 
 const ProfilePage = () => {
     const { user } = useContext(UserContext);
 
-    const name = "Δημήτρης Αντωνίου";
-    const email = "sdi2400001@di.uoa.gr";
-    const status = "Εκπαιδευόμενος";
+    // State for storing user data
+    const [userData, setUserData] = useState(null);
 
-    const ID = "1115202400001";
-    const univeristy = "Πληροφορικής και Τηλεπικοινωνιών";
-    const registrationDate = "Δευτέρα, 30 Σεπτεμβρίου 2024 - 10:00 π.μ."
+    // Fetch user data on component mount
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('/student/profile'); // Replace with your API endpoint
+                setUserData(response.data);
+            } catch (error) {
+                console.error("Error fetching data: ", error);
+            }
+        };
 
-    const [activeInfo, setActiveInfo] = useState(null);
-    const [showInfoFilters, setShowInfoFilters] = useState(false);        // State to toggle info filter visibility
-    const [showMoreInfoFilters, setShowMoreInfoFilters] = useState(false);
+        fetchData();
+    }, []);
 
-    const toggleInfo = (info) => {
-        setActiveInfo(activeInfo === info ? null : info);
-    };
+    // Check if data is loaded
+    if (!userData) {
+        return <div>Loading...</div>;
+    }
 
-    const showInfo = (infoString) => {
-
-    };
 
     return (
         <div>
@@ -48,14 +52,12 @@ const ProfilePage = () => {
                         {/* SVG Icon here */}
                     </div>
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
-                        <h2 className="text-black text-xl font-light">Όνομα: {name}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">E-mail: {email}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">Ιδιότητα: {status}</h2>
+                        <h2 className="text-black text-xl font-light">Όνομα: {userData.first_name}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light">E-mail: {userData.email}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light">Ιδιότητα: {userData.role}</h2>
                     </div>
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
-                        <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {ID}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">Σχολή - Τμήμα: {univeristy}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">Μέλος από: {registrationDate}</h2>
+                        <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {userData.ID}</h2>
                     </div>
                 </div>
 
@@ -65,11 +67,11 @@ const ProfilePage = () => {
                             <span>{showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Όνομα Πατέρα: Αντώνης </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Όνομα Μητέρας: Αντωνία </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Ημερομηνία Γέννησης: 23/06/2006 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Οικογενειακή Κατάσταση: Άγαμος </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Αδελφών: - </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Όνομα Πατέρα: {userData.father} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Όνομα Μητέρας: {userData.mother} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Ημερομηνία Γέννησης: {userData.birth_rate} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Οικογενειακή Κατάσταση: {userData.family} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Αδελφών: {userData.siblings} </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκπλήρωση Στρατιωτικής Θητείας: Όχι </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Πόλη/Χωριό Γέννησης: ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Ταυτότητας: ΑΚ336699 </div>

@@ -49,7 +49,7 @@ const App = () => {
 
         {/* Student Main */}
 
-        <Route path="/student/" element={<MainPageS />} />
+        <Route path="/student/:id" element={<MainPageS />} />
         <Route path="/student/grades" element={<Grades />} />
         <Route path="/student/courses" element={<Courses />} />
         <Route path="/student/profile" element={<Profile />} />
@@ -68,7 +68,7 @@ const App = () => {
         <Route path="/student/certifications" element={<Certifications />} />
         <Route path="/student/certifications/status" element={<CertificationsStatus />} />
         <Route path="/student/certifications/request" element={<CertificationsRequest />} />
-        <Route path="/student/certifications/history"element={<CertificationsHistory />} />
+        <Route path="/student/certifications/history" element={<CertificationsHistory />} />
       </Routes>
 
     </UserContextProvider>

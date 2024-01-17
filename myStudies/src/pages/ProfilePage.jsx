@@ -44,8 +44,8 @@ const ProfilePage = () => {
     }
     return (
         <div>
-            <Navbar />
-            <NavBarOptions userType="student" />
+            <Navbar/>
+            <NavBarOptions userType={"student"} />
             <div className="mt-4 px-4 lg:px-16 w-full">
 
                 <div className="bg-zinc-300 rounded-3xl p-4 flex flex-wrap justify-between items-center">

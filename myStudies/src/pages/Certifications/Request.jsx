@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar_students";
+import Navbar from "../../components/Navbar";
 import NavBarOptions from "../../components/NavBarOptions";
 
 

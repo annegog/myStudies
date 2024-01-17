@@ -13,7 +13,6 @@ const MainPage = () => {
   const [end_date, setEnd_date] = useState("01/04/2024");
   const [declaration, setDeclaration] = useState(false);
   const last_decl = "18/03/2025";
-  const [username, setUsername] = useState("ela");
 
   const { user } = useContext(UserContext);
   const {id} = useParams();

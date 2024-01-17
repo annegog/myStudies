@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../components/UserContext";
 
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar_students";
+import Navbar from "../components/Navbar";
 import NavBarOptions from "../components/NavBarOptions";
 
 const ProfilePage = () => {
@@ -65,7 +65,7 @@ const ProfilePage = () => {
                             <span>{showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Όνομα Πατέρα: Αντώνης </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Όνομα Πατέρα:  </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Όνομα Μητέρας: Αντωνία </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Ημερομηνία Γέννησης: 23/06/2006 </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Οικογενειακή Κατάσταση: Άγαμος </div>

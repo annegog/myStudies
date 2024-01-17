@@ -24,6 +24,9 @@ import CertificationsRequest from "./pages/Certifications/Request";
 import CertificationsHistory from "./pages/Certifications/History";
 import { UserContextProvider } from "./components/UserContext";
 
+import MainProfessors from "./pages/Professors/Main/Main"
+import GradesProfessors from "./pages/Professors/Grades/Grades"
+
 axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
 
@@ -46,10 +49,15 @@ const App = () => {
 
         {/* Student Main */}
 
-        <Route path="/student/:id" element={<MainPageS />} />
+        <Route path="/student/" element={<MainPageS />} />
         <Route path="/student/grades" element={<Grades />} />
         <Route path="/student/courses" element={<Courses />} />
         <Route path="/student/profile" element={<Profile />} />
+
+        {/* Professor Main */}
+
+        <Route path="/professor" element={<MainProfessors />} />
+        <Route path="/professor/grades" element={<GradesProfessors />} />
 
         {/* Declarations */}
 

@@ -68,7 +68,7 @@ const App = () => {
         <Route path="/student/certifications" element={<Certifications />} />
         <Route path="/student/certifications/status" element={<CertificationsStatus />} />
         <Route path="/student/certifications/request" element={<CertificationsRequest />} />
-        <Route path="/student/certifications/history"element={<CertificationsHistory />} />
+        <Route path="/student/certifications/history" element={<CertificationsHistory />} />
       </Routes>
 
     </UserContextProvider>

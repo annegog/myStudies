@@ -1,39 +1,47 @@
 import React from "react";
 
-import { useState, useContext } from "react";
+import { useEffect, useState, useContext } from 'react';
 import { UserContext } from "../components/UserContext";
-import { useEffect } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar_students";
-import NavBarOptions from "../components/NavBarOptions";
 import axios from 'axios'; // assuming you're using axios for HTTP requests
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import NavBarOptions from "../components/NavBarOptions";
 
 const ProfilePage = () => {
     const { user } = useContext(UserContext);
 
-    // State for storing user data
+    const name = "Δημήτρης Αντωνίου";
+    const email = "sdi2400001@di.uoa.gr";
+    const status = "Εκπαιδευόμενος";
+
+    const ID = "1115202400001";
+    const univeristy = "Πληροφορικής και Τηλεπικοινωνιών";
+    const registrationDate = "Δευτέρα, 30 Σεπτεμβρίου 2024 - 10:00 π.μ."
+
+    const [activeInfo, setActiveInfo] = useState(null);
+    const [showInfoFilters, setShowInfoFilters] = useState(false);        // State to toggle info filter visibility
+    const [showMoreInfoFilters, setShowMoreInfoFilters] = useState(false);
+
+    const toggleInfo = (info) => {
+        setActiveInfo(activeInfo === info ? null : info);
+    };
+
     const [userData, setUserData] = useState(null);
 
-    // Fetch user data on component mount
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/student/profile'); // Replace with your API endpoint
+        // Fetch user profile data on mount
+        axios.get('http://localhost:4000/student/profile', { withCredentials: true }) // withCredentials for cookies if needed
+            .then(response => {
                 setUserData(response.data);
-            } catch (error) {
-                console.error("Error fetching data: ", error);
-            }
-        };
+            })
+            .catch(error => {
+                console.error('There was an error fetching the user data:', error);
+            });
+    }, []); // Empty array means it only runs once when the component mounts
 
-        fetchData();
-    }, []);
-
-    // Check if data is loaded
     if (!userData) {
-        return <div>Loading...</div>;
+        return <div>Loading...</div>; // Or any other loading state representation
     }
-
-
     return (
         <div>
             <Navbar />
@@ -57,7 +65,9 @@ const ProfilePage = () => {
                         <h2 className="mt-2 text-black text-xl font-light">Ιδιότητα: {userData.role}</h2>
                     </div>
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
-                        <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {userData.ID}</h2>
+                        <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {userData.am}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light">Σχολή - Τμήμα: {userData.ID_location}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light">Μέλος από: {registrationDate}</h2>
                     </div>
                 </div>
 
@@ -69,14 +79,14 @@ const ProfilePage = () => {
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Όνομα Πατέρα: {userData.father} </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Όνομα Μητέρας: {userData.mother} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Ημερομηνία Γέννησης: {userData.birth_rate} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Ημερομηνία Γέννησης: {userData.birth_date} </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Οικογενειακή Κατάσταση: {userData.family} </div>
                                     <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Αδελφών: {userData.siblings} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκπλήρωση Στρατιωτικής Θητείας: Όχι </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Πόλη/Χωριό Γέννησης: ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Ταυτότητας: ΑΚ336699 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκδούσα Αρχή: Κερατσινίου </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> AMKA: 23060622553 </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκπλήρωση Στρατιωτικής Θητείας: {userData.army}  </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Πόλη/Χωριό Γέννησης: {userData.birth_location} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Ταυτότητας:{userData.ID} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκδούσα Αρχή: {userData.ID_location} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> AMKA: {userData.AMKA} </div>
                                 </div>
                             )}
                         </div>
@@ -87,15 +97,15 @@ const ProfilePage = () => {
                             <span>{showMoreInfoFilters ? "▲" : "▼"} Πληροφορίες Επικοινωνίας </span>
                             {showMoreInfoFilters && (
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col w-full h-full justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Μόνιμη Διεύθυνση Κατοικίας: Αιόλου 45 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Μόνιμη Πόλη Κατοικίας: Αθήνα </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Μόνιμης Κατοικίας: 6977553311 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Μόνιμης Κατοικίας: 55443 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Διεύθυνση Κατοικίας: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Πόλη Κατοικίας: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Προσωρινής Κατοικίας: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Προσωρινής Κατοικίας: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Διεύθυνση Ηλεκτρονικού Ταχυδρομείου: - </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Μόνιμη Διεύθυνση Κατοικίας: {userData.home} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Μόνιμη Πόλη Κατοικίας: {userData.city} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Μόνιμης Κατοικίας: {userData.temp_phone} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Μόνιμης Κατοικίας: {userData.postal} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Διεύθυνση Κατοικίας: {userData.temp_home} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Πόλη Κατοικίας: {userData.temp_city} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Προσωρινής Κατοικίας:{userData.temp_phone} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Προσωρινής Κατοικίας: {userData.postal_temp} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Διεύθυνση Ηλεκτρονικού Ταχυδρομείου: {userData.email} </div>
                                 </div>
                             )}
                         </div>

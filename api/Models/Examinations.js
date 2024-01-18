@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const ExamsSeasonSchema = new Schema({
     endData: Date,
     examsSeason: Number,
-    
+    //
     // Add more 
 });
 

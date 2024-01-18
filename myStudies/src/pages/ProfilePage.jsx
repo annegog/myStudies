@@ -1,8 +1,8 @@
 import React from "react";
 
-import { useState, useContext } from "react";
+import { useEffect, useState, useContext } from 'react';
 import { UserContext } from "../components/UserContext";
-
+import axios from 'axios'; // assuming you're using axios for HTTP requests
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import NavBarOptions from "../components/NavBarOptions";
@@ -26,14 +26,27 @@ const ProfilePage = () => {
         setActiveInfo(activeInfo === info ? null : info);
     };
 
-    const showInfo = (infoString) => {
+    const [userData, setUserData] = useState(null);
 
-    };
+    useEffect(() => {
+        // Fetch user profile data on mount
+        axios.get('http://localhost:4000/student/profile', { withCredentials: true }) // withCredentials for cookies if needed
+            .then(response => {
+                setUserData(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the user data:', error);
+            });
+    }, []); // Empty array means it only runs once when the component mounts
 
+    if (!userData) {
+        return <div>Loading...</div>; // Or any other loading state representation
+    }
+    
     return (
         <div>
-            <Navbar />
-            <NavBarOptions userType="student" />
+            <Navbar/>
+            <NavBarOptions userType={"student"} />
             <div className="mt-4 px-4 lg:px-16 w-full">
 
                 <div className="bg-zinc-300 rounded-3xl p-4 flex flex-wrap justify-between items-center">
@@ -48,13 +61,13 @@ const ProfilePage = () => {
                         {/* SVG Icon here */}
                     </div>
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
-                        <h2 className="text-black text-xl font-light">Όνομα: {name}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">E-mail: {email}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">Ιδιότητα: {status}</h2>
+                        <h2 className="text-black text-xl font-light">Όνομα: {userData.first_name}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light">E-mail: {userData.email}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light">Ιδιότητα: {userData.role}</h2>
                     </div>
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
-                        <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {ID}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">Σχολή - Τμήμα: {univeristy}</h2>
+                        <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {userData.am}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light">Σχολή - Τμήμα: {userData.ID_location}</h2>
                         <h2 className="mt-2 text-black text-xl font-light">Μέλος από: {registrationDate}</h2>
                     </div>
                 </div>
@@ -65,16 +78,16 @@ const ProfilePage = () => {
                             <span>{showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Όνομα Πατέρα:  </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Όνομα Μητέρας: Αντωνία </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Ημερομηνία Γέννησης: 23/06/2006 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Οικογενειακή Κατάσταση: Άγαμος </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Αδελφών: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκπλήρωση Στρατιωτικής Θητείας: Όχι </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Πόλη/Χωριό Γέννησης: ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Ταυτότητας: ΑΚ336699 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκδούσα Αρχή: Κερατσινίου </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> AMKA: 23060622553 </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Όνομα Πατέρα: {userData.father} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Όνομα Μητέρας: {userData.mother} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Ημερομηνία Γέννησης: {userData.birth_date} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Οικογενειακή Κατάσταση: {userData.family} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Αδελφών: {userData.siblings} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκπλήρωση Στρατιωτικής Θητείας: {userData.army}  </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Πόλη/Χωριό Γέννησης: {userData.birth_location} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Ταυτότητας:{userData.ID} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκδούσα Αρχή: {userData.ID_location} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> AMKA: {userData.AMKA} </div>
                                 </div>
                             )}
                         </div>
@@ -85,15 +98,15 @@ const ProfilePage = () => {
                             <span>{showMoreInfoFilters ? "▲" : "▼"} Πληροφορίες Επικοινωνίας </span>
                             {showMoreInfoFilters && (
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col w-full h-full justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Μόνιμη Διεύθυνση Κατοικίας: Αιόλου 45 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Μόνιμη Πόλη Κατοικίας: Αθήνα </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Μόνιμης Κατοικίας: 6977553311 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Μόνιμης Κατοικίας: 55443 </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Διεύθυνση Κατοικίας: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Πόλη Κατοικίας: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Προσωρινής Κατοικίας: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Προσωρινής Κατοικίας: - </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Διεύθυνση Ηλεκτρονικού Ταχυδρομείου: - </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Μόνιμη Διεύθυνση Κατοικίας: {userData.home} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Μόνιμη Πόλη Κατοικίας: {userData.city} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Μόνιμης Κατοικίας: {userData.temp_phone} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Μόνιμης Κατοικίας: {userData.postal} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Διεύθυνση Κατοικίας: {userData.temp_home} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Πόλη Κατοικίας: {userData.temp_city} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Προσωρινής Κατοικίας:{userData.temp_phone} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Προσωρινής Κατοικίας: {userData.postal_temp} </div>
+                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Διεύθυνση Ηλεκτρονικού Ταχυδρομείου: {userData.email} </div>
                                 </div>
                             )}
                         </div>

@@ -22,10 +22,11 @@ import CertificationsStatus from "./pages/Certifications/Status";
 import Certifications from "./pages/Certifications/Certifications";
 import CertificationsRequest from "./pages/Certifications/Request";
 import CertificationsHistory from "./pages/Certifications/History";
-import { UserContextProvider } from "./components/UserContext";
 
 import MainProfessors from "./pages/Professors/Main/Main"
 import GradesProfessors from "./pages/Professors/Grades/Grades"
+
+import { UserContextProvider } from "./components/UserContext";
 
 axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
@@ -68,7 +69,7 @@ const App = () => {
         <Route path="/student/certifications" element={<Certifications />} />
         <Route path="/student/certifications/status" element={<CertificationsStatus />} />
         <Route path="/student/certifications/request" element={<CertificationsRequest />} />
-        <Route path="/student/certifications/history"element={<CertificationsHistory />} />
+        <Route path="/student/certifications/history" element={<CertificationsHistory />} />
       </Routes>
 
     </UserContextProvider>

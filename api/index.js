@@ -516,7 +516,7 @@ app.get('/data', async (req, res) => {
             lab: true,
             general: false,
             direction: '',
-            major: 'Επιλογής',
+            major: '',
             project: true,
             departmental_selection: false,
             internship: false,

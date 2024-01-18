@@ -154,7 +154,7 @@ app.get('/declarationsOpen', (req, res) => {
 // Inserting data to our database - test users and courses.
 // All  Users have the same password "pass123"
 
-app.get('/test', async (req, res) => {
+app.get('/data', async (req, res) => {
     try {
         const student1 = new User({
             first_name: 'Δημήτρης',

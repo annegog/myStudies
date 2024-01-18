@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/Footer";
 import NavBarOptions from "../../components/NavBarOptions";
-import Navbar from "../../components/Navbar";
+import Navbar_students from "../../components/Navbar_students";
 
-const DeclarationPage = () => {
+const Declarations = () => {
     // State for controlling which step the user is on
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedSubjects, setSelectedSubjects] = useState([]);
@@ -82,20 +82,19 @@ const DeclarationPage = () => {
             stepContent = <StepOne onSubjectSelect={toggleSubjectSelection} selectedSubjects={selectedSubjects} />;
             break;
         case 2:
-            stepContent = (<StepTwo selectedSubjects={selectedSubjects} onSubjectDeselect={handleSubjectDeselect} />
-            );
+            stepContent = <StepTwo selectedSubjects={selectedSubjects} onSubjectDeselect={handleSubjectDeselect} />;
             break;
         case 3:
-            stepContent = <StepThree selectedSubjects={selectedSubjects} />;
+            stepContent = <StepThree selectedSubjects={selectedSubjects}/>;
             break;
         default:
             stepContent = <StepOne onSubjectSelect={toggleSubjectSelection} selectedSubjects={selectedSubjects} />;
     }
 
     return (
-        <div className="declaration-page">
-            <Navbar/>
-            <NavBarOptions userType={"student"} />
+        <div className="Declarations">
+            <Navbar_students/>
+            <NavBarOptions userType={"student"}/>
             <main className="main-content flex justify-center">
                 <div className="w-full max-w-4xl">
                     {/* Render Step Indicators */}
@@ -105,13 +104,13 @@ const DeclarationPage = () => {
                     <div className="flex justify-center space-x-2 mt-4">
                         {/* Εμφάνιση του κουμπιού "Προηγούμενο" μόνο εάν δεν είμαστε στο πρώτο βήμα */}
                         {currentStep > 1 && (
-                            <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Προηγούμενο</button>
+                            <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
                         )}
                         {/* Update button text based on the current step */}
                         {currentStep === 2 ? (
-                            <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Οριστική Υποβολή</button>
+                            <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Οριστική Υποβολή </button>
                         ) : currentStep < 3 && (
-                            <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Επόμενο</button>
+                            <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Επόμενο </button>
                         )}
                     </div>
                 </div>
@@ -301,7 +300,7 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
 
     return (
         <div>
-            <div className="text-red-500 text-center mb-4">
+            <div style={{marginTop: "1rem"}} className="text-red-500 text-center mb-4">
                 Τα παρακάτω μαθήματα αποθηκεύτηκαν προσωρινά. Πατήστε επόμενο για να προχωρήσετε σε Οριστική Υποβολή.
             </div>
             <h2>Selected Subjects</h2>
@@ -406,6 +405,4 @@ const StepThree = ({ selectedSubjects }) => {
     );
 };
 
-
-
-export default DeclarationPage
+export default Declarations;

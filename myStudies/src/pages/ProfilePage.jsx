@@ -42,6 +42,7 @@ const ProfilePage = () => {
     if (!userData) {
         return <div>Loading...</div>; // Or any other loading state representation
     }
+    
     return (
         <div>
             <Navbar/>

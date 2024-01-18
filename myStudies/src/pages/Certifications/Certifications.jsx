@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar_students";
 import NavBarOptions from "../../components/NavBarOptions";
 
 const Certifications = () => {
@@ -61,7 +61,3 @@ const Certifications = () => {
 };
 
 export default Certifications;
-
-{/* <Button buttonString={"Αίτηση για παροχή πιστοποιητικού"} handleFunction={handleRequest}/>
-<Button buttonString={"Εμφάνιση της κατάστασης αιτήσεων για πιστοποιητικά"} handleFunction={handleStatus}/>
-<Button buttonString={"Ιστορικό Αιτήσεων"} handleFunction={handleHistory}/> */}

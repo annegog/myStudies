@@ -2,10 +2,10 @@ import React from "react";
 
 import { useState } from "react";
 
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar_students";
-import Courses from "../components/Courses";
-import NavBarOptions from "../components/NavBarOptions";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Courses from "../../components/Courses";
+import NavBarOptions from "../../components/NavBarOptions";
 
 const CoursesPage = () => {
     return (

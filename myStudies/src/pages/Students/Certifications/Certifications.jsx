@@ -3,9 +3,9 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar_students";
-import NavBarOptions from "../../components/NavBarOptions";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
+import NavBarOptions from "../../../components/NavBarOptions";
 
 const Certifications = () => {
     // const [studentData, setStudentData] = useState(null);    {/* To have student's info */}

@@ -28,7 +28,7 @@ const Login = () => {
       if (data.role === 'student') {
         navigate('/student/' + data._id); 
       } else if (data.role === 'professor') {
-        navigate('/user-'+ data._id);
+        navigate('/professor/'+ data._id);
       }
     } catch (e) {
       if (e.response) {

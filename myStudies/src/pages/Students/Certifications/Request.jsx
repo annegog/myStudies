@@ -3,10 +3,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../../components/Footer";
+import Footer from "../../../components/Footer";
 // import Success from "../../components/Success";
-import Navbar from "../../components/Navbar";
-import NavBarOptions from "../../components/NavBarOptions";
+import Navbar from "../../../components/Navbar";
+import NavBarOptions from "../../../components/NavBarOptions";
 
 const Request = () => {
     const navigate = useNavigate();

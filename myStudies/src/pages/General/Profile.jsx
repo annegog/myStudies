@@ -1,11 +1,13 @@
 import React from "react";
+import axios from "axios";
 
-import { useEffect, useState, useContext } from 'react';
-import { UserContext } from "../components/UserContext";
-import axios from 'axios'; // assuming you're using axios for HTTP requests
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import NavBarOptions from "../components/NavBarOptions";
+import { useEffect, useState, useContext } from "react";
+
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import NavBarOptions from "../../components/NavBarOptions";
+
+import { UserContext } from "../../components/UserContext";
 
 const ProfilePage = () => {
     const { user } = useContext(UserContext);
@@ -63,7 +65,7 @@ const ProfilePage = () => {
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
                         <h2 className="text-black text-xl font-light">Όνομα: {userData.first_name}</h2>
                         <h2 className="mt-2 text-black text-xl font-light">E-mail: {userData.email}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">Ιδιότητα: {userData.role}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light"> Ιδιότητα: {userData.role} </h2>
                     </div>
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
                         <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {userData.am}</h2>

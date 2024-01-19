@@ -2,10 +2,10 @@ import React from "react";
 
 import { useNavigate } from "react-router";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 
-const ContactAdmin = () => {
+const ConnectHelp = () => {
     const navigate = useNavigate();
 
     const handleBack = () => {
@@ -14,18 +14,19 @@ const ContactAdmin = () => {
 
     const question = [
         {
-            question: "Πως μπορώ να επικοινωνήσω με τον Διαχειριστή;",
+            question: "Πως μπορώ να συνδεθώ στην πλατφόρμα του My Studies;",
             steps: [
-                "Στείλτε e-mail στη <strong> Γραμματεία </strong> του Πανεπιστημίου.",
-                "Ακολουθήστε τα βήματα που θα σας πουν."
+                "Στο πεδίο του <strong> Όνομα Χρήστη </strong> συμπληρώστε τον A.M. που έχετε λάβει από τη σχολή.",
+                "Στο πεδίο του <strong> Κωδικός Πρόσβασής </strong> συμπληρώστε τον κωδικό που έχετε λάβει από τη σχολή ή τον δικό σας στη περίπτωση που τον αλλάξατε.",
+                "Κάντε κλικ στη <strong> Σύνδεση </strong>."
             ]
         },
     ]
 
     return (
-        <div className="Contact Admin">
+        <div className="Connect Help">
             <Navbar/>
-            <main className="Main Contact Admin">
+            <main className="Main Connect Help">
                 <div style={{ marginTop: "1rem" }} className="bg-zinc-300 bg-opacity-50 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
                     {question.map((data, index) => (
                         <div key={index} className="w-full">
@@ -51,4 +52,4 @@ const ContactAdmin = () => {
     );
 };
 
-export default ContactAdmin;
+export default ConnectHelp;

@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React from "react";
 import axios from "axios";
 
-import Donut from "../components/Donut";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import NavBarOptions from "../components/NavBarOptions";
-import { UserContext } from "../components/UserContext";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import Donut from "../../components/Donut";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import NavBarOptions from "../../components/NavBarOptions";
+
+import { UserContext } from "../../components/UserContext";
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);

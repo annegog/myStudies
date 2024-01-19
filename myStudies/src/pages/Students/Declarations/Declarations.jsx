@@ -3,9 +3,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../../components/Footer";
-import NavBarOptions from "../../components/NavBarOptions";
-import Navbar_students from "../../components/Navbar_students";
+import Footer from "../../../components/Footer";
+import Navbar from "../../../components/Navbar";
+import NavBarOptions from "../../../components/NavBarOptions";
 
 const Declarations = () => {
     // State for controlling which step the user is on
@@ -93,7 +93,7 @@ const Declarations = () => {
 
     return (
         <div className="Declarations">
-            <Navbar_students/>
+            <Navbar/>
             <NavBarOptions userType={"student"}/>
             <main className="main-content flex justify-center">
                 <div className="w-full max-w-4xl">

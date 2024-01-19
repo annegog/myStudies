@@ -3,28 +3,24 @@ import axios from "axios";
 
 import { Route, Routes } from "react-router-dom";
 
-import Login from "./pages/Login";
+import Login from "./pages/General/Login";
+import Profile from "./pages/General/Profile";
+import MobileApp from "./pages/General/Help/MobileApp";
+import ConnectHelp from "./pages/General/Help/ConnectHelp";
+import ContactAdmin from "./pages/General/Help/ContactAdmin";
+import CommonQuestions from "./pages/General/Help/CommonQuestions";
 
-import Grades from "./pages/Grades/Grades";
+import CertificationsStatus from "./pages/Students/Certifications/Status";
+import Certifications from "./pages/Students/Certifications/Certifications";
+import CertificationsRequest from "./pages/Students/Certifications/Request";
+import CertificationsHistory from "./pages/Students/Certifications/History";
+import Declarations from "./pages/Students/Declarations/Declarations";
+import Grades from "./pages/Students/Grades/Grades";
+import Courses from "./pages/Students/Courses";
+import Main from "./pages/Students/Main";
 
-import MobileApp from "./pages/Help/MobileApp";
-import ConnectHelp from "./pages/Help/ConnectHelp";
-import ContactAdmin from "./pages/Help/ContactAdmin";
-import CommonQuestions from "./pages/Help/CommonQuestions";
-
-import Courses from "./pages/CoursesPage";
-import Profile from "./pages/ProfilePage";
-import MainPageS from "./pages/MainPage_students";
-
-import Declarations from "./pages/Declarations/Declarations";
-
-import CertificationsStatus from "./pages/Certifications/Status";
-import Certifications from "./pages/Certifications/Certifications";
-import CertificationsRequest from "./pages/Certifications/Request";
-import CertificationsHistory from "./pages/Certifications/History";
-
-import MainProfessors from "./pages/Professors/Main/Main"
 import GradesProfessors from "./pages/Professors/Grades/Grades"
+import MainProfessors from "./pages/Professors/Main/Main"
 
 import { UserContextProvider } from "./components/UserContext";
 
@@ -50,7 +46,7 @@ const App = () => {
 
         {/* Student Main */}
 
-        <Route path="/student/:id" element={<MainPageS />} />
+        <Route path="/student/:id" element={<Main />} />
         <Route path="/student/grades" element={<Grades />} />
         <Route path="/student/courses" element={<Courses />} />
         <Route path="/student/profile" element={<Profile />} />

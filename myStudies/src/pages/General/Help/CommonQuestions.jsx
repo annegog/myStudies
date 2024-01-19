@@ -4,10 +4,10 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useState, useContext } from "react";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 
-import { UserContext } from "../../components/UserContext";
+import { UserContext } from "../../../components/UserContext";
 
 const CommonQuestions = () => {
     const { user } = useContext(UserContext);
@@ -15,7 +15,7 @@ const CommonQuestions = () => {
     const navigate = useNavigate();
     
     const handleBack = () => {
-        navigate("/login");
+        navigate("/student/:id");
     };
     
     const [userRole, setUserRole] = useState("student")

@@ -1,24 +1,24 @@
 import React from "react";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
+import { useNavigate } from "react-router";
 
 const Column = ({ label, dataKey, values, onUpdateGrade }) => (
     <div className={`Students ${label}`} key={label}>
         <div className="text-center text-xl font-medium mr-10 mt-4">
-            <p className="underline"> {label} </p>
+            <p className="underline mb-3"> {label} </p>
             {values.map((data, index) => (
-                <div key={index} className="w-full">
+                <div key={index} className="w-full mt-2">
                     {label === 'Βαθμός' ? (
                         <input
                             type="text"
                             value={data[dataKey] || ''}
                             onChange={(e) => onUpdateGrade(index, e.target.value)}
-                            className="text-black text-xl text-center rounded-3xl self-start max-md:max-w-full py-2"
+                            className="text-black text-xl text-center rounded-3xl self-start max-md:max-w-full"
                         />
                     ) : (
                         <p className="text-black text-xl text-center self-start max-md:max-w-full py-2">
@@ -32,7 +32,21 @@ const Column = ({ label, dataKey, values, onUpdateGrade }) => (
 );
 
 const Create = () => {
+    const navigate = useNavigate();
+
     const [grades, setGrades] = useState([
+        { studentId: 'sdi202000122', name: 'ΓΕΩΡΓΙΟΣ ΨΑΘΑΣ', semester: 7, grade: '' },
+        { studentId: 'sdi201800033', name: 'ΔΗΜΗΤΡΑ ΓΕΡΗ', semester: 11, grade: '' },
+        { studentId: 'sdi201600003', name: 'ΑΘΑΝΑΣΙΟΣ ΚΟΝΤΟΣ', semester: 15, grade: '' },
+        { studentId: 'sdi202100199', name: 'ΚΑΤΕΡΙΝΑ ΦΡΑΓΚΟΥ', semester: 5, grade: '' },
+        { studentId: 'sdi202000122', name: 'ΓΕΩΡΓΙΟΣ ΨΑΘΑΣ', semester: 7, grade: '' },
+        { studentId: 'sdi201800033', name: 'ΔΗΜΗΤΡΑ ΓΕΡΗ', semester: 11, grade: '' },
+        { studentId: 'sdi201600003', name: 'ΑΘΑΝΑΣΙΟΣ ΚΟΝΤΟΣ', semester: 15, grade: '' },
+        { studentId: 'sdi202100199', name: 'ΚΑΤΕΡΙΝΑ ΦΡΑΓΚΟΥ', semester: 5, grade: '' },
+        { studentId: 'sdi202000122', name: 'ΓΕΩΡΓΙΟΣ ΨΑΘΑΣ', semester: 7, grade: '' },
+        { studentId: 'sdi201800033', name: 'ΔΗΜΗΤΡΑ ΓΕΡΗ', semester: 11, grade: '' },
+        { studentId: 'sdi201600003', name: 'ΑΘΑΝΑΣΙΟΣ ΚΟΝΤΟΣ', semester: 15, grade: '' },
+        { studentId: 'sdi202100199', name: 'ΚΑΤΕΡΙΝΑ ΦΡΑΓΚΟΥ', semester: 5, grade: '' },
         { studentId: 'sdi202000122', name: 'ΓΕΩΡΓΙΟΣ ΨΑΘΑΣ', semester: 7, grade: '' },
         { studentId: 'sdi201800033', name: 'ΔΗΜΗΤΡΑ ΓΕΡΗ', semester: 11, grade: '' },
         { studentId: 'sdi201600003', name: 'ΑΘΑΝΑΣΙΟΣ ΚΟΝΤΟΣ', semester: 15, grade: '' },
@@ -52,6 +66,10 @@ const Create = () => {
         setGrades(newGrades);
     };
 
+    const handleFinalization = () => {
+        navigate("/professor/");
+    };
+
     return (
         <div className="bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 min-h-screen">
             <Navbar />
@@ -59,7 +77,7 @@ const Create = () => {
             <main className="flex justify-center items-center h-full">
                 <div className="w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 bg-white rounded-3xl shadow-lg">
                     <h1 className="text-center text-4xl font-thin mb-10"> Λίστα Μαθημάτων </h1>
-                    <div className="flex flex-row justify-center items-stretch space-x-8">
+                    <div className="flex flex-row justify-center items-stretch space-x-10">
                         {columns.map((column, index) => (
                             <Column
                                 key={index}
@@ -69,6 +87,13 @@ const Create = () => {
                                 onUpdateGrade={onUpdateGrade}
                             />
                         ))}
+                    </div>
+
+                    <div className="flex justify-center mt-8">
+                        <div className="Options">
+                            <button className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
+                            <button onClick={handleFinalization} className="bg-green-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
+                        </div>
                     </div>
                 </div>
             </main>

@@ -3,9 +3,9 @@ import axios from "axios";
 
 import { useEffect, useState, useContext } from "react";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import NavBarOptions from "../../components/NavBarOptions";
+import Navbar from "../../components/Common/Navbar";
+import Footer from "../../components/Common/Footer";
+import NavBarOptions from "../../components/Common/NavBarOptions";
 
 import { UserContext } from "../../components/UserContext";
 

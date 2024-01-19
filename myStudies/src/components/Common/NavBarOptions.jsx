@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Options = ({userType}) => {
+const Options = ({ userType }) => {
     const studentOptions = [
         {path: "/student/grades", label: "ΒΑΘΜΟΛΟΓΙΟ"},
         {path: "/student/courses", label: "ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ"},

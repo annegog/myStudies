@@ -3,9 +3,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Footer from "../../../components/Footer";
-import Navbar from "../../../components/Navbar";
-import NavBarOptions from "../../../components/NavBarOptions";
+import Footer from "../../../components/Common/Footer";
+import Navbar from "../../../components/Common/Navbar";
+import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Declarations = () => {
     // State for controlling which step the user is on

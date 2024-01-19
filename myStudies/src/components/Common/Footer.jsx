@@ -2,9 +2,7 @@ import React from "react";
 
 import { Link } from "react-scroll";
 
-import GreekFlag from "../assets/GreekFlag.png";
-import EuropeFlag from "../assets/EuropeFlag.png";
-import universityLogo from "../assets/UniLogo.png";
+import universityLogo from "../../assets/UniLogo.png";
 
 const Footer = () => {
     return (

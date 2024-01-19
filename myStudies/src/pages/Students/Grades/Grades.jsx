@@ -2,9 +2,9 @@ import React from "react";
 
 import { useState, useEffect } from "react";
 
-import Footer from "../../../components/Footer";
-import Navbar from "../../../components/Navbar";
-import NavBarOptions from "../../../components/NavBarOptions";
+import Footer from "../../../components/Common/Footer";
+import Navbar from "../../../components/Common/Navbar";
+import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Grades = () => {
     const gradesData = {

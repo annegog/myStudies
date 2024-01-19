@@ -4,8 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useState, useContext } from "react";
 
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
+import Navbar from "../../../components/Common/Navbar";
+import Footer from "../../../components/Common/Footer";
 
 import { UserContext } from "../../../components/UserContext";
 

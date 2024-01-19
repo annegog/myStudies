@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "./UserContext";
-import universityLogo from "../assets/UniLogo.png";
+
+import universityLogo from "../../assets/UniLogo.png";
+
+import { UserContext } from "../UserContext";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);

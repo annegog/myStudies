@@ -3,9 +3,9 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
-import NavBarOptions from "../../../components/NavBarOptions";
+import Navbar from "../../../components/Common/Navbar";
+import Footer from "../../../components/Common/Footer";
+import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Grades = () => {
     const navigate = useNavigate();

@@ -12,52 +12,66 @@ import NavBarOptions from "../../components/Common/NavBarOptions";
 import { UserContext } from "../../components/UserContext";
 
 const MainPage = () => {
-  const [open, setOpen] = useState(false);
-  const [end_date, setEnd_date] = useState("01/04/2024");
-  const [declaration, setDeclaration] = useState(false);
-  const last_decl = "18/03/2025";
+  const [declarationInfo, setDeclarationInfo] = useState({
+    open: false,
+    end_date: '',
+    declaration: false,
+    last_decl: '',
+  });
 
   const { user } = useContext(UserContext);
   const {id} = useParams();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const Declare = () => {
-  //     navigate("");
-  // };
+  const Declare = () => {
+      navigate('/student/declarations');
+  };
 
   // const Modification = () => {
   //     navigate("");
   // };
 
   useEffect(() => {
-    if (id) {
-      // axios.get("/student/" + id).then((response) => {
-      //   console.log(response);
-      //   setUsername(response.data.username);
-      //   console.log(username);
-      // });
-    }
-  }, [id]);
+    const fetchDeclarationStatus = async () => {
+      try {
+        if (user) {
+          const response = await axios.get(`/declaration-season/${user._id}`);
+          setDeclarationInfo(response.data);
+          // console.log(user, response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching declaration status:', error);
+      }
+    };
+  
+    fetchDeclarationStatus();
+  }, [user]);
+
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('el-GR', options);
+};
 
   return (
     <div>
       <Navbar/>
       <NavBarOptions userType={"student"} />
       <div className="mt-10 px-4 lg:px-16 xl:px-32">
-        {open && !declaration && (
+        {declarationInfo.open && !declarationInfo.declaration && (
           <div className="justify-center items-center text-center">
             <h2 className="text-xl font-semibold leading-none text-orange-400 pe-1">
               Έχουν ανοίξει οι δηλώσεις μαθημάτων. <br /> Όλοι οι φοιτητές
               καλούνται να πραγματοποιήσουν την δήλωση τους εως και τις{" "}
-              {end_date}.
+              {formatDate(declarationInfo.end_date)}.
             </h2>
 
             <div className="mt-2 md:justify-items-center gap-5">
               <button
                 type="button"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center"
-                // onClick={Declare}
+                onClick={Declare}
               >
                 Δήλωση Μαθημάτων
               </button>
@@ -65,27 +79,22 @@ const MainPage = () => {
           </div>
         )}
 
-        {open && declaration && (
+        {declarationInfo.open && declarationInfo.declaration && (
           <div className="justify-center items-center text-center">
             <h2
               style={{ marginTop: "0.5rem" }}
               className="text-xl font-semibold leading-none text-green-400 pe-1"
             >
-              Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {last_decl}, μπορεί να
+              Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {declarationInfo.last_decl}, μπορεί να
               γίνει τροποποίηση της.
             </h2>
 
-            <h2
-              style={{ marginTop: "0.5rem" }}
-              className="text-xl font-bold leading-none text-red-800 pe-1"
-            >
+            <h2 style={{ marginTop: "0.5rem" }}
+              className="text-xl font-bold leading-none text-red-800 pe-1">
               Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση.
             </h2>
 
-            <div
-              style={{ marginTop: "0.5rem" }}
-              className="mt-2 md:justify-items-center gap-5"
-            >
+            <div style={{ marginTop: "0.5rem" }} className="mt-2 md:justify-items-center gap-5">
               <button
                 type="button"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center"

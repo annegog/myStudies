@@ -11,6 +11,7 @@ require('dotenv').config();
 
 const User = require('./Models/User');
 const Course = require('./Models/Course');
+const ExamsSeason = require('./Models/Examinations');
 const app = Express();
 
 const bcryptSalt = bcrypt.genSaltSync(8);
@@ -306,7 +307,7 @@ app.get('/data', async (req, res) => {
             am: 'sdi1900125',
             father: 'Βασίλης',
             mother: 'Ελένη',
-            birth_date: 23/1/2001,
+            birth_date: 23 / 1 / 2001,
             family: 'Άγαμη',
             siblings: 1,
             army: 'Ναί',
@@ -650,6 +651,29 @@ app.get('/data', async (req, res) => {
             })
             .catch((error) => {
                 console.error('Error creating sample courses:', error);
+            });
+
+        console.log('Data seeded successfully');
+    } catch (error) {
+        console.error('Error seeding data:', error.message);
+    }
+});
+
+app.get('/exams', async (req, res) => {
+    try {
+        const exam1 = new ExamsSeason({
+            endData: new Date('12/16/2022'),
+            examsSeason: 'Winter',
+            year: '2022-2023'
+        });
+        // Save to the database
+        Promise.all(
+            [exam1.save()])
+            .then(() => {
+                console.log('Exams created successfully');
+            })
+            .catch((error) => {
+                console.error('Error creating exams:', error);
             });
 
         console.log('Data seeded successfully');

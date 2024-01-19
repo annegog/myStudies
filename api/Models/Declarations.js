@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const DeclarationsSchema = new Schema({
-    courses: [String],
+    courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
     data: Date,
     examinationSemester: Number,
     user: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},

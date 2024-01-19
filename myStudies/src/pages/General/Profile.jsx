@@ -12,12 +12,6 @@ import { UserContext } from "../../components/UserContext";
 const ProfilePage = () => {
     const { user } = useContext(UserContext);
 
-    const name = "Δημήτρης Αντωνίου";
-    const email = "sdi2400001@di.uoa.gr";
-    const status = "Εκπαιδευόμενος";
-
-    const ID = "1115202400001";
-    const univeristy = "Πληροφορικής και Τηλεπικοινωνιών";
     const registrationDate = "Δευτέρα, 30 Σεπτεμβρίου 2024 - 10:00 π.μ."
 
     const [activeInfo, setActiveInfo] = useState(null);
@@ -45,6 +39,17 @@ const ProfilePage = () => {
         return <div>Loading...</div>; // Or any other loading state representation
     }
     
+    const formatBirthDate = (dateString) => {
+        if (!dateString) {
+            return "-";
+        }
+
+        const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('el-GR', options);
+    };
+
+
     return (
         <div>
             <Navbar/>
@@ -80,35 +85,39 @@ const ProfilePage = () => {
                             <span>{showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Όνομα Πατέρα: {userData.father} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Όνομα Μητέρας: {userData.mother} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Ημερομηνία Γέννησης: {userData.birth_date} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Οικογενειακή Κατάσταση: {userData.family} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Αδελφών: {userData.siblings} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκπλήρωση Στρατιωτικής Θητείας: {userData.army}  </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Πόλη/Χωριό Γέννησης: {userData.birth_location} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Αριθμός Ταυτότητας:{userData.ID} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Εκδούσα Αρχή: {userData.ID_location} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> AMKA: {userData.AMKA} </div>
+                                    <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2"> 
+                                    <p className="mt-2 mb-2">Όνομα Πατέρα: {userData.father}</p>
+                                    <p className="mb-2">Όνομα Μητέρας: {userData.mother}</p>
+                                    <p className="mb-2">Ημερομηνία Γέννησης: {formatBirthDate(userData.birth_date)} </p>
+                                    <p className="mb-2">Οικογενειακή Κατάσταση: {userData.family} </p>
+                                    <p className="mb-2">Αριθμός Αδελφών: {userData.siblings}</p>
+                                    <p className="mb-2">Εκπλήρωση Στρατιωτικής Θητείας: {userData.army}</p>
+                                    <p className="mb-2">Τόπος Γέννησης: {userData.birth_location}</p>
+                                    <p className="mb-2">Αριθμός Ταυτότητας: {userData.ID} </p>
+                                    <p className="mb-2">Εκδούσα Αρχή: {userData.ID_location} </p>
+                                    <p className="mb-2">AMKA: {userData.AMKA}</p>
+                                    </div>
                                 </div>
                             )}
                         </div>
                     </div>
 
-                    <div className="flex justify-between gap-5 items-start">
+                    <div className="flex justify-between gap-5 items-end">
                         <div className="text-black text-xl cursor-pointer font-medium self-stretch grow shrink basis-auto" onClick={() => setShowMoreInfoFilters(!showMoreInfoFilters)}>
                             <span>{showMoreInfoFilters ? "▲" : "▼"} Πληροφορίες Επικοινωνίας </span>
                             {showMoreInfoFilters && (
-                                <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col w-full h-full justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap"> Μόνιμη Διεύθυνση Κατοικίας: {userData.home} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Μόνιμη Πόλη Κατοικίας: {userData.city} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Μόνιμης Κατοικίας: {userData.temp_phone} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Μόνιμης Κατοικίας: {userData.postal} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Διεύθυνση Κατοικίας: {userData.temp_home} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Προσωρινή Πόλη Κατοικίας: {userData.temp_city} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Τηλέφωνο Προσωρινής Κατοικίας:{userData.temp_phone} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> ΤΚ Προσωρινής Κατοικίας: {userData.postal_temp} </div>
-                                    <div className="justify-center text-black text-xl font-medium whitespace-nowrap mt-3"> Διεύθυνση Ηλεκτρονικού Ταχυδρομείου: {userData.email} </div>
+                                <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col justify-end items-end px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
+                                    <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2"> 
+                                        <p className="mt-2 mb-2"> Μόνιμη Διεύθυνση Κατοικίας: {userData.home} </p>
+                                        <p className="mt-2 mb-2"> Μόνιμη Πόλη Κατοικίας: {userData.city} </p>
+                                        <p className="mt-2 mb-2"> Τηλέφωνο Μόνιμης Κατοικίας: {userData.temp_phone} </p>
+                                        <p className="mt-2 mb-2"> ΤΚ Μόνιμης Κατοικίας: {userData.postal} </p>
+                                        <p className="mt-2 mb-2"> Προσωρινή Διεύθυνση Κατοικίας: {userData.temp_home} </p>
+                                        <p className="mt-2 mb-2"> Προσωρινή Πόλη Κατοικίας: {userData.temp_city} </p>
+                                        <p className="mt-2 mb-2"> Τηλέφωνο Προσωρινής Κατοικίας:{userData.temp_phone} </p>
+                                        <p className="mt-2 mb-2"> ΤΚ Προσωρινής Κατοικίας: {userData.postal_temp} </p>
+                                        <p className="mt-2 mb-2"> Διεύθυνση Ηλεκτρονικού Ταχυδρομείου: {userData.email} </p>
+                                    </div>
                                 </div>
                             )}
                         </div>

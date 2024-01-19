@@ -3,8 +3,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Breadcrump from "../../../components/Tools/Breadcrumb";
+
 import Footer from "../../../components/Common/Footer";
-// import Success from "../../components/Success";
 import Navbar from "../../../components/Common/Navbar";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
@@ -29,32 +30,6 @@ const Request = () => {
     // Function to move to the previous step
     const goToPreviousStep = () => {
         setCurrentStep(currentStep - 1);
-    };
-
-    const StepIndicators = ({ currentStep }) => {
-        const steps = [1, 2, 3];
-
-        return (
-            <div className="flex items-center justify-center mt-8 space-x-2">
-                {steps.map((step, index) => (
-                    <React.Fragment key={step}>
-                        <div className={`flex flex-col items-center`}>
-                            <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${step <= currentStep ? 'bg-blue-500' : 'bg-gray-300'}`}>
-                                {step}
-                            </div>
-
-                            <div className="text-sm text-center mt-1">
-                                {step === 1 ? "Επιλογή" : step === 2 ? "Αντίγραφα" : "Αίτηση"}
-                            </div>
-                        </div>
-
-                        {index < steps.length - 1 && (
-                            <div className="flex-grow border-t border-gray-300" />
-                        )}
-                    </React.Fragment>
-                ))}
-            </div>
-        );
     };
 
     useEffect(() => {
@@ -82,7 +57,7 @@ const Request = () => {
             <NavBarOptions userType={"student"} /> {/* Instead of student string, giving the studentData.status */}
             <main className="main-content flex justify-center" >
                 <div className="w-full max-w-4xl">
-                    <StepIndicators currentStep={currentStep} />
+                    <Breadcrump currentStep={currentStep} stepStrings={["Επιλογή", "Αντίγραφα", "Αίτηση"]}/>
                     {stepContent}
                     <div style={{marginTop: "2rem"}} className="flex justify-center space-x-2 mt-4">
                         {currentStep === 1 ? (

@@ -20,6 +20,8 @@ import Courses from "./pages/Students/Courses";
 import Main from "./pages/Students/Main";
 
 import GradesProfessors from "./pages/Professors/Grades/Grades"
+import GradesCreate from "./pages/Professors/Grades/Create"
+import GradesShow from "./pages/Professors/Grades/Show"
 import MainProfessors from "./pages/Professors/Main/Main"
 
 import { UserContextProvider } from "./components/UserContext";
@@ -55,6 +57,8 @@ const App = () => {
 
         <Route path="/professor" element={<MainProfessors />} />
         <Route path="/professor/grades" element={<GradesProfessors />} />
+        <Route path="/professor/grades-create" element={<GradesCreate />} />
+        <Route path="/professor/grades-show" element={<GradesShow />} />
 
         {/* Declarations */}
 

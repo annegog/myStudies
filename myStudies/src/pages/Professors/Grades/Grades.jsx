@@ -11,11 +11,11 @@ const Grades = () => {
     const navigate = useNavigate();
 
     const handleCreationGrades = () => {
-        navigate("/professor/create-grades")
+        navigate("/professor/grades-create");
     };
 
     const handleShowGrades = () => {
-        navigate("/professor/show-grades")
+        navigate("/professor/grades-show");
     };
 
     const [activeCourses, setActiveCourses] = useState({});

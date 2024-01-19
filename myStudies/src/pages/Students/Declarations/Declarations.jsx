@@ -3,6 +3,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Breadcrumb from "../../../components/Tools/Breadcrumb";
+
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
@@ -23,34 +25,6 @@ const Declarations = () => {
                 return [...prevSubjects, subjectKey];
             }
         });
-    };
-
-    const StepIndicators = ({ currentStep }) => {
-        const steps = [1, 2, 3]; // Define the number of steps
-
-        return (
-            <div className="flex items-center justify-center mt-8 space-x-2">
-                {steps.map((step, index) => (
-                    <React.Fragment key={step}>
-                        {/* Step Circle */}
-                        <div className={`flex flex-col items-center`}>
-                            <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${step <= currentStep ? 'bg-blue-500' : 'bg-gray-300'}`}>
-                                {step} 
-                            </div>
-
-                            <div className="text-sm text-center mt-1">
-                                {step === 1 ? "Επιλογή Μαθημάτων" : step === 2 ? "Επισκόπηση" : "Οριστική Υποβολή"}
-                            </div>
-                        </div>
-
-                        {/* Connecting Line (for all but the last step) */}
-                        {index < steps.length - 1 && (
-                            <div className="flex-grow border-t border-gray-300" />
-                        )}
-                    </React.Fragment>
-                ))}
-            </div>
-        );
     };
 
     // Function to deselect a subject
@@ -98,7 +72,7 @@ const Declarations = () => {
             <main className="main-content flex justify-center">
                 <div className="w-full max-w-4xl">
                     {/* Render Step Indicators */}
-                    <StepIndicators currentStep={currentStep} />
+                    <Breadcrumb currentStep={currentStep} stepStrings={["Επιλογή Μαθημάτων", "Επισκόπηση", "Οριστική Υποβολή"]}/>
                     {/* Εδώ μπαίνει η λογική των βημάτων */}
                     {stepContent}
                     <div className="flex justify-center space-x-2 mt-4">

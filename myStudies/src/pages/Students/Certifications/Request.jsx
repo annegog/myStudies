@@ -19,7 +19,7 @@ const Request = () => {
     };
 
     const handleBackToMain = () => {
-        navigate("/success");
+        navigate("/student/:id");
     };
 
     // Function to move to the next step
@@ -67,7 +67,7 @@ const Request = () => {
                         )}
 
                         {currentStep === 3 ? (
-                            <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Αίτηση </button>
+                            <button onClick={handleBackToMain} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Αίτηση </button>
                         ) : currentStep < 3 && (
                             <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Επόμενο </button>
                         )}

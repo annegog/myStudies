@@ -11,6 +11,8 @@ require('dotenv').config();
 
 const User = require('./Models/User');
 const Course = require('./Models/Course');
+const ExamsSeason = require('./Models/Examinations');
+const Declaration = require('./Models/Declarations');
 const app = Express();
 
 const bcryptSalt = bcrypt.genSaltSync(8);
@@ -113,6 +115,45 @@ app.get('/student/:id', verifyJWTuser, async (req, res) => {
         res.json(user);
     } catch (error) {
         res.status(500).json({ error: 'Error fetching User' });
+    }
+});
+
+app.get('/declaration-season/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        // Find the latest declaration season for the user
+        const latestDeclaration = await Declaration.findOne({ user: userId })
+            .sort({ data: -1 })
+            .populate('exam');
+        
+        // Find the ongoing exam season
+        const currentDate = new Date();
+        const ongoingExamSeason = await ExamsSeason.findOne({
+            endData: { $gte: currentDate }
+        });
+
+        // Check if the declaration season is still open
+        const isExamSeasonOngoing = !!ongoingExamSeason;
+
+        if (!latestDeclaration) {
+            // No declaration found
+            return res.json({
+                declaration: false, 
+                open: isExamSeasonOngoing,
+                end_date: ongoingExamSeason ? ongoingExamSeason.endData : null
+            });
+        }
+
+        res.json({
+            declaration: true,
+            open: isExamSeasonOngoing,
+            end_date: ongoingExamSeason ? ongoingExamSeason.endData : null,
+            last_decl: latestDeclaration.data,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
@@ -306,7 +347,7 @@ app.get('/data', async (req, res) => {
             am: 'sdi1900125',
             father: 'Βασίλης',
             mother: 'Ελένη',
-            birth_date: 23/1/2001,
+            birth_date: 23 / 1 / 2001,
             family: 'Άγαμη',
             siblings: 1,
             army: 'Ναί',
@@ -650,6 +691,29 @@ app.get('/data', async (req, res) => {
             })
             .catch((error) => {
                 console.error('Error creating sample courses:', error);
+            });
+
+        console.log('Data seeded successfully');
+    } catch (error) {
+        console.error('Error seeding data:', error.message);
+    }
+});
+
+app.get('/exams', async (req, res) => {
+    try {
+        const exam1 = new ExamsSeason({
+            endData: new Date('04/04/2024'),
+            examsSeason: 'Spring',
+            year: '2023-2024'
+        });
+        // Save to the database
+        Promise.all(
+            [exam1.save()])
+            .then(() => {
+                console.log('Exams created successfully');
+            })
+            .catch((error) => {
+                console.error('Error creating exams:', error);
             });
 
         console.log('Data seeded successfully');

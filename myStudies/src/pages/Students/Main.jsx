@@ -19,8 +19,8 @@ const MainPage = () => {
     last_decl: '',
   });
 
+  const { id } = useParams();
   const { user } = useContext(UserContext);
-  const {id} = useParams();
 
   const navigate = useNavigate();
 

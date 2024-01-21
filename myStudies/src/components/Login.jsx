@@ -12,38 +12,44 @@ const Login = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     
     const { setUser } = useContext(UserContext);
 
-  async function handleLogin(ev) {
-    ev.preventDefault();
-    if (!username || !password) {
-      alert('Please enter both username and password.');
-      return;
-    }
-    try {
-      const { data } = await axios.post('/login', {username,password,});
-      setUser(data);
-
-      if (data.role === 'student') {
-        navigate('/student/' + data._id); 
-      } else if (data.role === 'professor') {
-        navigate('/professor/'+ data._id);
-      }
-    } catch (e) {
-      if (e.response) {
-        if (e.response.status === 422) {
-          alert('Your password is WRONG! Try again.');
-        } else if (e.response.status === 404) {
-          alert('Your username is WRONG! Try again.');
-        } else {
-          alert('Login FAILED! Try again.');
+    async function handleLogin(ev) {
+        ev.preventDefault();
+        if (!username || !password) {
+            alert('Please enter both username and password.');
+            return;
         }
-      } else {
-        alert('Login FAILED: ' + e.message);
-      }
+
+        try {
+            const { data } = await axios.post('/login', {username,password,});
+            setUser(data);
+
+            if (data.role === 'student') {
+                navigate('/student/' + data._id); 
+            } else if (data.role === 'professor') {
+                navigate('/professor/'+ data._id);
+            }
+        } catch (e) {
+            if (e.response) {
+                if (e.response.status === 422) {
+                    alert('Your password is WRONG! Try again.');
+                } else if (e.response.status === 404) {
+                    alert('Your username is WRONG! Try again.');
+                } else {
+                    alert('Login FAILED! Try again.');
+                }
+            } else {
+                alert('Login FAILED: ' + e.message);
+            }
+        }
     }
-  }
+
+    const togglePasswordsVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <div className="flex flex-col md:flex-row md:justify-between items-center md:mx-32 mx-5 mt-10">
@@ -72,12 +78,15 @@ const Login = () => {
                         <label htmlFor="password" className="text-sm block font-medium"> Κωδικός: </label>
                         <input
                             id="password"
-                            type="password"
+                            type={showPassword ? "text": "password"}
                             name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full border rounded-md p-2"
                         />
+                        <button type="button" onClick={togglePasswordsVisibility}>
+                            {showPassword}
+                        </button>
                     </div>
 
                     <button type="submit" className="w-full bg-blue-900 text-white rounded-md p-2 hover:bg-blue-700"> Σύνδεση </button>

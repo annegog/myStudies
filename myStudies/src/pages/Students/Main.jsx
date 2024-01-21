@@ -85,7 +85,7 @@ const MainPage = () => {
               style={{ marginTop: "0.5rem" }}
               className="text-xl font-semibold leading-none text-green-400 pe-1"
             >
-              Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {declarationInfo.last_decl}, μπορεί να
+              Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να
               γίνει τροποποίηση της.
             </h2>
 

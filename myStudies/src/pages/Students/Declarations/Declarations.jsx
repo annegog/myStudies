@@ -1,20 +1,83 @@
 import React from "react";
+import axios from "axios";
 
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Breadcrumb from "../../../components/Tools/Breadcrumb";
 
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
+import { UserContext } from "../../../components/UserContext";
+
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import { Checkbox } from "@mui/material";
+
 
 const Declarations = () => {
     // State for controlling which step the user is on
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedSubjects, setSelectedSubjects] = useState([]);
 
-    // ... other state hooks
+    const [organizedCourses, setOrganizedCourses] = useState({});
+
+    useEffect(() => {
+        const apiEndpoint = "/api/courses";
+        axios
+          .get(apiEndpoint)
+          .then((response) => {
+    
+            const organizedData = organizeCourses(response.data);
+            setOrganizedCourses(organizedData);
+          })
+          .catch((error) => {
+            console.error("Error fetching course data:", error);
+          });
+      }, []); // Empty dependency array ensures the effect runs only once
+    
+      // Function to organize courses by semester, type, and direction/major
+      const organizeCourses = (courses) => {
+        const organizedData = {};
+    
+        // Iterate over each course
+        courses.forEach((course) => {
+          const { semester, mandatory, lab, general, direction } = course;
+    
+          // Create semester key if not exists
+          if (!organizedData[semester]) {
+            organizedData[semester] = {
+              required: [],
+              labs: [],
+              general: [],
+              directionA: [],
+              directionB: [],
+            };
+          }
+    
+          if (mandatory) {
+            organizedData[semester].required.push(course);
+          } else if (lab) {
+            organizedData[semester].labs.push(course);
+          } else if (general) {
+            organizedData[semester].general.push(course);
+          }
+    
+          if (direction === "A") {
+            organizedData[semester].directionA.push(course);
+          } else if (direction === "B") {
+            organizedData[semester].directionB.push(course);
+          }
+    
+          // Add more conditions as needed for other types or categories
+        });
+    
+        return organizedData;
+      };
 
     const toggleSubjectSelection = (semester, subject) => {
         setSelectedSubjects(prevSubjects => {
@@ -49,11 +112,15 @@ const Declarations = () => {
     }, [currentStep]);
     // ... rest of your component
 
+    useEffect(() => {
+        console.log('Selected subjects:', selectedSubjects);
+    }, [selectedSubjects]);
+
     // Conditional rendering based on the current step
     let stepContent;
     switch (currentStep) {
         case 1:
-            stepContent = <StepOne onSubjectSelect={toggleSubjectSelection} selectedSubjects={selectedSubjects} />;
+            stepContent = <StepOne onSubjectSelect={toggleSubjectSelection} selectedSubjects={selectedSubjects} organizedCourses={organizedCourses} />;
             break;
         case 2:
             stepContent = <StepTwo selectedSubjects={selectedSubjects} onSubjectDeselect={handleSubjectDeselect} />;
@@ -94,166 +161,220 @@ const Declarations = () => {
     );
 };
 
-const courseData = {
-    1: { // Semester 1
-        required: ["Course 1.1", "Course 1.2"], // Υποχρεωτικά
-        optional: ["Course 1.3", "Course 1.4"], // Προαιρετικά
-        labs: ["Course 1.5", "Course 1.6"],
-        // ... other course types
-    },
-    2: { // Semester 2
-        required: ["Course 2.1", "Course 2.2"],
-        optional: ["Course 2.3", "Course 2.4"],
-        labs: ["Course 2.5", "Course 2.6"],
-        // ... other course types
-    },
-    3: { // Semester 2
-        required: ["Course 3.1", "Course 3.2"],
-        optional: ["Course 3.3", "Course 3.4"],
-        labs: ["Course 3.5", "Course 3.6"],
-        // ... other course types
-    },
-    4: { // Semester 2
-        required: ["Course 4.1", "Course 4.2"],
-        optional: ["Course 4.3", "Course 4.4"],
-        labs: ["Course 4.5", "Course 4.6"],
-        // ... other course types
-    },
-    5: { // Semester 2
-        required: ["Course 5.1", "Course 5.2"],
-        optional: ["Course 5.3", "Course 5.4"],
-        labs: ["Course 5.5", "Course 5.6"],
-        // ... other course types
-    },
-    6: { // Semester 2
-        required: ["Course 6.1", "Course 6.2"],
-        optional: ["Course 6.3", "Course 6.4"],
-        labs: ["Course 6.5", "Course 6.6"],
-        // ... other course types
-    },
-    7: { // Semester 2
-        required: ["Course 7.1", "Course 7.2"],
-        optional: ["Course 7.3", "Course 7.4"],
-        labs: ["Course 7.5", "Course 7.6"],
-        // ... other course types
-    },
-    8: { // Semester 2
-        required: ["Course 8.1", "Course 8.2"],
-        optional: ["Course 8.3", "Course 8.4"],
-        labs: ["Course 8.5", "Course 8.6"],
-        // ... other course types
-    }
+
+const StepOne = ({ onSubjectSelect, selectedSubjects, organizedCourses }) => {
+  const [activeSemester, setActiveSemester] = useState(null);
+  const [openSections, setOpenSections] = useState({});
+
+  const toggleSemester = (semester) => {
+    console.log("Toggling semester", semester);
+    setActiveSemester(activeSemester === semester ? null : semester);
+  };
+
+  const isSubjectSelected = (semester, subject) => {
+    return selectedSubjects.includes(`${semester}-${subject}`);
+  };
+
+  const handleSubjectToggle = (semester, subject) => {
+    console.log(`Toggling subject: ${semester}-${subject}`);
+    onSubjectSelect(semester, subject);
 };
 
-// Εδώ ορίζετε τα συστατικά για κάθε βήμα
-const StepOne = ({ onSubjectSelect, selectedSubjects }) => {
-    const [activeSemester, setActiveSemester] = useState(null);
-    const [openSections, setOpenSections] = useState({});
+  const toggleSection = (semester, section, event) => {
+    event.stopPropagation();
+    const key = `${semester}-${section}`;
+    console.log(`Toggling section: ${key}`);
+    setOpenSections((prevSections) => ({
+      ...prevSections,
+      [key]: !prevSections[key],
+    }));
+  };
 
-    const toggleSemester = (semester) => {
-        console.log('Toggling semester', semester);
-        setActiveSemester(activeSemester === semester ? null : semester);
-    };
-
-    const isSubjectSelected = (semester, subject) => {
-        return selectedSubjects.includes(`${semester}-${subject}`);
-    };
-
-    const handleSubjectToggle = (semester, subject) => {
-        onSubjectSelect(semester, subject);
-    };
-
-    const toggleSection = (semester, section, event) => {
-        event.stopPropagation();
-        const key = `${semester}-${section}`;
-        console.log(`Toggling section: ${key}`);
-        setOpenSections(prevSections => ({
-            ...prevSections,
-            [key]: !prevSections[key]
-        }));
-    };
-
-    const AccordionSection = ({ title, children, isOpen, onClick }) => {
-        return (
-            <div>
-                <button onClick={onClick} className="text-left w-full text-lg py-2 focus:outline-none">
-                    {title}
-                </button>
-                {isOpen && <div className="content bg-gray-100 p-4">{children}</div>}
-            </div>
-        );
-    };
-
+  const AccordionSection = ({ title, children, isOpen, onClick }) => {
     return (
-        <div>
-            {/* Existing semester and accordion logic */}
-            <div className="semesters mt-8 space-y-4">
-                {Object.keys(courseData).map((semester) => (
-                    <div key={semester}>
-                        <button
-                            onClick={() => toggleSemester(semester)}
-                            className="text-left w-full text-lg py-2 focus:outline-none"
-                        >
-                            Εξάμηνο {semester}
-                        </button>
-                        {activeSemester === semester && (
-                            <div className="flex flex-col space-y-2 pl-8">
-                                <AccordionSection
-                                    title="Υποχρεωτικά Μαθήματα"
-                                    isOpen={openSections[`${semester}-required`]}
-                                    onClick={(e) => toggleSection(semester, 'required', e)}
-                                >
-                                    {courseData[semester].required.map(course => (
-                                        <div key={course}>
-                                            <input
-                                                type="checkbox"
-                                                checked={isSubjectSelected(semester, course)}
-                                                onChange={() => handleSubjectToggle(semester, course)}
-                                            />
-                                            {course}
-                                        </div>
-                                    ))}
-                                </AccordionSection>
-                                <AccordionSection
-                                    title="Προαιρετικά Μαθήματα"
-                                    isOpen={openSections[`${semester}-optional`]}
-                                    onClick={(e) => toggleSection(semester, 'optional', e)}
-                                >
-                                    {courseData[semester].optional.map(course => (
-                                        <div key={course}>
-                                            <input
-                                                type="checkbox"
-                                                checked={isSubjectSelected(semester, course)}
-                                                onChange={() => handleSubjectToggle(semester, course)}
-                                            />
-                                            {course}
-                                        </div>
-                                    ))}
-                                </AccordionSection>
-                                <AccordionSection
-                                    title="Εργαστήρια"
-                                    isOpen={openSections[`${semester}-labs`]}
-                                    onClick={(e) => toggleSection(semester, 'labs', e)}
-                                >
-                                    {courseData[semester].labs.map(course => (
-                                        <div key={course}>
-                                            <input
-                                                type="checkbox"
-                                                checked={isSubjectSelected(semester, course)}
-                                                onChange={() => handleSubjectToggle(semester, course)}
-                                            />
-                                            {course}
-                                        </div>
-                                    ))}
-                                </AccordionSection>
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
-        </div>
+      <div>
+        <button
+          onClick={onClick}
+          className="text-left w-full text-lg py-2 focus:outline-none"
+        >
+          {title}
+        </button>
+        {isOpen && <div className="content bg-gray-100 rounded-2xl p-4">{children}</div>}
+      </div>
     );
+  };
+
+  return (
+    <div>
+      <div className="semesters mt-8 space-y-4">
+        {Object.keys(organizedCourses).map((semester) => (
+          <div key={semester}>
+            <button
+              onClick={() => toggleSemester(semester)}
+              className="text-left w-full text-lg py-2 focus:outline-none"
+            >
+              Εξάμηνο {semester}
+            </button>
+            {activeSemester === semester && (
+              <div className="flex flex-col space-y-2 pl-8">
+                <AccordionSection
+                  title="Υποχρεωτικά Μαθήματα"
+                  isOpen={
+                    openSections[`${semester}-required`] &&
+                    organizedCourses[semester]?.required
+                  }
+                  onClick={(e) => toggleSection(semester, "required", e)}
+                >
+                  {organizedCourses[semester]?.required?.map((course) => (
+                    <div key={course.id_course}>
+                      <Checkbox
+                        type="checkbox"
+                        checked={isSubjectSelected(semester, course.title)}
+                        onChange={() => handleSubjectToggle(semester, course.title)}
+                      />
+                      {course.title}
+                    </div>
+                  ))}
+                </AccordionSection>
+                <AccordionSection
+                  title="Γενικής Παιδείας"
+                  isOpen={
+                    openSections[`${semester}--general`] &&
+                    organizedCourses[semester]?.general
+                  }
+                  onClick={(e) => toggleSection(semester, "general", e)}
+                >
+                  {organizedCourses[semester]?.general?.map((course) => (
+                    <div key={course.id_course}>
+                      <Checkbox
+                        type="checkbox"
+                        checked={isSubjectSelected(semester, course.title)}
+                        onChange={() => handleSubjectToggle(semester, course.title)}
+                      />
+                      {course.title} - {course.id_course}
+                    </div>
+                  ))}
+                </AccordionSection>
+                <AccordionSection
+                  title="Εργαστήρια"
+                  isOpen={
+                    openSections[`${semester}-labs`] &&
+                    organizedCourses[semester]?.labs
+                  }
+                  onClick={(e) => toggleSection(semester, "labs", e)}
+                >
+                  {organizedCourses[semester]?.labs?.map((course) => (
+                    <div key={course.id_course}>
+                      <Checkbox
+                        type="checkbox"
+                        checked={isSubjectSelected(semester, course.title)}
+                        onChange={() => handleSubjectToggle(semester, course.title)}
+                      />
+                      {course.title} - {course.id_course}
+                    </div>
+                  ))}
+                </AccordionSection>
+                {semester >= 5 && (
+                  <div>
+                    <AccordionSection
+                      title="Κατεύθυνση Α"
+                      isOpen={
+                        openSections[`${semester}-directionA`] &&
+                        organizedCourses[semester]?.labs
+                      }
+                      onClick={(e) => toggleSection(semester, "directionA", e)}
+                    >
+                      {organizedCourses[semester]?.directionA?.map((course) => (
+                        <div key={course.id_course}>
+                          <Checkbox
+                            type="checkbox"
+                            checked={isSubjectSelected(semester, course.title)}
+                            onChange={() =>
+                              handleSubjectToggle(semester, course.title)
+                            }
+                          />
+                          {course.title} - {course.id_course}
+                        </div>
+                      ))}
+                    </AccordionSection>
+                    <AccordionSection
+                      title="Κατεύθυνση B"
+                      isOpen={
+                        openSections[`${semester}-directionB`] &&
+                        organizedCourses[semester]?.labs
+                      }
+                      onClick={(e) => toggleSection(semester, "directionB", e)}
+                    >
+                      {organizedCourses[semester]?.directionB?.map((course) => (
+                        <div key={course.id_course}>
+                          <Checkbox
+                            type="checkbox"
+                            checked={isSubjectSelected(semester, course.title)}
+                            onChange={() =>
+                              handleSubjectToggle(semester, course.title)
+                            }
+                          />
+                          {course.title} - {course.id_course}
+                        </div>
+                      ))}
+                    </AccordionSection>
+                    <AccordionSection
+                      title="Επιλογές Τμήματος"
+                      isOpen={
+                        openSections[`${semester}-optional`] &&
+                        organizedCourses[semester]?.labs
+                      }
+                      onClick={(e) => toggleSection(semester, "optional", e)}
+                    >
+                      {organizedCourses[semester]?.optional?.map((course) => (
+                        <div key={course.id_course}>
+                          <Checkbox
+                            type="checkbox"
+                            checked={isSubjectSelected(semester, course.title)}
+                            onChange={() =>
+                              handleSubjectToggle(semester, course.title)
+                            }
+                          />
+                          {course.title} - {course.id_course}
+                        </div>
+                      ))}
+                    </AccordionSection>
+                  </div>
+                )}
+                {semester >= 7 && (
+                  <div>
+                    <AccordionSection
+                      title="Πτυχιακή-Πρακτική"
+                      isOpen={
+                        openSections[`${semester}-internship`] &&
+                        organizedCourses[semester]?.labs
+                      }
+                      onClick={(e) => toggleSection(semester, "internship", e)}
+                    >
+                      {organizedCourses[semester]?.internship?.map((course) => (
+                        <div key={course.id_course}>
+                          <Checkbox
+                            type="checkbox"
+                            checked={isSubjectSelected(semester, course.title)}
+                            onChange={() =>
+                              handleSubjectToggle(semester, course.title)
+                            }
+                          />
+                          {course.title} - {course.id_course}
+                        </div>
+                      ))}
+                    </AccordionSection>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
+  
 
 const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
     const handleDeselectSubject = (subjectKey) => {
@@ -277,16 +398,16 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
             <div style={{marginTop: "1rem"}} className="text-red-500 text-center mb-4">
                 Τα παρακάτω μαθήματα αποθηκεύτηκαν προσωρινά. Πατήστε επόμενο για να προχωρήσετε σε Οριστική Υποβολή.
             </div>
-            <h2>Selected Subjects</h2>
+            <h2 className="text-center text-xl font-medium">Επιλεγμένα Μαθήματα</h2>
             {Object.entries(subjectsBySemester).map(([semester, subjects]) => (
                 <div key={semester}>
-                    <h3> Εξάμηνο {semester}</h3>
-                    <ul className="pl-4"> {/* Add padding to the left of the list */}
+                    <h3 className="text-lg"> Εξάμηνο {semester}</h3>
+                    <ul className="pl-4">
                         {subjects.map((subject) => {
                             const subjectKey = `${semester}-${subject}`;
                             return (
                                 <li key={subjectKey} className="list-inside list-disc"> {/* This will style list items with bullets */}
-                                    <input
+                                    <Checkbox
                                         type="checkbox"
                                         checked
                                         onChange={() => handleDeselectSubject(subjectKey)}
@@ -303,7 +424,9 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
 };
 
 const StepThree = ({ selectedSubjects }) => {
+    const {user} = useContext(UserContext);
     const navigate = useNavigate();
+    
     // Helper function to group subjects by semester
     const groupSubjectsBySemester = (selectedSubjects) => {
         return selectedSubjects.reduce((acc, subjectKey) => {
@@ -333,7 +456,7 @@ const StepThree = ({ selectedSubjects }) => {
     // Function to navigate to the verification page
     const handleOkClick = () => {
         console.log("Ok button clicked");  // Debug log
-        navigate('/student');
+        navigate('/student/' + user._id);
     };
 
     // Decide the message based on the conditions

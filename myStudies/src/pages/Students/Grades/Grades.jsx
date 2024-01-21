@@ -74,15 +74,15 @@ const Grades = () => {
                 <div className="grades-table w-full max-w-4xl">
                     
                     {/* Search Bar */}
-                    <div style={{ marginTop: "1rem" }} className="flex justify-center mt-4">
+                    <div style={{ marginTop: "1rem" }} className="flex flex-row justify-center mt-4">
                         <input
                             type="text"
-                            className="text-center p-2 rounded-lg border border-gray-300"
+                            className="text-black text-center rounded-3xl p-2 border border-gray-300"
                             placeholder="Αναζήτηση Μαθήματος"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
-                        <button className="bg-blue-500 rounded-lg text-white p-2 ml-2" 
+                        <button className="text-white text-center bg-blue-500 rounded-3xl p-2 ml-2 hover:bg-blue-600" 
                             onClick={handleSearch}
                         > Search </button>
                     </div>
@@ -108,7 +108,7 @@ const Grades = () => {
 
                             {/* Attempts Filter */}
                             <div className="mb-2 md:mb-0 md:mr-2 flex-1">
-                                <div className="text-center font-bold cursor-pointer" onClick={() => setShowGradeFilters(!showGradeFilters)}> 
+                                <div className="text-center text-lg font-medium cursor-pointer" onClick={() => setShowGradeFilters(!showGradeFilters)}> 
                                     Προσπάθειες
                                     <span>{showGradeFilters ? "▲" : "▼"}</span>
                                 </div>
@@ -123,7 +123,7 @@ const Grades = () => {
 
                             {/* Examination Period Filter */}
                             <div className="flex-1">
-                                <div className="text-center font-bold cursor-pointer" onClick={() => setShowSemesterFilters(!showSemesterFilters)}>
+                                <div className="text-center font-medium cursor-pointer" onClick={() => setShowSemesterFilters(!showSemesterFilters)}>
                                     Εξεταστική Περίοδος
                                     <span>{showSemesterFilters ? "▲" : "▼"}</span>
                                 </div>
@@ -144,7 +144,7 @@ const Grades = () => {
                         .filter(([semester, _]) => shouldShowSemester(parseInt(semester)))
                         .map(([semester, courses]) => (
                             <div style={{ marginTop: "2rem" }} key={semester} className={`mb-8 ${shouldShowSemester(parseInt(semester)) ? "" : "hidden"}`}>
-                                <h2 className="text-center text-lg font-bold"> {semester}o Εξάμηνο </h2>
+                                <h2 className="text-center text-lg font-medium"> {semester}o Εξάμηνο </h2>
                                 <table className="rounded-lg bg-gray-200 w-full text-sm text-left">
                                     <thead className="text-xs">
                                         <tr>

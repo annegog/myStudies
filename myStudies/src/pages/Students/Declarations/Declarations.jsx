@@ -460,9 +460,24 @@ const StepThree = ({ selectedSubjects }) => {
     const mixedSemesters = hasMixedSemesterSelection(subjectsBySemester);
 
     // Function to navigate to the verification page
-    const handleOkClick = () => {
-        console.log("Ok button clicked");  // Debug log
-        navigate('/student/' + user._id);
+    const handleOkClick = async () => {        
+        const courses = selectedSubjects.map(subjectKey => {
+            const [semester, course] = subjectKey.split('-');
+            return course;
+        });
+
+        console.log(courses);
+        
+        try {
+            await axios.post(`/save-declaration/${user._id}`, {
+                courses: courses,
+            });
+
+            navigate(`/student/${user._id}`);
+        } catch (error) {
+            console.error('Error saving declaration:', error);
+            // Handle error or display a notification to the user
+        }
     };
 
     // Decide the message based on the conditions
@@ -493,7 +508,7 @@ const StepThree = ({ selectedSubjects }) => {
                 </div>
             ))}
 
-            {/* Show the Okay button based on conditions
+            {/* Show the Okay button based on conditions */}
             {!mixedSemesters && totalSubjects <= 10 && (
                 <div className="mt-4 flex justify-center">
                     <button
@@ -503,7 +518,7 @@ const StepThree = ({ selectedSubjects }) => {
                         Εντάξει
                     </button>
                 </div>
-            )} */}
+            )}
         </div>
     );
 };

@@ -2,25 +2,18 @@ import React from "react";
 import axios from "axios";
 
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../../../components/Tools/Breadcrumb";
-
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import Success from "../../../components/Common/Success";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 import { UserContext } from "../../../components/UserContext";
-
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogActions from "@mui/material/DialogActions";
-import Button from "@mui/material/Button";
 import { Checkbox } from "@mui/material";
 
 
 const Declarations = () => {
+    const {user} = useContext(UserContext);
+    
     // State for controlling which step the user is on
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedSubjects, setSelectedSubjects] = useState([]);
@@ -28,57 +21,54 @@ const Declarations = () => {
     const [organizedCourses, setOrganizedCourses] = useState({});
 
     useEffect(() => {
-        const apiEndpoint = "/api/courses";
-        axios
-          .get(apiEndpoint)
-          .then((response) => {
-    
-            const organizedData = organizeCourses(response.data);
-            setOrganizedCourses(organizedData);
-          })
-          .catch((error) => {
-            console.error("Error fetching course data:", error);
-          });
-      }, []); // Empty dependency array ensures the effect runs only once
-    
-      // Function to organize courses by semester, type, and direction/major
-      const organizeCourses = (courses) => {
+      const apiEndpoint = "/api/courses";
+      axios
+        .get(apiEndpoint)
+        .then((response) => {
+          const organizedData = organizeCourses(response.data);
+          setOrganizedCourses(organizedData);
+        })
+        .catch((error) => {
+          console.error("Error fetching course data:", error);
+        });
+    }, []); // Empty dependency array ensures the effect runs only once
+
+    // Function to organize courses by semester, type, and direction/major
+    const organizeCourses = (courses) => {
         const organizedData = {};
-    
+
         // Iterate over each course
         courses.forEach((course) => {
-          const { semester, mandatory, lab, general, direction } = course;
-    
-          // Create semester key if not exists
-          if (!organizedData[semester]) {
+            const { semester, mandatory, lab, general, direction } = course;
+
+        // Create semester key if not exists
+        if (!organizedData[semester]) {
             organizedData[semester] = {
-              required: [],
-              labs: [],
-              general: [],
-              directionA: [],
-              directionB: [],
+            required: [],
+            labs: [],
+            general: [],
+            directionA: [],
+            directionB: [],
             };
-          }
-    
-          if (mandatory) {
+        }
+
+        if (mandatory) {
             organizedData[semester].required.push(course);
-          } else if (lab) {
+        } else if (lab) {
             organizedData[semester].labs.push(course);
-          } else if (general) {
+        } else if (general) {
             organizedData[semester].general.push(course);
-          }
-    
-          if (direction === "A") {
+        }
+
+        if (direction === "A") {
             organizedData[semester].directionA.push(course);
-          } else if (direction === "B") {
+        } else if (direction === "B") {
             organizedData[semester].directionB.push(course);
-          }
-    
-          // Add more conditions as needed for other types or categories
-        });
-    
+        }
+      });
+
         return organizedData;
-      };
+    };
 
     const toggleSubjectSelection = (semester, subject) => {
         setSelectedSubjects(prevSubjects => {
@@ -111,7 +101,6 @@ const Declarations = () => {
     useEffect(() => {
         console.log('Current step is now:', currentStep);
     }, [currentStep]);
-    // ... rest of your component
 
     useEffect(() => {
         console.log('Selected subjects:', selectedSubjects);
@@ -133,6 +122,22 @@ const Declarations = () => {
             stepContent = <StepOne onSubjectSelect={toggleSubjectSelection} selectedSubjects={selectedSubjects} />;
     }
 
+    const handleOkClick = async () => {        
+        const courses = selectedSubjects.map(subjectKey => {
+            const [semester, course] = subjectKey.split('-');
+            return course;
+        });
+    
+        try {
+            await axios.post(`/save-declaration/${user._id}`, {
+                courses: courses,
+            });
+            goToNextStep();
+        } catch (error) {
+           console.error('Error saving declaration:', error);
+           // Handle error or display a notification to the user
+        }
+    };
     return (
         <div className="Declarations">
             <Navbar/>
@@ -154,7 +159,7 @@ const Declarations = () => {
 
                             {/* Update button text based on the current step */}
                             {currentStep === 3 ? (
-                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Οριστική Υποβολή </button>
+                                <button onClick={handleOkClick} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Οριστική Υποβολή </button>
                             ) : currentStep < 3 && (
                                 <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Επόμενο </button>
                             )}
@@ -430,8 +435,6 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
 };
 
 const StepThree = ({ selectedSubjects }) => {
-    const {user} = useContext(UserContext);
-    const navigate = useNavigate();
     
     // Helper function to group subjects by semester
     const groupSubjectsBySemester = (selectedSubjects) => {
@@ -458,27 +461,6 @@ const StepThree = ({ selectedSubjects }) => {
     const subjectsBySemester = groupSubjectsBySemester(selectedSubjects);
     const totalSubjects = selectedSubjects.length;
     const mixedSemesters = hasMixedSemesterSelection(subjectsBySemester);
-
-    // Function to navigate to the verification page
-    const handleOkClick = async () => {        
-        const courses = selectedSubjects.map(subjectKey => {
-            const [semester, course] = subjectKey.split('-');
-            return course;
-        });
-
-        console.log(courses);
-        
-        try {
-            await axios.post(`/save-declaration/${user._id}`, {
-                courses: courses,
-            });
-
-            navigate(`/student/${user._id}`);
-        } catch (error) {
-            console.error('Error saving declaration:', error);
-            // Handle error or display a notification to the user
-        }
-    };
 
     // Decide the message based on the conditions
     let message;
@@ -508,7 +490,7 @@ const StepThree = ({ selectedSubjects }) => {
                 </div>
             ))}
 
-            {/* Show the Okay button based on conditions */}
+            {/* Show the Okay button based on conditions
             {!mixedSemesters && totalSubjects <= 10 && (
                 <div className="mt-4 flex justify-center">
                     <button
@@ -517,8 +499,8 @@ const StepThree = ({ selectedSubjects }) => {
                     >
                         Εντάξει
                     </button>
-                </div>
-            )}
+                </div> */}
+            {/* )} */}
         </div>
     );
 };

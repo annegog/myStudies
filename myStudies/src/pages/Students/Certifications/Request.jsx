@@ -18,10 +18,6 @@ const Request = () => {
         navigate("/student/certifications");
     };
 
-    const handleBackToMain = () => {
-        navigate("/student/:id");
-    };
-
     // Function to move to the next step
     const goToNextStep = () => {
         setCurrentStep(currentStep + 1);
@@ -56,23 +52,27 @@ const Request = () => {
             <Navbar />
             <NavBarOptions userType={"student"} /> {/* Instead of student string, giving the studentData.status */}
             <main className="main-content flex justify-center" >
-                <div className="w-full max-w-4xl">
-                    <Breadcrump currentStep={currentStep} stepStrings={["Επιλογή", "Αντίγραφα", "Αίτηση"]}/>
-                    {stepContent}
-                    <div style={{marginTop: "2rem"}} className="flex justify-center space-x-2 mt-4">
-                        {currentStep === 1 ? (
-                            <button onClick={handleBack} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
-                        ) : currentStep && (
-                            <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
-                        )}
+                {currentStep === 4 ? (
+                    <Success userRole={"student"} action={"certification"}/>
+                ) : (
+                    <div className="w-full max-w-4xl">
+                        <Breadcrump currentStep={currentStep} stepStrings={["Επιλογή", "Αντίγραφα", "Αίτηση"]}/>
+                        {stepContent}
+                        <div style={{marginTop: "2rem"}} className="flex justify-center space-x-2 mt-4">
+                            {currentStep === 1 ? (
+                                <button onClick={handleBack} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
+                            ) : currentStep && (
+                                <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
+                            )}
 
-                        {currentStep === 3 ? (
-                            <button onClick={handleBackToMain} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Αίτηση </button>
-                        ) : currentStep < 3 && (
-                            <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Επόμενο </button>
-                        )}
+                            {currentStep === 3 ? (
+                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Αίτηση </button>
+                            ) : currentStep < 3 && (
+                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Επόμενο </button>
+                            )}
+                        </div>
                     </div>
-                </div>
+                )}
             </main>
             <Footer />
         </div>

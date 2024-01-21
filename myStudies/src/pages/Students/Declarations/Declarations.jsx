@@ -7,6 +7,7 @@ import Breadcrumb from "../../../components/Tools/Breadcrumb";
 
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
+import Success from "../../../components/Common/Success";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Declarations = () => {
@@ -70,24 +71,30 @@ const Declarations = () => {
             <Navbar/>
             <NavBarOptions userType={"student"}/>
             <main className="main-content flex justify-center">
-                <div className="w-full max-w-4xl">
-                    {/* Render Step Indicators */}
-                    <Breadcrumb currentStep={currentStep} stepStrings={["Επιλογή Μαθημάτων", "Επισκόπηση", "Οριστική Υποβολή"]}/>
-                    {/* Εδώ μπαίνει η λογική των βημάτων */}
-                    {stepContent}
-                    <div className="flex justify-center space-x-2 mt-4">
-                        {/* Εμφάνιση του κουμπιού "Προηγούμενο" μόνο εάν δεν είμαστε στο πρώτο βήμα */}
-                        {currentStep > 1 && (
-                            <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
-                        )}
-                        {/* Update button text based on the current step */}
-                        {currentStep === 2 ? (
-                            <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Οριστική Υποβολή </button>
-                        ) : currentStep < 3 && (
-                            <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Επόμενο </button>
-                        )}
+                {currentStep === 4 ? (
+                    <Success userRole={"student"} action={"declaration"}/>
+                ) : (
+                    <div className="w-full max-w-4xl">
+                        {/* Render Step Indicators */}
+                        <Breadcrumb currentStep={currentStep} stepStrings={["Επιλογή Μαθημάτων", "Επισκόπηση", "Οριστική Υποβολή"]}/>
+                        {/* Εδώ μπαίνει η λογική των βημάτων */}
+                        {stepContent}
+                        <div className="flex justify-center space-x-2 mt-4">
+                            {/* Εμφάνιση του κουμπιού "Προηγούμενο" μόνο εάν δεν είμαστε στο πρώτο βήμα */}
+                            {currentStep > 1 && (
+                                <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
+                            )}
+
+                            {/* Update button text based on the current step */}
+                            {currentStep === 3 ? (
+                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Οριστική Υποβολή </button>
+                            ) : currentStep < 3 && (
+                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Επόμενο </button>
+                                )}
+
+                        </div>
                     </div>
-                </div>
+                )}
             </main>
             <Footer />
         </div>
@@ -333,7 +340,7 @@ const StepThree = ({ selectedSubjects }) => {
     // Function to navigate to the verification page
     const handleOkClick = () => {
         console.log("Ok button clicked");  // Debug log
-        navigate('/student');
+        navigate('/student/:id');
     };
 
     // Decide the message based on the conditions
@@ -343,7 +350,7 @@ const StepThree = ({ selectedSubjects }) => {
     } else if (totalSubjects > 10) {
         message = "Έχετε επιλέξει περισσότερα από 10 μαθήματα.";
     } else {
-        message = "Η οριστική σας δήλωση έχει καταχωρηθεί.";
+        message = "Πατήστε Οριστική Υποβολή.";
     }
 
     return (
@@ -364,7 +371,7 @@ const StepThree = ({ selectedSubjects }) => {
                 </div>
             ))}
 
-            {/* Show the Okay button based on conditions */}
+            {/* Show the Okay button based on conditions
             {!mixedSemesters && totalSubjects <= 10 && (
                 <div className="mt-4 flex justify-center">
                     <button
@@ -374,7 +381,15 @@ const StepThree = ({ selectedSubjects }) => {
                         Εντάξει
                     </button>
                 </div>
-            )}
+            )} */}
+        </div>
+    );
+};
+
+const StepFour = () => {
+    return (
+        <div>
+            <Success action={"declaration"}/>
         </div>
     );
 };

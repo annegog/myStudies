@@ -25,7 +25,7 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   const Declare = () => {
-      navigate('/student/declarations');
+    navigate('/student/declarations');
   };
 
   // const Modification = () => {
@@ -44,7 +44,7 @@ const MainPage = () => {
         console.error('Error fetching declaration status:', error);
       }
     };
-  
+
     fetchDeclarationStatus();
   }, [user]);
 
@@ -52,12 +52,12 @@ const MainPage = () => {
     const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
     const date = new Date(dateString);
     return date.toLocaleDateString('el-GR', options);
-};
+  };
 
   return (
     <div>
-      <Navbar/>
-      <NavBarOptions userType={"student"} />
+      <Navbar />
+      <NavBarOptions userType={"student"} userId={id} />
       <div className="mt-10 px-4 lg:px-16 xl:px-32">
         {declarationInfo.open && !declarationInfo.declaration && (
           <div className="justify-center items-center text-center">
@@ -109,7 +109,7 @@ const MainPage = () => {
 
       <div className="flex items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 md:px-16 xl:px-32">
-        <Donut ects={user.ects} />
+          <Donut ects={user.ects} />
           <div className="flex flex-col justify-center items-center space-y-20">
             <div
               style={{ width: "100%" }}

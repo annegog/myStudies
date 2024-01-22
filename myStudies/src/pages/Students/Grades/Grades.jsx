@@ -2,11 +2,16 @@ import React from "react";
 
 import { useState, useEffect } from "react";
 
+import { useParams } from "react-router-dom"; // Import useParams
+
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Grades = () => {
+    const { id } = useParams(); // Use useParams to access the id
+    console.log("Received ID in Grades:", id); // Check the received ID
+
     const gradesData = {
         1: {
             "Course 1.1": 8,
@@ -22,8 +27,8 @@ const Grades = () => {
         },
     };
 
-    {/* Data */}
-    
+    {/* Data */ }
+
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResult, setSearchResult] = useState(null);
 
@@ -32,10 +37,10 @@ const Grades = () => {
     const [showGradeFilters, setShowGradeFilters] = useState(false);        // State to toggle grade filter visibility
     const [showSemesterFilters, setShowSemesterFilters] = useState(false);  // State to toggle semester filter visibility
 
-    {/* Functions */}
-    
+    {/* Functions */ }
+
     // Function to get the appropriate color based on the grade
-    const getGradeColor = (grade) => grade >= 5 ? "text-green-500" : "text-red-500";    
+    const getGradeColor = (grade) => grade >= 5 ? "text-green-500" : "text-red-500";
 
     // Function to handle the search
     const handleSearch = () => {
@@ -64,15 +69,15 @@ const Grades = () => {
         return (semesterFilter === "even" && isEven) || (semesterFilter === "odd" && !isEven);
     };
 
-    {/* Main */}
+    {/* Main */ }
 
     return (
         <div className="Declarations">
-            <Navbar/>
-            <NavBarOptions userType={"student"}/>
+            <Navbar />
+            <NavBarOptions userType={"student"} userId={id} />
             <main className="main-content flex justify-center">
                 <div className="grades-table w-full max-w-4xl">
-                    
+
                     {/* Search Bar */}
                     <div style={{ marginTop: "1rem" }} className="flex flex-row justify-center mt-4">
                         <input
@@ -82,7 +87,7 @@ const Grades = () => {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
-                        <button className="text-white text-center bg-blue-500 rounded-3xl p-2 ml-2 hover:bg-blue-600" 
+                        <button className="text-white text-center bg-blue-500 rounded-3xl p-2 ml-2 hover:bg-blue-600"
                             onClick={handleSearch}
                         > Search </button>
                     </div>
@@ -108,7 +113,7 @@ const Grades = () => {
 
                             {/* Attempts Filter */}
                             <div className="mb-2 md:mb-0 md:mr-2 flex-1">
-                                <div className="text-center text-lg font-medium cursor-pointer" onClick={() => setShowGradeFilters(!showGradeFilters)}> 
+                                <div className="text-center text-lg font-medium cursor-pointer" onClick={() => setShowGradeFilters(!showGradeFilters)}>
                                     Προσπάθειες
                                     <span>{showGradeFilters ? "▲" : "▼"}</span>
                                 </div>

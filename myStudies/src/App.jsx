@@ -39,6 +39,7 @@ const App = () => {
 
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile/:id" element={<Profile />} />
 
         {/* Help */}
 
@@ -51,27 +52,26 @@ const App = () => {
         {/* Student Main */}
 
         <Route path="/student/:id" element={<Main />} />
-        <Route path="/student/grades" element={<Grades />} />
-        <Route path="/student/courses" element={<Courses />} />
-        <Route path="/student/profile" element={<Profile />} />
+        <Route path="/student/grades/:id" element={<Grades />} />
+        <Route path="/student/courses/:id" element={<Courses />} />
 
         {/* Professor Main */}
 
         <Route path="/professor/:id" element={<MainProfessors />} />
-        <Route path="/professor/grades" element={<GradesProfessors />} />
-        <Route path="/professor/grades-create" element={<GradesCreate />} />
-        <Route path="/professor/grades-show" element={<GradesShow />} />
+        <Route path="/professor/grades/:id" element={<GradesProfessors />} />
+        <Route path="/professor/grades-create/:id" element={<GradesCreate />} />
+        <Route path="/professor/grades-show/:id" element={<GradesShow />} />
 
         {/* Declarations */}
 
-        <Route path="/student/declarations" element={<Declarations />} />
+        <Route path="/student/declarations/:id" element={<Declarations />} />
 
         {/* Certificates */}
 
-        <Route path="/student/certifications" element={<Certifications />} />
-        <Route path="/student/certifications/status" element={<CertificationsStatus />} />
-        <Route path="/student/certifications/request" element={<CertificationsRequest />} />
-        <Route path="/student/certifications/history" element={<CertificationsHistory />} />
+        <Route path="/student/certifications/:id" element={<Certifications />} />
+        <Route path="/student/certifications/status/:id" element={<CertificationsStatus />} />
+        <Route path="/student/certifications/request/:id" element={<CertificationsRequest />} />
+        <Route path="/student/certifications/history/:id" element={<CertificationsHistory />} />
       </Routes>
 
     </UserContextProvider>

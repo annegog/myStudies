@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 import Navbar from "../../../components/Common/Navbar";
@@ -33,6 +34,7 @@ const Column = ({ label, dataKey, values, onUpdateGrade }) => (
 );
 
 const Create = () => {
+    const { id } = useParams();
     const navigate = useNavigate();
     const [successMessage, setSuccessMessage] = useState(0)
 
@@ -75,10 +77,10 @@ const Create = () => {
     return (
         <div className="min-h-screen">
             <Navbar />
-            <NavBarOptions userType={"professor"} />
+            <NavBarOptions userType={"professor"} userId={id} />
             <main className="flex justify-center items-center h-full">
                 {successMessage > 0 ? (
-                    <Success userRole={"professor"} action={"grades"}/>
+                    <Success userRole={"professor"} action={"grades"} userId={id} />
                 ) : (
                     <div className="bg-gray-300 w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 m-20 rounded-3xl shadow-lg">
                         <h1 className="text-center text-4xl font-thin mb-10"> Λίστα Μαθημάτων </h1>
@@ -90,7 +92,7 @@ const Create = () => {
                                     dataKey={column.dataKey}
                                     values={grades}
                                     onUpdateGrade={onUpdateGrade}
-                                /> 
+                                />
                             ))}
                         </div>
 

@@ -19,26 +19,26 @@ const Message = ({ stringMessage, handleReturn }) => {
     );
 };
 
-const Success = ({ userRole, action }) => {
+const Success = ({ userRole, action, userId }) => {
     const navigate = useNavigate();
 
-    const handleStudent = () => { 
-        navigate("/student/:id");
+    const handleStudent = () => {
+        navigate(`/student/${userId}`);
     };
 
-    const handleProfessor = () => { 
-        navigate("/professor/:id");
+    const handleProfessor = () => {
+        navigate(`/professor/${userId}`);
     };
 
     return (
         <div className="Success">
             <main className="Main Context of Success">
                 {userRole === "student" && action === "declaration" ? (
-                    <Message stringMessage={"Η δήλωση των μαθημάτων έγινε με επιτυχία."} handleReturn={handleStudent}/>
+                    <Message stringMessage={"Η δήλωση των μαθημάτων έγινε με επιτυχία."} handleReturn={handleStudent} />
                 ) : userRole === "student" && action === "certification" ? (
-                    <Message stringMessage={"Η αίτηση για παροχή πιστοποιητικού έγινε με επιτυχία."} handleReturn={handleStudent}/>
+                    <Message stringMessage={"Η αίτηση για παροχή πιστοποιητικού έγινε με επιτυχία."} handleReturn={handleStudent} />
                 ) : userRole === "professor" && action === "grades" && (
-                    <Message stringMessage={"Η καταχώρηση των βαθμών έγινε με επιτυχία."} handleReturn={handleProfessor}/>
+                    <Message stringMessage={"Η καταχώρηση των βαθμών έγινε με επιτυχία."} handleReturn={handleProfessor} />
                 )}
             </main>
         </div>

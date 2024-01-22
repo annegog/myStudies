@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 
 import Navbar from "../../components/Common/Navbar";
@@ -11,6 +11,7 @@ import { UserContext } from "../../components/UserContext";
 
 const ProfilePage = () => {
     const { user } = useContext(UserContext);
+    const { id } = useParams();
 
     const registrationDate = "Δευτέρα, 30 Σεπτεμβρίου 2024 - 10:00 π.μ."
 
@@ -38,7 +39,7 @@ const ProfilePage = () => {
     if (!userData) {
         return <div>Loading...</div>; // Or any other loading state representation
     }
-    
+
     const formatBirthDate = (dateString) => {
         if (!dateString) {
             return "-";
@@ -52,8 +53,8 @@ const ProfilePage = () => {
 
     return (
         <div>
-            <Navbar/>
-            <NavBarOptions userType={"student"} />
+            <Navbar />
+            <NavBarOptions userType={"student"} userId={id} />
             <div className="mt-4 px-4 lg:px-16 w-full">
 
                 <div className="bg-zinc-300 rounded-3xl p-4 flex flex-wrap justify-between items-center">
@@ -85,17 +86,17 @@ const ProfilePage = () => {
                             <span>{showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow m-2 justify-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2"> 
-                                    <p className="mt-2 mb-2">Όνομα Πατέρα: {userData.father}</p>
-                                    <p className="mb-2">Όνομα Μητέρας: {userData.mother}</p>
-                                    <p className="mb-2">Ημερομηνία Γέννησης: {formatBirthDate(userData.birth_date)} </p>
-                                    <p className="mb-2">Οικογενειακή Κατάσταση: {userData.family} </p>
-                                    <p className="mb-2">Αριθμός Αδελφών: {userData.siblings}</p>
-                                    <p className="mb-2">Εκπλήρωση Στρατιωτικής Θητείας: {userData.army}</p>
-                                    <p className="mb-2">Τόπος Γέννησης: {userData.birth_location}</p>
-                                    <p className="mb-2">Αριθμός Ταυτότητας: {userData.ID} </p>
-                                    <p className="mb-2">Εκδούσα Αρχή: {userData.ID_location} </p>
-                                    <p className="mb-2">AMKA: {userData.AMKA}</p>
+                                    <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2">
+                                        <p className="mt-2 mb-2">Όνομα Πατέρα: {userData.father}</p>
+                                        <p className="mb-2">Όνομα Μητέρας: {userData.mother}</p>
+                                        <p className="mb-2">Ημερομηνία Γέννησης: {formatBirthDate(userData.birth_date)} </p>
+                                        <p className="mb-2">Οικογενειακή Κατάσταση: {userData.family} </p>
+                                        <p className="mb-2">Αριθμός Αδελφών: {userData.siblings}</p>
+                                        <p className="mb-2">Εκπλήρωση Στρατιωτικής Θητείας: {userData.army}</p>
+                                        <p className="mb-2">Τόπος Γέννησης: {userData.birth_location}</p>
+                                        <p className="mb-2">Αριθμός Ταυτότητας: {userData.ID} </p>
+                                        <p className="mb-2">Εκδούσα Αρχή: {userData.ID_location} </p>
+                                        <p className="mb-2">AMKA: {userData.AMKA}</p>
                                     </div>
                                 </div>
                             )}
@@ -107,7 +108,7 @@ const ProfilePage = () => {
                             <span>{showMoreInfoFilters ? "▲" : "▼"} Πληροφορίες Επικοινωνίας </span>
                             {showMoreInfoFilters && (
                                 <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow m-2 justify-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
-                                    <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2"> 
+                                    <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2">
                                         <p className="mt-2 mb-2"> Μόνιμη Διεύθυνση Κατοικίας: {userData.home} </p>
                                         <p className="mt-2 mb-2"> Μόνιμη Πόλη Κατοικίας: {userData.city} </p>
                                         <p className="mt-2 mb-2"> Τηλέφωνο Μόνιμης Κατοικίας: {userData.temp_phone} </p>

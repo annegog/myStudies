@@ -174,7 +174,7 @@ const Courses = () => {
   };
 
   return (
-    <div className="semesters bg-slate-200 p-2 rounded-lg mt-8 space-y-4">
+    <div className="bg-slate-200 p-2 rounded-lg mt-8 space-y-4">
       {/* Semesters Buttons */}
       {[1, 2, 3, 4, 5, 6, 7, 8].map((semester) => (
         <div key={semester}>

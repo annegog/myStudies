@@ -90,6 +90,8 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true);
 });
 
+/************************************** Student **************************************************/
+
 app.get('/student/profile', verifyJWTuser, (req, res) => {
     const { token } = req.cookies;
     if (token) {
@@ -117,6 +119,8 @@ app.get('/student/:id', verifyJWTuser, async (req, res) => {
         res.status(500).json({ error: 'Error fetching User' });
     }
 });
+
+/************************* declarations ****************************/
 
 app.get('/declaration-season/:userId', async (req, res) => {
     try {
@@ -156,21 +160,6 @@ app.get('/declaration-season/:userId', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
-/************************************** Courses **************************************************/
-
-// Getting all the courses from the database
-
-app.get('/api/courses', verifyJWTuser, async (req, res) => {
-    try {
-        const courses = await Course.find();
-        res.json(courses);
-    } catch (error) {
-        console.error('Error fetching course data:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
-
 
 app.get('/declarationsOpen', (req, res) => {
     const { token } = req.cookies;
@@ -231,6 +220,21 @@ app.post('/save-declaration/:userId', async (req, res) => {
     } catch (error) {
         console.error("Error saving declaration:", error);
         res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+/*************************** Courses *******************************/
+
+// Getting all the courses from the database
+
+app.get('/api/courses', verifyJWTuser, async (req, res) => {
+    try {
+        const courses = await Course.find();
+        res.json(courses);
+    } catch (error) {
+        console.error('Error fetching course data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 

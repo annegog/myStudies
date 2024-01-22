@@ -18,7 +18,7 @@ const CourseSchema = new Schema({
     departmental_selection: Boolean,
     internship: Boolean,
     thesis: Boolean,
-  // Add more fields as needed
+  //maybe we need the university that those courses 
 });
 
 const Course = mongoose.model('Course', CourseSchema);

@@ -189,6 +189,51 @@ app.get('/declarationsOpen', (req, res) => {
     }
 });
 
+app.post('/save-declaration/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const { courses: courseTitles } = req.body;
+        
+
+        // Find the latest declaration season for the user
+        const latestDeclaration = await Declaration.findOne({ user: userId }).sort({ data: -1 });
+
+        // Find the exam season
+        const currentDate = new Date();
+        const examinationSemester = await ExamsSeason.findOne({
+            endData: { $gte: currentDate }
+        });
+
+        if (latestDeclaration && latestDeclaration.exam) {
+            // Check if the latest declaration's exam season is the same as the current one
+            const isSameExamSeason = latestDeclaration.exam.equals(examinationSemester._id);
+
+            if (isSameExamSeason) {
+                // Remove the latest declaration if it belongs to the current exam season
+                await Declaration.findByIdAndDelete(latestDeclaration._id);
+            }
+        }
+
+        // Fetch course IDs based on the received course titles
+        const courseObjects = await Course.find({ title: { $in: courseTitles } });
+        const courseObjectIds = courseObjects.map(course => course._id);
+ 
+        const declaration = new Declaration({
+            courses: courseObjectIds,
+            exam: examinationSemester._id,
+            user: userId,
+            data: currentDate
+        });
+
+        await declaration.save();
+
+        res.status(200).json({ message: 'Declaration saved successfully' });
+    } catch (error) {
+        console.error("Error saving declaration:", error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 
 /************************************** DATA ****************************************************/
 

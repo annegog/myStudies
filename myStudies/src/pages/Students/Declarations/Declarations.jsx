@@ -371,7 +371,7 @@ const StepThree = ({ selectedSubjects }) => {
             ))}
 
             {/* Show the Okay button based on conditions */}
-            {!mixedSemesters && totalSubjects <= 10 && (
+            {/* {!mixedSemesters && totalSubjects <= 10 && (
                 <div className="mt-4 flex justify-center">
                     <button
                         onClick={handleOkClick}
@@ -380,7 +380,7 @@ const StepThree = ({ selectedSubjects }) => {
                         Εντάξει
                     </button>
                 </div>
-            )}
+            )} */}
         </div>
     );
 };

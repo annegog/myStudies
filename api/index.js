@@ -238,6 +238,19 @@ app.get('/api/courses', verifyJWTuser, async (req, res) => {
     }
 });
 
+/************************************** Professor ************************************************/
+
+app.get('/courses/professor/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const courses = await Course.find({ professors: userId });
+        res.json(courses);
+    } catch (error) {
+        console.error('Error fetching course data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 /************************************** DATA ****************************************************/
 
@@ -454,14 +467,14 @@ app.get('/data', async (req, res) => {
             id_course: 'Y01',
             ects: 6,
             semester: 1,
-            professors: 'Ορέστης Νίκου',
+            professors: [professor._id],
             books: ['Γραμμική Άλγεβρα 1', 'Γραμμική Άλγεβρα 2'],
             hours: 40,
             mandatory: true,
             lab: false,
             general: false,
             direction: '',
-            major: 'Υποχρεωτικό',
+            major: '',
             project: false,
             departmental_selection: false,
             internship: false,
@@ -480,7 +493,7 @@ app.get('/data', async (req, res) => {
             lab: false,
             general: false,
             direction: '',
-            major: 'Υποχρεωτικό',
+            major: '',
             project: true,
             departmental_selection: false,
             internship: false,
@@ -492,14 +505,14 @@ app.get('/data', async (req, res) => {
             id_course: 'Y03',
             ects: 8,
             semester: 2,
-            professors: 'Μαρία Φράγκου',
+            professors: [professor._id],
             books: ['Ανάλυση 1', 'Ανάλυση 2'],
             hours: 48,
             mandatory: true,
             lab: false,
             general: false,
             direction: '',
-            major: 'Υποχρεωτικό',
+            major: '',
             project: false,
             departmental_selection: false,
             internship: false,
@@ -511,14 +524,14 @@ app.get('/data', async (req, res) => {
             id_course: 'Y04',
             ects: 7,
             semester: 2,
-            professors: 'Βασίλης Κάζας',
+            professors: [professor._id],
             books: ['Δομές 1', 'Δομές 2'],
             hours: 50,
             mandatory: true,
             lab: true,
             general: false,
             direction: '',
-            major: 'Υποχρεωτικό',
+            major: '',
             project: true,
             departmental_selection: false,
             internship: false,
@@ -537,7 +550,7 @@ app.get('/data', async (req, res) => {
             lab: true,
             general: false,
             direction: '',
-            major: 'Υποχρεωτικό',
+            major: '',
             project: true,
             departmental_selection: false,
             internship: false,
@@ -549,7 +562,7 @@ app.get('/data', async (req, res) => {
             id_course: 'Y06',
             ects: 6,
             semester: 3,
-            professors: 'Ελένη Μασούτη',
+            professors: [professor._id],
             books: ['Πιθανότητες 1', 'Πιθανότητες 2'],
             hours: 48,
             mandatory: true,
@@ -568,7 +581,7 @@ app.get('/data', async (req, res) => {
             id_course: 'Y07',
             ects: 8,
             semester: 4,
-            professors: 'Βασίλειος Αποστόλου',
+            professors: [professor._id],
             books: ['Αλγόριθμοι 1', 'Αλγόριθμοι 2'],
             hours: 48,
             mandatory: true,
@@ -587,7 +600,7 @@ app.get('/data', async (req, res) => {
             id_course: 'Y08',
             ects: 7,
             semester: 1,
-            professors: 'Γεώργιος Πάνου',
+            professors: [professor._id],
             books: ['Βάσεις 1', 'Βάσεις 2'],
             hours: 56,
             mandatory: true,
@@ -625,7 +638,7 @@ app.get('/data', async (req, res) => {
             id_course: 'E02',
             ects: 6,
             semester: 6,
-            professors: 'Αντώνης Βασιλείου',
+            professors: [professor._id],
             books: ['Τεχνικές 1', 'Τεχνικές 2'],
             hours: 48,
             mandatory: true,
@@ -685,7 +698,7 @@ app.get('/data', async (req, res) => {
             professors: 'Αλέξης Ρούπας',
             books: ['Εργαστήριο 1', 'Εργαστήριο 2'],
             hours: 40,
-            mandatory: true,
+            mandatory: false,
             lab: true,
             general: false,
             direction: '',
@@ -704,7 +717,7 @@ app.get('/data', async (req, res) => {
             professors: 'Λάμπρος Σήμου',
             books: ['Εργαστήριο 1', 'Εργαστήριο 2'],
             hours: 40,
-            mandatory: true,
+            mandatory: false,
             lab: true,
             general: false,
             direction: '',
@@ -723,7 +736,7 @@ app.get('/data', async (req, res) => {
             professors: 'Πέτρος Μαχαίρας',
             books: ['Εργαστήριο 1', 'Εργαστήριο 2'],
             hours: 40,
-            mandatory: true,
+            mandatory: false,
             lab: true,
             general: false,
             direction: '',

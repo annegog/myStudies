@@ -1,8 +1,6 @@
-import React from "react";
-
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
-
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
@@ -10,6 +8,8 @@ import NavBarOptions from "../../../components/Common/NavBarOptions";
 const Grades = () => {
     const navigate = useNavigate();
     const { id } = useParams();
+    const [courses, setCourses] = useState([]);
+
     const handleCreationGrades = () => {
         navigate(`/professor/grades-create/${id}`);
     };
@@ -24,11 +24,20 @@ const Grades = () => {
         setActiveCourses({ ...activeCourses, [course]: !activeCourses[course] });
     };
 
-    const courses = [
-        "Εισαγωγή στον Προγραμματισμό",
-        "Αντικειμενοστραφής Προγραμματισμός",
-        "Αρχές Γλωσσών Προγραμματισμού",
-    ]
+    useEffect(() => {
+        // Fetch courses data
+        const fetchCourses = async () => {
+            try {
+                const response = await axios.get(`/courses/professor/${id}`);
+                const coursesData = await response.data;
+                setCourses(coursesData);
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        };            
+
+        fetchCourses();
+    }, [id]);
 
     return (
         <div>
@@ -37,11 +46,11 @@ const Grades = () => {
             <main className="Professor Main">
                 <div className="mt-10 justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32 bg-amber-50">
                     <h2 className="text-center text-3xl font-thin justify-center mt-10 mb-10"> Τα μαθήματα μου </h2>
-                    {courses.map(courses => (
+                    {courses.map(course => (
                         <div className="bg-slate-200 p-2 rounded-lg mt-8 space-y-4">
                             <div className="flex flex-row text-left w-full text-lg py-2 cursor-pointer focus:outline-none" onClick={() => toggleCourse(courses)}>
-                                <span> {activeCourses[courses] ? "▲" : "▼"} </span>
-                                <h> {courses} </h>
+                                <span> {activeCourses[course.id] ? "▲" : "▼"} </span>
+                                <h> {course.title} </h>
                             </div>
                             {activeCourses[courses] && (
                                 <div className="Options">

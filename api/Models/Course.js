@@ -6,7 +6,7 @@ const CourseSchema = new Schema({
     id_course: {type:String, unique:true},
     ects: Number,
     semester: Number,
-    professors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    professors: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     books: [String],
     hours: Number,
     mandatory: Boolean,

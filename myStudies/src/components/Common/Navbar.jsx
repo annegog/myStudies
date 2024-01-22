@@ -11,7 +11,7 @@ import { UserContext } from "../UserContext";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const { user, setUser } = useContext(UserContext);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = () => {
     setMenu(!menu);
@@ -49,7 +49,7 @@ const Navbar = () => {
               <div className="text-black text-center text-lg font-medium my-auto">
                 {user.role === "student" && (
                   <Link
-                    to="/student/`$user._id`"
+                    to={`/student/${user._id}`}
                     className="hover:text-[#3f6591] transition-all cursor-pointer"
                   >
                     Αρχική Σελίδα
@@ -57,7 +57,7 @@ const Navbar = () => {
                 )}
                 {user.role === "professor" && (
                   <Link
-                    to="/professor/`$user._id`"
+                    to={`/professor/${user._id}`}
                     className="hover:text-[#3f6591] transition-all cursor-pointer"
                   >
                     Αρχική Σελίδα
@@ -68,7 +68,7 @@ const Navbar = () => {
               <div className="text-black text-center text-lg font-medium my-auto">
                 {user.role === "student" && (
                   <Link
-                    to="/student/profile"
+                    to={`/profile/${user._id}`}
                     className="hover:text-[#3f6591] transition-all cursor-pointer"
                   >
                     {user.username}
@@ -76,11 +76,11 @@ const Navbar = () => {
                 )}
                 {user.role === "professor" && (
                   <Link
-                  to="/professor/profile"
-                  className="hover:text-[#3f6591] transition-all cursor-pointer"
-                >
-                  {user.username}
-                </Link>
+                    to={`/profile/${user._id}`}
+                    className="hover:text-[#3f6591] transition-all cursor-pointer"
+                  >
+                    {user.username}
+                  </Link>
                 )}
               </div>
 

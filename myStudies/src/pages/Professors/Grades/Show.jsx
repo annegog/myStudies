@@ -2,6 +2,7 @@ import React from "react";
 
 import { useState } from "react";
 
+import { useParams } from "react-router-dom";
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router";
 
 const Show = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const [grades] = useState([
         { studentId: 'sdi201900122', name: 'ΔΗΜΗΤΡΑ ΓΕΡΗ', semester: 7, grade: 6 },
@@ -37,13 +39,13 @@ const Show = () => {
     ];
 
     const handleFinalization = () => {
-        navigate("/professor/:id");
+        navigate(`/professor/${id}`);
     };
 
     return (
         <div className="min-h-screen">
             <Navbar />
-            <NavBarOptions userType={"professor"} />
+            <NavBarOptions userType={"professor"} userId={id} />
             <main className="flex justify-center items-center h-full">
                 <div className="bg-gray-300 w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 m-20 rounded-3xl shadow-lg">
                     <h1 className="text-center text-4xl font-thin mb-10"> Λίστα Μαθημάτων </h1>

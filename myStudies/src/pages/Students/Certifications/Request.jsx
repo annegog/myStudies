@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Breadcrumb from "../../../components/Tools/Breadcrumb";
 
@@ -12,11 +12,12 @@ import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Request = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
     const [currentStep, setCurrentStep] = useState(1);
-    
+
     // 
     const handleBack = () => {
-        navigate("/student/certifications");
+        navigate(`/student/certifications/${id}`);
     };
 
     // Function to move to the next step
@@ -36,30 +37,30 @@ const Request = () => {
     let stepContent;
     switch (currentStep) {
         case 1:
-            stepContent = <StepOne/>;
+            stepContent = <StepOne />;
             break;
         case 2:
-            stepContent = <StepTwo/>;
+            stepContent = <StepTwo />;
             break;
         case 3:
-            stepContent = <StepThree/>;
+            stepContent = <StepThree />;
             break;
         default:
-            stepContent = <StepOne/>;
+            stepContent = <StepOne />;
     }
 
     return (
         <div className="Certification Request">
             <Navbar />
-            <NavBarOptions userType={"student"} /> {/* Instead of student string, giving the studentData.status */}
+            <NavBarOptions userType={"student"} userId={id} /> {/* Instead of student string, giving the studentData.status */}
             <main className="main-content flex justify-center" >
                 {currentStep === 4 ? (
-                    <Success userRole={"student"} action={"certification"}/>
+                    <Success userRole={"student"} action={"certification"} />
                 ) : (
                     <div className="w-full max-w-4xl">
-                        <Breadcrumb currentStep={currentStep} stepStrings={["Επιλογή", "Αντίγραφα", "Αίτηση"]}/>
+                        <Breadcrumb currentStep={currentStep} stepStrings={["Επιλογή", "Αντίγραφα", "Αίτηση"]} />
                         {stepContent}
-                        <div style={{marginTop: "2rem"}} className="flex justify-center space-x-2 mt-4">
+                        <div style={{ marginTop: "2rem" }} className="flex justify-center space-x-2 mt-4">
                             {currentStep === 1 ? (
                                 <button onClick={handleBack} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
                             ) : currentStep && (
@@ -90,8 +91,8 @@ const StepOne = () => {
     };
 
     const options = [
-        "Φοιτητικής Ιδιότητας", 
-        "Φορολογικής Χρήσης", 
+        "Φοιτητικής Ιδιότητας",
+        "Φορολογικής Χρήσης",
         "Αναλυτική βαθμολογία με προβιβάσιμους βαθμούς",
         "Στρατολογική χρήση (Συνοπτικό)",
         "Στρατολογική χρήση (Συνοπτικό)",
@@ -104,7 +105,7 @@ const StepOne = () => {
             </div>
 
             <div className="bg-gray-300 rounded-3xl">
-                <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg py-1 cursor-pointer font-medium" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}> 
+                <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg py-1 cursor-pointer font-medium" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}>
                     <span> {mainSelection} {showCertificatesOptions ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesOptions && (
@@ -139,7 +140,7 @@ const StepTwo = () => {
             </div>
 
             <div className="bg-gray-300 rounded-3xl">
-                <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg p-1 cursor-pointer font-medium" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}> 
+                <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg p-1 cursor-pointer font-medium" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}>
                     <span> {mainSelection} {showCertificatesCopies ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesCopies && (

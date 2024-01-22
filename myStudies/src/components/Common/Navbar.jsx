@@ -33,7 +33,7 @@ const Navbar = () => {
             className="h-20 w-auto mr-3"
           />
           <div>
-            <Link to={user ? `/student/${user._id}` : "/login"} className="font-semibold text-2xl p-1 cursor-pointer">
+            <Link to={user ? `/${user.role}/${user._id}` : "/login"} className="font-semibold text-2xl p-1 cursor-pointer">
               {" "}
               myStudies{" "}
             </Link>

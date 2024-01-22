@@ -49,7 +49,7 @@ const Navbar = () => {
               <div className="text-black text-center text-lg font-medium my-auto">
                 {user.role === "student" && (
                   <Link
-                    to="/student/`$user._id`"
+                    to={`/student/${user._id}`}
                     className="hover:text-[#3f6591] transition-all cursor-pointer"
                   >
                     Αρχική Σελίδα
@@ -57,7 +57,7 @@ const Navbar = () => {
                 )}
                 {user.role === "professor" && (
                   <Link
-                    to="/professor/`$user._id`"
+                    to={`/professor/${user._id}`}
                     className="hover:text-[#3f6591] transition-all cursor-pointer"
                   >
                     Αρχική Σελίδα

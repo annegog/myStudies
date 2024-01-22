@@ -23,7 +23,7 @@ const Navbar = () => {
     navigate("/login");
   }
   return (
-    <nav className="bg-blue-200 items-center w-full z-30 top-0 relative">
+    <nav className="items-center w-full z-30 top-0 relative">
       <div className="flex items-center justify-between p-5 px-5 md:px-32 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-b-xl">
         <div className="flex items-center">
           <img

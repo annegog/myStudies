@@ -61,7 +61,7 @@ const MainPage = () => {
       <div className="mt-10 px-4 lg:px-16 xl:px-32">
         {declarationInfo.open && !declarationInfo.declaration && (
           <div className="justify-center items-center text-center">
-            <h2 className="text-xl font-semibold leading-none text-orange-400 pe-1">
+            <h2 className="text-xl font-semibold leading-none text-orange-500 pe-1">
               Έχουν ανοίξει οι δηλώσεις μαθημάτων. <br /> Όλοι οι φοιτητές
               καλούνται να πραγματοποιήσουν την δήλωση τους εως και τις{" "}
               {formatDate(declarationInfo.end_date)}.
@@ -83,7 +83,7 @@ const MainPage = () => {
           <div className="justify-center items-center text-center">
             <h2
               style={{ marginTop: "0.5rem" }}
-              className="text-xl font-semibold leading-none text-green-400 pe-1"
+              className="text-xl font-semibold leading-none text-green-500 pe-1"
             >
               Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να
               γίνει τροποποίηση της.
@@ -97,7 +97,7 @@ const MainPage = () => {
             <div style={{ marginTop: "0.5rem" }} className="mt-2 md:justify-items-center gap-5">
               <button
                 type="button"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center"
+                className="text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center"
                 // onClick={Modification}
               >
                 Τροποποίηση Δήλωσης Μαθημάτων

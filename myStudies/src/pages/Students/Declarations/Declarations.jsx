@@ -9,6 +9,7 @@ import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import Success from "../../../components/Common/Success";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
+import { Checkbox } from "@mui/material";
 import { UserContext } from "../../../components/UserContext";
 
 const Declarations = () => {

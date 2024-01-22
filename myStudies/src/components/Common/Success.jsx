@@ -36,9 +36,9 @@ const Success = ({ userRole, action }) => {
                 {userRole === "student" && action === "declaration" ? (
                     <Message stringMessage={"Η δήλωση των μαθημάτων έγινε με επιτυχία."} handleReturn={handleStudent}/>
                 ) : userRole === "student" && action === "certification" ? (
-                    <Message stringMessage={"Η αίτηση έγινε με επιτυχία."} handleReturn={handleStudent}/>
+                    <Message stringMessage={"Η αίτηση για παροχή πιστοποιητικού έγινε με επιτυχία."} handleReturn={handleStudent}/>
                 ) : userRole === "professor" && action === "grades" && (
-                    <Message stringMessage={"Η δήλωση των βαθμών έγινε με επιτυχία."} handleReturn={handleProfessor}/>
+                    <Message stringMessage={"Η καταχώρηση των βαθμών έγινε με επιτυχία."} handleReturn={handleProfessor}/>
                 )}
             </main>
         </div>

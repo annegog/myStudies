@@ -3,10 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Breadcrump from "../../../components/Tools/Breadcrumb";
+import Breadcrumb from "../../../components/Tools/Breadcrumb";
 
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
+import Success from "../../../components/Common/Success";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Request = () => {
@@ -56,7 +57,7 @@ const Request = () => {
                     <Success userRole={"student"} action={"certification"}/>
                 ) : (
                     <div className="w-full max-w-4xl">
-                        <Breadcrump currentStep={currentStep} stepStrings={["Επιλογή", "Αντίγραφα", "Αίτηση"]}/>
+                        <Breadcrumb currentStep={currentStep} stepStrings={["Επιλογή", "Αντίγραφα", "Αίτηση"]}/>
                         {stepContent}
                         <div style={{marginTop: "2rem"}} className="flex justify-center space-x-2 mt-4">
                             {currentStep === 1 ? (
@@ -103,11 +104,11 @@ const StepOne = () => {
             </div>
 
             <div className="bg-gray-300 rounded-3xl">
-                <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg p-1 cursor-pointer font-medium" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}> 
+                <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg py-1 cursor-pointer font-medium" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}> 
                     <span> {mainSelection} {showCertificatesOptions ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesOptions && (
-                    <div className="flex flex-col justify-center rounded-3xl p-1 bg-gray-100">
+                    <div className="flex flex-col justify-center rounded-3xl py-1 bg-gray-100">
                         {options.map((option, index) => (
                             <button key={index} onClick={() => handleButtonClick(option)}>
                                 {option}

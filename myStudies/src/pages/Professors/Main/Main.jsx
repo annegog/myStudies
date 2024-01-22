@@ -26,7 +26,7 @@ const Main = () => {
             <Navbar/>
             <NavBarOptions userType={"professor"}/>
             <main className="Professor Main">
-                <div style={{ marginTop: "4rem" }} className="bg-gray-300 bg-opacity-50 flex flex-col px-40 py-12 rounded-lg max-md:px-5">
+                <div className="bg-gray-300 bg-opacity-50 flex flex-col px-40 py-12 mx-20 my-20 rounded-3xl max-md:px-5">
                     <h2 className="text-2xl font-thin justify-center text-center mb-10 underline"> Τα μαθήματα μου </h2>
 
                     {courses.map(lessons => (

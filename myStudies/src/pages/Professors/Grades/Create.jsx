@@ -1,27 +1,27 @@
 import React from "react";
 
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
+import Success from "../../../components/Common/Success";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
-import { useNavigate } from "react-router";
 
 const Column = ({ label, dataKey, values, onUpdateGrade }) => (
     <div className={`Students ${label}`} key={label}>
-        <div className="text-center text-xl font-medium mr-10 mt-4">
-            <p className="underline mb-3"> {label} </p>
+        <div className="text-center text-xl font-medium my-4">
+            <p className="underline"> {label} </p>
             {values.map((data, index) => (
-                <div key={index} className="w-full mt-2">
+                <div key={index} className="w-full flex flex-col items-center my-3.5">
                     {label === 'Βαθμός' ? (
                         <input
-                            type="text"
                             value={data[dataKey] || ''}
                             onChange={(e) => onUpdateGrade(index, e.target.value)}
-                            className="text-black text-xl text-center rounded-3xl self-start max-md:max-w-full"
+                            className="text-black text-xl text-center rounded-3xl max-md:max-w-full"
                         />
                     ) : (
-                        <p className="text-black text-xl text-center self-start max-md:max-w-full py-2">
+                        <p className="text-black text-xl text-center max-md:max-w-full ">
                             {data[dataKey]} {" "}
                         </p>
                     )}
@@ -29,10 +29,12 @@ const Column = ({ label, dataKey, values, onUpdateGrade }) => (
             ))}
         </div>
     </div>
+
 );
 
 const Create = () => {
     const navigate = useNavigate();
+    const [successMessage, setSuccessMessage] = useState(0)
 
     const [grades, setGrades] = useState([
         { studentId: 'sdi202000122', name: 'ΓΕΩΡΓΙΟΣ ΨΑΘΑΣ', semester: 7, grade: '' },
@@ -67,35 +69,39 @@ const Create = () => {
     };
 
     const handleFinalization = () => {
-        navigate("/professor/");
+        setSuccessMessage(successMessage + 1);
     };
 
     return (
-        <div className="bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 min-h-screen">
+        <div className="min-h-screen">
             <Navbar />
             <NavBarOptions userType={"professor"} />
             <main className="flex justify-center items-center h-full">
-                <div className="w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 bg-white rounded-3xl shadow-lg">
-                    <h1 className="text-center text-4xl font-thin mb-10"> Λίστα Μαθημάτων </h1>
-                    <div className="flex flex-row justify-center items-stretch space-x-10">
-                        {columns.map((column, index) => (
-                            <Column
-                                key={index}
-                                label={column.label}
-                                dataKey={column.dataKey}
-                                values={grades}
-                                onUpdateGrade={onUpdateGrade}
-                            />
-                        ))}
-                    </div>
+                {successMessage > 0 ? (
+                    <Success userRole={"professor"} action={"grades"}/>
+                ) : (
+                    <div className="bg-gray-300 w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 m-20 rounded-3xl shadow-lg">
+                        <h1 className="text-center text-4xl font-thin mb-10"> Λίστα Μαθημάτων </h1>
+                        <div className="flex flex-row justify-center items-stretch space-x-10">
+                            {columns.map((column, index) => (
+                                <Column
+                                    key={index}
+                                    label={column.label}
+                                    dataKey={column.dataKey}
+                                    values={grades}
+                                    onUpdateGrade={onUpdateGrade}
+                                /> 
+                            ))}
+                        </div>
 
-                    <div className="flex justify-center mt-8">
-                        <div className="Options">
-                            <button className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
-                            <button onClick={handleFinalization} className="bg-green-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
+                        <div className="flex justify-center mt-8">
+                            <div className="Options">
+                                <button className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
+                                <button onClick={handleFinalization} className="bg-green-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
             </main>
             <Footer />
         </div>

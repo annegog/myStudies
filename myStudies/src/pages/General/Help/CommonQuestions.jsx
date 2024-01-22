@@ -149,7 +149,7 @@ const CommonQuestions = () => {
             <Navbar/>
             <main className="Main Common Questions">
                 <div style={{ marginTop: "1rem" }} className="bg-zinc-300 bg-opacity-50 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
-                    {userRole === "student" && (
+                    {userRole === "student" ? (
                         questionsStudents.map((data, index) => (
                             <div key={index} className="w-full">
                                 <button className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full py-2"
@@ -166,10 +166,8 @@ const CommonQuestions = () => {
                                     </div>
                                 )}
                             </div>
-                        )))
-                    }
-
-                    {userRole === "professor" && (
+                        ))
+                    ) : userRole === "professor" && (
                         questionsProfessors.map((data, index) => (
                             <div key={index} className="w-full">
                                 <button className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full py-2"
@@ -186,8 +184,8 @@ const CommonQuestions = () => {
                                     </div>
                                 )}
                             </div>
-                        )))
-                    }
+                        ))
+                    )}
 
                     <button type="button" className="text-center text-white font-medium bg-sky-800 hover:bg-sky-900 focus:ring-4 focus:outline-none rounded-lg text-base mt-36 px-5 py-3" 
                         onClick={handleBack}

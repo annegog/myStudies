@@ -16,7 +16,7 @@ const Options = ({ userType }) => {
 
     return(
         <div className="Options Navigation Bar">
-            <nav className="bg-blue-200 items-center w-full z-30 top-0 border border-gray-200 relative">
+            <nav className="bg-blue-200 items-center w-full z-30 top-0 border border-gray-300 relative rounded-b-xl">
                 <div className="max-w-screen-xl flex justify-between mx-auto p-4">
                     <div className="flex w-full items-stretch justify-between gap-2 max-md:max-w-full max-md:flex-wrap">
                         {links.map((link, index) => (

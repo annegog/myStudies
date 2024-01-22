@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Login from "./pages/General/Login";
 import Profile from "./pages/General/Profile";
+import Recovery from "./pages/General/Help/Recovery";
 import MobileApp from "./pages/General/Help/MobileApp";
 import ConnectHelp from "./pages/General/Help/ConnectHelp";
 import ContactAdmin from "./pages/General/Help/ContactAdmin";
@@ -41,6 +42,7 @@ const App = () => {
 
         {/* Help */}
 
+        <Route path="/recovery" element={<Recovery />} />
         <Route path="/mobile-app" element={<MobileApp />} />
         <Route path="/admin-contact" element={<ContactAdmin />} />
         <Route path="/connection-help" element={<ConnectHelp />} />
@@ -55,7 +57,7 @@ const App = () => {
 
         {/* Professor Main */}
 
-        <Route path="/professor" element={<MainProfessors />} />
+        <Route path="/professor/:id" element={<MainProfessors />} />
         <Route path="/professor/grades" element={<GradesProfessors />} />
         <Route path="/professor/grades-create" element={<GradesCreate />} />
         <Route path="/professor/grades-show" element={<GradesShow />} />

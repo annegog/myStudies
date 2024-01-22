@@ -4,9 +4,9 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import Donut from "../../components/Tools/Donut";
 import Navbar from "../../components/Common/Navbar";
 import Footer from "../../components/Common/Footer";
-import Donut from "../../components/Tools/Donut";
 import NavBarOptions from "../../components/Common/NavBarOptions";
 
 import { UserContext } from "../../components/UserContext";
@@ -19,8 +19,8 @@ const MainPage = () => {
     last_decl: '',
   });
 
-  const { id } = useParams();
   const { user } = useContext(UserContext);
+  const { id } = useParams();
 
   const navigate = useNavigate();
 

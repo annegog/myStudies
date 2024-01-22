@@ -37,7 +37,7 @@ const Grades = () => {
             <main className="Professor Main">                
                 <h2 className="text-center text-3xl font-thin justify-center mt-10 mb-10"> Τα μαθήματα μου </h2>
                 {courses.map(courses => (
-                    <div className="flex flex-col bg-gray-300 bg-opacity-75 px-40 py-10 mt-5 mb-5 rounded-3xl max-md:px-5">
+                    <div className="flex flex-col bg-gray-300 bg-opacity-75 px-40 py-10 mt-5 mb-5 m-20 rounded-3xl max-md:px-5">
                         <div className="flex flex-row text-left w-full text-lg py-2 cursor-pointer focus:outline-none" onClick={() => toggleCourse(courses)}>
                             <span> {activeCourses[courses] ? "▲" : "▼"} </span>
                             <h> {courses} </h>

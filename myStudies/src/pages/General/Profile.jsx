@@ -68,23 +68,23 @@ const ProfilePage = () => {
                         {/* SVG Icon here */}
                     </div>
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
-                        <h2 className="text-black text-xl font-light">Όνομα: {userData.first_name}</h2>
+                        <h2 className="text-black text-xl font-light">Όνομα: {userData.first_name} {userData.last_name}</h2>
                         <h2 className="mt-2 text-black text-xl font-light">E-mail: {userData.email}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light"> Ιδιότητα: {userData.role} </h2>
+                        <h2 className="mt-2 text-black text-xl font-light"> Ιδιότητα: {userData.role === "student" ? "Εκπαιδευόμενος" : "Καθηγητής"} </h2>
                     </div>
                     <div className="mt-4 lg:mt-0 flex-grow text-center lg:text-left">
-                        <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {userData.am}</h2>
-                        <h2 className="mt-2 text-black text-xl font-light">Σχολή - Τμήμα: {userData.ID_location}</h2>
+                        <h2 className="text-black text-xl font-light">Αριθμός μητρώου: {userData.username}</h2>
+                        <h2 className="mt-2 text-black text-xl font-light">Σχολή - Τμήμα: {userData.university}</h2>
                         <h2 className="mt-2 text-black text-xl font-light">Μέλος από: {registrationDate}</h2>
                     </div>
                 </div>
 
-                <div style={{ marginTop: "2rem" }} className="flex w-[1200px] max-w-full items-stretch justify-between max-md:flex-wrap">
+                <div style={{ marginTop: "2rem" }} className="flex flex-col justify-between ">
                     <div className="flex justify-between gap-5 items-start">
-                        <div className="text-black text-xl cursor-pointer font-medium self-stretch grow shrink basis-auto" onClick={() => setShowInfoFilters(!showInfoFilters)}>
+                        <div className="text-black text-xl cursor-pointer font-medium self-stretch shrink basis-auto" onClick={() => setShowInfoFilters(!showInfoFilters)}>
                             <span>{showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
-                                <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col justify-center items-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
+                                <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow m-2 justify-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
                                     <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2"> 
                                     <p className="mt-2 mb-2">Όνομα Πατέρα: {userData.father}</p>
                                     <p className="mb-2">Όνομα Μητέρας: {userData.mother}</p>
@@ -103,10 +103,10 @@ const ProfilePage = () => {
                     </div>
 
                     <div className="flex justify-between gap-5 items-end">
-                        <div className="text-black text-xl cursor-pointer font-medium self-stretch grow shrink basis-auto" onClick={() => setShowMoreInfoFilters(!showMoreInfoFilters)}>
+                        <div className="text-black text-xl cursor-pointer font-medium self-stretch shrink basis-auto" onClick={() => setShowMoreInfoFilters(!showMoreInfoFilters)}>
                             <span>{showMoreInfoFilters ? "▲" : "▼"} Πληροφορίες Επικοινωνίας </span>
                             {showMoreInfoFilters && (
-                                <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow bg-opacity-50 flex flex-col justify-end items-end px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
+                                <div style={{ marginTop: "2rem" }} className="bg-zinc-300 grow m-2 justify-center px-auto py-auto rounded-lg max-md:px-5 max-md:pr-5">
                                     <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2"> 
                                         <p className="mt-2 mb-2"> Μόνιμη Διεύθυνση Κατοικίας: {userData.home} </p>
                                         <p className="mt-2 mb-2"> Μόνιμη Πόλη Κατοικίας: {userData.city} </p>

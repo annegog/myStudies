@@ -2,11 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-
 import Navbar from "../../components/Common/Navbar";
 import Footer from "../../components/Common/Footer";
 import NavBarOptions from "../../components/Common/NavBarOptions";
-
 import { UserContext } from "../../components/UserContext";
 
 const ProfilePage = () => {
@@ -54,7 +52,7 @@ const ProfilePage = () => {
     return (
         <div>
             <Navbar />
-            <NavBarOptions userType={"student"} userId={id} />
+            <NavBarOptions userType={`${user.role}`} userId={id} />
             <div className="mt-4 px-4 lg:px-16 w-full">
 
                 <div className="bg-zinc-300 rounded-3xl p-4 flex flex-wrap justify-between items-center">

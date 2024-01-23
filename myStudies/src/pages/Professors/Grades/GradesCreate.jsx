@@ -36,7 +36,7 @@ const Create = () => {
     const navigate = useNavigate();
     const [successMessage, setSuccessMessage] = useState(0);
     const [students, setStudents] = useState(null);
-  const [grades, setGrades] = useState([]);
+    const [grades, setGrades] = useState([]);
 
   useEffect(() => {
     const fetchStudents = async () => {

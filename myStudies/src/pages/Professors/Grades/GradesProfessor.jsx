@@ -7,11 +7,11 @@ import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Grades = () => {
     const navigate = useNavigate();
-    
+
     const { id } = useParams();
     const [courses, setCourses] = useState([]);
 
-    const handleCreationGrades = (selectedCourse) => {
+     const handleCreationGrades = (selectedCourse) => {
         console.log(selectedCourse);
         navigate(`/professor/grades-create/${id}/${selectedCourse._id}`);
     };
@@ -21,11 +21,11 @@ const Grades = () => {
     };
 
     const [activeCourses, setActiveCourses] = useState({});
-
+    
     const toggleCourse = (course) => {
         setActiveCourses({ ...activeCourses, [course]: !activeCourses[course] });
     };
-
+    
     useEffect(() => {
         // Fetch courses data
         const fetchCourses = async () => {
@@ -37,16 +37,15 @@ const Grades = () => {
                 console.error('Error fetching courses:', error);
             }
         };            
-
         fetchCourses();
     }, [id]);
-
+    
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
             <main className="Professor Main">
-                <nav class="flex mt-2 justify-center" aria-label="Breadcrumb">
+                <nav class="flex mt-2 justify-center bg-transparent" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center mb-3 sm:mb-0">
                         <li class="inline-flex items-center">
                         <a href={`/professor/${id}`} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">

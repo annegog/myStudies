@@ -4,8 +4,6 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import BackGround from "../../assets/BackGround.png";
-
 import Donut from "../../components/Tools/Donut";
 import Navbar from "../../components/Common/Navbar";
 import Footer from "../../components/Common/Footer";

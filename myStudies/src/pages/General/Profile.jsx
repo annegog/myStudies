@@ -1,11 +1,14 @@
 import React from "react";
 import axios from "axios";
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
+
+import { UserContext } from "../../components/UserContext";
+
 import Navbar from "../../components/Common/Navbar";
 import Footer from "../../components/Common/Footer";
 import NavBarOptions from "../../components/Common/NavBarOptions";
-import { UserContext } from "../../components/UserContext";
 
 const ProfilePage = () => {
     const { user } = useContext(UserContext);
@@ -48,7 +51,6 @@ const ProfilePage = () => {
         return date.toLocaleDateString('el-GR', options);
     };
 
-
     return (
         <div className="bg-gray-50">
             <Navbar />
@@ -58,14 +60,10 @@ const ProfilePage = () => {
                 <div className="bg-white rounded-3xl p-4 m-16 flex flex-wrap justify-between items-center shadow-2xl">
                     <div className="object-contain object-center w-[120px] overflow-hidden shrink-0 max-w-full mt-2 rounded-[50%] ml-8">
                         <svg fill="none" viewBox="0 0 24 24" stroke-width="0.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                            />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                         </svg>
                     </div>
-                    <div className="flex-shrink-0 w-full lg:w-auto text-center lg:text-left">
-                        {/* SVG Icon here */}
-                    </div>
+                    
                     <div className="ml-16 lg:mt-0 flex-grow text-center lg:text-left">
                         <h2 className="text-black text-xl font-light">Όνομα: {userData.first_name} {userData.last_name}</h2>
                         <h2 className="mt-2 text-black text-xl font-light">E-mail: {userData.email}</h2>
@@ -81,7 +79,7 @@ const ProfilePage = () => {
                 <div className="flex flex-col justify-between ml-20">
                     <div className="flex justify-between m-4 items-start">
                         <div className="text-black text-xl cursor-pointer font-medium self-stretch shrink basis-auto" onClick={() => setShowInfoFilters(!showInfoFilters)}>
-                            <span>{showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
+                            <span> {showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
                                 <div className="bg-white grow m-2 justify-center p-4 rounded-3xl max-md:px-5 max-md:pr-5 shadow-2xl">
                                     <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2 ">
@@ -103,7 +101,7 @@ const ProfilePage = () => {
 
                     <div className="flex justify-between m-4 items-end">
                         <div className="text-black text-xl cursor-pointer font-medium self-stretch shrink basis-auto" onClick={() => setShowMoreInfoFilters(!showMoreInfoFilters)}>
-                            <span>{showMoreInfoFilters ? "▲" : "▼"} Πληροφορίες Επικοινωνίας </span>
+                            <span> {showMoreInfoFilters ? "▲" : "▼"} Πληροφορίες Επικοινωνίας </span>
                             {showMoreInfoFilters && (
                                 <div className="bg-white grow m-2 justify-center p-4 rounded-3xl max-md:px-5 max-md:pr-5 shadow-2xl">
                                     <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2">

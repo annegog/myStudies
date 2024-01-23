@@ -94,7 +94,7 @@ const Grades = () => {
 
                     {/* Search Results */}
                     {searchResult && (
-                        <div className="text-center mr-16 mb-4 mt-4">
+                        <div className="text-center mr-20 ml-1 mb-4 mt-4">
                             {searchResult === "not found" ? (
                                 <span> Δεν βρέθηκαν αποτελέσματα </span>
                             ) : (

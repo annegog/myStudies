@@ -2,10 +2,6 @@ import React from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import NavBarOptions from "./NavBarOptions";
-
 const Message = ({ stringMessage, handleReturn }) => {
     return (
         <div className="flex flex-col items-center justify-center">

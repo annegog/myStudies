@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useState } from "react";
-
 import { useParams } from "react-router-dom"; // Import useParams
+
 import Navbar from "../../components/Common/Navbar";
 import Footer from "../../components/Common/Footer";
 import Courses from "../../components/Courses";

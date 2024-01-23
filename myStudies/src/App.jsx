@@ -22,10 +22,10 @@ import CertificationsStatus from "./pages/Students/Certifications/Certifications
 import CertificationsRequest from "./pages/Students/Certifications/CertificationsRequest";
 import CertificationsHistory from "./pages/Students/Certifications/CertificationsHistory";
 
-import MainProfessor from "./pages/Professors/Main/MainProfessor"
-import GradesProfessor from "./pages/Professors/Grades/GradesProfessor"
+import ProfessorHome from "./pages/Professors/Home/Home"
 import GradesShow from "./pages/Professors/Grades/GradesShow"
 import GradesCreate from "./pages/Professors/Grades/GradesCreate"
+import GradesProfessor from "./pages/Professors/Grades/GradesProfessor"
 
 axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
@@ -48,7 +48,7 @@ const App = () => {
 
                 {/* Professors */}
 
-                <Route path="/professor/:id" element={<MainProfessor />} />
+                <Route path="/professor/:id" element={<ProfessorHome />} />
                 <Route path="/professor/grades/:id" element={<GradesProfessor />} />
                 <Route path="/professor/grades-show/:id" element={<GradesShow />} />
                 <Route path="/professor/grades-create/:id" element={<GradesCreate />} />

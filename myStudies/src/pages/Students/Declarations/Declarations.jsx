@@ -13,9 +13,10 @@ import { Checkbox } from "@mui/material";
 import { UserContext } from "../../../components/UserContext";
 
 const Declarations = () => {
-    const { id } = useParams(); // Use useParams to access the id
-    console.log("Received ID in Grades:", id); // Check the received ID
+    const { id } = useParams();                 // Use useParams to access the id
     const { user } = useContext(UserContext);
+
+    console.log("Received ID in Grades:", id);  // Check the received ID
 
     // State for controlling which step the user is on
     const [currentStep, setCurrentStep] = useState(1);
@@ -107,7 +108,7 @@ const Declarations = () => {
     useEffect(() => {
         console.log("Selected subjects:", selectedSubjects);
     }, [selectedSubjects]);
-    // Conditional rendering based on the current step
+
     let stepContent;
     switch (currentStep) {
         case 1:

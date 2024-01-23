@@ -1,15 +1,19 @@
 import React from "react";
+import axios from "axios";
 
-import { useState, useEffect } from "react";
-
+import { useState, useContext } from "react";
 import { useParams } from "react-router-dom"; // Import useParams
+
+import { UserContext } from "../../../components/UserContext";
 
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Grades = () => {
-    const { id } = useParams(); // Use useParams to access the id
+    const { id } = useParams();
+    const { user } = useContext(UserContext);
+    
     console.log("Received ID in Grades:", id); // Check the received ID
 
     const gradesData = {
@@ -27,8 +31,6 @@ const Grades = () => {
         },
     };
 
-    {/* Data */ }
-
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResult, setSearchResult] = useState(null);
 
@@ -36,8 +38,6 @@ const Grades = () => {
     const [semesterFilter, setSemesterFilter] = useState("all");            // "all", "even", "odd"
     const [showGradeFilters, setShowGradeFilters] = useState(false);        // State to toggle grade filter visibility
     const [showSemesterFilters, setShowSemesterFilters] = useState(false);  // State to toggle semester filter visibility
-
-    {/* Functions */ }
 
     // Function to get the appropriate color based on the grade
     const getGradeColor = (grade) => grade >= 5 ? "text-green-500" : "text-red-500";
@@ -69,8 +69,6 @@ const Grades = () => {
         return (semesterFilter === "even" && isEven) || (semesterFilter === "odd" && !isEven);
     };
 
-    {/* Main */ }
-
     return (
         <div className="bg-gray-50">
             <Navbar />
@@ -82,7 +80,7 @@ const Grades = () => {
                     <div style={{ marginTop: "1rem" }} className="flex flex-row justify-center mt-4">
                         <input
                             type="text"
-                            className="text-black text-center rounded-3xl p-2 border border-gray-300"
+                            className="text-black text-center rounded-3xl p-2 border border-gray-300 shadow-md hover:shadow-xl"
                             placeholder="Αναζήτηση Μαθήματος"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}

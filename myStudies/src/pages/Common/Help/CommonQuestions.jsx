@@ -18,7 +18,7 @@ const CommonQuestions = () => {
         navigate("/student/:id");
     };
     
-    // const [userRole, setUserRole] = useState("student")
+    const [userRole, setUserRole] = useState("student")
     const [openQuestions, setOpenQuestions] = useState({});
 
     const toggleQuestion = (index) => {

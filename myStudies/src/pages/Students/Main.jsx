@@ -61,7 +61,7 @@ const MainPage = () => {
         <div className="mt-10 px-4 lg:px-16 xl:px-32">
             {declarationInfo.open && !declarationInfo.declaration && (
             <div className="justify-center items-center text-center">
-                <h2 className="text-xl font-bold text-red-700 mt-2">
+                <h2 className="text-xl font-bold text-red-00 mt-2">
                 Έχουν ανοίξει οι δηλώσεις μαθημάτων. <br /> Όλοι οι φοιτητές
                 καλούνται να πραγματοποιήσουν την δήλωση τους εως και τις{" "}
                 {formatDate(declarationInfo.end_date)}.
@@ -70,7 +70,7 @@ const MainPage = () => {
                 <div className="mt-2 md:justify-items-center gap-5">
                 <button
                     type="button"
-                    className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-2xl"
+                    className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-md hover:shadow-2xl"
                     onClick={Declare}
                 >
                     Δήλωση Μαθημάτων
@@ -90,7 +90,7 @@ const MainPage = () => {
                 <div className="mt-3 md:justify-items-center">
                 <button
                     type="button"
-                    className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-2xl"
+                    className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-md hover:shadow-2xl"
                     // onClick={Modification}
                 >
                     Τροποποίηση Δήλωσης Μαθημάτων

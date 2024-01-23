@@ -13,8 +13,8 @@ import ConnectHelp from "./pages/General/Help/ConnectHelp";
 import ContactAdmin from "./pages/General/Help/ContactAdmin";
 import CommonQuestions from "./pages/General/Help/CommonQuestions";
 
-import Main from "./pages/Students/Main";
-import Courses from "./pages/Students/Courses";
+import StudentHome from "./pages/Students/Home/Home";
+import Courses from "./pages/Students/CoursesProgram/Courses";
 import GradesStudent from "./pages/Students/Grades/GradesStudent";
 import Declarations from "./pages/Students/Declarations/Declarations";
 import Certifications from "./pages/Students/Certifications/Certifications";
@@ -55,7 +55,7 @@ const App = () => {
 
                 {/* Students */}
 
-                <Route path="/student/:id" element={<Main />} />
+                <Route path="/student/:id" element={<StudentHome />} />
                 <Route path="/student/courses/:id" element={<Courses />} />
                 <Route path="/student/grades/:id" element={<GradesStudent />} />
                 <Route path="/student/declarations/:id" element={<Declarations />} />

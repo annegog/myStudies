@@ -3,10 +3,10 @@ import React from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom"; // Import useParams
 
-import Navbar from "../../components/Common/Navbar";
-import Footer from "../../components/Common/Footer";
-import Courses from "../../components/Courses";
-import NavBarOptions from "../../components/Common/NavBarOptions";
+import Navbar from "../../../components/Common/Navbar";
+import Footer from "../../../components/Common/Footer";
+import Courses from "../../../components/Courses";
+import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const CoursesPage = () => {
     const { id } = useParams(); // Use useParams to access the id

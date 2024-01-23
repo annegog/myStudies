@@ -4,13 +4,13 @@ import universityLogo from "../../assets/UniLogo.png";
 
 const Footer = () => {
     return (
-        <footer className="bg-white mt-20 py-8 rounded-t-xl shadow-2xl">
-            <div className="mx-auto max-w-screen-xl p-4 lg:py-8">
+        <footer className="bg-white rounded-t-xl mt-20 py-8 shadow-2xl">
+            <div className="mx-auto max-w-screen-xl m-10">
                 <div class="md:flex md:justify-between">
                     <div class="mb-6 md:mb-0">
                         <a href="https://www.uoa.gr" class="flex items-center">
                             <img src={universityLogo} alt="Univeristy Logo" class="h-14 me-3" />
-                            <span class="self-center text-lg font-thin whitespace-nowrap"> ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ <br/> ΠΑΝΑΠΙΣΤΉΜΙΟ ΑΘΗΝΩΝ </span>
+                            <span class="text-lg font-thin"> ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ <br/> ΠΑΝΑΠΙΣΤΉΜΙΟ ΑΘΗΝΩΝ </span>
                         </a>
                     </div>
 
@@ -56,12 +56,6 @@ const Footer = () => {
                         
                     </div>
                 </div>
-
-                {/* <div className="flex justify-left mt-4">
-                    <img src={GreekFlag} alt="Greece Logo" style={{width: "90px", height: "70px"}} className="footer-image mx-2" />
-                    <img src={EuropeFlag} alt="Europe Logo" style={{width: "90px", height: "70px"}}  className="footer-image mx-2" />
-                </div>
-                 */}
             </div>
         </footer>
     );

@@ -27,7 +27,7 @@ const Donut = ({ ects }) => {
                     </div>
                 </div>
 
-                <Doughnut className="mb-5" data={data} options={options} />
+                <Doughnut className="mb-4" data={data} options={options} />
 
                 <div class="flex justify-between items-center pt-3 border-gray-200 border-t" />
             </div>

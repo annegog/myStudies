@@ -7,6 +7,7 @@ import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Grades = () => {
     const navigate = useNavigate();
+    
     const { id } = useParams();
     const [courses, setCourses] = useState([]);
 
@@ -41,7 +42,7 @@ const Grades = () => {
     }, [id]);
 
     return (
-        <div>
+        <div className="bg-gray-50">
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
             <main className="Professor Main">

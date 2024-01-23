@@ -1,15 +1,19 @@
 import React from "react";
+import axios from "axios";
 
-import { useState, useEffect } from "react";
-
+import { useState, useContext } from "react";
 import { useParams } from "react-router-dom"; // Import useParams
+
+import { UserContext } from "../../../components/UserContext";
 
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Grades = () => {
-    const { id } = useParams(); // Use useParams to access the id
+    const { id } = useParams();
+    const { user } = useContext(UserContext);
+    
     console.log("Received ID in Grades:", id); // Check the received ID
 
     const gradesData = {
@@ -27,8 +31,6 @@ const Grades = () => {
         },
     };
 
-    {/* Data */ }
-
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResult, setSearchResult] = useState(null);
 
@@ -36,8 +38,6 @@ const Grades = () => {
     const [semesterFilter, setSemesterFilter] = useState("all");            // "all", "even", "odd"
     const [showGradeFilters, setShowGradeFilters] = useState(false);        // State to toggle grade filter visibility
     const [showSemesterFilters, setShowSemesterFilters] = useState(false);  // State to toggle semester filter visibility
-
-    {/* Functions */ }
 
     // Function to get the appropriate color based on the grade
     const getGradeColor = (grade) => grade >= 5 ? "text-green-500" : "text-red-500";
@@ -69,10 +69,8 @@ const Grades = () => {
         return (semesterFilter === "even" && isEven) || (semesterFilter === "odd" && !isEven);
     };
 
-    {/* Main */ }
-
     return (
-        <div className="Declarations">
+        <div className="bg-gray-50">
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <main className="main-content flex justify-center">
@@ -82,19 +80,19 @@ const Grades = () => {
                     <div style={{ marginTop: "1rem" }} className="flex flex-row justify-center mt-4">
                         <input
                             type="text"
-                            className="text-black text-center rounded-3xl p-2 border border-gray-300"
+                            className="text-black text-center rounded-3xl p-2 border border-gray-300 shadow-md hover:shadow-xl"
                             placeholder="Αναζήτηση Μαθήματος"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
-                        <button className="text-white text-center bg-blue-500 rounded-3xl p-2 ml-2 hover:bg-blue-600"
+                        <button className="text-white text-center bg-blue-500 rounded-3xl p-2 ml-2 hover:bg-blue-600 shadow-md hover:shadow-xl"
                             onClick={handleSearch}
                         > Search </button>
                     </div>
 
                     {/* Search Results */}
                     {searchResult && (
-                        <div className="text-center my-4">
+                        <div className="text-center mr-20 ml-1 m-4">
                             {searchResult === "not found" ? (
                                 <span> Δεν βρέθηκαν αποτελέσματα </span>
                             ) : (
@@ -108,7 +106,7 @@ const Grades = () => {
                     )}
 
                     {/* Filters Section */}
-                    <div style={{ marginTop: "1rem" }} className="bg-gray-100 rounded-lg p-4">
+                    <div className="bg-white rounded-xl p-3 m-5 shadow-xl">
                         <div className="flex flex-col md:flex-row justify-between">
 
                             {/* Attempts Filter */}
@@ -118,25 +116,25 @@ const Grades = () => {
                                     <span>{showGradeFilters ? "▲" : "▼"}</span>
                                 </div>
                                 {showGradeFilters && (
-                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-gray-100">
-                                        <button onClick={() => setFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${filter === "all" ? "bg-blue-500 text-white" : "bg-gray-200"}`}> Όλα </button>
-                                        <button onClick={() => setFilter("passed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "passed" ? "bg-blue-500 text-white" : "bg-gray-200"}`}> Επιτυχίες </button>
-                                        <button onClick={() => setFilter("failed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "failed" ? "bg-blue-500 text-white" : "bg-gray-200"}`}> Αποτυχίες </button>
+                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-white">
+                                        <button onClick={() => setFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${filter === "all" ? "bg-blue-500 text-white" : "bg-white"}`}> Όλα </button>
+                                        <button onClick={() => setFilter("passed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "passed" ? "bg-blue-500 text-white" : "bg-white"}`}> Επιτυχίες </button>
+                                        <button onClick={() => setFilter("failed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "failed" ? "bg-blue-500 text-white" : "bg-white"}`}> Αποτυχίες </button>
                                     </div>
                                 )}
                             </div>
 
                             {/* Examination Period Filter */}
-                            <div className="flex-1">
-                                <div className="text-center font-medium cursor-pointer" onClick={() => setShowSemesterFilters(!showSemesterFilters)}>
+                            <div className="mb-2 md:mb-0 md:mr-2 flex-1">
+                                <div className="text-center text-lg font-medium cursor-pointer" onClick={() => setShowSemesterFilters(!showSemesterFilters)}>
                                     Εξεταστική Περίοδος
                                     <span>{showSemesterFilters ? "▲" : "▼"}</span>
                                 </div>
                                 {showSemesterFilters && (
-                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-gray-100">
-                                        <button onClick={() => setSemesterFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "all" ? "bg-blue-500 text-white" : "bg-gray-200"}`}> Όλες </button>
-                                        <button onClick={() => setSemesterFilter("even")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "even" ? "bg-blue-500 text-white" : "bg-gray-200"}`}> Εαρινού </button>
-                                        <button onClick={() => setSemesterFilter("odd")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "odd" ? "bg-blue-500 text-white" : "bg-gray-200"}`}> Χειμερινού </button>
+                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-white">
+                                        <button onClick={() => setSemesterFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "all" ? "bg-blue-500 text-white" : "bg-white"}`}> Όλες </button>
+                                        <button onClick={() => setSemesterFilter("even")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "even" ? "bg-blue-500 text-white" : "bg-white"}`}> Εαρινού </button>
+                                        <button onClick={() => setSemesterFilter("odd")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "odd" ? "bg-blue-500 text-white" : "bg-white"}`}> Χειμερινού </button>
                                     </div>
                                 )}
                             </div>
@@ -148,7 +146,7 @@ const Grades = () => {
                     {Object.entries(gradesData)
                         .filter(([semester, _]) => shouldShowSemester(parseInt(semester)))
                         .map(([semester, courses]) => (
-                            <div style={{ marginTop: "2rem" }} key={semester} className={`mb-8 ${shouldShowSemester(parseInt(semester)) ? "" : "hidden"}`}>
+                            <div key={semester} className={`mb-8 ${shouldShowSemester(parseInt(semester)) ? "" : "hidden"}`}>
                                 <h2 className="text-center text-lg font-medium"> {semester}o Εξάμηνο </h2>
                                 <table className="rounded-lg bg-gray-200 w-full text-sm text-left">
                                     <thead className="text-xs">

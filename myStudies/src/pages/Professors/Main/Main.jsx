@@ -35,7 +35,7 @@ const Main = () => {
             <NavBarOptions userType={"professor"} userId={id} />
             <main className="Professor Main">
                 <div className="mt-10 justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32 bg-amber-50">
-                    <h2 className="text-2xl font-thin justify-center text-center mb-1"> Τα μαθήματα μου </h2>
+                    <h2 className="text-3xl font-thin justify-center text-center mb-1"> Τα μαθήματα μου </h2>
                     {courses.map(lesson => (
                         <div key={lesson._id} className="bg-slate-200 p-2 rounded-lg mt-8 space-y-4">
                             <button className="flex flex-row text-left w-full text-lg py-2 focus:outline-none" onClick={() => handleClick()}>

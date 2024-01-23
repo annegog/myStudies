@@ -246,7 +246,52 @@ app.get('/courses/professor/:userId', async (req, res) => {
         const courses = await Course.find({ professors: userId });
         res.json(courses);
     } catch (error) {
-        console.error('Error fetching course data:', error);
+        console.error('Error fetching courses data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/students/declared/course/:course', async (req, res) => {
+    try {
+        const courseId = req.params.course;
+        //const studentsDeclarations = [];
+
+        const course = await Course.findById(courseId);
+
+        // Find the current academic year
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const lastYear = currentYear - 1;
+        const nextYear = currentYear + 1;
+        const academicYear = `${currentYear}-${nextYear}`;
+        const academicYear2 = `${lastYear}-${currentYear}`;
+
+        // Find the latest exam season for the current academic year
+        const latestExam = await ExamsSeason.findOne({
+            $or: [
+                { year: { $regex: academicYear, $options: 'i' } },
+                { year: { $regex: academicYear2, $options: 'i' } }
+            ],
+            endData: { $gte: currentDate },
+        }).sort({ endData: -1 });
+
+        if (!latestExam) {
+            console.log(`No upcoming exams for the academic years ${academicYear} or ${academicYear2}`);
+        }
+        
+        // Find student declarations for the course and latest exam
+        const studentsDeclarations = await Declaration.find({ courses: course._id, exam: latestExam._id })
+        .populate('user');
+
+        if (studentsDeclarations.length > 0) {
+            const students = studentsDeclarations.map(declaration => declaration.user);
+            res.json(students);
+        } else {
+            console.log(`No student declarations found for the course ${course.title}`);
+        }
+        
+    } catch (error) {
+        console.error('Error fetching course:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });

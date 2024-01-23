@@ -59,8 +59,8 @@ const App = () => {
 
         <Route path="/professor/:id" element={<MainProfessors />} />
         <Route path="/professor/grades/:id" element={<GradesProfessors />} />
-        <Route path="/professor/grades-create/:id" element={<GradesCreate />} />
-        <Route path="/professor/grades-show/:id" element={<GradesShow />} />
+        <Route path="/professor/grades-create/:id/:course" element={<GradesCreate />} />
+        <Route path="/professor/grades-show/:id/:course" element={<GradesShow />} />
 
         {/* Declarations */}
 

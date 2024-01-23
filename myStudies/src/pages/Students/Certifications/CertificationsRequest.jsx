@@ -99,17 +99,17 @@ const StepOne = () => {
     ]
 
     return (
-        <div className="One">
-            <div className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col items-center p-2 mt-24">
-                Eπιλέξτε το πιστοποιητικό για το οποίο θέλετε να υποβάλετε αίτηση
+        <div className="flex flex-col items-center">
+            <div className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col mt-24 mb-4">
+                Επιλέξτε το πιστοποιητικό για το οποίο θέλετε να υποβάλετε αίτηση
             </div>
 
-            <div className="bg-white shadow-xl rounded-xl">
-                <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg py-1 cursor-pointer font-medium" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}>
+            <div className="bg-white shadow-xl rounded-xl w-auto pl-2 pr-2">
+                <div className="text-center text-lg cursor-pointer font-medium p-3" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}>
                     <span> {mainSelection} {showCertificatesOptions ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesOptions && (
-                    <div className="flex flex-col justify-center rounded-xl py-1 bg-white">
+                    <div className="flex flex-col rounded-xl bg-white">
                         {options.map((option, index) => (
                             <button key={index} onClick={() => handleButtonClick(option)}>
                                 {option}
@@ -134,17 +134,17 @@ const StepTwo = () => {
     const copies = ["1", "2", "3", "4", "5"]
 
     return (
-        <div className="Two">
-            <div style={{ marginTop: "6rem" }} className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col items-center px-5">
-                Συμπληρώστε τον αριθμό των αντιτύπων για το πιστοποιητικό που έχει επιλεχθεί
-            </div>
+        <div className="flex flex-col items-center">
+            <p className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col mt-24 mb-4">
+                Επιλέξτε τον αριθμό των αντιτύπων για το πιστοποιητικό που έχει επιλεχθεί
+            </p>
 
             <div className="bg-white shadow-xl rounded-xl">
-                <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg p-1 cursor-pointer font-medium" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}>
+                <div className="text-center text-lg cursor-pointer font-medium p-3" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}>
                     <span> {mainSelection} {showCertificatesCopies ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesCopies && (
-                    <div className="flex flex-col justify-center rounded-xl py-1 bg-white">
+                    <div className="flex flex-col rounded-xl bg-white">
                         {copies.map((option, index) => (
                             <button key={index} onClick={() => handleButtonClick(option)}>
                                 {option}

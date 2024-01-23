@@ -14,16 +14,16 @@ export function UserContextProvider({ children }) {
 
     useEffect(() => {
         const fetchUserData = async () => {
-        try {
-            if (!user) {
-            const response = await axios.get("/student/profile");
-            setUser(response.data);
-            setReady(true);
-            console.log(user);
+            try {
+                if (!user) {
+                const response = await axios.get("/student/profile");
+                setUser(response.data);
+                setReady(true);
+                console.log(user);
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
             }
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-        }
         };
 
         fetchUserData();

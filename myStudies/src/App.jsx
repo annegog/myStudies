@@ -5,13 +5,13 @@ import { Route, Routes } from "react-router-dom";
 
 import { UserContextProvider } from "./components/UserContext";
 
-import Login from "./pages/General/Login";
-import Profile from "./pages/General/Profile";
-import Recovery from "./pages/General/Help/Recovery";
-import MobileApp from "./pages/General/Help/MobileApp";
-import ConnectHelp from "./pages/General/Help/ConnectHelp";
-import ContactAdmin from "./pages/General/Help/ContactAdmin";
-import CommonQuestions from "./pages/General/Help/CommonQuestions";
+import Login from "./pages/Common/Login";
+import Profile from "./pages/Common/Profile";
+import Recovery from "./pages/Common/Help/Recovery";
+import MobileApp from "./pages/Common/Help/MobileApp";
+import ConnectHelp from "./pages/Common/Help/ConnectHelp";
+import ContactAdmin from "./pages/Common/Help/ContactAdmin";
+import CommonQuestions from "./pages/Common/Help/CommonQuestions";
 
 import StudentHome from "./pages/Students/Home/Home";
 import Courses from "./pages/Students/CoursesProgram/Courses";

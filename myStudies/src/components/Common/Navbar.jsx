@@ -4,14 +4,15 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import universityLogo from "../../assets/UniLogo.png";
-
 import { UserContext } from "../UserContext";
+
+import universityLogo from "../../assets/UniLogo.png";
 
 const Navbar = () => {
     const navigate = useNavigate();
 
     const [menu, setMenu] = useState(false);
+    
     const { user, setUser } = useContext(UserContext);
 
     const handleChange = () => {

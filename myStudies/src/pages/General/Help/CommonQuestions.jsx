@@ -4,13 +4,13 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useState, useContext } from "react";
 
+import { UserContext } from "../../../components/UserContext";
+
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
 
-import { UserContext } from "../../../components/UserContext";
-
 const CommonQuestions = () => {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     const navigate = useNavigate();
     
@@ -18,7 +18,7 @@ const CommonQuestions = () => {
         navigate("/student/:id");
     };
     
-    const [userRole, setUserRole] = useState("student")
+    // const [userRole, setUserRole] = useState("student")
     const [openQuestions, setOpenQuestions] = useState({});
 
     const toggleQuestion = (index) => {

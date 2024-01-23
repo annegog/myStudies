@@ -43,11 +43,11 @@ const Show = () => {
     };
 
     return (
-        <div className="min-h-screen">
+        <div className="bg-gray-50">
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
             <main className="flex justify-center items-center h-full">
-                <div className="bg-gray-300 w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 m-20 rounded-3xl shadow-lg">
+                <div className="bg-white w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 m-20 rounded-3xl shadow-2xl">
                     <h1 className="text-center text-4xl font-thin mb-10"> Λίστα Μαθημάτων </h1>
                     <div className="flex flex-row justify-center items-stretch space-x-10">
                         {columns.map((column) => (
@@ -65,7 +65,7 @@ const Show = () => {
                     </div>
                     <div className="flex justify-center mt-8">
                         <div className="Options">
-                            <button onClick={handleFinalization} className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Τέλος </button>
+                            <button onClick={handleFinalization} className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600 shadow-xl"> Τέλος </button>
                         </div>
                     </div>
                 </div>

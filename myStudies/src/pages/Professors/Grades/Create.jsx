@@ -19,7 +19,7 @@ const Column = ({ label, dataKey, values, onUpdateGrade }) => (
                         <input
                             value={data[dataKey] || ''}
                             onChange={(e) => onUpdateGrade(index, e.target.value)}
-                            className="text-black text-xl text-center rounded-3xl max-md:max-w-full"
+                            className="text-black text-xl text-center border border-black rounded-3xl max-md:max-w-full"
                         />
                     ) : (
                         <p className="text-black text-xl text-center max-md:max-w-full ">
@@ -75,14 +75,14 @@ const Create = () => {
     };
 
     return (
-        <div className="min-h-screen">
+        <div className="bg-gray-50">
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
             <main className="flex justify-center items-center h-full">
                 {successMessage > 0 ? (
                     <Success userRole={"professor"} action={"grades"} userId={id} />
                 ) : (
-                    <div className="bg-gray-300 w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 m-20 rounded-3xl shadow-lg">
+                    <div className="bg-white w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 m-20 rounded-3xl shadow-2xl">
                         <h1 className="text-center text-4xl font-thin mb-10"> Λίστα Μαθημάτων </h1>
                         <div className="flex flex-row justify-center items-stretch space-x-10">
                             {columns.map((column, index) => (
@@ -98,8 +98,8 @@ const Create = () => {
 
                         <div className="flex justify-center mt-8">
                             <div className="Options">
-                                <button className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
-                                <button onClick={handleFinalization} className="bg-green-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
+                                <button className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600 shadow-xl"> Προσωρινή Αποθήκευση </button>
+                                <button onClick={handleFinalization} className="bg-green-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600 shadow-xl"> Οριστικοποίηση </button>
                             </div>
                         </div>
                     </div>

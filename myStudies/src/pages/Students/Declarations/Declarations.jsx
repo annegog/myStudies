@@ -157,7 +157,7 @@ const Declarations = () => {
     };
 
     return (
-        <div className="Declarations">
+        <div className="bg-gray-50">
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <main className="main-content flex justify-center">
@@ -181,7 +181,7 @@ const Declarations = () => {
                             {currentStep > 1 && (
                                 <button
                                     onClick={goToPreviousStep}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"
                                 >
                                     {" "}
                                     Προηγούμενο{" "}
@@ -192,7 +192,7 @@ const Declarations = () => {
                             {currentStep === 3 ? (
                                 <button
                                     onClick={handleOkClick}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"
                                 >
                                     {" "}
                                     Οριστική Υποβολή{" "}
@@ -201,7 +201,7 @@ const Declarations = () => {
                                 currentStep < 3 && (
                                     <button
                                         onClick={goToNextStep}
-                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"
                                     >
                                         {" "}
                                         Επόμενο{" "}
@@ -255,7 +255,7 @@ const StepOne = ({ onSubjectSelect, selectedSubjects, organizedCourses }) => {
                     {title}
                 </button>
                 {isOpen && (
-                    <div className="content bg-gray-100 rounded-2xl p-4">{children}</div>
+                    <div className="content bg-gray-100 p-3 bg-white shadow-xl rounded-xl">{children}</div>
                 )}
             </div>
         );
@@ -457,7 +457,7 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
 
     return (
         <div>
-            <div style={{ marginTop: "1rem" }} className="text-red-500 text-center mb-4">
+            <div className="text-red-500 text-center text-lg m-10">
                 Τα παρακάτω μαθήματα αποθηκεύτηκαν προσωρινά. Πατήστε επόμενο για να προχωρήσετε σε Οριστική Υποβολή.
             </div>
             <h2 className="text-center text-xl font-medium">Επιλεγμένα Μαθήματα</h2>
@@ -524,7 +524,7 @@ const StepThree = ({ selectedSubjects }) => {
 
     return (
         <div>
-            <div className={`text-center p-4 ${mixedSemesters || totalSubjects > 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
+            <div className={`text-center p-4 m-10 text-lg bg-gray-50 ${mixedSemesters || totalSubjects > 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
                 {message}
             </div>
             {/* If no error, show the selected subjects */}

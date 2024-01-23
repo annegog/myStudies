@@ -6,14 +6,14 @@ import Footer from "../../components/Common/Footer";
 
 const LoginPage = () => {
     return (
-        <div className="Login">
+        <div className="bg-gray-50">
             <Navbar/>
             <main className="Main Login">
                 <div className="min-h-[70vh]">
-                    <div className="flex flex-col md:flex-row md:justify-between items-center md:mx-32 mx-5 mt-10">
-                        <div className="md:w-2/4 text-left ml-4">
-                            <h2 className="text-5xl font-semibold leading-tight"> Καλως ήρθατε </h2>
-                            <p className="text-lightText mt-1 text-start"> στη δικτυακή περιοχή των γραμματειών του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών </p>
+                    <div className="flex flex-col items-center md:flex-row md:justify-between md:mx-32 m-10">
+                        <div className="text-left md:w-2/4">
+                            <h className="text-5xl font-semibold leading-tight"> Καλως ήρθατε </h>
+                            <h2 className="text-light text-start"> στη δικτυακή περιοχή των γραμματειών του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών </h2>
                         </div>
                     </div>
                     <Login/>

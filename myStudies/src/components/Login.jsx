@@ -52,18 +52,21 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col md:flex-row md:justify-between items-center md:mx-32 mx-5 mt-10">
+        <div className="flex flex-col md:flex-row md:justify-between items-center md:mx-32 mx-5 m-10">
             <div className="w-full md:w-2/3 lg:w-3/5 xl:w-2/3">
-                <img src={Academia} alt="Academia" className="rounded-lg overflow-hidden" />
+                <img 
+                    src={Academia} 
+                    alt="Academia" 
+                    className="rounded-lg overflow-hidden shadow-xl"
+                />
             </div>
 
             <div className="w-full md:w-2/3 lg:w-2/5 xl:w-1/3 md:ml-4">
-                <form onSubmit={handleLogin} className="bg-gray-100 p-8 rounded-lg shadow-md">
-                    
+                <form onSubmit={handleLogin} className="bg-gray-50 p-8 rounded-lg shadow-xl">
                     <h2 className="text-2xl font-semibold mb-4 text-center"> Σύνδεση Χρήστη </h2>
 
-                    <div className="mb-4">
-                        <label htmlFor="email" className="text-sm block font-medium"> Χρήστης: </label>
+                    <div className="my-4">
+                        <label htmlFor="email" className="text-left text-medium font-medium block"> Χρήστης </label>
                         <input
                             id="username"
                             type="username"
@@ -74,8 +77,8 @@ const Login = () => {
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="password" className="text-sm block font-medium"> Κωδικός: </label>
+                    <div className="my-4">
+                        <label htmlFor="password" className="text-left text-medium font-medium block"> Κωδικός </label>
                         <input
                             id="password"
                             type={showPassword ? "text": "password"}
@@ -85,12 +88,11 @@ const Login = () => {
                             className="w-full border rounded-md p-2"
                         />
                         <button type="button" onClick={togglePasswordsVisibility}>
-                            {showPassword}
+                            {showPassword ? "Hide Password" : "Show Password"}
                         </button>
                     </div>
 
-                    <button type="submit" className="w-full bg-blue-900 text-white rounded-md p-2 hover:bg-blue-700"> Σύνδεση </button>
-                    
+                    <button type="submit" className="w-full text-white bg-blue-900 rounded-md p-2 hover:bg-blue-700"> Σύνδεση </button>
                     <a href="/recovery" className="block text-center text-blue-600 mt-2"> Ξέχασες τον κωδικό σου; </a>                    
                 </form>
             </div>

@@ -50,7 +50,7 @@ const Request = () => {
     }
 
     return (
-        <div className="Certification Request">
+        <div className="bg-gray-50">
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} /> {/* Instead of student string, giving the studentData.status */}
             <main className="main-content flex justify-center" >
@@ -62,15 +62,15 @@ const Request = () => {
                         {stepContent}
                         <div style={{ marginTop: "2rem" }} className="flex justify-center space-x-2 mt-4">
                             {currentStep === 1 ? (
-                                <button onClick={handleBack} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
+                                <button onClick={handleBack} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"> Προηγούμενο </button>
                             ) : currentStep && (
-                                <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Προηγούμενο </button>
+                                <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"> Προηγούμενο </button>
                             )}
 
                             {currentStep === 3 ? (
-                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Αίτηση </button>
+                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"> Αίτηση </button>
                             ) : currentStep < 3 && (
-                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Επόμενο </button>
+                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"> Επόμενο </button>
                             )}
                         </div>
                     </div>
@@ -100,16 +100,16 @@ const StepOne = () => {
 
     return (
         <div className="One">
-            <div style={{ marginTop: "6rem" }} className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col items-center px-5">
+            <div className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col items-center p-2 mt-24">
                 Eπιλέξτε το πιστοποιητικό για το οποίο θέλετε να υποβάλετε αίτηση
             </div>
 
-            <div className="bg-gray-300 rounded-3xl">
+            <div className="bg-white shadow-xl rounded-xl">
                 <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg py-1 cursor-pointer font-medium" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}>
                     <span> {mainSelection} {showCertificatesOptions ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesOptions && (
-                    <div className="flex flex-col justify-center rounded-3xl py-1 bg-gray-100">
+                    <div className="flex flex-col justify-center rounded-xl py-1 bg-white">
                         {options.map((option, index) => (
                             <button key={index} onClick={() => handleButtonClick(option)}>
                                 {option}
@@ -134,17 +134,17 @@ const StepTwo = () => {
     const copies = ["1", "2", "3", "4", "5"]
 
     return (
-        <div className="One">
+        <div className="Two">
             <div style={{ marginTop: "6rem" }} className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col items-center px-5">
                 Συμπληρώστε τον αριθμό των αντιτύπων για το πιστοποιητικό που έχει επιλεχθεί
             </div>
 
-            <div className="bg-gray-300 rounded-3xl">
+            <div className="bg-white shadow-xl rounded-xl">
                 <div style={{ marginTop: "2rem" }} className="text-center text-black text-lg p-1 cursor-pointer font-medium" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}>
                     <span> {mainSelection} {showCertificatesCopies ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesCopies && (
-                    <div className="flex flex-col justify-center rounded-3xl p-1 bg-gray-100">
+                    <div className="flex flex-col justify-center rounded-xl py-1 bg-white">
                         {copies.map((option, index) => (
                             <button key={index} onClick={() => handleButtonClick(option)}>
                                 {option}

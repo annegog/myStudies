@@ -8,7 +8,7 @@ const Breadcrumb = ({ currentStep, stepStrings }) => {
             {steps.map((step, index) => (
                 <React.Fragment key={step}>
                     <div className={`flex flex-col items-center`}>
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${step <= currentStep ? 'bg-blue-500' : 'bg-gray-300'}`}>
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md ${step <= currentStep ? 'bg-blue-500' : 'bg-gray-300'}`}>
                             {step}
                         </div>
 

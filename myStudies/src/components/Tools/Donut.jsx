@@ -6,16 +6,18 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js/auto";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Donut = ({ects}) => {
-    const data = {
-        labels: ["Κατοχυρωμένα ECTS"],
-        datasets: [{label: "ECTS", data: [ects, 240 - ects], backgroundColor: ["lightblue", "lightcoral"], borderColor: ["lightblue", "lightcoral"]}],
-    };
-
     const options = {};
 
+    const data = {
+        labels: ["Κατοχυρωμένα ECTS"],
+        datasets: [{label: "ECTS", data: [ects, 240 - ects], 
+        backgroundColor: ["lightblue", "lightcoral"], 
+        borderColor: ["lightblue", "lightcoral"]}],
+    };
+
     return (
-        <div style={{marginTop: "1rem"}} className="flex justify-center items-center px-20">
-            <div className="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+        <div className="flex justify-center items-center px-20 p-3 m-2">
+            <div className="max-w-sm w-full bg-white rounded-lg shadow-2xl dark:bg-gray-800 p-4 md:p-6">
                 <div className="flex justify-between mb-6">
                     <div className="flex justify-center items-center">
                         <svg

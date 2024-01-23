@@ -1,12 +1,10 @@
 import React from "react";
 
-import { Link } from "react-scroll";
-
 import universityLogo from "../../assets/UniLogo.png";
 
 const Footer = () => {
     return (
-        <footer className="bg-white mt-20 py-8">
+        <footer className="bg-white mt-20 py-8 rounded-t-xl shadow-2xl">
             <div className="mx-auto max-w-screen-xl p-4 lg:py-8">
                 <div class="md:flex md:justify-between">
                     <div class="mb-6 md:mb-0">

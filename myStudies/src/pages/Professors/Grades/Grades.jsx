@@ -7,6 +7,7 @@ import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Grades = () => {
     const navigate = useNavigate();
+    
     const { id } = useParams();
     const [courses, setCourses] = useState([]);
 
@@ -40,22 +41,22 @@ const Grades = () => {
     }, [id]);
 
     return (
-        <div>
+        <div className="bg-gray-50">
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
             <main className="Professor Main">
-                <div className="mt-10 justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32 bg-amber-50">
+                <div className="mt-10 justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32 bg-gray-50">
                     <h2 className="text-center text-3xl font-thin justify-center mt-10 mb-10"> Τα μαθήματα μου </h2>
                     {courses.map(course => (
-                        <div className="bg-slate-200 p-2 rounded-lg mt-8 space-y-4">
-                            <div className="flex flex-row text-left w-full text-lg py-2 cursor-pointer focus:outline-none" onClick={() => toggleCourse(courses)}>
+                        <div className="bg-slate-200 p-2 rounded-2xl mt-8 space-y-4 bg-white shadow-2xl">
+                            <div className="flex flex-row text-left w-full text-lg pl-10 py-3 cursor-pointer focus:outline-none" onClick={() => toggleCourse(courses)}>
                                 <span> {activeCourses[course.id] ? "▲" : "▼"} </span>
-                                <h> {course.title} </h>
+                                <h className="ml-3"> {course.title} </h>
                             </div>
                             {activeCourses[courses] && (
-                                <div className="Options">
-                                    <button onClick={handleCreationGrades} className="bg-blue-500 text-black font-medium px-4 py-2 mt-1 mr-4 rounded-3xl hover:bg-blue-600"> Δημιουργία Βαθμολογίου </button>
-                                    <button onClick={handleShowGrades} className="bg-green-500 text-black font-medium px-4 py-2 mt-1 mr-4 rounded-3xl hover:bg-green-600"> Προβολή Βαθμολογίου </button>
+                                <div className="pl-10">
+                                    <button onClick={handleCreationGrades} className="bg-blue-500 text-black font-medium p-2 m-4 rounded-3xl hover:bg-blue-600 shadow-xl"> Δημιουργία Βαθμολογίου </button>
+                                    <button onClick={handleShowGrades} className="bg-green-500 text-black font-medium p-2 m-4 rounded-3xl hover:bg-green-600 shadow-xl"> Προβολή Βαθμολογίου </button>
                                 </div>
                             )}
                         </div>

@@ -8,11 +8,11 @@ import NavBarOptions from "./NavBarOptions";
 
 const Message = ({ stringMessage, handleReturn }) => {
     return (
-        <div className="flex flex-col items-center justify-center font-bold">
+        <div className="flex flex-col items-center justify-center">
             <h2 className="text-2xl font-semibold leading-none text-green-500 pe-1 mt-20">
                 {stringMessage}
             </h2>
-            <button onClick={handleReturn} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mt-10"> 
+            <button onClick={handleReturn} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl m-10"> 
                 Επιστροφή στην Αρχική
             </button>
         </div>

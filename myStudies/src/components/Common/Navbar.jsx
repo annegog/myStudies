@@ -64,7 +64,7 @@ const Navbar = () => {
                             </div>
 
                             <div className="flex items-end md:justify-items-end gap-5">
-                                <button className="text-white text-center bg-blue-900 hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 shadow-xl" type="button" onClick={logout}> Αποσύνδεση </button>
+                                <button className="text-white text-center bg-blue-900 hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 shadow-md hover:shadow-xl" type="button" onClick={logout}> Αποσύνδεση </button>
                             </div>
                         </div>
                     </div>

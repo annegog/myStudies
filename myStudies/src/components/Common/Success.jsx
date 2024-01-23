@@ -8,7 +8,7 @@ const Message = ({ stringMessage, handleReturn }) => {
             <h2 className="text-2xl font-semibold leading-none text-green-500 pe-1 mt-20">
                 {stringMessage}
             </h2>
-            <button onClick={handleReturn} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl m-10"> 
+            <button onClick={handleReturn} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl m-10"> 
                 Επιστροφή στην Αρχική
             </button>
         </div>

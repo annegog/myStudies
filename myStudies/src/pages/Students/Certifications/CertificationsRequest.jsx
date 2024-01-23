@@ -62,15 +62,15 @@ const Request = () => {
                         {stepContent}
                         <div style={{ marginTop: "2rem" }} className="flex justify-center space-x-2 mt-4">
                             {currentStep === 1 ? (
-                                <button onClick={handleBack} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"> Προηγούμενο </button>
+                                <button onClick={handleBack} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Προηγούμενο </button>
                             ) : currentStep && (
-                                <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"> Προηγούμενο </button>
+                                <button onClick={goToPreviousStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Προηγούμενο </button>
                             )}
 
                             {currentStep === 3 ? (
-                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"> Αίτηση </button>
+                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Αίτηση </button>
                             ) : currentStep < 3 && (
-                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"> Επόμενο </button>
+                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Επόμενο </button>
                             )}
                         </div>
                     </div>

@@ -181,7 +181,7 @@ const Declarations = () => {
                             {currentStep > 1 && (
                                 <button
                                     onClick={goToPreviousStep}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"
                                 >
                                     {" "}
                                     Προηγούμενο{" "}
@@ -192,7 +192,7 @@ const Declarations = () => {
                             {currentStep === 3 ? (
                                 <button
                                     onClick={handleOkClick}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"
                                 >
                                     {" "}
                                     Οριστική Υποβολή{" "}
@@ -201,7 +201,7 @@ const Declarations = () => {
                                 currentStep < 3 && (
                                     <button
                                         onClick={goToNextStep}
-                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-xl"
+                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"
                                     >
                                         {" "}
                                         Επόμενο{" "}

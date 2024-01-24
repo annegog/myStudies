@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 
+const Grade = require('./Models/Grade');
 const User = require('./Models/User');
 const Course = require('./Models/Course');
 const ExamsSeason = require('./Models/Examinations');
@@ -178,7 +179,7 @@ app.get('/declarationsOpen', (req, res) => {
     }
 });
 
-app.post('/save-declaration/:userId', async (req, res) => {
+app.post('/save-declaration', async (req, res) => {
     try {
         const userId = req.params.userId;
         const { courses: courseTitles } = req.body;
@@ -313,6 +314,28 @@ app.get('/students/declared/course/:course', async (req, res) => {
 
 
 /************************************** DATA ****************************************************/
+
+// Endpoint to save grades
+app.post('/save-grades/:courseId', verifyJWTuser, async (req, res) => {
+    try {
+        const { courseId } = req.params;
+        const gradesData = req.body.grades; // Assume grades is an array of { studentId, grade }
+
+        const gradeSaves = gradesData.map((grade) =>
+            new Grade({
+                student: grade.studentId,
+                course: courseId,
+                grade: grade.grade
+            }).save()
+        );
+
+        await Promise.all(gradeSaves);
+        res.status(200).json({ message: 'Grades saved successfully' });
+    } catch (error) {
+        console.error('Error saving grades:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 // Inserting data to our database - test users and courses.
 // All Users have the same password "pass123"

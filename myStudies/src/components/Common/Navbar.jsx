@@ -12,7 +12,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const [menu, setMenu] = useState(false);
-    
+
     const { user, setUser } = useContext(UserContext);
 
     const handleChange = () => {
@@ -24,7 +24,7 @@ const Navbar = () => {
         setUser(null);
         navigate("/login");
     }
-    
+
     return (
         <nav className="bg-gray-100 items-center w-full z-30 top-0 relative">
             <div className="flex items-center justify-between p-5 px-5 md:px-32 shadow-xl">
@@ -40,7 +40,7 @@ const Navbar = () => {
                         <Link to={user ? `/${user.role}/${user._id}` : "/login"} className="font-semibold text-2xl p-1 cursor-pointer"> {" "} myStudies {" "} </Link>
 
                         <div className="text-xs leading-none text-left p-1">
-                            <h> ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ ΠΑΝΑΠΙΣΤΉΜΙΟ ΑΘΗΝΩΝ </h>
+                            <h1> ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ ΠΑΝΑΠΙΣΤΉΜΙΟ ΑΘΗΝΩΝ </h1>
                         </div>
                     </div>
                 </div>

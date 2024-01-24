@@ -40,9 +40,9 @@ const Declarations = () => {
             semesterLabel = 'Εαρινού'; // Change to Summer if within the range
         }
         if (declarationDate >= summerEnd) {
-            return `Δηλώσεις ${semesterLabel} Περιόδου ${year} - ${year + 1}`;
+            return `Δηλώσεις ${semesterLabel} Εξημήνου ${year} - ${year + 1}`;
         } else {
-            return `Δηλώσεις ${semesterLabel} Περιόδου ${year - 1} - ${year}`;
+            return `Δηλώσεις ${semesterLabel} Εξημήνου ${year - 1} - ${year}`;
         }
     };
 
@@ -52,8 +52,6 @@ const Declarations = () => {
             [declarationId]: !prevState[declarationId]
         }));
     };
-
-
 
     return (
         <div>
@@ -80,17 +78,16 @@ const Declarations = () => {
                     </li>
                 </ol>
             </nav>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="flex justify-center">
                 {declarations.map((declaration) => (
-                    <div key={declaration._id} style={{ width: '60%', textAlign: 'center', marginBottom: '10px' }}>
-                        <div onClick={() => toggleDeclaration(declaration._id)} style={{ cursor: 'pointer' }}>
-                            <span>Δηλώσεις {getSemesterLabel(declaration.data)} Εξαμήνου</span>
-                            <span>{expandedDeclarations[declaration._id] ? '▲' : '▼'}</span>
+                    <div className="flex flex-col items-center justify-center">
+                        <div onClick={() => toggleDeclaration(declaration._id)} className="text-lg bg-gray-50 rounded-xl py-3 px-5 mb-5 shadow-xl hover:shadow-2xl cursor-pointer">
+                            <span> {getSemesterLabel(declaration.data)} {expandedDeclarations[declaration._id] ? '▲' : '▼'}</span>
                         </div>
                         {expandedDeclarations[declaration._id] && (
                             <div>
                                 {declaration.courses && declaration.courses.map(course => (
-                                    <p key={course._id} style={{ color: 'green' }}>{course.title}</p> // Text color changed to green
+                                    <p key={course._id} className="flex justify-center text-green-600 cursor-pointer">{course.title}</p> // Text color changed to green
                                 ))}
                             </div>
                         )}
@@ -101,4 +98,5 @@ const Declarations = () => {
         </div>
     );
 };
+
 export default Declarations;

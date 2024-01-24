@@ -30,7 +30,7 @@ const Certifications = () => {
         <div>
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
-            <nav class="flex items-center justify-center m-6">
+            <nav class="flex flex-col items-center justify-center m-6">
                 <ol class="flex flex-row items-center">
                     <li class="flex flex-col items-center">
                         <a href={`/student/${id}`} class="inline-flex items-center text-sm text-gray-700 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-white">

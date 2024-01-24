@@ -4,7 +4,7 @@ import universityLogo from "../../assets/UniLogo.png";
 
 const Footer = () => {
     return (
-        <footer className="bg-white rounded-t-xl mt-20 py-8 shadow-2xl">
+        <footer className="bg-gray-50 rounded-t-xl mt-20 py-8 shadow-2xl">
             <div className="mx-auto max-w-screen-xl m-10">
                 <div className="md:flex md:justify-between">
                     <div>

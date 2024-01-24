@@ -9,7 +9,7 @@ import NavBarOptions from "../../../components/Common/NavBarOptions";
 const Status = () => {
     const { id } = useParams();
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar />
             <NavBarOptions userType="student" userId={id} />
             <div className="container mx-auto mt-8">

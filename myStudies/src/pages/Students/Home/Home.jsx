@@ -55,7 +55,7 @@ const MainPage = () => {
     };
 
     return (
-        <div className="bg-gray-50">
+        <div>
         <Navbar />
         <NavBarOptions userType={"student"} userId={id} />
         <div className="mt-10 px-4 lg:px-16 xl:px-32">
@@ -104,7 +104,7 @@ const MainPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 md:px-16 xl:px-32">
                 <Donut ects={user.ects} />
                 <div className="flex flex-col justify-center items-center space-y-20">
-                    <div className="p-10 bg-white rounded-lg text-center w-full shadow-md hover:shadow-xl">
+                    <div className="p-10 bg-gray-50 rounded-lg text-center w-full shadow-md hover:shadow-xl">
                         <p className="text-xl font-bold leading-none p-1 m-2"> Μέσος Όρος </p>
 
                         <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
@@ -113,7 +113,7 @@ const MainPage = () => {
                         </div>
                     </div>
 
-                    <div className="p-10 bg-white rounded-lg text-center w-full shadow-md hover:shadow-xl">
+                    <div className="p-10 bg-gray-50 rounded-lg text-center w-full shadow-md hover:shadow-xl">
                         <p className="text-xl font-bold leading-none p-1 m-2"> Περασμένα Μαθήματα </p>
                         <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
                             <div className="flex justify-between items-center pt-5"/>

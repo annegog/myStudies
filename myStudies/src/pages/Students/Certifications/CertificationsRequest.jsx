@@ -50,7 +50,7 @@ const Request = () => {
     }
 
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} /> {/* Instead of student string, giving the studentData.status */}
             <main className="main-content flex justify-center" >
@@ -104,12 +104,12 @@ const StepOne = () => {
                 Επιλέξτε το πιστοποιητικό για το οποίο θέλετε να υποβάλετε αίτηση
             </div>
 
-            <div className="bg-white shadow-xl rounded-xl w-auto pl-2 pr-2">
+            <div className="bg-gray-50 shadow-xl rounded-xl w-auto pl-2 pr-2">
                 <div className="text-center text-lg cursor-pointer font-medium p-3" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}>
                     <span> {mainSelection} {showCertificatesOptions ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesOptions && (
-                    <div className="flex flex-col rounded-xl bg-white">
+                    <div className="flex flex-col rounded-xl bg-gray-50">
                         {options.map((option, index) => (
                             <button key={index} onClick={() => handleButtonClick(option)}>
                                 {option}
@@ -139,12 +139,12 @@ const StepTwo = () => {
                 Επιλέξτε τον αριθμό των αντιτύπων για το πιστοποιητικό που έχει επιλεχθεί
             </p>
 
-            <div className="bg-white shadow-xl rounded-xl">
+            <div className="bg-gray-50 shadow-xl rounded-xl">
                 <div className="text-center text-lg cursor-pointer font-medium p-3" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}>
                     <span> {mainSelection} {showCertificatesCopies ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesCopies && (
-                    <div className="flex flex-col rounded-xl bg-white">
+                    <div className="flex flex-col rounded-xl bg-gray-50">
                         {copies.map((option, index) => (
                             <button key={index} onClick={() => handleButtonClick(option)}>
                                 {option}

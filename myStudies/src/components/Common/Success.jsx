@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Message = ({ stringMessage, handleReturn }) => {
     return (
         <div className="flex flex-col items-center">
-            <h2 className="text-2xl font-semibold text-green-500 m-32">
+            <h2 className="text-2xl font-semibold text-green-500 m-28">
                 {stringMessage}
             </h2>
             

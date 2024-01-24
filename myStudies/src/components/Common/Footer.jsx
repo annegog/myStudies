@@ -4,13 +4,13 @@ import universityLogo from "../../assets/UniLogo.png";
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-50 rounded-t-xl mt-20 py-8 shadow-2xl">
+        <footer className="bg-gray-50 rounded-t-xl mt-20 py-8 shadow-xl hover:shadow-2xl">
             <div className="mx-auto max-w-screen-xl m-10">
                 <div className="md:flex md:justify-between">
                     <div>
                         <a href="https://www.uoa.gr" className="flex items-center">
                             <img src={universityLogo} alt="Univeristy Logo" className="h-14 me-3" />
-                            <span className="text-lg font-thin"> ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ <br/> ΠΑΝΑΠΙΣΤΉΜΙΟ ΑΘΗΝΩΝ </span>
+                            <span className="text-lg font-thin"> ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ <br/> ΠΑΝΕΠΙΣΤΉΜΙΟ ΑΘΗΝΩΝ </span>
                         </a>
                     </div>
 

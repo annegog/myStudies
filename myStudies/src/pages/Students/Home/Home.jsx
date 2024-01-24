@@ -70,7 +70,7 @@ const MainPage = () => {
                 </li>
             </ol>
         </nav>
-        <div className="mt-10 px-4 lg:px-16 xl:px-32">
+        <div className="px-4 lg:px-16 xl:px-32">
             {declarationInfo.open && !declarationInfo.declaration && (
             <div className="justify-center items-center text-center">
                 <h2 className="text-xl font-bold text-red-00 mt-2">
@@ -116,7 +116,7 @@ const MainPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 md:px-16 xl:px-32">
                 <Donut ects={user.ects} />
                 <div className="flex flex-col justify-center items-center space-y-20">
-                    <div className="p-10 bg-gray-50 rounded-lg text-center w-full shadow-md hover:shadow-xl">
+                    <div className="p-10 bg-gray-50 rounded-lg text-center w-full shadow-xl hover:shadow-2xl">
                         <p className="text-xl font-bold leading-none p-1 m-2"> Μέσος Όρος </p>
 
                         <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
@@ -125,7 +125,7 @@ const MainPage = () => {
                         </div>
                     </div>
 
-                    <div className="p-10 bg-gray-50 rounded-lg text-center w-full shadow-md hover:shadow-xl">
+                    <div className="p-10 bg-gray-50 rounded-lg text-center w-full shadow-xl hover:shadow-2xl">
                         <p className="text-xl font-bold leading-none p-1 m-2"> Περασμένα Μαθήματα </p>
                         <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
                             <div className="flex justify-between items-center pt-5"/>

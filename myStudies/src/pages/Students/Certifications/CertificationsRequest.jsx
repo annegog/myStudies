@@ -83,7 +83,7 @@ const Request = () => {
                     </li>
                 </ol>
             </nav>
-            <main className="main-content flex justify-center" >
+            <div className="flex justify-center" >
                 {currentStep === 4 ? (
                     <Success userRole={"student"} action={"certification"} />
                 ) : (
@@ -105,7 +105,7 @@ const Request = () => {
                         </div>
                     </div>
                 )}
-            </main>
+            </div>
             <Footer />
         </div>
     );

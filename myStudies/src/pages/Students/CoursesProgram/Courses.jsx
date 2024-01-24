@@ -37,7 +37,7 @@ const CoursesPage = () => {
                     </li>
                 </ol>
             </nav>
-            <div className="mt-10 justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32">
+            <div className="justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32">
                 <h2 className="text-2xl font-thin justify-center text-center mb-1"> Πρόγραμμα Σπουδών </h2>
                 <Courses />
             </div>

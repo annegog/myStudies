@@ -41,9 +41,6 @@ const Status = () => {
                     </li>
                 </ol>
             </nav>
-            <div className="container mx-auto mt-8">
-                <h2 className="text-2xl font-bold mb-4"> Certification History Page </h2>
-            </div>
             <Footer />
         </div>
     );

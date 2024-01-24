@@ -4,7 +4,7 @@ const Breadcrumb = ({ currentStep, stepStrings }) => {
     const steps = Array.from({ length: stepStrings.length }, (_, index) => index + 1);
 
     return (
-        <div className="flex items-center justify-center mt-10 mb-10 space-x-5">
+        <div className="flex items-center justify-center space-x-5">
             {steps.map((step, index) => (
                 <React.Fragment key={step}>
                     <div className={`flex flex-col items-center`}>

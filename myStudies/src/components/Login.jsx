@@ -57,12 +57,12 @@ const Login = () => {
                 <img 
                     src={Academia} 
                     alt="Academia" 
-                    className="rounded-lg overflow-hidden shadow-xl"
+                    className="rounded-lg overflow-hidden shadow-xl hover:shadow-2xl"
                 />
             </div>
 
             <div className="w-full md:w-2/3 lg:w-2/5 xl:w-1/3 md:ml-4">
-                <form onSubmit={handleLogin} className="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl">
+                <form onSubmit={handleLogin} className="bg-gray-50 p-8 rounded-xl shadow-xl hover:shadow-2xl">
                     <h2 className="text-2xl font-semibold mb-4 text-center"> Σύνδεση Χρήστη </h2>
 
                     <div className="my-4">

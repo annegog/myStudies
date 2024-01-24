@@ -98,7 +98,7 @@ const Grades = () => {
                 <div className="grades-table w-full max-w-4xl">
 
                     {/* Search Bar */}
-                    <div className="flex flex-row justify-center m-5">
+                    <div className="flex flex-row justify-center">
                         <input
                             type="text"
                             className="text-black text-center bg-gray-50 rounded-3xl p-2 border border-gray-300 shadow-md hover:shadow-xl"

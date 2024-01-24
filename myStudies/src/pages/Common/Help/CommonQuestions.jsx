@@ -14,18 +14,13 @@ const CommonQuestions = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();
-    // const { user } = useContext(UserContext);
-
-    // const [username] = useState(user.username || "");
+    const { user, setUser } = useContext(UserContext);
     
     const handleBack = () => {
-        // if (username) {
-            navigate(`/student/${id}`);
-        // }
-        // navigate("/login");    
+        navigate(`/student/${id}`); 
     };
     
-    const [userRole, setUserRole] = useState("professor")
+    const [userRole, setUserRole] = useState("student")
     const [openQuestions, setOpenQuestions] = useState({});
 
     const toggleQuestion = (index) => {
@@ -150,7 +145,7 @@ const CommonQuestions = () => {
             ]
         },
     ];
-
+    
     return (
         <div>
             <Navbar/>

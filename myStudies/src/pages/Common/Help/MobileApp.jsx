@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useNavigate } from "react-router";
+import { useParams } from "react-router-dom";
 
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
@@ -8,8 +9,10 @@ import Footer from "../../../components/Common/Footer";
 const MobileApp = () => {
     const navigate = useNavigate();
 
+    const { id } = useParams();
+
     const handleBack = () => {
-        navigate("/login");
+        navigate(`/student/${id}`); 
     };
 
     const mobileInfo = [

@@ -9,7 +9,7 @@ const Recovery = () => {
     const navigate = useNavigate();
 
     const handleBack = () => {
-        navigate("/login");
+        navigate("/login"); 
     };
 
     const question = [

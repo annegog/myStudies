@@ -6,7 +6,7 @@ import Footer from "../../components/Common/Footer";
 
 const LoginPage = () => {
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar/>
             <main className="Main Login">
                 <div className="min-h-[70vh]">

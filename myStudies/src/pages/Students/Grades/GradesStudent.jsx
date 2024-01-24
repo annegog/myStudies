@@ -70,17 +70,17 @@ const Grades = () => {
     };
 
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <main className="main-content flex justify-center">
                 <div className="grades-table w-full max-w-4xl">
 
                     {/* Search Bar */}
-                    <div style={{ marginTop: "1rem" }} className="flex flex-row justify-center mt-4">
+                    <div className="flex flex-row justify-center m-5">
                         <input
                             type="text"
-                            className="text-black text-center rounded-3xl p-2 border border-gray-300 shadow-md hover:shadow-xl"
+                            className="text-black text-center bg-gray-50 rounded-3xl p-2 border border-gray-300 shadow-md hover:shadow-xl"
                             placeholder="Αναζήτηση Μαθήματος"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
@@ -106,7 +106,7 @@ const Grades = () => {
                     )}
 
                     {/* Filters Section */}
-                    <div className="bg-white rounded-xl p-3 m-5 shadow-xl">
+                    <div className="bg-gray-50 rounded-xl p-3 m-5 shadow-md hover:shadow-xl">
                         <div className="flex flex-col md:flex-row justify-between">
 
                             {/* Attempts Filter */}
@@ -116,10 +116,10 @@ const Grades = () => {
                                     <span>{showGradeFilters ? "▲" : "▼"}</span>
                                 </div>
                                 {showGradeFilters && (
-                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-white">
-                                        <button onClick={() => setFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${filter === "all" ? "bg-blue-500 text-white" : "bg-white"}`}> Όλα </button>
-                                        <button onClick={() => setFilter("passed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "passed" ? "bg-blue-500 text-white" : "bg-white"}`}> Επιτυχίες </button>
-                                        <button onClick={() => setFilter("failed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "failed" ? "bg-blue-500 text-white" : "bg-white"}`}> Αποτυχίες </button>
+                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-gray-50">
+                                        <button onClick={() => setFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${filter === "all" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Όλα </button>
+                                        <button onClick={() => setFilter("passed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "passed" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Επιτυχίες </button>
+                                        <button onClick={() => setFilter("failed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "failed" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Αποτυχίες </button>
                                     </div>
                                 )}
                             </div>
@@ -131,10 +131,10 @@ const Grades = () => {
                                     <span>{showSemesterFilters ? "▲" : "▼"}</span>
                                 </div>
                                 {showSemesterFilters && (
-                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-white">
-                                        <button onClick={() => setSemesterFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "all" ? "bg-blue-500 text-white" : "bg-white"}`}> Όλες </button>
-                                        <button onClick={() => setSemesterFilter("even")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "even" ? "bg-blue-500 text-white" : "bg-white"}`}> Εαρινού </button>
-                                        <button onClick={() => setSemesterFilter("odd")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "odd" ? "bg-blue-500 text-white" : "bg-white"}`}> Χειμερινού </button>
+                                    <div className="flex flex-col justify-center rounded-lg p-2 bg-gray-50">
+                                        <button onClick={() => setSemesterFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "all" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Όλες </button>
+                                        <button onClick={() => setSemesterFilter("even")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "even" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Εαρινού </button>
+                                        <button onClick={() => setSemesterFilter("odd")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "odd" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Χειμερινού </button>
                                     </div>
                                 )}
                             </div>
@@ -157,7 +157,7 @@ const Grades = () => {
                                     </thead>
                                     <tbody>
                                         {filterCourses(courses).map(([course, grade]) => (
-                                            <tr key={course} className="bg-white border-b">
+                                            <tr key={course} className="bg-gray-50 border-b">
                                                 <td scope="row" className={`py-4 px-6 font-medium whitespace-nowrap ${getGradeColor(grade)}`}>
                                                     {course}
                                                 </td>

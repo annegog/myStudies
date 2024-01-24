@@ -17,7 +17,7 @@ const Donut = ({ ects }) => {
 
     return (
         <div className="flex justify-center items-center px-20 p-3 m-2">
-            <div className="w-full bg-white rounded-lg shadow-md hover:shadow-xl p-6 m-6">
+            <div className="w-full bg-gray-50 rounded-lg shadow-md hover:shadow-xl p-6 m-6">
                 <div className="flex justify-between mb-6">
                     <div className="flex items-center justify-center">
                         <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

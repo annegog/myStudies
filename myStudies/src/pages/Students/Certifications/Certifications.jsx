@@ -27,7 +27,7 @@ const Certifications = () => {
     };
 
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} /> {/* Instead of student string, giving the studentData.status */}
             <div className="mt-16 justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32 mb-36">

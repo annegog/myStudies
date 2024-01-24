@@ -52,12 +52,12 @@ const ProfilePage = () => {
     };
 
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar />
             <NavBarOptions userType={`${user.role}`} userId={id} />
             <div className="mt-4 px-4 lg:px-16 w-full">
 
-                <div className="bg-white rounded-3xl p-4 m-16 flex flex-wrap justify-between items-center shadow-2xl">
+                <div className="bg-gray-50 rounded-3xl p-4 m-16 flex flex-wrap justify-between items-center shadow-2xl">
                     <div className="object-contain object-center w-[120px] overflow-hidden shrink-0 max-w-full mt-2 rounded-[50%] ml-8">
                         <svg fill="none" viewBox="0 0 24 24" stroke-width="0.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
@@ -81,7 +81,7 @@ const ProfilePage = () => {
                         <div className="text-black text-xl cursor-pointer font-medium self-stretch shrink basis-auto" onClick={() => setShowInfoFilters(!showInfoFilters)}>
                             <span> {showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
-                                <div className="bg-white grow m-2 justify-center p-4 rounded-3xl max-md:px-5 max-md:pr-5 shadow-2xl">
+                                <div className="bg-gray-50 grow m-2 justify-center p-4 rounded-3xl max-md:px-5 max-md:pr-5 shadow-2xl">
                                     <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2 ">
                                         <p className="mt-2 mb-2">Όνομα Πατέρα: {userData.father}</p>
                                         <p className="mb-2">Όνομα Μητέρας: {userData.mother}</p>
@@ -103,7 +103,7 @@ const ProfilePage = () => {
                         <div className="text-black text-xl cursor-pointer font-medium self-stretch shrink basis-auto" onClick={() => setShowMoreInfoFilters(!showMoreInfoFilters)}>
                             <span> {showMoreInfoFilters ? "▲" : "▼"} Πληροφορίες Επικοινωνίας </span>
                             {showMoreInfoFilters && (
-                                <div className="bg-white grow m-2 justify-center p-4 rounded-3xl max-md:px-5 max-md:pr-5 shadow-2xl">
+                                <div className="bg-gray-50 grow m-2 justify-center p-4 rounded-3xl max-md:px-5 max-md:pr-5 shadow-2xl">
                                     <div className="justify-start text-black text-xl font-light whitespace-nowrap p-2">
                                         <p className="mt-2 mb-2"> Μόνιμη Διεύθυνση Κατοικίας: {userData.home === "" ? "-" : userData.home} </p>
                                         <p className="mt-2 mb-2"> Μόνιμη Πόλη Κατοικίας: {userData.city === "" ? "-" : userData.city} </p>

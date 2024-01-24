@@ -158,7 +158,7 @@ const Declarations = () => {
     };
 
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <main className="main-content flex justify-center">
@@ -525,7 +525,7 @@ const StepThree = ({ selectedSubjects }) => {
 
     return (
         <div>
-            <div className={`text-center p-4 m-10 text-lg bg-gray-50 ${mixedSemesters || totalSubjects > 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
+            <div className={`text-center p-4 m-20 text-lg bg-transparent ${mixedSemesters || totalSubjects > 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
                 {message}
             </div>
             {/* If no error, show the selected subjects */}

@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body{
-    background-color: #f1e9da;
     color: #000000;
+    background-color: #f1e9da;
     font-family: 'Inter', sans-serif;
 }

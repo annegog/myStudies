@@ -130,7 +130,7 @@ app.get('/declaration-season/:userId', async (req, res) => {
         const latestDeclaration = await Declaration.findOne({ user: userId })
             .sort({ data: -1 })
             .populate('exam');
-        
+
         // Find the ongoing exam season
         const currentDate = new Date();
         const ongoingExamSeason = await ExamsSeason.findOne({
@@ -143,7 +143,7 @@ app.get('/declaration-season/:userId', async (req, res) => {
         if (!latestDeclaration) {
             // No declaration found
             return res.json({
-                declaration: false, 
+                declaration: false,
                 open: isExamSeasonOngoing,
                 end_date: ongoingExamSeason ? ongoingExamSeason.endData : null
             });
@@ -182,7 +182,7 @@ app.post('/save-declaration/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
         const { courses: courseTitles } = req.body;
-        
+
 
         // Find the latest declaration season for the user
         const latestDeclaration = await Declaration.findOne({ user: userId }).sort({ data: -1 });
@@ -206,7 +206,7 @@ app.post('/save-declaration/:userId', async (req, res) => {
         // Fetch course IDs based on the received course titles
         const courseObjects = await Course.find({ title: { $in: courseTitles } });
         const courseObjectIds = courseObjects.map(course => course._id);
- 
+
         const declaration = new Declaration({
             courses: courseObjectIds,
             exam: examinationSemester._id,
@@ -223,6 +223,21 @@ app.post('/save-declaration/:userId', async (req, res) => {
     }
 });
 
+/*************************** History *******************************/
+
+// Getting all the declarations user has made from the database
+
+app.get('/api/declarations/:userId', async (req, res) => {
+    console.log('Route hit. User ID:', req.params.userId);
+    try {
+        const { userId } = req.params;
+        const declarations = await Declaration.find({ user: userId }).populate('courses');
+        res.json(declarations);
+    } catch (error) {
+        console.error('Error fetching declarations:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 /*************************** Courses *******************************/
 
@@ -278,10 +293,10 @@ app.get('/students/declared/course/:course', async (req, res) => {
         if (!latestExam) {
             console.log(`No upcoming exams for the academic years ${academicYear} or ${academicYear2}`);
         }
-        
+
         // Find student declarations for the course and latest exam
         const studentsDeclarations = await Declaration.find({ courses: course._id, exam: latestExam._id })
-        .populate('user');
+            .populate('user');
 
         if (studentsDeclarations.length > 0) {
             const students = studentsDeclarations.map(declaration => declaration.user);
@@ -289,7 +304,7 @@ app.get('/students/declared/course/:course', async (req, res) => {
         } else {
             console.log(`No student declarations found for the course ${course.title}`);
         }
-        
+
     } catch (error) {
         console.error('Error fetching course:', error);
         res.status(500).json({ error: 'Internal Server Error' });

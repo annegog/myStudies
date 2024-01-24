@@ -17,6 +17,7 @@ import StudentHome from "./pages/Students/Home/Home";
 import Courses from "./pages/Students/CoursesProgram/Courses";
 import GradesStudent from "./pages/Students/Grades/GradesStudent";
 import Declarations from "./pages/Students/Declarations/Declarations";
+import DeclarationsHistory from "./pages/Students/HistoryDeclarations/History";
 import Certifications from "./pages/Students/Certifications/Certifications";
 import CertificationsStatus from "./pages/Students/Certifications/CertificationsStatus";
 import CertificationsRequest from "./pages/Students/Certifications/CertificationsRequest";
@@ -31,41 +32,42 @@ axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
 
 const App = () => {
-  return (
-    <UserContextProvider>
-        <Routes>
-            {/* General */}
+    return (
+        <UserContextProvider>
+            <Routes>
+                {/* General */}
 
-            <Route path="/profile/:id" element={<Profile />} />
-            
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/recovery" element={<Recovery />} />
-            <Route path="/mobile-app" element={<MobileApp />} />
-            <Route path="/admin-contact" element={<ContactAdmin />} />
-            <Route path="/connection-help" element={<ConnectHelp />} />
-            <Route path="/common-questions" element={<CommonQuestions />} />
+                <Route path="/profile/:id" element={<Profile />} />
 
-            {/* Professors */}
+                <Route path="/" element={<Login />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/recovery" element={<Recovery />} />
+                <Route path="/mobile-app" element={<MobileApp />} />
+                <Route path="/admin-contact" element={<ContactAdmin />} />
+                <Route path="/connection-help" element={<ConnectHelp />} />
+                <Route path="/common-questions" element={<CommonQuestions />} />
 
-            <Route path="/professor/:id" element={<ProfessorHome />} />
-            <Route path="/professor/grades/:id" element={<GradesProfessor />} />
-            <Route path="/professor/grades-show/:id/:course" element={<GradesShow />} />
-            <Route path="/professor/grades-create/:id/:course" element={<GradesCreate />} />
+                {/* Professors */}
 
-            {/* Students */}
+                <Route path="/professor/:id" element={<ProfessorHome />} />
+                <Route path="/professor/grades/:id" element={<GradesProfessor />} />
+                <Route path="/professor/grades-show/:id/:course" element={<GradesShow />} />
+                <Route path="/professor/grades-create/:id/:course" element={<GradesCreate />} />
 
-            <Route path="/student/:id" element={<StudentHome />} />
-            <Route path="/student/courses/:id" element={<Courses />} />
-            <Route path="/student/grades/:id" element={<GradesStudent />} />
-            <Route path="/student/declarations/:id" element={<Declarations />} />
-            <Route path="/student/certifications/:id" element={<Certifications />} />
-            <Route path="/student/certifications/status/:id" element={<CertificationsStatus />} />
-            <Route path="/student/certifications/request/:id" element={<CertificationsRequest />} />
-            <Route path="/student/certifications/history/:id" element={<CertificationsHistory />} />
+                {/* Students */}
 
-        </Routes>
-    </UserContextProvider>
+                <Route path="/student/:id" element={<StudentHome />} />
+                <Route path="/student/courses/:id" element={<Courses />} />
+                <Route path="/student/grades/:id" element={<GradesStudent />} />
+                <Route path="/student/declarations/:id" element={<Declarations />} />
+                <Route path="/student/declarations_history/:id" element={<DeclarationsHistory />} />
+                <Route path="/student/certifications/:id" element={<Certifications />} />
+                <Route path="/student/certifications/status/:id" element={<CertificationsStatus />} />
+                <Route path="/student/certifications/request/:id" element={<CertificationsRequest />} />
+                <Route path="/student/certifications/history/:id" element={<CertificationsHistory />} />
+
+            </Routes>
+        </UserContextProvider>
     );
 };
 

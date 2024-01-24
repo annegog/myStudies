@@ -5,7 +5,7 @@ const Options = ({ userType, userId }) => {
         { path: `/student/grades/${userId}`, label: "ΒΑΘΜΟΛΟΓΙΟ" },
         { path: `/student/courses/${userId}`, label: "ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ" },
         { path: `/student/certifications/${userId}`, label: "ΠΙΣΤΟΠΟΙΗΤΙΚΑ" },
-        { path: `/student/declarations/${userId}`, label: "ΙΣΤΟΡΙΚΟ ΔΗΛΩΣΕΩΝ ΜΑΘΗΜΑΤΩΝ" },
+        { path: `/student/declarations_history/${userId}`, label: "ΙΣΤΟΡΙΚΟ ΔΗΛΩΣΕΩΝ ΜΑΘΗΜΑΤΩΝ" },
     ]
 
     const teacherOptions = [

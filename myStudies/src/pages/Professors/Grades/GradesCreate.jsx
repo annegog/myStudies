@@ -122,7 +122,7 @@ const Create = () => {
                 ) : (
                     <div className="w-full max-w-screen-2xl " >
                         <h1 className="text-center text-3xl font-thin mt-8 mb-4"> Λίστα Μαθητών</h1>
-                        <div className="bg-gray-300 rounded-3xl shadow-lg px-10 py-8 mt-4 mb-10 m-20">
+                        <div className="bg-gray-200 rounded-3xl shadow-lg px-10 py-8 mt-4 mb-10 m-20">
                             <div className="flex flex-row justify-center items-stretch space-x-10">
                                 {columns.map((column, index) => (
                                     <Column

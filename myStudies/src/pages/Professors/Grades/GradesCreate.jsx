@@ -18,7 +18,7 @@ const Column = ({ label, dataKey, values, onUpdateGrade }) => (
               <input
                 value={data[dataKey] || ''}
                 onChange={(e) => onUpdateGrade(data, e.target.value)}
-                className="text-black text-xl text-center rounded-3xl max-md:max-w-full"
+                className="text-black text-xl text-center shadow-md hover:shadow-xl rounded-3xl w-24"
               />
             ) : (
               <p className="text-black text-xl text-center max-md:max-w-full ">
@@ -85,7 +85,7 @@ const Create = () => {
     };
 
     return (
-        <div className="min-h-screen">
+        <div>
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
                 <nav class="flex mt-2 justify-center" aria-label="Breadcrumb">
@@ -121,8 +121,8 @@ const Create = () => {
                     <Success userRole={"professor"} action={"grades"} userId={id} />
                 ) : (
                     <div className="w-full max-w-screen-2xl " >
-                        <h1 className="text-center text-3xl font-thin mt-8 mb-4"> Λίστα Μαθητών</h1>
-                        <div className="bg-gray-300 rounded-3xl shadow-lg px-10 py-8 mt-4 mb-10 m-20">
+                        <h1 className="text-center text-3xl font-thin mt-8 mb-4"> Λίστα Μαθητών </h1>
+                        <div className="bg-gray-50 shadow-md hover:shadow-xl rounded-3xl shadow-lg px-10 py-8 mt-4 mb-10 m-20">
                             <div className="flex flex-row justify-center items-stretch space-x-10">
                                 {columns.map((column, index) => (
                                     <Column
@@ -137,8 +137,8 @@ const Create = () => {
 
                             <div className="flex justify-center mt-8">
                                 <div className="Options">
-                                    <button className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
-                                    <button onClick={handleFinalization} className="bg-green-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
+                                    <button className="bg-blue-500 shadow-md hover:shadow-xl text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
+                                    <button onClick={handleFinalization} className="bg-green-500 shadow-md hover:shadow-xl text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
                                 </div>
                             </div>
                         </div>

@@ -43,12 +43,12 @@ const Show = () => {
     };
 
     return (
-        <div className="bg-gray-50">
+        <div>
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
             <main className="flex justify-center items-center h-full">
                 <div className="bg-white w-full max-w-screen-2xl px-10 py-8 mt-10 mb-10 m-20 rounded-3xl shadow-2xl">
-                    <h1 className="text-center text-4xl font-thin mb-10"> Λίστα Μαθημάτων </h1>
+                    <h1 className="text-center text-4xl font-thin m-10 underline"> Λίστα Μαθητών </h1>
                     <div className="flex flex-row justify-center items-stretch space-x-10">
                         {columns.map((column) => (
                             <div key={column.label} className="text-center text-xl font-medium mr-10 mt-4">

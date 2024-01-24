@@ -106,7 +106,7 @@ const Grades = () => {
                     )}
 
                     {/* Filters Section */}
-                    <div className="bg-gray-50 rounded-xl p-3 m-5 shadow-xl">
+                    <div className="bg-gray-50 rounded-xl p-3 m-5 shadow-md hover:shadow-xl">
                         <div className="flex flex-col md:flex-row justify-between">
 
                             {/* Attempts Filter */}

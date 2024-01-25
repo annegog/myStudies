@@ -53,15 +53,14 @@ React, Vite, Tailwind, Express, MongoDB
         - Home : Κεντρική καθηγητών
             - Home.jsx : Κεντρική σελίδα που παρέχει τα μαθήματα που έχει αναλάβει ένας καθηγητής στο εξάμηνο
 
+----------------
 ### How to run the app
+----------------
 Frontend :
 
-```
-cd myStudies 
-npm install
-npm run dev
-
-```
+    cd myStudies 
+    npm install
+    npm run dev
 
 Backend:
 

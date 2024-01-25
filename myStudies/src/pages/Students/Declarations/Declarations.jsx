@@ -1,24 +1,23 @@
 import React from "react";
 import axios from "axios";
 
+import { Checkbox } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../../components/UserContext";
 
-import { useParams } from "react-router-dom"; // Import useParams
-import Breadcrumb from "../../../components/Tools/Breadcrumb";
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import Success from "../../../components/Common/Success";
+import Breadcrumb from "../../../components/Tools/Breadcrumb";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
-import { Checkbox } from "@mui/material";
-import { UserContext } from "../../../components/UserContext";
 
 const Declarations = () => {
-    const { id } = useParams();                 // Use useParams to access the id
+    const { id } = useParams();
     const { user } = useContext(UserContext);
 
-    console.log("Received ID in Grades:", id);  // Check the received ID
+    console.log("Received ID in Grades:", id);
 
-    // State for controlling which step the user is on
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedSubjects, setSelectedSubjects] = useState([]);
     const [organizedCourses, setOrganizedCourses] = useState({});
@@ -69,6 +68,7 @@ const Declarations = () => {
                 organizedData[semester].directionB.push(course);
             }
         });
+        
         return organizedData;
     };
 

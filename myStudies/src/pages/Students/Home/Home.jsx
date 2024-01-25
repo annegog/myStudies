@@ -4,6 +4,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import GPA from "../../../components/Tools/GPA";
 import Donut from "../../../components/Tools/Donut";
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
@@ -16,16 +17,9 @@ const MainPage = () => {
 
     const { id } = useParams();
     const { user } = useContext(UserContext);
+    const [studentGPA, setStudentGPA] = useState(0);
     const [declarationInfo, setDeclarationInfo] = useState({ open: false, end_date: "", declaration: false, last_decl: "" });
     
-    const Declare = () => {
-        navigate(`/student/declarations/${id}`);
-    };
-
-    const Modification = () => {
-        navigate(`/student/declarations/${id}`);
-    };
-
     useEffect(() => {
         const fetchDeclarationStatus = async () => {
         try {
@@ -36,15 +30,28 @@ const MainPage = () => {
         } catch (error) {
             console.error("Error fetching declaration status:", error);
         }
-        };
+    };
 
         fetchDeclarationStatus();
     }, [user]);
 
+    useEffect(() => {
+        const calculatedGPA = GPA(user.s_courses);
+        setGPA(calculatedGPA);
+    }, [user.courses]);
+    
     const formatDate = (dateString) => {
         const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
         const date = new Date(dateString);
         return date.toLocaleDateString('el-GR', options);
+    };
+    
+    const Declare = () => {
+        navigate(`/student/declarations/${id}`);
+    };
+
+    const Modification = () => {
+        navigate(`/student/declarations/${id}`);
     };
 
     return (
@@ -82,20 +89,14 @@ const MainPage = () => {
 
             {declarationInfo.open && declarationInfo.declaration && (
                 <div className="text-center justify-center items-center">
-                    <h2 className="text-xl font-bold leading-none text-green-500"> Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να γίνει τροποποίηση της. </h2>
-
-                    <h2 className="text-xl font-bold text-red-800 mt-2">
-                    Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση.
-                    </h2>
+                    <h2 className="text-xl font-bold text-green-500"> Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να γίνει τροποποίηση της. </h2>
+                    <h2 className="text-xl font-bold text-red-800"> Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση. </h2>
 
                     <div className="mt-3 md:justify-items-center">
-                    <button
-                        type="button"
-                        className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-md hover:shadow-2xl"
-                        // onClick={Modification}
-                    >
-                        Τροποποίηση Δήλωσης Μαθημάτων
-                    </button>
+                        <button type="button" className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-md hover:shadow-2xl"
+                            onClick={Modification}
+                        > Τροποποίηση Δήλωσης Μαθημάτων
+                        </button>
                     </div>
                 </div>
             )}
@@ -110,7 +111,7 @@ const MainPage = () => {
 
                         <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
                             <div className="flex justify-between items-center pt-5"/>
-                            <p className="text-lg"> 6.48 </p>
+                            <p className="text-lg"> {studentGPA.toFixed(2)} </p>
                         </div>
                     </div>
 

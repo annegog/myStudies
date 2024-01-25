@@ -29,11 +29,11 @@ const Path = () => {
 
 const Info = ({ infoString, infoDetails }) => {
     return (
-        <div className="text-center bg-gray-50 rounded-lg w-full p-10 shadow-xl hover:shadow-2xl">
+        <div className="text-center bg-gray-50 rounded-2xl w-full p-10 shadow-xl hover:shadow-2xl">
             <p className="text-xl font-bold m-2"> {infoString} </p>
             <div className="grid grid-cols-1 border-gray-200 border-t">
                 <div className="flex justify-between items-center pt-5"/>
-                <p className="text-lg"> {infoDetails} </p>
+                <p className="text-4xl font-light"> {infoDetails} </p>
             </div>
         </div>
     );

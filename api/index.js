@@ -312,9 +312,6 @@ app.get('/students/declared/course/:course', async (req, res) => {
     }
 });
 
-
-/************************************** DATA ****************************************************/
-
 // Endpoint to save grades
 app.post('/save-grades/:courseId', verifyJWTuser, async (req, res) => {
     try {
@@ -336,6 +333,8 @@ app.post('/save-grades/:courseId', verifyJWTuser, async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+/************************************** DATA ****************************************************/
 
 // Inserting data to our database - test users and courses.
 // All Users have the same password "pass123"

@@ -25,7 +25,7 @@ const MainPage = () => {
     const navigate = useNavigate();
 
     const Declare = () => {
-        navigate('/student/declarations/${id}');
+        navigate(`/student/declarations/${id}`);
     };
 
     // const Modification = () => {

@@ -45,15 +45,16 @@ const Main = () => {
                     </li>
                 </ol>
             </nav>
-            <div className="justify-center items-center md:justify-items-center px-6 lg:px-16 xl:px-32">
-                <h2 className="text-center text-3xl font-thin justify-center"> Τα μαθήματα μου </h2>
+            
+            <h2 className="text-center text-3xl font-thin"> Τα μαθήματα μου </h2>
+            <div div className="flex flex-col justify-center items-center p-2 rounded-lg mt-8">
                 {courses.map(lesson => (
-                    <div key={lesson._id} className="bg-gray-50 max-w-lg m-8 p-2 pl-5 rounded-xl shadow-md hover:shadow-2xl">
-                        <button className="flex flex-row text-lg cursor-pointer" onClick={() => handleClick()}>
+                    <div key={lesson._id}>
+                        <button className="flex w-96 text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl" onClick={() => handleClick()}>
                             <svg fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                             </svg>
-                            <p className="pl-3"> {lesson.title} </p>
+                            <p className="flex flex-col pl-5"> {lesson.title} </p>
                         </button>
                     </div>
                 ))}

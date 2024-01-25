@@ -48,19 +48,11 @@ const Navbar = () => {
                     <div className="hidden md:justify-items-end md:flex gap-5 font-medium p-1 text-center my-auto text-lg flex-col items-stretch w-[38%] ml-5 max-md:w-full max-md:ml-0">
                         <div className="flex items-stretch justify-between gap-5 my-auto max-md:max-w-full max-md:flex-wrap max-md:mt-10">
                             <div className="text-center text-lg font-medium my-auto">
-                                {user.role === "student" ? (
-                                    <Link to={`/student/${user._id}`} className="hover:text-[#3f6591] transition-all cursor-pointer" > Αρχική Σελίδα </Link>
-                                ) : user.role === "professor" && (
-                                    <Link to={`/professor/${user._id}`} className="hover:text-[#3f6591] transition-all cursor-pointer"> Αρχική Σελίδα </Link>
-                                )}
+                                <Link to={`/${user.role}/${user._id}`} className="hover:text-[#3f6591] transition-all cursor-pointer"> Αρχική Σελίδα </Link>
                             </div>
 
                             <div className="text-center text-lg font-medium my-auto">
-                                {user.role === "student" ? (
-                                    <Link to={`/profile/${user._id}`} className="hover:text-[#3f6591] transition-all cursor-pointer"> {user.username} </Link>
-                                ) : user.role === "professor" && (
-                                    <Link to={`/profile/${user._id}`} className="hover:text-[#3f6591] transition-all cursor-pointer"> {user.username} </Link>
-                                )}
+                                <Link to={`/profile/${user._id}`} className="hover:text-[#3f6591] transition-all cursor-pointer"> {user.username} </Link>
                             </div>
 
                             <div className="flex items-end md:justify-items-end gap-5">

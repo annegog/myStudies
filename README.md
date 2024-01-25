@@ -57,12 +57,10 @@ React, Vite, Tailwind, Express, MongoDB
 ### How to run the app
 ----------------
 Frontend :
-
     cd myStudies 
     npm install
     npm run dev
 
 Backend:
-
     cd api
     node index.js

@@ -57,7 +57,7 @@ const Home = () => {
                     <h2 className="text-center text-3xl font-thin"> Τα μαθήματα μου </h2>
                 </div>
 
-                <div div className="flex flex-col justify-center items-center p-2 rounded-lg mt-8">
+                <div div className="flex flex-col justify-center items-center p-2 mt-8">
                     {courses.map(lesson => (
                         <div key={lesson._id}>
                             <button className="flex w-96 text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl" onClick={() => handleClick()}>

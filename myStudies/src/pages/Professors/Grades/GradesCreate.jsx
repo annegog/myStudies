@@ -2,7 +2,7 @@ import React from "react";
 import axios from 'axios';
 
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
@@ -66,12 +66,18 @@ const Column = ({ label, dataKey, values, onUpdateGrade }) => (
 );
 
 const Create = () => {
-    const navigate = useNavigate();
-
     const { id, course } = useParams();
     const [grades, setGrades] = useState([]);
+    const [options, setOptions] = useState("");
     const [students, setStudents] = useState(null);
     const [successMessage, setSuccessMessage] = useState(0);
+
+    const columns = [
+        { label: 'A.M.', dataKey: 'studentId' },
+        { label: 'Ονοματεπώνυμο', dataKey: 'name' },
+        { label: 'Εξάμηνο Φοίτησης', dataKey: 'semester' },
+        { label: 'Βαθμός', dataKey: 'grade' },
+    ];
 
     useEffect(() => {
         const fetchStudents = async () => {
@@ -96,13 +102,6 @@ const Create = () => {
         fetchStudents();
     }, [course]);
 
-    const columns = [
-        { label: 'A.M.', dataKey: 'studentId' },
-        { label: 'Ονοματεπώνυμο', dataKey: 'name' },
-        { label: 'Εξάμηνο Φοίτησης', dataKey: 'semester' },
-        { label: 'Βαθμός', dataKey: 'grade' },
-    ];
-
     const onUpdateGrade = (student, value) => {
         const newGrades = [...grades];
         const studentIndex = newGrades.findIndex(item => item.studentId === student.studentId);
@@ -113,7 +112,7 @@ const Create = () => {
         }
     };
 
-    const handleFinalization = async () => {
+    const handleFinalization = () => {
         setSuccessMessage(successMessage + 1);
     }
 
@@ -124,31 +123,31 @@ const Create = () => {
         <Path id={id} />
         <div className="flex justify-center items-center h-full">
             {successMessage > 0 ? (
-                <Success userRole={"professor"} action={"grades"} userId={id} />
+                <Success userRole={"professor"} action={options === "final" ? "final" : "temporary"} userId={id} />
             ) : (
-            <div className="w-full max-w-screen-2xl " >
-                <h1 className="text-center text-3xl font-thin mt-8 mb-4"> Λίστα Μαθητών </h1>
-                <div className="bg-gray-50 shadow-md hover:shadow-xl rounded-3xl px-10 py-8 mt-4 mb-10 m-20">
-                    <div className="flex flex-row justify-center items-stretch space-x-10">
-                        {columns.map((column, index) => (
-                            <Column
-                                key={index}
-                                label={column.label}
-                                dataKey={column.dataKey}
-                                values={grades}
-                                onUpdateGrade={onUpdateGrade}
-                            />
-                        ))}
-                    </div>
+                <div className="w-full max-w-screen-2xl " >
+                    <h1 className="text-center text-3xl font-thin mt-8 mb-4"> Λίστα Μαθητών </h1>
+                    <div className="bg-gray-50 shadow-md hover:shadow-xl rounded-3xl px-10 py-8 mt-4 mb-10 m-20">
+                        <div className="flex flex-row justify-center items-stretch space-x-10">
+                            {columns.map((column, index) => (
+                                <Column
+                                    key={index}
+                                    label={column.label}
+                                    dataKey={column.dataKey}
+                                    values={grades}
+                                    onUpdateGrade={onUpdateGrade}
+                                />
+                            ))}
+                        </div>
 
-                    <div className="flex justify-center mt-8">
-                        <div className="Options">
-                            <button className="bg-blue-500 shadow-md hover:shadow-xl text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
-                            <button onClick={handleFinalization} className="bg-green-500 shadow-md hover:shadow-xl text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
+                        <div className="flex justify-center mt-8">
+                            <div className="Options">
+                                <button onClick={() => {handleFinalization(); setOptions("temporary")}} className="bg-blue-500 shadow-md hover:shadow-xl text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
+                                <button onClick={() => {handleFinalization(); setOptions("final")}} className="bg-green-500 shadow-md hover:shadow-xl text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             )}
         </div>
         <Footer />

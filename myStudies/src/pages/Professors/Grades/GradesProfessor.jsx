@@ -74,7 +74,7 @@ const Grades = () => {
             <div className="justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32">
                 <h2 className="text-3xl font-thin justify-center text-center mb-1"> Τα μαθήματα μου </h2>
                 {courses.map(course => (
-                    <div className="bg-gray-50 shadow-md hover:shadow-xl p-5 rounded-lg mt-10" key={course.id}>
+                    <div className="bg-gray-50 shadow-md hover:shadow-xl p-5 rounded-2xl mt-10" key={course.id}>
                         <div className="flex flex-row text-left w-full text-lg cursor-pointer focus:outline-none" >
                             <svg fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />

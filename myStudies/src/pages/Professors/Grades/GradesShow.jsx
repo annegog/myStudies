@@ -45,7 +45,7 @@ const Path = ({ id }) => {
 
 const Show = () => {
     const navigate = useNavigate();
-    
+
     const { id } = useParams();
 
     const [grades] = useState([
@@ -102,7 +102,7 @@ const Show = () => {
                     </div>
                     <div className="flex justify-center mt-8">
                         <div className="Options">
-                            <button onClick={handleFinalization} className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600 shadow-xl"> Τέλος </button>
+                            <button onClick={handleFinalization} className="bg-blue-500 text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600 shadow-md hover:shadow-xl"> Τέλος </button>
                         </div>
                     </div>
                 </div>

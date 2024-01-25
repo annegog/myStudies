@@ -3,21 +3,18 @@ import axios from "axios";
 
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../../../components/UserContext";
 
-import GPA from "../../../components/Tools/GPA";
 import Donut from "../../../components/Tools/Donut";
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
-
-import { UserContext } from "../../../components/UserContext";
 
 const MainPage = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();
     const { user } = useContext(UserContext);
-    const [studentGPA, setStudentGPA] = useState(0);
     const [declarationInfo, setDeclarationInfo] = useState({ open: false, end_date: "", declaration: false, last_decl: "" });
     
     useEffect(() => {
@@ -30,16 +27,11 @@ const MainPage = () => {
         } catch (error) {
             console.error("Error fetching declaration status:", error);
         }
-    };
+        };
 
         fetchDeclarationStatus();
     }, [user]);
 
-    useEffect(() => {
-        const calculatedGPA = GPA(user.s_courses);
-        setGPA(calculatedGPA);
-    }, [user.courses]);
-    
     const formatDate = (dateString) => {
         const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
         const date = new Date(dateString);
@@ -111,7 +103,7 @@ const MainPage = () => {
 
                         <div className="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
                             <div className="flex justify-between items-center pt-5"/>
-                            <p className="text-lg"> {studentGPA.toFixed(2)} </p>
+                            <p className="text-lg"> 6.48 </p>
                         </div>
                     </div>
 

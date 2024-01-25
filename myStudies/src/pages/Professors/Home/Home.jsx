@@ -5,29 +5,29 @@ import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
-const Main = () => {
-    const { id } = useParams();
+const Home = () => {
     const navigate = useNavigate();
+
+    const { id } = useParams();
     const [courses, setCourses] = useState([]);
 
-    const handleClick = () => {
-        navigate(`/professor/grades/${id}`);
-    };
-
     useEffect(() => {
-        // Fetch courses data
         const fetchCourses = async () => {
             try {
                 const response = await axios.get(`/courses/professor/${id}`);
                 const coursesData = await response.data;
                 setCourses(coursesData);
             } catch (error) {
-                console.error('Error fetching courses:', error);
+                console.error("Error fetching courses:", error);
             }
         };            
 
         fetchCourses();
     }, [id]);
+
+    const handleClick = () => {
+        navigate(`/professor/grades/${id}`);
+    };
 
     return (
         <div>
@@ -46,22 +46,27 @@ const Main = () => {
                 </ol>
             </nav>
             
-            <h2 className="text-center text-3xl font-thin"> Τα μαθήματα μου </h2>
-            <div div className="flex flex-col justify-center items-center p-2 rounded-lg mt-8">
-                {courses.map(lesson => (
-                    <div key={lesson._id}>
-                        <button className="flex w-96 text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl" onClick={() => handleClick()}>
-                            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            </svg>
-                            <p className="flex flex-col pl-5"> {lesson.title} </p>
-                        </button>
-                    </div>
-                ))}
+            <div className="px-4 lg:px-16 xl:px-32">
+                <div className="justify-center items-center text-center">
+                    <h2 className="text-center text-3xl font-thin"> Τα μαθήματα μου </h2>
+                </div>
+
+                <div div className="flex flex-col justify-center items-center p-2 rounded-lg mt-8">
+                    {courses.map(lesson => (
+                        <div key={lesson._id}>
+                            <button className="flex w-96 text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl" onClick={() => handleClick()}>
+                                <svg fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                </svg>
+                                <p className="flex flex-col pl-5"> {lesson.title} </p>
+                            </button>
+                        </div>
+                    ))}
+                </div>
             </div>
             <Footer />
         </div>
     );
 };
 
-export default Main;
+export default Home;

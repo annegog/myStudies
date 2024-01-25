@@ -51,7 +51,6 @@ const Home = () => {
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
             <Path />
-            
             <div className="flex flex-wrap justify-center items-center p-2 rounded-lg mt-8">
                 {courses.map((lesson) => (
                     <div key={lesson._id} className="m-2">

@@ -52,23 +52,24 @@ const Home = () => {
             <NavBarOptions userType={"professor"} userId={id} />
             <Path />
             
-            <div className="px-4 lg:px-16 xl:px-32">
-                <div className="justify-center items-center text-center">
-                    <h2 className="text-center text-3xl font-thin"> Τα μαθήματα μου </h2>
-                </div>
-
-                <div div className="flex flex-col justify-center items-center p-2 mt-8">
-                    {courses.map(lesson => (
-                        <div key={lesson._id}>
-                            <button className="flex w-96 text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl" onClick={() => handleClick()}>
+            <div className="flex flex-wrap justify-center items-center p-2 rounded-lg mt-8">
+                {courses.map((lesson) => (
+                    <div key={lesson._id} className="m-2">
+                        <button className="flex flex-col w-38 h-32 text-lg py-2 focus:outline-none bg-gray-100 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl" onClick={() => handleClick()}>
+                            <div className="mb-2">
                                 <svg fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                 </svg>
-                                <p className="flex flex-col pl-5"> {lesson.title} </p>
-                            </button>
-                        </div>
-                    ))}
-                </div>
+                            </div>
+                            <div className="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="0.8" stroke="currentColor" className="w-[4rem] h-[4rem]">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                </svg>
+                                <p className="text-4xl font-thin ml-4"> {lesson.title} </p>
+                            </div>
+                        </button>
+                    </div>
+                ))}
             </div>
             <Footer />
         </div>

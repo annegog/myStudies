@@ -22,7 +22,7 @@ const Info = ({ infoString, infoDetails }) => {
     );
 };
 
-const MainPage = () => {
+const Home = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();
@@ -118,4 +118,4 @@ const MainPage = () => {
     );
 };
 
-export default MainPage;
+export default Home;

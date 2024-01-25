@@ -64,8 +64,5 @@ Frontend :
 
 Backend:
 
-```
-cd api
-node index.js
-
-```
+    cd api
+    node index.js

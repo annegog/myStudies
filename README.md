@@ -14,10 +14,23 @@ React, Vite, Tailwind, Express, MongoDB
             - ConnectHelp.jsx : Βοήθεια σε χρήστη που δεν ξέρει πως να συνδεθεί στην πλατφόρμα
             - MobileApp.jsx : Διαφήμιση της εφαρμογής για κινητά
             - Recovery.jsx : Ανάκτηση κωδικού
+
         - Login.jsx : Σελίδα για την είσοδο του χρήστη στη πλατφόρμα του myStudies (γίνεται χρήση του component/Login όπου αυτό αναλαμβάνει και τη σύνδεση του χρήστη)
         - Profile.jsx : Το προφίλ του χρήστη με τα στοιχεία του
-        
+
     - Student : Οι σελίδες των φοιτητών
+        - Certifications :
+            - Certifications.jsx : Κεντρική σελίδα με τις 
+            - CertificationsHistory.jsx
+            - CertificationsRequest.jsx
+            - CertificationsStatus.jsx
+
+        - CoursesProgram : 
+        - Declarations : 
+        - Grades : 
+        - HistoryDeclarations : 
+        - Home : 
+
     - Professor : Οι σελίδες των καθηγητών
 
 ### How to run the app

@@ -12,25 +12,19 @@ import NavBarOptions from "../../../components/Common/NavBarOptions";
 import { UserContext } from "../../../components/UserContext";
 
 const MainPage = () => {
-    const [declarationInfo, setDeclarationInfo] = useState({
-        open: false,
-        end_date: '',
-        declaration: false,
-        last_decl: '',
-    });
-
-    const { user } = useContext(UserContext);
-    const { id } = useParams();
-
     const navigate = useNavigate();
 
+    const { id } = useParams();
+    const { user } = useContext(UserContext);
+    const [declarationInfo, setDeclarationInfo] = useState({ open: false, end_date: "", declaration: false, last_decl: "" });
+    
     const Declare = () => {
         navigate(`/student/declarations/${id}`);
     };
 
-    // const Modification = () => {
-    //     navigate("");
-    // };
+    const Modification = () => {
+        navigate(`/student/declarations/${id}`);
+    };
 
     useEffect(() => {
         const fetchDeclarationStatus = async () => {
@@ -38,10 +32,9 @@ const MainPage = () => {
             if (user) {
             const response = await axios.get(`/declaration-season/${user._id}`);
             setDeclarationInfo(response.data);
-            // console.log(user, response.data);
             }
         } catch (error) {
-            console.error('Error fetching declaration status:', error);
+            console.error("Error fetching declaration status:", error);
         }
         };
 
@@ -65,50 +58,46 @@ const MainPage = () => {
                         <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                         </svg>
-                        <span class="text-sm text-gray-500 font-medium dark:text-gray-400"> Αρχική Σελίδα </span>
+                        <span class="text-sm text-gray-500 font-medium"> Αρχική Σελίδα </span>
                     </div>
                 </li>
             </ol>
         </nav>
+
         <div className="px-4 lg:px-16 xl:px-32">
             {declarationInfo.open && !declarationInfo.declaration && (
-            <div className="justify-center items-center text-center">
-                <h2 className="text-xl font-bold text-red-00 mt-2">
-                Έχουν ανοίξει οι δηλώσεις μαθημάτων. <br /> Όλοι οι φοιτητές
-                καλούνται να πραγματοποιήσουν την δήλωση τους εως και τις{" "}
-                {formatDate(declarationInfo.end_date)}.
-                </h2>
+                <div className="justify-center items-center text-center">
+                    <h2 className="text-xl font-bold text-red-800 mt-2"> Έχουν ανοίξει οι δηλώσεις μαθημάτων. <br /> Όλοι οι φοιτητές καλούνται να πραγματοποιήσουν την δήλωση τους εως και τις {" "}
+                        {formatDate(declarationInfo.end_date)}.
+                    </h2>
 
-                <div className="mt-2 md:justify-items-center gap-5">
-                <button
-                    type="button"
-                    className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-md hover:shadow-2xl"
-                    onClick={Declare}
-                >
-                    Δήλωση Μαθημάτων
-                </button>
+                    <div className="mt-2 md:justify-items-center gap-5">
+                        <button type="button" className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-md hover:shadow-2xl"
+                            onClick={Declare}
+                        > Δήλωση Μαθημάτων
+                        </button>
+                    </div>
                 </div>
-            </div>
             )}
 
             {declarationInfo.open && declarationInfo.declaration && (
-            <div className="text-center justify-center items-center">
-                <h2 className="text-xl font-bold leading-none text-green-500"> Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να γίνει τροποποίηση της. </h2>
+                <div className="text-center justify-center items-center">
+                    <h2 className="text-xl font-bold leading-none text-green-500"> Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να γίνει τροποποίηση της. </h2>
 
-                <h2 className="text-xl font-bold text-red-800 mt-2">
-                Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση.
-                </h2>
+                    <h2 className="text-xl font-bold text-red-800 mt-2">
+                    Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση.
+                    </h2>
 
-                <div className="mt-3 md:justify-items-center">
-                <button
-                    type="button"
-                    className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-md hover:shadow-2xl"
-                    // onClick={Modification}
-                >
-                    Τροποποίηση Δήλωσης Μαθημάτων
-                </button>
+                    <div className="mt-3 md:justify-items-center">
+                    <button
+                        type="button"
+                        className="text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-lg px-6 py-2 text-center shadow-md hover:shadow-2xl"
+                        // onClick={Modification}
+                    >
+                        Τροποποίηση Δήλωσης Μαθημάτων
+                    </button>
+                    </div>
                 </div>
-            </div>
             )}
         </div>
 

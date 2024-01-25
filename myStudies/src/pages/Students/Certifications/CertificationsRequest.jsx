@@ -3,35 +3,118 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import Breadcrumb from "../../../components/Tools/Breadcrumb";
-
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import Success from "../../../components/Common/Success";
+import Breadcrumb from "../../../components/Tools/Breadcrumb";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
+
+const StepOne = () => {
+    const [mainSelection, setMainSelection] = useState("Φοιτητικής Ιδιότητας");
+    const [showCertificatesOptions, setShowCertificatesOptions] = useState(false);
+
+    const handleButtonClick = (selectedOption) => {
+        setMainSelection(selectedOption);
+        setShowCertificatesOptions(false);
+    };
+
+    const options = [
+        "Φοιτητικής Ιδιότητας",
+        "Φορολογικής Χρήσης",
+        "Αναλυτική βαθμολογία με προβιβάσιμους βαθμούς",
+        "Στρατολογική χρήση (Συνοπτικό)",
+        "Στρατολογική χρήση (Συνοπτικό)",
+    ]
+
+    return (
+        <div className="flex flex-col items-center">
+            <h2 className="flex flex-col text-center text-2xl w-full mt-24 mb-4">
+                Επιλέξτε το πιστοποιητικό για το οποίο θέλετε να υποβάλετε αίτηση
+            </h2>
+
+            <div className="bg-gray-50 shadow-xl rounded-xl w-auto pl-2 pr-2">
+                <div className="text-center text-lg font-medium p-3 cursor-pointer" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}>
+                    <span> {mainSelection} {showCertificatesOptions ? "▲" : "▼"} </span>
+                </div>
+                {showCertificatesOptions && (
+                    <div className="flex flex-col bg-gray-50 rounded-xl">
+                        {options.map((option, index) => (
+                            <button key={index} onClick={() => handleButtonClick(option)}>
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+const StepTwo = () => {
+    const [mainSelection, setMainSelection] = useState("1");
+    const [showCertificatesCopies, setshowCertificatesCopies] = useState(false);
+
+    const handleButtonClick = (selectedOption) => {
+        setMainSelection(selectedOption);
+        setshowCertificatesCopies(false);
+    };
+
+    const copies = ["1", "2", "3", "4", "5"]
+
+    return (
+        <div className="flex flex-col items-center">
+            <h2 className="flex flex-col text-center text-2xl w-full mt-24 mb-4">
+                Επιλέξτε τον αριθμό των αντιτύπων για το πιστοποιητικό που έχει επιλεχθεί
+            </h2>
+
+            <div className="bg-gray-50 shadow-xl rounded-xl w-auto pl-2 pr-2">
+                <div className="text-center text-lg font-medium p-3 cursor-pointer" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}>
+                    <span> {mainSelection} {showCertificatesCopies ? "▲" : "▼"} </span>
+                </div>
+                {showCertificatesCopies && (
+                    <div className="flex flex-col rounded-xl bg-gray-50">
+                        {copies.map((option, index) => (
+                            <button key={index} onClick={() => handleButtonClick(option)}>
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+const StepThree = () => {
+    return (
+        <div className="flex flex-col items-center">
+            <h2 className="flex flex-col text-center text-2xl w-full mt-24 mb-4">
+                Είστε σίγουροι ότι θέλετε να προχωρήσετε σε αίτηση του πιστοποιητικού; <br /> Αν ναι πατήστε επόμενο.
+            </h2>
+        </div>
+    );
+};
 
 const Request = () => {
     const navigate = useNavigate();
+
     const { id } = useParams();
     const [currentStep, setCurrentStep] = useState(1);
 
-    // 
     const handleBack = () => {
         navigate(`/student/certifications/${id}`);
     };
 
-    // Function to move to the next step
     const goToNextStep = () => {
         setCurrentStep(currentStep + 1);
     };
 
-    // Function to move to the previous step
     const goToPreviousStep = () => {
         setCurrentStep(currentStep - 1);
     };
 
     useEffect(() => {
-        console.log('Current step is now:', currentStep);
+        console.log("Current step is now:", currentStep);
     }, [currentStep]);
 
     let stepContent;
@@ -53,7 +136,7 @@ const Request = () => {
         <div>
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} /> {/* Instead of student string, giving the studentData.status */}
-            <nav class="flex items-center justify-center m-6">
+            <nav class="flex flex-col items-center justify-center m-6">
                 <ol class="flex flex-row items-center">
                     <li class="flex flex-col items-center">
                         <a href={`/student/${id}`} class="inline-flex items-center text-sm text-gray-700 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-white">
@@ -83,7 +166,8 @@ const Request = () => {
                     </li>
                 </ol>
             </nav>
-            <div className="flex justify-center" >
+
+            <div className="flex justify-center items-center px-6 mb-36" >
                 {currentStep === 4 ? (
                     <Success userRole={"student"} action={"certification"} />
                 ) : (
@@ -107,92 +191,6 @@ const Request = () => {
                 )}
             </div>
             <Footer />
-        </div>
-    );
-};
-
-const StepOne = () => {
-    const [mainSelection, setMainSelection] = useState("Φοιτητικής Ιδιότητας");
-    const [showCertificatesOptions, setShowCertificatesOptions] = useState(false);
-
-    const handleButtonClick = (selectedOption) => {
-        setMainSelection(selectedOption);
-        setShowCertificatesOptions(false);
-    };
-
-    const options = [
-        "Φοιτητικής Ιδιότητας",
-        "Φορολογικής Χρήσης",
-        "Αναλυτική βαθμολογία με προβιβάσιμους βαθμούς",
-        "Στρατολογική χρήση (Συνοπτικό)",
-        "Στρατολογική χρήση (Συνοπτικό)",
-    ]
-
-    return (
-        <div className="flex flex-col items-center">
-            <div className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col mt-24 mb-4">
-                Επιλέξτε το πιστοποιητικό για το οποίο θέλετε να υποβάλετε αίτηση
-            </div>
-
-            <div className="bg-gray-50 shadow-xl rounded-xl w-auto pl-2 pr-2">
-                <div className="text-center text-lg cursor-pointer font-medium p-3" onClick={() => setShowCertificatesOptions(!showCertificatesOptions)}>
-                    <span> {mainSelection} {showCertificatesOptions ? "▲" : "▼"} </span>
-                </div>
-                {showCertificatesOptions && (
-                    <div className="flex flex-col rounded-xl bg-gray-50">
-                        {options.map((option, index) => (
-                            <button key={index} onClick={() => handleButtonClick(option)}>
-                                {option}
-                            </button>
-                        ))}
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
-
-const StepTwo = () => {
-    const [mainSelection, setMainSelection] = useState("1");
-    const [showCertificatesCopies, setshowCertificatesCopies] = useState(false);
-
-    const handleButtonClick = (selectedOption) => {
-        setMainSelection(selectedOption);
-        setshowCertificatesCopies(false);
-    };
-
-    const copies = ["1", "2", "3", "4", "5"]
-
-    return (
-        <div className="flex flex-col items-center">
-            <p className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col mt-24 mb-4">
-                Επιλέξτε τον αριθμό των αντιτύπων για το πιστοποιητικό που έχει επιλεχθεί
-            </p>
-
-            <div className="bg-gray-50 shadow-xl rounded-xl">
-                <div className="text-center text-lg cursor-pointer font-medium p-3" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}>
-                    <span> {mainSelection} {showCertificatesCopies ? "▲" : "▼"} </span>
-                </div>
-                {showCertificatesCopies && (
-                    <div className="flex flex-col rounded-xl bg-gray-50">
-                        {copies.map((option, index) => (
-                            <button key={index} onClick={() => handleButtonClick(option)}>
-                                {option}
-                            </button>
-                        ))}
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
-
-const StepThree = () => {
-    return (
-        <div className="Three">
-            <div style={{ marginTop: "6rem" }} className="text-black text-center text-2xl w-full max-md:max-w-full flex flex-col items-center px-5">
-                Είστε σίγουροι ότι θέλετε να προχωρήσετε σε αίτηση του πιστοποιητικού; Αν ναι πατήστε επόμενο.
-            </div>
         </div>
     );
 };

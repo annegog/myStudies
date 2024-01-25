@@ -21,7 +21,6 @@ const Declarations = () => {
     // State for controlling which step the user is on
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedSubjects, setSelectedSubjects] = useState([]);
-
     const [organizedCourses, setOrganizedCourses] = useState({});
 
     useEffect(() => {
@@ -147,14 +146,12 @@ const Declarations = () => {
         });
 
         try {
-            await axios.post(`/save-declaration/${user._id}`, {
-                courses: courses,
-            });
-            goToNextStep();
+            await axios.post(`/save-declaration/${user._id}`, { courses: courses });
         } catch (error) {
             console.error("Error saving declaration:", error);
-            // Handle error or display a notification to the user
         }
+
+        goToNextStep();
     };
 
     return (

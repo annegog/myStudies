@@ -54,7 +54,7 @@ const Column = ({ label, dataKey, values, onUpdateGrade }) => (
                     <input
                     value={data[dataKey] || ''}
                     onChange={(e) => onUpdateGrade(data, e.target.value)}
-                    className="text-black text-xl text-center shadow-md hover:shadow-xl rounded-3xl w-24"
+                    className="text-black text-xl text-center shadow-md hover:shadow-xl border border-black rounded-3xl w-24 info-container"
                     />
                 ) : (
                     <p className="text-black text-xl text-center max-md:max-w-full "> {data[dataKey]} {" "} </p>
@@ -125,8 +125,8 @@ const Create = () => {
             {successMessage > 0 ? (
                 <Success userRole={"professor"} action={options === "final" ? "final" : "temporary"} userId={id} />
             ) : (
-                <div className="w-full max-w-screen-2xl " >
-                    <h1 className="text-center text-3xl font-thin mt-8 mb-4"> Λίστα Μαθητών </h1>
+                <div className="justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32">
+                    <h2 className="text-3xl font-thin justify-center text-center mb-1"> Λίστα Μαθητών </h2>
                     <div className="bg-gray-50 shadow-md hover:shadow-xl rounded-3xl px-10 py-8 mt-4 mb-10 m-20">
                         <div className="flex flex-row justify-center items-stretch space-x-10">
                             {columns.map((column, index) => (
@@ -142,8 +142,8 @@ const Create = () => {
 
                         <div className="flex justify-center mt-8">
                             <div className="Options">
-                                <button onClick={() => {handleFinalization(); setOptions("temporary")}} className="bg-blue-500 shadow-md hover:shadow-xl text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-blue-600"> Προσωρινή Αποθήκευση </button>
-                                <button onClick={() => {handleFinalization(); setOptions("final")}} className="bg-green-500 shadow-md hover:shadow-xl text-black font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-green-600"> Οριστικοποίηση </button>
+                                <button onClick={() => {handleFinalization(); setOptions("temporary")}} className="bg-green-500 hover:bg-green-600 shadow-md hover:shadow-xl text-white font-medium px-4 py-2 mt-2 mr-4 rounded-3xl info-container"> Προσωρινή Αποθήκευση </button>
+                                <button onClick={() => {handleFinalization(); setOptions("final")}} className="bg-teal-600 shadow-md hover:shadow-xl text-white font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-teal-800 info-container"> Οριστικοποίηση </button>
                             </div>
                         </div>
                     </div>

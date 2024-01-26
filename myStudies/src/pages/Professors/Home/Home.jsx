@@ -54,17 +54,12 @@ const Home = () => {
             <div className="flex flex-wrap justify-center items-center p-2 rounded-lg mt-8">
                 {courses.map((lesson) => (
                     <div key={lesson._id} className="m-2">
-                        <button className="flex flex-col w-38 h-32 text-lg py-2 focus:outline-none bg-gray-100 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl" onClick={() => handleClick()}>
-                            <div className="mb-2">
-                                <svg fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                </svg>
-                            </div>
-                            <div className="flex items-center">
+                        <button className="text-lg bg-gray-100 rounded-xl shadow-md hover:shadow-2xl info-container p-5" onClick={() => handleClick()}>
+                            <div className="flex flex-row items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="0.8" stroke="currentColor" className="w-[4rem] h-[4rem]">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                                 </svg>
-                                <p className="text-4xl font-thin ml-4"> {lesson.title} </p>
+                                <p> {lesson.title} </p>
                             </div>
                         </button>
                     </div>

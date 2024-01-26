@@ -15,7 +15,7 @@ const Options = ({ userType, userId }) => {
     const links = userType === "student" ? studentOptions : teacherOptions;
 
     return (
-        <nav style={{ backgroundColor: "#05386B" }} className="items-center border border-gray-300 rounded-b-xl shadow-xl">
+        <nav style={{ backgroundColor: "#05386B"}} className="items-center border border-gray-300 rounded-b-xl shadow-xl">
             <div className="max-w-screen-xl justify-between mx-auto p-3">
                 <div className="flex flex-row w-full justify-between max-md:max-w-full max-md:flex-wrap">
                     {links.map((link, index) => (

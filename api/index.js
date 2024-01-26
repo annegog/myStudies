@@ -181,11 +181,10 @@ app.get('/declarationsOpen', (req, res) => {
     }
 });
 
-app.post('/save-declaration', async (req, res) => {
+app.post('/save-declaration/:usersId', async (req, res) => {
     try {
-        const userId = req.params.userId;
+        const userId = req.params.usersId;
         const { courses: courseTitles } = req.body;
-
 
         // Find the latest declaration season for the user
         const latestDeclaration = await Declaration.findOne({ user: userId }).sort({ data: -1 });

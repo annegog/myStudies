@@ -109,6 +109,9 @@ const Grades = () => {
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <Path id={id} />
+            <h2 className="text-center text-4xl font-thin justify-center mt-10 mb-4">
+                Βαθμολόγιο
+            </h2>
             <div className="flex justify-center">
                 <div className="grades-table w-full max-w-4xl">
                     <div className="flex flex-row justify-center">
@@ -119,9 +122,13 @@ const Grades = () => {
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="text-black text-center bg-gray-50 rounded-3xl p-2 border border-gray-300 shadow-md hover:shadow-xl"
                         />
-                        <button className="text-white text-center bg-blue-500 rounded-3xl p-2 ml-2 hover:bg-blue-600 shadow-md hover:shadow-xl"
+                        <button className="text-center p-2 ml-2"
                             onClick={handleSearch}
-                        > Search </button>
+                        > 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                       </button>
                     </div>
 
                     {/* Search Results */}
@@ -151,9 +158,9 @@ const Grades = () => {
                                 </div>
                                 {showGradeFilters && (
                                     <div className="flex flex-col justify-center rounded-lg p-2 bg-gray-50">
-                                        <button onClick={() => setFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${filter === "all" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Όλα </button>
-                                        <button onClick={() => setFilter("passed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "passed" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Επιτυχίες </button>
-                                        <button onClick={() => setFilter("failed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "failed" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Αποτυχίες </button>
+                                        <button onClick={() => setFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${filter === "all" ? "bg-teal-500 text-white" : "bg-gray-50"}`}> Όλα </button>
+                                        <button onClick={() => setFilter("passed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "passed" ? "bg-teal-500 text-white" : "bg-gray-50"}`}> Επιτυχίες </button>
+                                        <button onClick={() => setFilter("failed")} className={`my-1 px-4 py-2 rounded-lg ${filter === "failed" ? "bg-teal-500 text-white" : "bg-gray-50"}`}> Αποτυχίες </button>
                                     </div>
                                 )}
                             </div>
@@ -166,9 +173,9 @@ const Grades = () => {
                                 </div>
                                 {showSemesterFilters && (
                                     <div className="flex flex-col justify-center rounded-lg p-2 bg-gray-50">
-                                        <button onClick={() => setSemesterFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "all" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Όλες </button>
-                                        <button onClick={() => setSemesterFilter("even")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "even" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Εαρινού </button>
-                                        <button onClick={() => setSemesterFilter("odd")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "odd" ? "bg-blue-500 text-white" : "bg-gray-50"}`}> Χειμερινού </button>
+                                        <button onClick={() => setSemesterFilter("all")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "all" ? "bg-teal-500 text-white" : "bg-gray-50"}`}> Όλες </button>
+                                        <button onClick={() => setSemesterFilter("even")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "even" ? "bg-teal-500 text-white" : "bg-gray-50"}`}> Εαρινού </button>
+                                        <button onClick={() => setSemesterFilter("odd")} className={`my-1 px-4 py-2 rounded-lg ${semesterFilter === "odd" ? "bg-teal-500 text-white" : "bg-gray-50"}`}> Χειμερινού </button>
                                     </div>
                                 )}
                             </div>

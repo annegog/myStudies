@@ -87,6 +87,9 @@ const Declarations = () => {
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <Path id={id} />
+            <h2 className="text-center text-4xl font-thin justify-center mt-10 mb-4">
+                Ιστορικό Δηλώσεων Μαθημάτων
+            </h2>
             <div className="flex justify-center">
                 {declarations.map((declaration) => (
                     <div className="flex flex-col items-center justify-center">

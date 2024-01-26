@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 const Message = ({ stringMessage, handleReturn }) => {
     return (
         <div className="flex flex-col items-center">
-            <h2 className="text-2xl font-semibold text-green-500 m-28">
+            <h2 className="text-2xl font-serif text-green-500 m-20">
                 {stringMessage}
             </h2>
             
-            <button onClick={handleReturn} className="text-white px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 shadow-md hover:shadow-xl"> 
+            <button onClick={handleReturn} className="text-white px-4 py-2 rounded-lg bg-green-500 hover:bg-green-600 shadow-md hover:shadow-xl"> 
                 Επιστροφή στην Αρχική
             </button>
         </div>

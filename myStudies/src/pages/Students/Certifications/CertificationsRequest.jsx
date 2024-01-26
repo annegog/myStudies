@@ -144,9 +144,10 @@ const Request = () => {
     }, [currentStep]);
 
     const handleSubmit = async () => {
+        console.log(certificationType, numberOfCopies);
         const requestData = { certificationType, numberOfCopies, requestDate: new Date().toISOString(), studentId: id };
         try {
-            const response = await axios.post('/api/certification-requests', requestData);
+            const response = await axios.post('/certification-requests', requestData);
             console.log(response.data);
         } catch (error) {
             console.error('Error submitting request:', error);

@@ -242,9 +242,8 @@ app.get('/api/courses', verifyJWTuser, async (req, res) => {
 
 app.post('/certification-requests', verifyJWTuser, async (req, res) => {
     try {
-        const { id } = req;
-        certificationRequestData.studentId = id;
         const certificationRequestData = req.body;
+        
         const certificationRequest = new CertificationRequest(certificationRequestData);
         const savedCertificationRequest = await certificationRequest.save();
         res.json(savedCertificationRequest);
@@ -268,7 +267,7 @@ app.get('/certification-requests/:userId', async (req, res) => {
 // Getting all the declarations user has made from the database
 
 app.get('/api/declarations/:userId', async (req, res) => {
-    console.log('Route hit. User ID:', req.params.userId);
+
     try {
         const { userId } = req.params;
         const declarations = await Declaration.find({ user: userId }).populate('courses');
@@ -295,7 +294,6 @@ app.get('/courses/professor/:userId', async (req, res) => {
 app.get('/students/declared/course/:course', async (req, res) => {
     try {
         const courseId = req.params.course;
-        //const studentsDeclarations = [];
 
         const course = await Course.findById(courseId);
 

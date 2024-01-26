@@ -78,7 +78,7 @@ const Status = () => {
             <div>
                 {requests.length > 0 ? (
                     requests.map((request, index) => (
-                        <div key={index} className="flex items-center justify-center text-lg m-3 cursor-pointer info-container">
+                        <div key={index} className="flex items-center justify-center text-lg m-3 cursor-pointer text-ani">
                             {status ? (
                                 <div className="flex flex-row">
                                     <p> {request.certificationType} </p>

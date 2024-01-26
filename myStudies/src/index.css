@@ -37,3 +37,11 @@ body{
 .info-container:hover {
   transform: scale(1.1);
 }
+
+.text-ani {
+  transition: transform 0.3s ease-in-out; 
+}
+
+.text-ani:hover {
+  transform: scale(0.9);
+}

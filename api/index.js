@@ -13,7 +13,7 @@ const User = require('./Models/User');
 const Course = require('./Models/Course');
 const ExamsSeason = require('./Models/Examinations');
 const Declaration = require('./Models/Declarations');
-const CertificationRequest  = require('./Models/CertificationRequest ');
+const Certification = require('./Models/CertificationRequest');
 
 const app = Express();
 const bcryptSalt = bcrypt.genSaltSync(8);
@@ -241,7 +241,7 @@ app.get('/api/courses', verifyJWTuser, async (req, res) => {
 app.post('/certification-requests', async (req, res) => {
     try {
         const certificationRequestData = req.body;
-        const certificationRequest = new CertificationRequest(certificationRequestData);
+        const certificationRequest = new Certification(certificationRequestData);
         const savedCertificationRequest = await certificationRequest.save();
         res.json(savedCertificationRequest);
     } catch (error) {
@@ -253,7 +253,7 @@ app.post('/certification-requests', async (req, res) => {
 app.get('/certification-requests/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
-        const userCertifications = await CertificationRequest.find({ studentId: userId });
+        const userCertifications = await Certification.find({ studentId: userId });
         res.json(userCertifications);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });

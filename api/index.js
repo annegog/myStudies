@@ -47,7 +47,8 @@ app.get('/test1', (req, res) => {
     res.json('test');
 });
 
-/// verification functions for user
+/************************************  User's verification functions ************************************/
+
 const verifyJWTuser = (req, res, next) => {
     const { token } = req.cookies;
     if (token) {
@@ -64,7 +65,7 @@ const verifyJWTuser = (req, res, next) => {
     }
 };
 
-/************************************** USERS ****************************************************/
+/************************************  Users  ************************************/
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -80,7 +81,6 @@ app.post('/login', async (req, res) => {
                 if (err) throw err;
                 res.cookie('token', token).json(userDoc);
             });
-
         } else {
             res.status(422).json('Wrong password');
         }
@@ -93,7 +93,7 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true);
 });
 
-/************************************** Student **************************************************/
+/************************************ Student ************************************/
 
 app.get('/student/profile', verifyJWTuser, (req, res) => {
     const { token } = req.cookies;
@@ -123,7 +123,7 @@ app.get('/student/:id', verifyJWTuser, async (req, res) => {
     }
 });
 
-/************************* Declaration ****************************/
+/************************************ Declaration ************************************/
 
 app.get('/declaration-season/:userId', async (req, res) => {
     try {
@@ -226,7 +226,20 @@ app.post('/save-declaration', async (req, res) => {
     }
 });
 
-/*************************** Courses *******************************/
+/************************************ Grades ************************************/
+
+app.get('/api/grades/:id', async (req, res) => {
+    try {
+        const studentId = req.params.id;
+        const studentGrades = await Grade.find({ student: studentId }).populate('course').populate('grade');
+        res.json(studentGrades);
+    } catch (error) {
+        console.error('Error fetching grades:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+/************************************ Courses ************************************/
 
 app.get('/api/courses', verifyJWTuser, async (req, res) => {
     try {
@@ -238,7 +251,7 @@ app.get('/api/courses', verifyJWTuser, async (req, res) => {
     }
 });
 
-/*************************** Certifications *******************************/
+/************************************ Certifications ************************************/
 
 app.post('/certification-requests', verifyJWTuser, async (req, res) => {
     try {
@@ -263,7 +276,7 @@ app.get('/certification-requests/:userId', async (req, res) => {
     }
 });
 
-/*************************** History *******************************/
+/************************************ History ************************************/
 
 // Getting all the declarations user has made from the database
 
@@ -279,7 +292,7 @@ app.get('/api/declarations/:userId', async (req, res) => {
     }
 });
 
-/************************************** Professor ************************************************/
+/************************************ Professor ************************************/
 
 app.get('/courses/professor/:userId', async (req, res) => {
     try {
@@ -321,8 +334,7 @@ app.get('/students/declared/course/:course', async (req, res) => {
         }
 
         // Find student declarations for the course and latest exam
-        const studentsDeclarations = await Declaration.find({ courses: course._id, exam: latestExam._id })
-            .populate('user');
+        const studentsDeclarations = await Declaration.find({ courses: course._id, exam: latestExam._id }).populate('user');
 
         if (studentsDeclarations.length > 0) {
             const students = studentsDeclarations.map(declaration => declaration.user);
@@ -337,7 +349,6 @@ app.get('/students/declared/course/:course', async (req, res) => {
     }
 });
 
-// Endpoint to save grades
 app.post('/save-grades/:courseId', verifyJWTuser, async (req, res) => {
     try {
         const { courseId } = req.params;

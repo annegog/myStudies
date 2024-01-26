@@ -40,8 +40,6 @@ const Grades = () => {
     const { id } = useParams();
     const { user } = useContext(UserContext);
     
-    console.log("Received ID in Grades:", id); // Check the received ID
-
     const gradesData = {
         1: {
             "Course 1.1": 8,
@@ -57,18 +55,31 @@ const Grades = () => {
         },
     };
 
+    const [grades, setGrades] = useState([]);
+    const [filter, setFilter] = useState("all");                            // "all", "passed", "failed"
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResult, setSearchResult] = useState(null);
-
-    const [filter, setFilter] = useState("all");                            // "all", "passed", "failed"
     const [semesterFilter, setSemesterFilter] = useState("all");            // "all", "even", "odd"
     const [showGradeFilters, setShowGradeFilters] = useState(false);        // State to toggle grade filter visibility
     const [showSemesterFilters, setShowSemesterFilters] = useState(false);  // State to toggle semester filter visibility
 
-    // Function to get the appropriate color based on the grade
+    // useEffect(() => {
+    //     const fetchGrades = async () => {
+    //         try {
+    //             if (user) {
+    //                 const response = await axios.get(`/declaration-season/${user._id}`);
+    //                 setGrades(response.data);
+    //             }
+    //         } catch (error) {
+    //             console.error("Error fetching declaration status:", error);
+    //         }
+    //     };
+
+    //     fetchGrades ();
+    // }, []);
+
     const getGradeColor = (grade) => grade >= 5 ? "text-green-500" : "text-red-500";
 
-    // Function to handle the search
     const handleSearch = () => {
         for (const semester of Object.keys(gradesData)) {
             if (gradesData[semester][searchTerm]) {
@@ -79,7 +90,6 @@ const Grades = () => {
         setSearchResult("not found");
     };
 
-    // Function to filter courses based on the current filter
     const filterCourses = (courses) => {
         return Object.entries(courses).filter(([_, grade]) => {
             if (filter === "all") return true;
@@ -88,7 +98,6 @@ const Grades = () => {
         });
     };
 
-    // Function to determine if a semester should be shown based on the current semester filter
     const shouldShowSemester = (semester) => {
         if (semesterFilter === "all") return true;
         const isEven = semester % 2 === 0;
@@ -100,17 +109,15 @@ const Grades = () => {
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <Path id={id} />
-            <main className="main-content flex justify-center">
+            <div className="flex justify-center">
                 <div className="grades-table w-full max-w-4xl">
-
-                    {/* Search Bar */}
                     <div className="flex flex-row justify-center">
                         <input
                             type="text"
-                            className="text-black text-center bg-gray-50 rounded-3xl p-2 border border-gray-300 shadow-md hover:shadow-xl"
-                            placeholder="Αναζήτηση Μαθήματος"
+                            placeholder="Αναζήτηση"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
+                            className="text-black text-center bg-gray-50 rounded-3xl p-2 border border-gray-300 shadow-md hover:shadow-xl"
                         />
                         <button className="text-white text-center bg-blue-500 rounded-3xl p-2 ml-2 hover:bg-blue-600 shadow-md hover:shadow-xl"
                             onClick={handleSearch}
@@ -199,7 +206,7 @@ const Grades = () => {
                         ))
                     }
                 </div>
-            </main>
+            </div>
             <Footer />
         </div>
     );

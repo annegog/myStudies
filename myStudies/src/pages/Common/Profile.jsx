@@ -121,9 +121,9 @@ const ProfilePage = () => {
                                     <div className="flex justify-center border-gray-200 border-t">
                                         <div className="flex justify-between items-center pt-5"/>
                                         {editMode ? (
-                                            <button className="text-sm text-center bg-transparent py-1 px-2 mt-3 rounded-3xl shadow-md hover:shadow-xl border" onClick={handleSaveClick}> Αποθήκευση </button>
+                                            <button className="text-sm text-center bg-transparent py-1 px-2 mt-3 rounded-3xl shadow-md hover:shadow-xl border info-container" onClick={handleSaveClick}> Αποθήκευση </button>
                                         ) : (
-                                            <button className="text-sm text-center bg-transparent py-1 px-2 mt-3 rounded-3xl shadow-md hover:shadow-xl border" onClick={handleEditClick}> Επεξεργασία </button>
+                                            <button className="text-sm text-center bg-transparent py-1 px-2 mt-3 rounded-3xl shadow-md hover:shadow-xl border info-container" onClick={handleEditClick}> Επεξεργασία </button>
                                         )}
                                     </div>
                                 </div> 
@@ -150,9 +150,9 @@ const ProfilePage = () => {
                                     <div className="flex justify-center border-gray-200 border-t">
                                         <div className="flex justify-between items-center pt-5"/>
                                         {editMode ? (
-                                            <button className="text-sm text-center bg-transparent py-1 px-2 mt-3 rounded-3xl shadow-md hover:shadow-xl border" onClick={handleSaveClick}> Αποθήκευση </button>
+                                            <button className="text-sm text-center bg-transparent py-1 px-2 mt-3 rounded-3xl shadow-md hover:shadow-xl border info-container" onClick={handleSaveClick}> Αποθήκευση </button>
                                         ) : (
-                                            <button className="text-sm text-center bg-transparent py-1 px-2 mt-3 rounded-3xl shadow-md hover:shadow-xl border" onClick={handleEditClick}> Επεξεργασία </button>
+                                            <button className="text-sm text-center bg-transparent py-1 px-2 mt-3 rounded-3xl shadow-md hover:shadow-xl border info-container" onClick={handleEditClick}> Επεξεργασία </button>
                                         )}
                                     </div>
                                 </div>

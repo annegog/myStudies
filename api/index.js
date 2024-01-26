@@ -6,7 +6,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
-
 require('dotenv').config();
 
 const Grade = require('./Models/Grade');
@@ -14,8 +13,9 @@ const User = require('./Models/User');
 const Course = require('./Models/Course');
 const ExamsSeason = require('./Models/Examinations');
 const Declaration = require('./Models/Declarations');
-const app = Express();
+const CertificationRequest  = require('./Models/CertificationRequest ');
 
+const app = Express();
 const bcryptSalt = bcrypt.genSaltSync(8);
 const jwtSecretUser = process.env.JWT_SECRET_USER;
 
@@ -121,7 +121,7 @@ app.get('/student/:id', verifyJWTuser, async (req, res) => {
     }
 });
 
-/************************* declarations ****************************/
+/************************* Declaration ****************************/
 
 app.get('/declaration-season/:userId', async (req, res) => {
     try {
@@ -224,6 +224,42 @@ app.post('/save-declaration', async (req, res) => {
     }
 });
 
+/*************************** Courses *******************************/
+
+app.get('/api/courses', verifyJWTuser, async (req, res) => {
+    try {
+        const courses = await Course.find();
+        res.json(courses);
+    } catch (error) {
+        console.error('Error fetching course data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+/*************************** Certifications *******************************/
+
+app.post('/certification-requests', async (req, res) => {
+    try {
+        const certificationRequestData = req.body;
+        const certificationRequest = new CertificationRequest(certificationRequestData);
+        const savedCertificationRequest = await certificationRequest.save();
+        res.json(savedCertificationRequest);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// GET route to retrieve certifications for a specific user
+app.get('/certification-requests/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const userCertifications = await CertificationRequest.find({ studentId: userId });
+        res.json(userCertifications);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 /*************************** History *******************************/
 
 // Getting all the declarations user has made from the database
@@ -236,20 +272,6 @@ app.get('/api/declarations/:userId', async (req, res) => {
         res.json(declarations);
     } catch (error) {
         console.error('Error fetching declarations:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
-
-/*************************** Courses *******************************/
-
-// Getting all the courses from the database
-
-app.get('/api/courses', verifyJWTuser, async (req, res) => {
-    try {
-        const courses = await Course.find();
-        res.json(courses);
-    } catch (error) {
-        console.error('Error fetching course data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });

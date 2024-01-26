@@ -51,24 +51,24 @@ const Home = () => {
             <Navbar />
             <NavBarOptions userType={"professor"} userId={id} />
             <Path />
-            <div className="flex flex-wrap justify-center items-center p-2 rounded-lg mt-8">
+
+            <div className="flex justify-center items-center px-6 mt-12 mb-36">
+                <h2 className="text-8xl font-serif justify-start mb-2 ml-4 animated2-text">
+                    Τα<br/> Μαθήματα Μου
+                </h2>
+            <div className="grid grid-cols-4 mb-2 gap-6">
                 {courses.map((lesson) => (
                     <div key={lesson._id} className="m-2">
-                        <button className="flex flex-col w-38 h-32 text-lg py-2 focus:outline-none bg-gray-100 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl" onClick={() => handleClick()}>
-                            <div className="mb-2">
-                                <svg fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                </svg>
-                            </div>
-                            <div className="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="0.8" stroke="currentColor" className="w-[4rem] h-[4rem]">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
-                                </svg>
-                                <p className="text-4xl font-thin ml-4"> {lesson.title} </p>
-                            </div>
+                        <button className="info-container flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
+                            onClick={() => handleClick()}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="0.8" stroke="currentColor" className="w-[4rem] h-[4rem]">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                            </svg>
+                                <span className="text-4xl font-thin ml-4"> {lesson.title} </span>
                         </button>
                     </div>
                 ))}
+                </div>
             </div>
             <Footer />
         </div>

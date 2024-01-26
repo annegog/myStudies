@@ -115,13 +115,13 @@ const Login = () => {
 
                 <button
                     type="submit"
-                    className="w-full text-white bg-blue-900 rounded-md p-2 hover:bg-blue-700 hover:shadow-xl"
+                    className="w-full text-white bg-teal-700 rounded-md p-2 hover:bg-teal-600 hover:shadow-xl"
                 >
                     Σύνδεση
                 </button>
                 <a
                     href="/recovery"
-                    className="block text-center text-blue-600 mt-2"
+                    className="block text-center text-teal-500 mt-2"
                 >
                     Ξέχασες τον κωδικό σου;
                 </a>

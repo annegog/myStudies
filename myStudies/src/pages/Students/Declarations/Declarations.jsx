@@ -187,7 +187,7 @@ const Declarations = () => {
             <Path id={id} />
             <main className="main-content flex justify-center">
                 {currentStep === 4 ? (
-                    <Success userRole={"student"} action={"declaration"} />
+                    <Success userRole={"student"} action={"declaration"} userId={id} />
                 ) : (
                     <div className="w-full max-w-4xl">
                         {/* Render Step Indicators */}

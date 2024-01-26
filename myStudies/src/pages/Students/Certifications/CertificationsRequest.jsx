@@ -196,7 +196,7 @@ const Request = () => {
             <Path id={id} />
             <div className="flex justify-center items-center px-6 mb-36" >
                 {currentStep === 4 ? (
-                    <Success userRole={"student"} action={"certification"} />
+                    <Success userRole={"student"} action={"certification"} userId={id} />
                 ) : (
                     <div className="w-full max-w-4xl">
                         <Breadcrumb currentStep={currentStep} stepStrings={["Επιλογή", "Αντίγραφα", "Αίτηση"]} />

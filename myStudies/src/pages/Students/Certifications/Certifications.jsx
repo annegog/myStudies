@@ -4,7 +4,6 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
-import paperWorkImage from "../../../assets/paper-work.png";
 
 const Path = ({ id }) => {
     return (
@@ -35,52 +34,90 @@ const Certifications = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();
-    
+
     const handleRequest = () => navigate(`/student/certifications/request/${id}`);
     const handleStatus = () => navigate(`/student/certifications/status/${id}`);
     const handleHistory = () => navigate(`/student/certifications/history/${id}`);
 
-     return (
-    <div>
-      <Navbar />
-      <NavBarOptions userType={"student"} userId={id} />
-      <Path id={id} />
+    return (
+      <div>
+        <Navbar />
+        <NavBarOptions userType={"student"} userId={id} />
+        <Path id={id} />
 
-      {/* Image and buttons side by side */}
-      <div className="flex justify-center items-center px-6 mt-8 mb-36">
-        <div className="mr-8">
-          <img className="rounded-2xl" src={paperWorkImage} alt="" />
+        <div className="flex justify-center items-center px-6 mt-12 mb-36">
+          <div className="grid grid-cols-3 mt-2 mb-2 gap-4">
+            <button
+              type="button"
+              className="flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
+              onClick={handleRequest}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-12 h-12 mb-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z"
+                />
+              </svg>
+              <span className="text-lg">Αίτηση για παροχή πιστοποιητικού</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
+              onClick={handleStatus}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-12 h-12 mb-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+                />
+              </svg>
+
+              <span className="text-lg">Εμφάνιση της Κατάστασης<br/> Αιτήσεων για Πιστοποιητικά</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
+              onClick={handleHistory}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-12 h-12 mb-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+                />
+              </svg>
+              <span className="text-lg">Ιστορικό Αιτήσεων</span>
+            </button>
+          </div>
         </div>
-        <div className="grid grid-flow-row mt-2 mb-2 gap-4">
-          <button
-            type="button"
-            className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
-            onClick={handleRequest}
-          >
-            Αίτηση για παροχή πιστοποιητικού
-          </button>
-
-          <button
-            type="button"
-            className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
-            onClick={handleStatus}
-          >
-            Εμφάνιση της κατάστασης αιτήσεων για πιστοποιητικά
-          </button>
-
-          <button
-            type="button"
-            className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
-            onClick={handleHistory}
-          >
-            Ιστορικό Αιτήσεων
-          </button>
-        </div>
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
-  );
+    );
 };
 
-export default Certifications
+export default Certifications;

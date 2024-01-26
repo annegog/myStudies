@@ -49,7 +49,7 @@ const Certifications = () => {
       {/* Image and buttons side by side */}
       <div className="flex justify-center items-center px-6 mt-8 mb-36">
         <div className="mr-8">
-          <img className="rounded-2xl" src={paperWorkImage} alt="" />
+          <img className="rounded-2xl shadow-2xl" src={paperWorkImage} alt="" />
         </div>
         <div className="grid grid-flow-row mt-2 mb-2 gap-4">
           <button

@@ -53,7 +53,7 @@ const MobileApp = () => {
                     </div>
                 ))}
 
-                <button type="button" className="text-center text-white font-medium bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none rounded-lg text-base mt-36 px-5 py-3" 
+                <button type="button" className="text-center text-white font-medium bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none rounded-lg text-base mt-36 px-5 py-3" 
                     onClick={handleBack}
                 > Επιστοφή στην Αρχική Σελίδα </button>
             </div>

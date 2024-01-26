@@ -115,7 +115,7 @@ const Login = () => {
 
                 <button
                     type="submit"
-                    className="w-full text-white bg-teal-700 rounded-md p-2 hover:bg-teal-600 hover:shadow-xl"
+                    className="w-full text-white bg-teal-700 rounded-md p-2 hover:bg-teal-800 hover:shadow-xl"
                 >
                     Σύνδεση
                 </button>

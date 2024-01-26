@@ -1,8 +1,9 @@
 import React from "react";
+import axios from "axios";
 
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import axios from 'axios';
+
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
 import Success from "../../../components/Common/Success";
@@ -27,7 +28,7 @@ const Path = ({ id }) => {
                         <svg class="rtl:rotate-180 text-gray-500 w-3 h-3 m-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                         </svg>
-                        <a href={`/student/certifications/${id}`} class="inline-flex items-center text-sm text-gray-700 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-white"> Πιστοποιητικά </a>
+                        <Link to={`/student/certifications/${id}`} class="inline-flex items-center text-sm text-gray-700 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-white"> Πιστοποιητικά </Link>
                     </div>
                 </li>
 
@@ -44,15 +45,10 @@ const Path = ({ id }) => {
     );
 };
 
-const StepOne = () => {
+const StepOne = ({ setCertificationType }) => {
     const [mainSelection, setMainSelection] = useState("Φοιτητικής Ιδιότητας");
     const [showCertificatesOptions, setShowCertificatesOptions] = useState(false);
-
-    const handleButtonClick = (selectedOption) => {
-        setMainSelection(selectedOption);
-        setShowCertificatesOptions(false);
-    };
-
+    
     const options = [
         "Φοιτητικής Ιδιότητας",
         "Φορολογικής Χρήσης",
@@ -60,6 +56,12 @@ const StepOne = () => {
         "Στρατολογική χρήση (Συνοπτικό)",
         "Στρατολογική χρήση (Συνοπτικό)",
     ]
+
+    const handleButtonClick = (selectedOption) => {
+        setMainSelection(selectedOption);
+        setShowCertificatesOptions(false);
+        setCertificationType(selectedOption);
+    };
 
     return (
         <div className="flex flex-col items-center">
@@ -85,16 +87,17 @@ const StepOne = () => {
     );
 };
 
-const StepTwo = () => {
+const StepTwo = ({ setNumberOfCopies }) => {
     const [mainSelection, setMainSelection] = useState("1");
-    const [showCertificatesCopies, setshowCertificatesCopies] = useState(false);
-
-    const handleButtonClick = (selectedOption) => {
-        setMainSelection(selectedOption);
-        setshowCertificatesCopies(false);
-    };
+    const [showCertificatesCopies, setShowCertificatesCopies] = useState(false);
 
     const copies = ["1", "2", "3", "4", "5"]
+    
+    const handleButtonClick = (selectedOption) => {
+        setMainSelection(selectedOption);
+        setShowCertificatesCopies(false);
+        setNumberOfCopies(selectedOption);
+    };
 
     return (
         <div className="flex flex-col items-center">
@@ -103,7 +106,7 @@ const StepTwo = () => {
             </h2>
 
             <div className="bg-gray-50 shadow-xl rounded-xl w-auto pl-2 pr-2">
-                <div className="text-center text-lg font-medium p-3 cursor-pointer" onClick={() => setshowCertificatesCopies(!showCertificatesCopies)}>
+                <div className="text-center text-lg font-medium p-3 cursor-pointer" onClick={() => setShowCertificatesCopies(!showCertificatesCopies)}>
                     <span> {mainSelection} {showCertificatesCopies ? "▲" : "▼"} </span>
                 </div>
                 {showCertificatesCopies && (
@@ -123,9 +126,7 @@ const StepTwo = () => {
 const StepThree = () => {
     return (
         <div className="flex flex-col items-center">
-            <h2 className="flex flex-col text-center text-2xl w-full mt-24 mb-4">
-                Είστε σίγουροι ότι θέλετε να προχωρήσετε σε αίτηση του πιστοποιητικού; <br /> Αν ναι πατήστε επόμενο.
-            </h2>
+            <h2 className="text-center text-2xl w-full mt-24 mb-4"> Είστε σίγουροι ότι θέλετε να προχωρήσετε σε αίτηση του πιστοποιητικού; <br /> Αν ναι πατήστε επόμενο. </h2>
         </div>
     );
 };
@@ -135,39 +136,33 @@ const Request = () => {
 
     const { id } = useParams();
     const [currentStep, setCurrentStep] = useState(1);
-    const [certificationType, setCertificationType] = useState('');
     const [numberOfCopies, setNumberOfCopies] = useState(1);
-
-    const handleBack = () => {
-        navigate(`/student/certifications/${id}`);
-    };
-
-    const goToNextStep = () => {
-        setCurrentStep(currentStep + 1);
-    };
-
-    const goToPreviousStep = () => {
-        setCurrentStep(currentStep - 1);
-    };
+    const [certificationType, setCertificationType] = useState("");
 
     useEffect(() => {
         console.log("Current step is now:", currentStep);
     }, [currentStep]);
 
     const handleSubmit = async () => {
-        const requestData = {
-            certificationType,
-            numberOfCopies,
-            requestDate: new Date().toISOString(),
-            studentId: id
-        };
-
+        const requestData = { certificationType, numberOfCopies, requestDate: new Date().toISOString(), studentId: id };
         try {
             const response = await axios.post('/api/certification-requests', requestData);
             console.log(response.data);
         } catch (error) {
             console.error('Error submitting request:', error);
         }
+    };
+
+    const goToPreviousStep = () => {
+        setCurrentStep(currentStep - 1);
+    };
+
+    const goToNextStep = () => {
+        setCurrentStep(currentStep + 1);
+    };
+
+    const handleBack = () => {
+        navigate(`/student/certifications/${id}`);
     };
 
     let stepContent;
@@ -205,7 +200,7 @@ const Request = () => {
                             )}
 
                             {currentStep === 3 ? (
-                                <button onClick={() => {goToNextStep(); handleSubmit()}} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Αίτηση </button>
+                                <button onClick={() => {handleSubmit(); goToNextStep()}} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Αίτηση </button>
                             ) : currentStep < 3 && (
                                 <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Επόμενο </button>
                             )}

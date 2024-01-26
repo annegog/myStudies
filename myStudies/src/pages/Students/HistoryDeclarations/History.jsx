@@ -64,14 +64,14 @@ const Declarations = () => {
         const summerStart = new Date(year, 1, 1);
         const summerEnd = new Date(year, 8, 15);
 
-        let semesterLabel = "Θερινού";
+        let semesterLabel = "Χειμερινού";
         if (declarationDate >= summerStart && declarationDate <= summerEnd) {
             semesterLabel = "Εαρινού";
         }
         if (declarationDate >= summerEnd) {
-            return `Δηλώσεις ${semesterLabel} Εξημήνου ${year} - ${year + 1}`;
+            return `Δηλώση ${semesterLabel} Εξημήνου ${year} - ${year + 1}`;
         } else {
-            return `Δηλώσεις ${semesterLabel} Εξημήνου ${year - 1} - ${year}`;
+            return `Δηλώση ${semesterLabel} Εξημήνου ${year - 1} - ${year}`;
         }
     };
 
@@ -90,24 +90,29 @@ const Declarations = () => {
             <h2 className="text-center text-4xl font-thin justify-center mt-10 mb-4">
                 Ιστορικό Δηλώσεων Μαθημάτων
             </h2>
-            <div className="flex justify-center">
-                {declarations.map((declaration) => (
-                    <div className="flex flex-col items-center justify-center">
-                        <div onClick={() => toggleDeclaration(declaration._id)} className="text-lg bg-gray-50 rounded-xl py-3 px-5 mb-5 shadow-xl hover:shadow-2xl cursor-pointer">
-                            <span> {getSemesterLabel(declaration.data)} {expandedDeclarations[declaration._id] ? '▲' : '▼'} </span>
-                        </div>
+            <div className="flex flex-col items-center">
+            {declarations.map((declaration) => (
+                <div key={declaration._id} className="mb-5">
+                    <button className="text-lg bg-gray-50 rounded-xl py-4 px-10 shadow-md hover:shadow-xl cursor-pointer"
+                        onClick={() => toggleDeclaration(declaration._id)}>
+                        <span>{getSemesterLabel(declaration.data)} {expandedDeclarations[declaration._id] ? "▲" : "▼"}</span>
                         {expandedDeclarations[declaration._id] && (
-                            <div>
-                                {declaration.courses && declaration.courses.map(course => (
-                                    <p key={course._id} className="flex justify-center text-green-600 cursor-pointer"> {course.title} </p> 
-                                ))}
+                            <div className="flex flex-col items-center bg-gray-100 mt-2 rounded-xl p-4">
+                                <ul className="list-disc">
+                                    {declaration.courses && declaration.courses.map((course) => (
+                                    <li key={course._id} className="text-green-700 cursor-pointer text-lg">
+                                        {course.title}
+                                    </li>
+                                    ))}
+                                </ul>
                             </div>
                         )}
-                    </div>
-                ))}
+                    </button>
+                </div>
+            ))}
             </div>
-            <Footer />
-        </div>
+        <Footer />
+    </div>
     );
 };
 

@@ -9,3 +9,20 @@ body{
     background-color: #f5ecdf9d;
     font-family: 'Inter', sans-serif;
 }
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animated-text {
+    animation: fadeIn 1s ease-out;
+    animation-delay: 0.5s;
+  }
+  

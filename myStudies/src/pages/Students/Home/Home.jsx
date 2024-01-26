@@ -68,11 +68,7 @@ const Home = () => {
     };
     
     const Declare = () => {
-        navigate(`/student/declarations/${id}`);
-    };
-
-    const Modification = () => {
-        navigate(`/student/declarations/${id}`);
+        navigate(`/student/declarations/${user._id}`);
     };
 
     return (
@@ -101,7 +97,7 @@ const Home = () => {
 
                     <div className="mt-3 md:justify-items-center">
                         <button type="button" className="text-center text-lg text-white font-medium bg-blue-900 hover:bg-blue-700 rounded-xl px-6 py-2 shadow-md hover:shadow-2xl"
-                            // onClick={Modification}
+                            onClick={Declare}
                         > Τροποποίηση Δήλωσης Μαθημάτων
                         </button>
                     </div>

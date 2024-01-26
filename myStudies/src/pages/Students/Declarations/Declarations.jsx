@@ -12,7 +12,7 @@ import Success from "../../../components/Common/Success";
 import Breadcrumb from "../../../components/Tools/Breadcrumb";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
-const Path = () => {
+const Path = (id) => {
     return (
         <nav class="flex items-center justify-center m-6">
             <ol class="flex flex-row items-center">
@@ -280,7 +280,7 @@ const StepOne = ({ onSubjectSelect, selectedSubjects, organizedCourses }) => {
                     {title}
                 </button>
                 {isOpen && (
-                    <div className="content bg-gray-100 p-3 bg-white shadow-xl rounded-xl">{children}</div>
+                    <div className="content p-3 bg-white shadow-xl rounded-xl">{children}</div>
                 )}
             </div>
         );
@@ -323,7 +323,7 @@ const StepOne = ({ onSubjectSelect, selectedSubjects, organizedCourses }) => {
                                 <AccordionSection
                                     title="Γενικής Παιδείας"
                                     isOpen={
-                                        openSections[`${semester}--general`] &&
+                                        openSections[`${semester}-general`] &&
                                         organizedCourses[semester]?.general
                                     }
                                     onClick={(e) => toggleSection(semester, "general", e)}

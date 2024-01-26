@@ -17,7 +17,7 @@ const Path = (id) => {
         <nav class="flex items-center justify-center m-6">
             <ol class="flex flex-row items-center">
                 <li class="flex flex-col items-center">
-                    <Link to={`/student/${id}`} class="inline-flex items-center text-sm text-gray-600 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-white">
+                    <Link to={`/student/${id}`} class="inline-flex items-center text-sm text-gray-600 hover:text-green-700 font-medium dark:text-gray-400 dark:hover:text-white">
                         <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                         </svg>
@@ -41,8 +41,6 @@ const Path = (id) => {
 const Declarations = () => {
     const { id } = useParams();
     const { user } = useContext(UserContext);
-
-    console.log("Received ID in Grades:", id);
 
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedSubjects, setSelectedSubjects] = useState([]);
@@ -185,6 +183,9 @@ const Declarations = () => {
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <Path id={id} />
+            <h2 className="text-center text-4xl font-thin justify-center mt-10 mb-4">
+                Δήλωση Μαθημάτων
+            </h2>
             <main className="main-content flex justify-center">
                 {currentStep === 4 ? (
                     <Success userRole={"student"} action={"declaration"} userId={id} />
@@ -206,31 +207,22 @@ const Declarations = () => {
                             {currentStep > 1 && (
                                 <button
                                     onClick={goToPreviousStep}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"
-                                >
-                                    {" "}
-                                    Προηγούμενο{" "}
-                                </button>
+                                    className="text-white bg-gray-400 rounded-lg hover:bg-gray-500 shadow-md hover:shadow-xl px-4 py-2"> Προηγούμενο </button>
                             )}
 
                             {/* Update button text based on the current step */}
                             {currentStep === 3 ? (
                                 <button
                                     onClick={handleOkClick}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"
+                                    className="text-white px-4 py-2  bg-green-500 rounded-lg hover:bg-green-600  shadow-md hover:shadow-xl"
                                 >
-                                    {" "}
-                                    Οριστική Υποβολή{" "}
+                                Οριστική Υποβολή
                                 </button>
                             ) : (
                                 currentStep < 3 && (
                                     <button
                                         onClick={goToNextStep}
-                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"
-                                    >
-                                        {" "}
-                                        Επόμενο{" "}
-                                    </button>
+                                        className="text-white roundedbg-green-500 rounded-lg bg-green-500 hover:bg-green-600 shadow-md hover:shadow-xl px-8 py-2"> Επόμενο </button>
                                 )
                             )}
                         </div>
@@ -482,18 +474,18 @@ const StepTwo = ({ selectedSubjects, onSubjectDeselect }) => {
 
     return (
         <div>
-            <div className="text-red-500 text-center text-lg m-10">
-                Τα παρακάτω μαθήματα αποθηκεύτηκαν προσωρινά. Πατήστε επόμενο για να προχωρήσετε σε Οριστική Υποβολή.
+            <div className="text-red-500 text-center text-lg mt-4 mb-4">
+                Τα παρακάτω μαθήματα αποθηκεύτηκαν προσωρινά!<br/> Πατήστε επόμενο για να προχωρήσετε σε Οριστική Υποβολή.
             </div>
-            <h2 className="text-center text-xl font-medium">Επιλεγμένα Μαθήματα</h2>
+            <h2 className="text-center text-2xl mb-2">Επιλεγμένα Μαθήματα</h2>
             {Object.entries(subjectsBySemester).map(([semester, subjects]) => (
                 <div key={semester}>
-                    <h3 className="text-lg"> Εξάμηνο {semester}</h3>
+                    <h3 className="text-xl"> Εξάμηνο {semester}</h3>
                     <ul className="pl-4">
                         {subjects.map((subject) => {
                             const subjectKey = `${semester}-${subject}`;
                             return (
-                                <li key={subjectKey} className="list-inside list-disc"> {/* This will style list items with bullets */}
+                                <li key={subjectKey} className="list-inside list-disc text-lg"> {/* This will style list items with bullets */}
                                     <Checkbox
                                         type="checkbox"
                                         checked
@@ -549,7 +541,7 @@ const StepThree = ({ selectedSubjects }) => {
 
     return (
         <div>
-            <div className={`text-center p-4 m-20 text-lg bg-transparent ${mixedSemesters || totalSubjects > 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
+            <div className={`text-center p-4 m-4 text-lg bg-transparent ${mixedSemesters || totalSubjects > 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-yellow-700'}`}>
                 {message}
             </div>
             {/* If no error, show the selected subjects */}
@@ -563,18 +555,6 @@ const StepThree = ({ selectedSubjects }) => {
                     </ul>
                 </div>
             ))}
-            {/* Show the Okay button based on conditions */}
-            {/* {!mixedSemesters && totalSubjects <= 10 && (
-        <div className="mt-4 flex justify-center">
-          <button
-            onClick={handleOkClick}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-          >
-            Εντάξει
-          </button>
-        </div>
-      )} */}
-
         </div>
     );
 };

@@ -83,7 +83,7 @@ const Home = () => {
                     </h2>
 
                     <div className="mt-2">
-                        <button type="button" className="text-center text-lg text-white font-medium bg-blue-900 hover:bg-blue-700 rounded-xl px-6 py-2 shadow-md hover:shadow-2xl"
+                        <button type="button" className="text-center text-lg text-white font-medium bg-teal-600 hover:bg-teal-700 rounded-xl px-6 py-2 shadow-md hover:shadow-2xl"
                             onClick={Declare}
                         > Δήλωση Μαθημάτων
                         </button>
@@ -91,11 +91,11 @@ const Home = () => {
                 </div>
             ) : declarationInfo.open && declarationInfo.declaration && (
                 <div className="text-center">
-                    <h2 className="text-xl font-bold text-green-500"> Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να γίνει τροποποίηση της. </h2>
+                    <h2 style={{ color: "#379683" }} className="text-xl font-bold"> Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να γίνει τροποποίηση της. </h2>
                     <h2 className="text-xl font-bold text-red-800"> Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση. </h2>
 
                     <div className="mt-3 md:justify-items-center">
-                        <button type="button" className="text-center text-lg text-white font-medium bg-blue-900 hover:bg-blue-700 rounded-xl px-6 py-2 shadow-md hover:shadow-2xl"
+                        <button type="button" className="text-center text-lg text-white font-medium bg-teal-600 hover:bg-teal-700 rounded-xl px-6 py-2 shadow-md hover:shadow-2xl"
                             onClick={Declare}
                         > Τροποποίηση Δήλωσης Μαθημάτων
                         </button>

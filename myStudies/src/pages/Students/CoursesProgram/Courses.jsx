@@ -42,8 +42,8 @@ const CoursesPage = () => {
             <Navbar />
             <NavBarOptions userType={"student"} userId={id} />
             <Path id={id} />
-            <div className="justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32">
-                <h2 className="text-2xl font-thin justify-center text-center mb-1"> Πρόγραμμα Σπουδών </h2>
+            <div className="justify-center items-center md:justify-items-center mt-10 gap-4 px-6 lg:px-16 xl:px-32">
+                <h2 className="text-4xl font-thin justify-center text-center mb-2"> Πρόγραμμα Σπουδών </h2>
                 <Courses />
             </div>
             <Footer />

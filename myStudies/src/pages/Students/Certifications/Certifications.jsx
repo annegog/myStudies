@@ -46,12 +46,14 @@ const Certifications = () => {
         <Navbar />
         <NavBarOptions userType={"student"} userId={id} />
         <Path id={id} />
-
+        <h2 className="text-center text-4xl font-thin justify-center mt-10 mb-2">
+            Πιστοποιητικά
+        </h2>
         <div className="flex justify-center items-center px-6 mt-12 mb-36">
-          <div className="grid grid-cols-3 mt-2 mb-2 gap-4">
+          <div className="grid grid-cols-3 mt-2 mb-2 gap-8">
             <button
               type="button"
-              className="flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
+              className="info-container flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
               onClick={handleRequest}
             >
               <svg
@@ -73,7 +75,7 @@ const Certifications = () => {
 
             <button
               type="button"
-              className="flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
+              className="info-container flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
               onClick={handleStatus}
             >
               <svg
@@ -96,7 +98,7 @@ const Certifications = () => {
 
             <button
               type="button"
-              className="flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
+              className="info-container flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
               onClick={handleHistory}
             >
               <svg

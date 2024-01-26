@@ -11,8 +11,8 @@ const Donut = ({ ects }) => {
     const data = {
         labels: ["Κατοχυρωμένα ECTS"],
         datasets: [{label: "ECTS", data: [ects, 240 - ects], 
-        backgroundColor: ["lightblue", "lightcoral"], 
-        borderColor: ["lightblue", "lightcoral"]}],
+        backgroundColor: ["#5cdb95", "#f08080"], 
+        borderColor: ["#5cdb95", "#f08080"]}],
     };
 
     return (

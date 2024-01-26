@@ -30,14 +30,12 @@ app.use(
 );
 
 mongoose.connect(process.env.MONGO_URL, { useUnifiedTopology: true })
-
-.then(() => {
-    console.log('Connected to MongoDB');
-})
-
-.catch((error) => {
-    console.error('Error connecting to MongoDB:', error.message);
-});
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((error) => {
+        console.error('Error connecting to MongoDB:', error.message);
+    });
 
 app.listen(4000, () => {
     console.log(`Server is running`);

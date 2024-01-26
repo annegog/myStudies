@@ -10,26 +10,10 @@ import Footer from "../../../components/Common/Footer";
 
 const CommonQuestions = () => {
     const navigate = useNavigate();
-
-    const { id } = useParams();
+    
     const { user } = useContext(UserContext);
-    const [userRole, setUserRole] = useState("student")
+    const [userRole, setUserRole] = useState("professor")
     const [openQuestions, setOpenQuestions] = useState({});
-    
-    const toggleQuestion = (index) => {
-        setOpenQuestions(prevOpenQuestions => ({
-            ...prevOpenQuestions,
-            [index]: !prevOpenQuestions[index]
-        }));
-    };
-    
-    const handleBack = () => {
-        if (user) {
-            navigate(`/${user.role}/${user._id}`); 
-        } else {
-            navigate('/login');
-        }
-    };
     
     const questionsStudents = [
         {
@@ -110,7 +94,7 @@ const CommonQuestions = () => {
             ]
         },
     ];
-
+    
     const questionsProfessors = [
         {
             question: "Πως μπορώ να αλλάξω το e-mail μου;",
@@ -146,7 +130,22 @@ const CommonQuestions = () => {
             ]
         },
     ];
+
+    const toggleQuestion = (index) => {
+        setOpenQuestions(prevOpenQuestions => ({
+            ...prevOpenQuestions,
+            [index]: !prevOpenQuestions[index]
+        }));
+    };
     
+    const handleBack = () => {
+        if (user) {
+            navigate(`/${user.role}/${user._id}`); 
+        } else {
+            navigate('/login');
+        }
+    };
+
     return (
         <div>
             <Navbar/>
@@ -177,7 +176,7 @@ const CommonQuestions = () => {
                             > {data.question} {" "} <span> {openQuestions[index] ? "▲" : "▼"} </span> </button>
 
                             {openQuestions[index] && (
-                                <div className="bg-gray-50 text-black text-base italic max-w-full shadow-md hover:shadow-xl cursor-pointer bg-opacity-30 w-fit justify-center items-stretch p-5 py-3 rounded-2xl self-start max-md:max-w-full max-md:pl-5 max-md:pr-8">
+                                <div className="info-container bg-gray-50 text-black text-base italic max-w-full shadow-md hover:shadow-xl cursor-pointer bg-opacity-30 w-fit justify-center items-stretch p-5 py-3 rounded-2xl self-start max-md:max-w-full max-md:pl-5 max-md:pr-8">
                                     <ul style={{ listStyleType: "decimal", paddingLeft: "20px" }}>
                                         {data.steps.map((step, stepIndex) => (
                                             <li key={stepIndex} dangerouslySetInnerHTML={{ __html: step }}/>

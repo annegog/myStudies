@@ -17,7 +17,10 @@ const CommonQuestions = () => {
     const { user, setUser } = useContext(UserContext);
     
     const handleBack = () => {
-        navigate(`/student/${id}`); 
+        if(user){
+            navigate(`/${user.role}/${user._id}`); 
+        }
+        navigate('/login');
     };
     
     const [userRole, setUserRole] = useState("student")

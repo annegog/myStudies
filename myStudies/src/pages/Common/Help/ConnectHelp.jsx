@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
+import { UserContext } from "../../../components/UserContext";
 
 const ConnectHelp = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();
+    const { user } = useContext(UserContext);
 
     const handleBack = () => {
-        navigate(`/student/${id}`); 
+        if(user){
+            navigate(`/${user.role}/${user._id}`); 
+        }
+        navigate('/login');
     };
 
     const question = [

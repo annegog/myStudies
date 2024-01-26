@@ -1,8 +1,10 @@
 import React from "react";
 
 import { useNavigate, useParams, Link } from "react-router-dom";
+
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
+import paperWorkImage from "../../../assets/paper-work.png";
 import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Path = ({ id }) => {

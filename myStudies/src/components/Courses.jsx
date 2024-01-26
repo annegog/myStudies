@@ -24,7 +24,7 @@ const AccordionSection = ({
         {title}
       </button>
       {isOpen && (
-        <div className="content bg-gray-50 rounded-2xl p-4 shadow-xl">
+        <div className="flex flex-col content bg-gray-50 rounded-2xl p-4 shadow-md hover:shadow-xl">
           {courses && courses.length > 0 ? (
             courses.map((course) => (
               <div key={course.id} className="flex items-center text-black">
@@ -180,7 +180,7 @@ const Courses = () => {
         <div key={semester}>
           <button
             onClick={() => toggleSemester(semester)}
-            className="flex flex-row text-left w-full text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl"
+            className="flex flex-row text-left w-full text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl info-container"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

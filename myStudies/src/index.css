@@ -5,31 +5,30 @@
 @tailwind utilities;
 
 body{
-    color: #000000;
-    background-color: #f5ecdf9d;
-    font-family: 'Inter', sans-serif;
+  color: #000000;
+  background-color: #f5ecdf9d;
+  font-family: 'Inter', sans-serif;
 }
 
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
   
-  .animated-text {
-    animation: fadeIn 1s ease-out;
-    animation-delay: 0.5s;
-  }
+.animated-text {
+  animation: fadeIn 1s ease-out;
+  animation-delay: 0.5s;
+}
   
 .info-container {
   transition: transform 0.3s ease-in-out; 
 }
 
 .info-container:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }

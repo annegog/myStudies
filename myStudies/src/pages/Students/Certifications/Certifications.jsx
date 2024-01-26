@@ -1,10 +1,11 @@
 import React from "react";
 
 import { useNavigate, useParams, Link } from "react-router-dom";
+
 import Navbar from "../../../components/Common/Navbar";
 import Footer from "../../../components/Common/Footer";
-import NavBarOptions from "../../../components/Common/NavBarOptions";
 import paperWorkImage from "../../../assets/paper-work.png";
+import NavBarOptions from "../../../components/Common/NavBarOptions";
 
 const Path = ({ id }) => {
     return (
@@ -40,47 +41,45 @@ const Certifications = () => {
     const handleStatus = () => navigate(`/student/certifications/status/${id}`);
     const handleHistory = () => navigate(`/student/certifications/history/${id}`);
 
-     return (
-    <div>
-      <Navbar />
-      <NavBarOptions userType={"student"} userId={id} />
-      <Path id={id} />
+    return (
+        <div>
+        <Navbar />
+        <NavBarOptions userType={"student"} userId={id} />
+        <Path id={id} />
+        <div className="flex justify-center items-center px-6 mt-8 mb-36">
+            <div className="mr-8">
+                <img className="rounded-2xl shadow-2xl" src={paperWorkImage} alt="" />
+            </div>
 
-      {/* Image and buttons side by side */}
-      <div className="flex justify-center items-center px-6 mt-8 mb-36">
-        <div className="mr-8">
-          <img className="rounded-2xl shadow-2xl" src={paperWorkImage} alt="" />
+            <div className="grid grid-flow-row mt-2 mb-2 gap-4">
+                <button
+                    type="button"
+                    className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
+                    onClick={handleRequest}
+                >
+                    Αίτηση για παροχή πιστοποιητικού
+                </button>
+
+                <button
+                    type="button"
+                    className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
+                    onClick={handleStatus}
+                >
+                    Εμφάνιση της κατάστασης αιτήσεων για πιστοποιητικά
+                </button>
+
+                <button
+                    type="button"
+                    className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
+                    onClick={handleHistory}
+                >
+                    Ιστορικό Αιτήσεων
+                </button>
+            </div>
         </div>
-        <div className="grid grid-flow-row mt-2 mb-2 gap-4">
-          <button
-            type="button"
-            className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
-            onClick={handleRequest}
-          >
-            Αίτηση για παροχή πιστοποιητικού
-          </button>
-
-          <button
-            type="button"
-            className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
-            onClick={handleStatus}
-          >
-            Εμφάνιση της κατάστασης αιτήσεων για πιστοποιητικά
-          </button>
-
-          <button
-            type="button"
-            className="text-center text-white font-medium bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-3 p-2 shadow-md hover:shadow-xl"
-            onClick={handleHistory}
-          >
-            Ιστορικό Αιτήσεων
-          </button>
+        <Footer />
         </div>
-      </div>
-
-      <Footer />
-    </div>
-  );
+    );
 };
 
 export default Certifications

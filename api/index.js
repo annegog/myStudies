@@ -255,9 +255,10 @@ app.get('/api/courses', verifyJWTuser, async (req, res) => {
 
 app.post('/certification-requests', verifyJWTuser, async (req, res) => {
     try {
+        const { id } = req;
         const certificationRequestData = req.body;
 
-        certificationRequestData.studentId = req.params.id;
+        certificationRequestData.studentId = id;
         const certificationRequest = new CertificationRequest(certificationRequestData);
         const savedCertificationRequest = await certificationRequest.save();
         res.json(savedCertificationRequest);

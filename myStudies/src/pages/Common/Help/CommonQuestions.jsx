@@ -1,10 +1,8 @@
 import React from "react";
-import axios from "axios";
 
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 import { useState, useContext } from "react";
-
 import { UserContext } from "../../../components/UserContext";
 
 import Navbar from "../../../components/Common/Navbar";
@@ -14,23 +12,23 @@ const CommonQuestions = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();
-    const { user, setUser } = useContext(UserContext);
-    
-    const handleBack = () => {
-        if(user){
-            navigate(`/${user.role}/${user._id}`); 
-        }
-        navigate('/login');
-    };
-    
+    const { user } = useContext(UserContext);
     const [userRole, setUserRole] = useState("student")
     const [openQuestions, setOpenQuestions] = useState({});
-
+    
     const toggleQuestion = (index) => {
         setOpenQuestions(prevOpenQuestions => ({
             ...prevOpenQuestions,
             [index]: !prevOpenQuestions[index]
         }));
+    };
+    
+    const handleBack = () => {
+        if (user) {
+            navigate(`/${user.role}/${user._id}`); 
+        } else {
+            navigate('/login');
+        }
     };
     
     const questionsStudents = [

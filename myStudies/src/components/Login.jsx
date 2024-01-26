@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "./UserContext";
-import "react-toastify/dist/ReactToastify.css";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 
 import Academia from "../assets/Academia.png";

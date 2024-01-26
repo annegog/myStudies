@@ -13,10 +13,11 @@ const MobileApp = () => {
     const { user } = useContext(UserContext);
 
     const handleBack = () => {
-        if(user){
+        if (user) {
             navigate(`/${user.role}/${user._id}`); 
+        } else {
+            navigate('/login');
         }
-        navigate('/login');  
     };
 
     const mobileInfo = [

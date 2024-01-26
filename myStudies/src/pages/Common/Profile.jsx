@@ -21,39 +21,6 @@ const ProfilePage = () => {
     const [activeInfo, setActiveInfo] = useState(null);
     const [showInfoFilters, setShowInfoFilters] = useState(false);        // State to toggle info filter visibility
     const [showMoreInfoFilters, setShowMoreInfoFilters] = useState(false);
-
-    const toggleInfo = (info) => {
-        setActiveInfo(activeInfo === info ? null : info);
-    };
-
-    const handleEditClick = () => {
-        setEditMode(true);
-    };
-
-    // εδω πρεπει να δουμε τι σκατα να κανουμε
-    const handleSaveClick = async () => {
-        // Assuming you have an API endpoint to update user data
-        try {
-            await axios.post(`/update-profile/${user._id}`, {
-                family: userData.family,
-                sibling: userData.siblings,
-                army: userData.army,
-
-            });
-        } catch (error) {
-            console.error("Error saving declaration:", error);
-            // Handle error or display a notification to the user
-        }
-        setEditMode(false);
-    };
-
-    const handleDetailsClick = (e) => {
-        e.stopPropagation();
-    };
-
-    async function handleLogin(ev) {
-    
-    };
     
     useEffect(() => {
         // Fetch user profile data on mount
@@ -69,6 +36,34 @@ const ProfilePage = () => {
     if (!userData) {
         return <div>Loading...</div>; // Or any other loading state representation
     }
+    
+    // εδω πρεπει να δουμε τι σκατα να κανουμε
+    const handleSaveClick = async () => {
+        // Assuming you have an API endpoint to update user data
+        try {
+            await axios.post(`/update-profile/${user._id}`, {
+                family: userData.family,
+                sibling: userData.siblings,
+                army: userData.army,
+
+            });
+        } catch (error) {
+            console.error("Error saving declaration:", error);
+        }
+        setEditMode(false);
+    };
+    
+    const handleDetailsClick = (e) => {
+        e.stopPropagation();
+    };
+    
+    async function handleLogin(ev) {
+        
+    };
+
+    const handleEditClick = () => {
+        setEditMode(true);
+    };
 
     const formatBirthDate = (dateString) => {
         if (!dateString) {
@@ -103,10 +98,6 @@ const ProfilePage = () => {
                         <h2 className="mt-2 text-black text-xl font-light"> Σχολή - Τμήμα: {userData.university} </h2>
                         <h2 className="mt-2 text-black text-xl font-light"> Μέλος από: {registrationDate} </h2>
                     </div>
-{/* 
-                    <div>
-                        <button className="text-sm text-center bg-transparent py-1 px-2 mb-24 mr-3 rounded-3xl shadow-md hover:shadow-xl border"> Επεξεργασία </button>
-                    </div> */}
                 </div>
 
                 <div className="flex flex-col justify-between ml-20">

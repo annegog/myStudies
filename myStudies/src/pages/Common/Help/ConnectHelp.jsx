@@ -40,7 +40,7 @@ const ConnectHelp = () => {
                     <div key={index} className="w-full">
                         <p className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full py-2"> {data.question} {" "} </p>
                     
-                        <div className="bg-gray-50 text-black text-base italic max-w-full shadow-md hover:shadow-xl cursor-pointer bg-opacity-30 w-fit justify-center items-stretch p-5 py-3 rounded-2xl self-start max-md:max-w-full max-md:pl-5 max-md:pr-8">
+                        <div className="info-container bg-gray-50 text-black text-base italic max-w-full shadow-md hover:shadow-xl cursor-pointer bg-opacity-30 w-fit justify-center items-stretch p-5 py-3 rounded-2xl self-start max-md:max-w-full max-md:pl-5 max-md:pr-8">
                             <ul style={{ listStyleType: "decimal", paddingLeft: "20px" }}>
                                 {data.steps.map((step, stepIndex) => (
                                     <li key={stepIndex} dangerouslySetInnerHTML={{ __html: step }}/>

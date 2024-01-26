@@ -47,14 +47,14 @@ const Home = () => {
     
     useEffect(() => {
         const fetchDeclarationStatus = async () => {
-        try {
-            if (user) {
-                const response = await axios.get(`/declaration-season/${user._id}`);
-                setDeclarationInfo(response.data);
+            try {
+                if (user) {
+                    const response = await axios.get(`/declaration-season/${user._id}`);
+                    setDeclarationInfo(response.data);
+                }
+            } catch (error) {
+                console.error("Error fetching declaration status:", error);
             }
-        } catch (error) {
-            console.error("Error fetching declaration status:", error);
-        }
         };
 
         fetchDeclarationStatus();

@@ -36,29 +36,27 @@ const MobileApp = () => {
     return (
         <div>
             <Navbar/>
-            <main className="Main Mobile App">
-                <div style={{ marginTop: "1rem" }} className="bg-opacity-50 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
-                    {mobileInfo.map((data, index) => (
-                        <div key={index} className="w-full">
-                            <p className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full py-2"> {data.title} {" "} </p>
-                            <p className="text-blue-900 text-xl self-start max-md:max-w-full"> {data.sentence} {" "} </p>
-                            <p className="text-blue-900 text-xl self-start py-2 max-md:max-w-full"> {data.offering} {" "} </p>
-                        
-                            <div className="bg-gray-50 text-black text-base italic max-w-full shadow-md hover:shadow-xl cursor-pointer bg-opacity-30 w-fit justify-center items-stretch p-5 py-3 rounded-2xl self-start max-md:max-w-full max-md:pl-5 max-md:pr-8">
-                                <ul style={{ listStyleType: "decimal", paddingLeft: "20px" }}>
-                                    {data.info.map((info, stepIndex) => (
-                                        <li key={stepIndex} dangerouslySetInnerHTML={{ __html: info }}/>
-                                    ))}
-                                </ul>
-                            </div>
+            <div className="m-10 flex flex-col items-center px-40 py-12 rounded-lg max-md:px-5">
+                {mobileInfo.map((data, index) => (
+                    <div key={index} className="w-full">
+                        <p className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full py-2"> {data.title} {" "} </p>
+                        <p className="text-blue-900 text-xl self-start max-md:max-w-full"> {data.sentence} {" "} </p>
+                        <p className="text-blue-900 text-xl self-start max-md:max-w-full"> {data.offering} {" "} </p>
+                    
+                        <div className="info-container mt-2 bg-gray-50 text-black text-base italic max-w-full shadow-md hover:shadow-xl cursor-pointer bg-opacity-30 w-fit justify-center items-stretch p-5 py-3 rounded-2xl self-start max-md:max-w-full max-md:pl-5 max-md:pr-8">
+                            <ul style={{ listStyleType: "decimal", paddingLeft: "20px" }}>
+                                {data.info.map((info, stepIndex) => (
+                                    <li key={stepIndex} dangerouslySetInnerHTML={{ __html: info }}/>
+                                ))}
+                            </ul>
                         </div>
-                    ))}
+                    </div>
+                ))}
 
-                    <button type="button" className="text-center text-white font-medium bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none rounded-lg text-base mt-36 px-5 py-3" 
-                        onClick={handleBack}
-                    > Επιστοφή στην Αρχική Σελίδα </button>
-                </div>
-            </main>
+                <button type="button" className="text-center text-white font-medium bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:outline-none rounded-lg text-base mt-36 px-5 py-3" 
+                    onClick={handleBack}
+                > Επιστοφή στην Αρχική Σελίδα </button>
+            </div>
             <Footer/>
         </div>
     );

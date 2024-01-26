@@ -13,7 +13,7 @@ const User = require('./Models/User');
 const Course = require('./Models/Course');
 const ExamsSeason = require('./Models/Examinations');
 const Declaration = require('./Models/Declarations');
-const Certification = require('./Models/CertificationRequest');
+const CertificationRequest  = require('./Models/CertificationRequest');
 
 const app = Express();
 const bcryptSalt = bcrypt.genSaltSync(8);
@@ -30,12 +30,14 @@ app.use(
 );
 
 mongoose.connect(process.env.MONGO_URL, { useUnifiedTopology: true })
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch((error) => {
-        console.error('Error connecting to MongoDB:', error.message);
-    });
+
+.then(() => {
+    console.log('Connected to MongoDB');
+})
+
+.catch((error) => {
+    console.error('Error connecting to MongoDB:', error.message);
+});
 
 app.listen(4000, () => {
     console.log(`Server is running`);
@@ -219,7 +221,7 @@ app.post('/save-declaration', async (req, res) => {
 
         res.status(200).json({ message: 'Declaration saved successfully' });
     } catch (error) {
-        console.error("Error saving declaration:", error);
+        console.error('Error saving declaration:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
@@ -241,7 +243,7 @@ app.get('/api/courses', verifyJWTuser, async (req, res) => {
 app.post('/certification-requests', async (req, res) => {
     try {
         const certificationRequestData = req.body;
-        const certificationRequest = new Certification(certificationRequestData);
+        const certificationRequest = new CertificationRequest(certificationRequestData);
         const savedCertificationRequest = await certificationRequest.save();
         res.json(savedCertificationRequest);
     } catch (error) {
@@ -249,11 +251,10 @@ app.post('/certification-requests', async (req, res) => {
     }
 });
 
-// GET route to retrieve certifications for a specific user
 app.get('/certification-requests/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
-        const userCertifications = await Certification.find({ studentId: userId });
+        const userCertifications = await CertificationRequest.find({ studentId: userId });
         res.json(userCertifications);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });

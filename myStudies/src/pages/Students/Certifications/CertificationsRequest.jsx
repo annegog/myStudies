@@ -165,12 +165,8 @@ const Request = () => {
         try {
             const response = await axios.post('/api/certification-requests', requestData);
             console.log(response.data);
-            // Handle successful submission
-            // e.g., navigate to a success page or show a success message
         } catch (error) {
             console.error('Error submitting request:', error);
-            // Handle error
-            // e.g., show an error message to the user
         }
     };
 
@@ -209,7 +205,7 @@ const Request = () => {
                             )}
 
                             {currentStep === 3 ? (
-                                <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Αίτηση </button>
+                                <button onClick={() => {goToNextStep(); handleSubmit()}} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Αίτηση </button>
                             ) : currentStep < 3 && (
                                 <button onClick={goToNextStep} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 shadow-md hover:shadow-xl"> Επόμενο </button>
                             )}

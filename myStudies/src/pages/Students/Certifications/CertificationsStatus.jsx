@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from 'axios';
-import { useParams, Link } from "react-router-dom";
+
+import { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { UserContext } from "../../../components/UserContext";
 
 import Footer from "../../../components/Common/Footer";
 import Navbar from "../../../components/Common/Navbar";
@@ -41,22 +44,28 @@ const Path = ({ id }) => {
     );
 };
 const Status = () => {
+    const navigate = useNavigate();
+
     const { id } = useParams();
+    const { user } = useContext(UserContext);
     const [requests, setRequests] = useState([]);
 
     useEffect(() => {
         const fetchRequests = async () => {
             try {
-                const response = await axios.get(`/certification-requests/${id}`);
+                const response = await axios.get(`/certification-requests/${user._id}`);
                 setRequests(response.data);
             } catch (error) {
                 console.error('Error fetching certification requests:', error);
-                // Handle error appropriately
             }
         };
 
         fetchRequests();
-    }, [id]); // Dependency array with 'id' ensures this runs when 'id' changes
+    }, [id]);
+
+    const handleReturn = () => {
+        navigate(`/student/${user._id}`);
+    };
 
     return (
         <div>
@@ -64,18 +73,25 @@ const Status = () => {
             <NavBarOptions userType="student" userId={id} />
             <Path id={id} />
             <div className="requests-container">
-                {requests.length > 0 ? (
-                    requests.map((request, index) => (
-                        <div key={index} className="request">
-                            {/* Render request details here */}
-                            <p>Certification Type: {request.certificationType}</p>
-                            <p>Number of Copies: {request.numberOfCopies}</p>
-                            <p>Request Date: {new Date(request.requestDate).toLocaleDateString()}</p>
-                        </div>
-                    ))
-                ) : (
-                    <p>No active certification requests found.</p>
-                )}
+            {requests.length > 0 ? (
+                requests.map((request, index) => (
+                    <div key={index} className="request">
+                        <p>Certification Type: {request.certificationType}</p>
+                        <p>Number of Copies: {request.numberOfCopies}</p>
+                        <p>Request Date: {new Date(request.requestDate).toLocaleDateString()}</p>
+                    </div>
+                ))
+            ) : (
+                <div className="flex flex-col items-center">
+                    <h2 className="text-center text-2xl font-semibold text-red-800 m-28">
+                        Δεν βρέθηκε κατάσταση για κάποιο πιστοποιητικό. <br /> Σιγουρευτείτε ότι έχετε αιτηθεί.
+                    </h2>
+
+                    <button onClick={handleReturn} className="text-white px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 shadow-md hover:shadow-xl">
+                        Επιστροφή στην Αρχική
+                    </button>
+                </div>
+            )}
             </div>
             <Footer />
         </div>

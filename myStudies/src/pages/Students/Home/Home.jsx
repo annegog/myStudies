@@ -28,7 +28,7 @@ const Path = () => {
 
 const Info = ({ infoString, infoDetails }) => {
     return (
-        <div className="info-container text-center w-full p-10 rounded-2xl bg-gray-50 shadow-xl hover:shadow-2xl">
+        <div className="info-container text-center w-full p-7 rounded-2xl bg-gray-50 shadow-xl hover:shadow-2xl">
             <p className="text-xl font-bold m-2"> {infoString} </p>
             <div className="grid grid-cols-1 border-gray-200 border-t">
                 <div className="flex justify-between items-center pt-5"/>
@@ -49,8 +49,8 @@ const Home = () => {
         const fetchDeclarationStatus = async () => {
         try {
             if (user) {
-            const response = await axios.get(`/declaration-season/${user._id}`);
-            setDeclarationInfo(response.data);
+                const response = await axios.get(`/declaration-season/${user._id}`);
+                setDeclarationInfo(response.data);
             }
         } catch (error) {
             console.error("Error fetching declaration status:", error);

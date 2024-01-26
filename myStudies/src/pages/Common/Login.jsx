@@ -3,6 +3,7 @@ import "../../index.css"
 import Login from "../../components/Login";
 import Navbar from "../../components/Common/Navbar";
 import Footer from "../../components/Common/Footer";
+import "../../index.css"
 
 const LoginPage = () => {
     return (

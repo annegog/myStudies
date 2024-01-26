@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
-import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../../components/UserContext";
 
@@ -29,7 +28,7 @@ const Path = () => {
 
 const Info = ({ infoString, infoDetails }) => {
     return (
-        <div className="text-center bg-gray-50 rounded-2xl w-full p-10 shadow-xl hover:shadow-2xl">
+        <div className="info-container text-center bg-gray-50 rounded-2xl w-full p-10 shadow-xl hover:shadow-2xl">
             <p className="text-xl font-bold m-2"> {infoString} </p>
             <div className="grid grid-cols-1 border-gray-200 border-t">
                 <div className="flex justify-between items-center pt-5"/>
@@ -109,7 +108,7 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 md:px-16 xl:px-32">
                 <Donut ects={user.ects} />
                 <div className="flex flex-col justify-center items-center space-y-20">
-                    <Info infoString={"Μέσος Όρος"} infoDetails={10} />
+                    <Info infoString={"Μέσος Όρος"} infoDetails={7.32} />
                     <Info infoString={"Περασμένα Μαθήματα"} infoDetails={user.s_courses} />
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../../index.css"
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js/auto";
 
@@ -16,7 +16,7 @@ const Donut = ({ ects }) => {
     };
 
     return (
-        <div className="flex justify-center items-center px-20 p-3 m-2">
+        <div className="flex justify-center items-center px-20 p-3 m-2 info-container">
             <div className="w-full bg-gray-50 rounded-2xl shadow-xl hover:shadow-2xl p-6 m-6">
                 <div className="flex justify-between mb-6">
                     <div className="flex items-center justify-center">

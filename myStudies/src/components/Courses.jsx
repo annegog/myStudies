@@ -26,8 +26,8 @@ const AccordionSection = ({
           {courses && courses.length > 0 ? (
             courses.map((course) => (
               <div key={course.id} className="flex items-center text-black">
-                <h2 className="text-lg font-medium">
-                  {course.title}-{course.id_course}
+                <h2 className="text-lg font-medium mt-1 mb-1">
+                  {course.title} - {course.id_course}
                 </h2>
                 <button className="ml-2" onClick={() => onDetailsClick(course)}>
                   <svg
@@ -173,10 +173,10 @@ const Courses = () => {
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               />
             </svg>
-            Εξάμηνο {semester}
+            <span>Εξάμηνο {semester}</span>
           </button>
           {`${activeSemester}` === `${semester}` && (
-            <div className="flex flex-col pl-8">
+            <div className="flex flex-col pl-8 bg-gray-100 rounded-2xl pb-2">
               <AccordionSection
                 title="Υποχρεωτικά Μαθήματα"
                 isOpen={openSections[`${semester}-required`]}
@@ -245,7 +245,7 @@ const Courses = () => {
       className="rounded-xl"
     >
       <DialogTitle className="justify-center text-center rounded-t-md underline">
-        {details && details.title} - {details.id_course}
+        {details && details.title} 
       </DialogTitle>
       <DialogContent className=" p-4">
         {details && (

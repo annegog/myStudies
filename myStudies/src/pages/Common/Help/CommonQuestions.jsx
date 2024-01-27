@@ -12,9 +12,10 @@ const CommonQuestions = () => {
     const navigate = useNavigate();
     
     const { user } = useContext(UserContext);
-    const [userRole, setUserRole] = useState("professor")
     const [openQuestions, setOpenQuestions] = useState({});
     
+    const userRole = user && user.role ? user.role : "student";
+
     const questionsStudents = [
         {
             question: "Πως μπορώ να αλλάξω το e-mail μου;",

@@ -31,22 +31,6 @@ const AccordionSection = ({
                 <h2 className="text-lg font-medium">
                   {course.title}-{course.id_course}
                 </h2>
-                <button className="ml-2" onClick={() => onHistoryClick(course)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
-                    />
-                  </svg>
-                </button>
                 <button className="ml-2" onClick={() => onDetailsClick(course)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +164,7 @@ const Courses = () => {
         <div key={semester}>
           <button
             onClick={() => toggleSemester(semester)}
-            className="flex flex-row text-left w-full text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl info-container"
+            className="flex flex-row text-left w-full text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

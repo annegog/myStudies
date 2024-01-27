@@ -78,7 +78,7 @@ const Home = () => {
         <div className="px-4 lg:px-16 xl:px-32">
             {declarationInfo.open && !declarationInfo.declaration ? (
                 <div className="text-center">
-                    <h2 className="text-xl font-bold text-red-800"> Έχουν ανοίξει οι δηλώσεις μαθημάτων. <br /> Όλοι οι φοιτητές καλούνται να πραγματοποιήσουν την δήλωση τους εως και τις {" "}
+                    <h2 className="text-xl font-serif font-semibold text-red-800"> Έχουν ανοίξει οι δηλώσεις μαθημάτων. <br /> Όλοι οι φοιτητές καλούνται να πραγματοποιήσουν την δήλωση τους εως και τις {" "}
                         {formatDate(declarationInfo.end_date)}.
                     </h2>
 
@@ -91,8 +91,8 @@ const Home = () => {
                 </div>
             ) : declarationInfo.open && declarationInfo.declaration && (
                 <div className="text-center">
-                    <h2 style={{ color: "#379683" }} className="text-xl font-bold"> Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να γίνει τροποποίηση της. </h2>
-                    <h2 className="text-xl font-bold text-red-800"> Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση. </h2>
+                    <h2 style={{ color: "#379683" }} className="text-xl font-serif font-semibold"> Έχει πραγματοποιηθεί Δήλωση Μαθημάτων στις {formatDate(declarationInfo.last_decl)}, μπορεί να γίνει τροποποίηση της. </h2>
+                    <h2 className="text-xl font-serif font-semibold text-red-800"> Η γραμματεία θα λάβει υπόψη της μόνο την τελευταία Δήλωση. </h2>
 
                     <div className="mt-3 md:justify-items-center">
                         <button type="button" className="text-center text-lg text-white font-medium bg-teal-600 hover:bg-teal-700 rounded-xl px-6 py-2 shadow-md hover:shadow-2xl"

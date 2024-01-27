@@ -150,8 +150,8 @@ app.get('/declaration-season/:userId', async (req, res) => {
             });
         }
         
-        // Check if the declaration's endDate is > than current date 
-        const isExamEndDateValid = latestDeclaration.exam.endDate > currentDate;
+        // Check if the last declaration's exam season is the same as thw on going exam season
+        const isExamEndDateValid = latestDeclaration.exam._id !==  ongoingExamSeason._id;
         
         if (!isExamEndDateValid) {
             // No valid exam end date found

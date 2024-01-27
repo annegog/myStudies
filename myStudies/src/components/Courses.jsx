@@ -180,7 +180,7 @@ const Courses = () => {
         <div key={semester}>
           <button
             onClick={() => toggleSemester(semester)}
-            className="flex flex-row text-left w-full text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl info-container"
+            className="flex flex-row text-left w-full text-lg py-2 focus:outline-none bg-gray-50 rounded-xl p-5 mb-4 shadow-md hover:shadow-xl"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

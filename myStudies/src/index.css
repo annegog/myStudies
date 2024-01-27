@@ -24,11 +24,6 @@ body{
   animation: fadeIn 0.6s ease-out;
   animation-delay: 0.2s;
 }
-
-.animated2-text {
-  animation: fadeIn 0.8s alternate;
-  animation-delay: 0.2s;
-}
   
 .info-container {
   transition: transform 0.3s ease-in-out; 

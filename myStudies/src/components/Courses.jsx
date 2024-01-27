@@ -3,9 +3,7 @@ import axios from "axios";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import Button from "@mui/material/Button";
 
 const AccordionSection = ({
   title,
@@ -64,16 +62,9 @@ const Courses = () => {
   const [courseData, setCourseData] = useState([]);
   const [organizedCourses, setOrganizedCourses] = useState({});
 
-  const [isHistoryModalOpen, setHistoryModalOpen] = useState(false);
   const [isDetailsModalOpen, setDetailsModalOpen] = useState(false);
 
-  const handleHistoryButtonClick = (course) => {
-    setHistory(course);
-    setHistoryModalOpen(true);
-  };
-
   const [details, setDetails] = useState(null);
-  const [history, setHistory] = useState(null);
 
   const professorList = details && Array.isArray(details.professors)
     ? details.professors.join(", ")
@@ -83,9 +74,7 @@ const Courses = () => {
     setDetails(course);
     setDetailsModalOpen(true);
   };
-  const handleCloseHistoryModal = () => {
-    setHistoryModalOpen(false);
-  };
+  
   const handleCloseDetailsModal = () => {
     setDetailsModalOpen(false);
   };
@@ -193,7 +182,6 @@ const Courses = () => {
                 isOpen={openSections[`${semester}-required`]}
                 onSectionClick={() => toggleSection(semester, "required")}
                 courses={organizedCourses[semester]?.required}
-                onHistoryClick={handleHistoryButtonClick}
                 onDetailsClick={handleDetailsButtonClick}
               />
               <AccordionSection
@@ -201,7 +189,6 @@ const Courses = () => {
                 isOpen={openSections[`${semester}-labs`]}
                 onSectionClick={() => toggleSection(semester, "labs")}
                 courses={organizedCourses[semester]?.labs}
-                onHistoryClick={handleHistoryButtonClick}
                 onDetailsClick={handleDetailsButtonClick}
               />
               <AccordionSection
@@ -209,7 +196,6 @@ const Courses = () => {
                 isOpen={openSections[`${semester}-general`]}
                 onSectionClick={() => toggleSection(semester, "general")}
                 courses={organizedCourses[semester]?.general}
-                onHistoryClick={handleHistoryButtonClick}
                 onDetailsClick={handleDetailsButtonClick}
               />
               {semester >= 5 && (
@@ -219,7 +205,6 @@ const Courses = () => {
                     isOpen={openSections[`${semester}-directionA`]}
                     onSectionClick={() => toggleSection(semester, "directionA")}
                     courses={organizedCourses[semester]?.directionA}
-                    onHistoryClick={handleHistoryButtonClick}
                     onDetailsClick={handleDetailsButtonClick}
                   />
                   <AccordionSection
@@ -227,7 +212,6 @@ const Courses = () => {
                     isOpen={openSections[`${semester}-directionB`]}
                     onSectionClick={() => toggleSection(semester, "directionB")}
                     courses={organizedCourses[semester]?.directionB}
-                    onHistoryClick={handleHistoryButtonClick}
                     onDetailsClick={handleDetailsButtonClick}
                   />
                   <AccordionSection
@@ -235,7 +219,6 @@ const Courses = () => {
                     isOpen={openSections[`${semester}-optional`]}
                     onSectionClick={() => toggleSection(semester, "optional")}
                     courses={organizedCourses[semester]?.optional}
-                    onHistoryClick={handleHistoryButtonClick}
                     onDetailsClick={handleDetailsButtonClick}
                   />
                 </div>
@@ -247,7 +230,6 @@ const Courses = () => {
                     isOpen={openSections[`${semester}-internship`]}
                     onSectionClick={() => toggleSection(semester, "internship")}
                     courses={organizedCourses[semester]?.internship}
-                    onHistoryClick={handleHistoryButtonClick}
                     onDetailsClick={handleDetailsButtonClick}
                   />
                 </div>
@@ -256,36 +238,31 @@ const Courses = () => {
           )}
         </div>
       ))}
-      {/* History Modal */}
-      <Dialog open={isHistoryModalOpen} onClose={handleCloseHistoryModal}>
-        <DialogTitle>Ιστορικό</DialogTitle>
-        <DialogContent>
-          <DialogContentText>Content of the history modal...</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseHistoryModal}>ΚΛΕΙΣΙΜΟ</Button>
-        </DialogActions>
-      </Dialog>
-      {/* Details Modal */}
-      <Dialog open={isDetailsModalOpen} onClose={handleCloseDetailsModal}>
-        <DialogTitle>{details && details.title}</DialogTitle>
-        <DialogContent>
-          {details && (
-            <div>
-              <p>ID: {details.id_course}</p>
-              <p>Semester: {details.semester}</p>
-              <p>ECTS: {details.ects}</p>
-              <p>Professors: {professorList}</p>
-              <p>Books: {details.books.join(", ")}</p>
-              <p>Hours: {details.hours}</p>
-              {/* Add more details as needed */}
-            </div>
-          )}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDetailsModal}>Close</Button>
-        </DialogActions>
-      </Dialog>
+
+    <Dialog
+      open={isDetailsModalOpen}
+      onClose={handleCloseDetailsModal}
+      className="rounded-xl"
+    >
+      <DialogTitle className="justify-center text-center rounded-t-md underline">
+        {details && details.title} - {details.id_course}
+      </DialogTitle>
+      <DialogContent className=" p-4">
+        {details && (
+          <div className="mt-2 text-lg font-medium">
+            <p>Εξάμηνο: {details.semester}</p>
+            <p className="mt-2">ECTS: {details.ects}</p>
+            <p className="mt-2">Καθηγητής: {professorList}</p>
+            <p className="mt-2">Προτεινόμενα Βιβλία: {details.books.join(", ")}</p>
+            <p className="mt-2">Ώρες Διδασκαλίας: {details.hours}</p>
+          </div>
+        )}
+      </DialogContent>
+      <DialogActions className=" text-white rounded-b-md">
+        <button className="text-white bg-teal-600 px-4 py-2 rounded-xl hover:bg-teal-500" onClick={handleCloseDetailsModal}>Close</button>
+      </DialogActions>
+    </Dialog>
+
     </div>
   );
 };

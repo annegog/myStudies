@@ -35,7 +35,6 @@ const Path = ({ id }) => {
 
 const CoursesPage = () => {
     const { id } = useParams(); // Use useParams to access the id
-    console.log("Received ID in Grades:", id); // Check the received ID
 
     return (
         <div>

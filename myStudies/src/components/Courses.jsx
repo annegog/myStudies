@@ -91,6 +91,10 @@ const Courses = () => {
   const [details, setDetails] = useState(null);
   const [history, setHistory] = useState(null);
 
+  const professorList = details && Array.isArray(details.professors)
+    ? details.professors.join(", ")
+    : details?.professors || 'No professors listed';
+
   const handleDetailsButtonClick = (course) => {
     setDetails(course);
     setDetailsModalOpen(true);
@@ -287,7 +291,7 @@ const Courses = () => {
               <p>ID: {details.id_course}</p>
               <p>Semester: {details.semester}</p>
               <p>ECTS: {details.ects}</p>
-              <p>Professors: {details.professors.join(", ")}</p>
+              <p>Professors: {professorList}</p>
               <p>Books: {details.books.join(", ")}</p>
               <p>Hours: {details.hours}</p>
               {/* Add more details as needed */}

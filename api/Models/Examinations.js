@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const ExamsSeasonSchema = new Schema({
     endData: Date,
-    examsSeason:  { type: String, enum: ['Winter', 'Spring', 'Repeat'] },
+    examsSeason: { type: String, enum: ['Winter', 'Spring', 'Repeat'] },
     year: String
 });
 

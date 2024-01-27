@@ -76,17 +76,13 @@ const Grades = () => {
                 {courses.map(course => (
                     <div className="bg-gray-50 shadow-md hover:shadow-2xl p-5 rounded-2xl mt-10" key={course.id}>
                         <div className="flex flex-row text-left w-full text-lg cursor-pointer focus:outline-none" >
-                            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="w-6 h-7">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            </svg>
-                            <p className="pl-3"> {course.title} </p>
+                            <p className="pl-4"> {course.title} </p>
                         </div>
                         
-                            <div className="pl-4 mt-3">
-                                <button onClick={() => handleCreationGrades(course)} className="bg-green-500 hover:bg-green-600 shadow-md hover:shadow-xl text-white font-medium px-4 py-2 mt-1 mr-4 rounded-3xl info-container"> Δημιουργία Βαθμολογίου </button>
-                                <button onClick={() => handleShowGrades(course)} className="bg-teal-600 shadow-md hover:shadow-xl text-white font-medium px-4 py-2 mt-1 mr-4 rounded-3xl hover:bg-teal-800 info-container"> Προβολή Βαθμολόγιου </button>
-                            </div>
-                        
+                        <div className="pl-4 mt-3">
+                            <button onClick={() => handleCreationGrades(course)} className="bg-green-500 hover:bg-green-600 shadow-md hover:shadow-xl text-white font-medium px-4 py-2 mt-1 mr-4 rounded-3xl info-container"> Δημιουργία Βαθμολογίου </button>
+                            <button onClick={() => handleShowGrades(course)} className="bg-teal-600 shadow-md hover:shadow-xl text-white font-medium px-4 py-2 mt-1 mr-4 rounded-3xl hover:bg-teal-800 info-container"> Προβολή Βαθμολόγιου </button>
+                        </div>
                     </div>
                 ))}
             </div>

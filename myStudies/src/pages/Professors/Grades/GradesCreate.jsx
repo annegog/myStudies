@@ -127,7 +127,7 @@ const Create = () => {
             ) : (
                 <div className="justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32">
                     <h2 className="text-3xl font-thin justify-center text-center mb-1"> Λίστα Μαθητών </h2>
-                    <div className="bg-gray-50 shadow-md hover:shadow-xl rounded-3xl px-10 py-8 mt-4 mb-10 m-20">
+                    <div className="bg-gray-50 shadow-md hover:shadow-xl rounded-3xl px-10 py-8 mt-10">
                         <div className="flex flex-row justify-center items-stretch space-x-10">
                             {columns.map((column, index) => (
                                 <Column

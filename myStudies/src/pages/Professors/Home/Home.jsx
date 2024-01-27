@@ -56,7 +56,7 @@ const Home = () => {
                 <h2 className="text-3xl font-thin justify-center text-center mb-1"> Τα μαθήματα μου </h2>
                 <div className="flex flex-row justify-center">
                     {courses.map((lesson) => (
-                        <div key={lesson._id} className="m-5">
+                        <div key={lesson._id} className="mt-10 m-5">
                             <button className="info-container flex flex-col items-center justify-center text-center text-white font-medium bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-500 rounded-3xl text-base px-5 py-8 p-2 shadow-md hover:shadow-xl relative"
                                 onClick={() => handleClick()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="0.8" stroke="currentColor" className="w-[4rem] h-[4rem]">

@@ -98,9 +98,9 @@ const Show = () => {
             <NavBarOptions userType={user.role} userId={id} />
             <Path id={id} />
             <div className="justify-center items-center md:justify-items-center gap-5 px-6 lg:px-16 xl:px-32">
-                    <h2 className="text-3xl font-thin justify-center text-center mb-1"> Λίστα Μαθητών </h2>
-                    <div className="bg-gray-50 shadow-md hover:shadow-xl rounded-3xl px-10 py-8 mt-4 mb-10 m-20">
-                        <div className="flex flex-row justify-center items-stretch space-x-10">
+                <h2 className="text-3xl font-thin justify-center text-center mb-1"> Λίστα Μαθητών </h2>
+                <div className="bg-gray-50 shadow-md hover:shadow-xl rounded-3xl px-10 py-8 mt-10">
+                    <div className="flex flex-row justify-center items-stretch space-x-10">
                         {columns.map((column) => (
                             <div key={column.label} className="text-center text-xl font-medium mr-10 mt-4">
                                 <p className="underline mb-3">{column.label}</p>
@@ -114,6 +114,7 @@ const Show = () => {
                             </div>
                         ))}
                     </div>
+
                     <div className="flex justify-center mt-8">
                         <div className="Options">
                             <button onClick={handleFinalization} className="bg-teal-600 text-white font-medium px-4 py-2 mt-2 mr-4 rounded-3xl hover:bg-teal-800 shadow-md hover:shadow-xl info-container"> Τέλος </button>

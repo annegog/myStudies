@@ -28,6 +28,8 @@ const UserSchema = new Schema({
     temp_city: String,
     temp_phone: String,
     postal_temp: String,
+    ects: Number,
+    s_courses: Number
 });
 
 const User = mongoose.model('User', UserSchema);

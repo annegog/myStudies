@@ -36,7 +36,7 @@ const Path = ({ id }) => {
                         <svg class="rtl:rotate-180 text-gray-500 w-3 h-3 m-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                         </svg>
-                        <span class="text-sm text-gray-500 font-medium  dark:text-gray-400"> Ιστορικό αιτήσεων </span>
+                        <span class="text-sm text-gray-500 font-medium  dark:text-gray-400"> Ιστορικό Aιτήσεων </span>
                     </div>
                 </li>
             </ol>
@@ -67,6 +67,12 @@ const Status = () => {
         navigate(`/student/${user._id}`);
     };
 
+    const formatDate = (dateString) => {
+        const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('el-GR', options);
+    };
+
     return (
         <div>
             <Navbar />
@@ -78,14 +84,14 @@ const Status = () => {
             <div>
                 {requests.length > 0 ? (
                     requests.map((request, index) => (
-                        <div key={index} className="flex items-center justify-center text-lg  m-3 cursor-pointer text-ani">
+                        <div key={index} className="flex items-center justify-center m-3 cursor-pointer text-ani">
                             {status ? (
                                 <div className="flex flex-row">
-                                    <p> {request.certificationType} {new Date(request.requestDate).toLocaleDateString()} </p>
+                                    <p className="text-lg"> {request.certificationType} {formatDate(request.requestDate)} </p>
                                 </div>
                             ) : (
                                 <div className="flex flex-row items-center">
-                                    <p> {request.certificationType} {new Date(request.requestDate).toLocaleDateString()} </p>
+                                    <p className="text-lg"> {request.certificationType} {formatDate(request.requestDate)}</p>
                                 </div>
                             )}
                         </div>

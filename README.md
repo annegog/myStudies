@@ -1,5 +1,5 @@
 # MyStudies
-### Anna Orestis Christos
+### Anna Googula 1115201800305 / Orestis / Christos
 
 ### What we are using in the app
 React, Vite, Tailwind, Express, MongoDB

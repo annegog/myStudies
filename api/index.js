@@ -137,7 +137,7 @@ app.get('/student/:id', verifyJWTuser, async (req, res) => {
     }
 });
 
-/************************************ Declaration ************************************/
+/************************** Declaration *************************/
 
 app.get('/declaration-season/:userId', async (req, res) => {
     try {
@@ -251,7 +251,7 @@ app.post('/save-declaration/:usersId', async (req, res) => {
     }
 });
 
-/************************************ Grades ************************************/
+/*************************** Grades ***************************/
 
 app.get('/api/grades/:id', async (req, res) => {
     try {
@@ -264,7 +264,7 @@ app.get('/api/grades/:id', async (req, res) => {
     }
 });
 
-/************************************ Courses ************************************/
+/************************** Courses ***************************/
 
 app.get('/api/courses', verifyJWTuser, async (req, res) => {
     try {
@@ -276,7 +276,7 @@ app.get('/api/courses', verifyJWTuser, async (req, res) => {
     }
 });
 
-/************************************ Certifications ************************************/
+/********************** Certifications ************************/
 
 app.post('/certification-requests', verifyJWTuser, async (req, res) => {
     try {
@@ -300,7 +300,7 @@ app.get('/certification-requests/:userId', async (req, res) => {
     }
 });
 
-/************************************ History ************************************/
+/********************* History ********************************/
 
 // Getting all the declarations user has made from the database
 
@@ -399,7 +399,7 @@ app.get('/students/declared/course/:course', async (req, res) => {
 
 app.post('/save-grades/:status/:courseId', verifyJWTuser, async (req, res) => {
     try {
-        const { courseId, status } = req.params;  // Fix the destructuring here
+        const { courseId, status } = req.params;
         const gradesData = req.body.grades;
 
         const latestExamSeason = await ExamsSeason.findOne({}).sort({ endData: -1 });
@@ -449,179 +449,179 @@ app.post('/save-grades/:status/:courseId', verifyJWTuser, async (req, res) => {
 
 app.get('/data', async (req, res) => {
     try {
-        // const student1 = new User({
-        //     first_name: 'Δημήτρης',
-        //     last_name: 'Αντωνίου',
-        //     username: 'sdi2400001',
-        //     email: 'sdi2400001@example.com',
-        //     university: 'Πληροφορικής και Τηλεπικοινωνιών',
-        //     password: bcrypt.hashSync('pass123', bcryptSalt),
-        //     role: 'student',
-        //     am: 'sdi2400001',
-        //     father: 'Αντώνης',
-        //     mother: 'Αντωνία',
-        //     birth_date: '23/06/2006',
-        //     family: 'Άγαμος',
-        //     siblings: 0,
-        //     army: 'Όχι',
-        //     birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
-        //     ID: 'AK336699',
-        //     ID_location: 'Κερατσινίου',
-        //     AMKA: 23060622553,
-        //     home: 'Αιόλου 45',
-        //     city: 'Αθήνα',
-        //     phone: 6977553311,
-        //     postal: 55443,
-        //     temp_home: '-',
-        //     temp_city: '-',
-        //     temp_phone: '-',
-        //     postal_temp: '-',
-        // });
+        const student1 = new User({
+            first_name: 'Δημήτρης',
+            last_name: 'Αντωνίου',
+            username: 'sdi2400001',
+            email: 'sdi2400001@example.com',
+            university: 'Πληροφορικής και Τηλεπικοινωνιών',
+            password: bcrypt.hashSync('pass123', bcryptSalt),
+            role: 'student',
+            am: 'sdi2400001',
+            father: 'Αντώνης',
+            mother: 'Αντωνία',
+            birth_date: '23/06/2006',
+            family: 'Άγαμος',
+            siblings: 0,
+            army: 'Όχι',
+            birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
+            ID: 'AK336699',
+            ID_location: 'Κερατσινίου',
+            AMKA: 23060622553,
+            home: 'Αιόλου 45',
+            city: 'Αθήνα',
+            phone: 6977553311,
+            postal: 55443,
+            temp_home: '-',
+            temp_city: '-',
+            temp_phone: '-',
+            postal_temp: '-',
+        });
 
-        // const student2 = new User({
-        //     first_name: 'Ορέστης',
-        //     last_name: 'Πίνας',
-        //     username: 'sdi2000122',
-        //     email: 'sdi2000122@example.com',
-        //     university: 'Πληροφορικής και Τηλεπικοινωνιών',
-        //     password: bcrypt.hashSync('pass123', bcryptSalt),
-        //     role: 'student',
-        //     am: 'sdi2000122',
-        //     father: 'Γιάννης',
-        //     mother: 'Φωτεινή',
-        //     birth_date: '11/09/2002',
-        //     family: 'Άγαμος',
-        //     siblings: 2,
-        //     army: 'Όχι',
-        //     birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
-        //     ID: 'AI456773',
-        //     ID_location: 'Αθηνών',
-        //     AMKA: 11090211559,
-        //     home: 'Αθήνας 44',
-        //     city: 'Αθήνας',
-        //     phone: 6911223344,
-        //     postal: 11111,
-        //     temp_home: '-',
-        //     temp_city: '-',
-        //     temp_phone: '-',
-        //     postal_temp: '-',
-        // });
+        const student2 = new User({
+            first_name: 'Ορέστης',
+            last_name: 'Πίνας',
+            username: 'sdi2000122',
+            email: 'sdi2000122@example.com',
+            university: 'Πληροφορικής και Τηλεπικοινωνιών',
+            password: bcrypt.hashSync('pass123', bcryptSalt),
+            role: 'student',
+            am: 'sdi2000122',
+            father: 'Γιάννης',
+            mother: 'Φωτεινή',
+            birth_date: '11/09/2002',
+            family: 'Άγαμος',
+            siblings: 2,
+            army: 'Όχι',
+            birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
+            ID: 'AI456773',
+            ID_location: 'Αθηνών',
+            AMKA: 11090211559,
+            home: 'Αθήνας 44',
+            city: 'Αθήνας',
+            phone: 6911223344,
+            postal: 11111,
+            temp_home: '-',
+            temp_city: '-',
+            temp_phone: '-',
+            postal_temp: '-',
+        });
 
-        // const student3 = new User({
-        //     first_name: 'Βασιλική',
-        //     last_name: 'Ευσταθίου',
-        //     username: 'sdi2400012',
-        //     email: 'sdi2400012@example.com',
-        //     university: 'Πληροφορικής και Τηλεπικοινωνιών',
-        //     password: bcrypt.hashSync('pass123', bcryptSalt),
-        //     role: 'student',
-        //     am: 'sdi2400012',
-        //     father: 'Μάρκος',
-        //     mother: 'Νίκη',
-        //     birth_date: '22/12/2006',
-        //     family: 'Άγαμη',
-        //     siblings: 1,
-        //     army: 'Όχι',
-        //     birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
-        //     ID: 'AK456456',
-        //     ID_location: 'Πειραιά',
-        //     AMKA: 22120623355,
-        //     home: 'Αιόλου 45',
-        //     city: 'Αθήνα',
-        //     phone: 6988774411,
-        //     postal: 12345,
-        //     temp_home: '-',
-        //     temp_city: '-',
-        //     temp_phone: '-',
-        //     postal_temp: '-',
-        // });
+        const student3 = new User({
+            first_name: 'Βασιλική',
+            last_name: 'Ευσταθίου',
+            username: 'sdi2400012',
+            email: 'sdi2400012@example.com',
+            university: 'Πληροφορικής και Τηλεπικοινωνιών',
+            password: bcrypt.hashSync('pass123', bcryptSalt),
+            role: 'student',
+            am: 'sdi2400012',
+            father: 'Μάρκος',
+            mother: 'Νίκη',
+            birth_date: '22/12/2006',
+            family: 'Άγαμη',
+            siblings: 1,
+            army: 'Όχι',
+            birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
+            ID: 'AK456456',
+            ID_location: 'Πειραιά',
+            AMKA: 22120623355,
+            home: 'Αιόλου 45',
+            city: 'Αθήνα',
+            phone: 6988774411,
+            postal: 12345,
+            temp_home: '-',
+            temp_city: '-',
+            temp_phone: '-',
+            postal_temp: '-',
+        });
 
-        // const student4 = new User({
-        //     first_name: 'Μαρία',
-        //     last_name: 'Δημητρίου',
-        //     username: 'sdi2400222',
-        //     email: 'sdi2400222@example.com',
-        //     university: 'Πληροφορικής και Τηλεπικοινωνιών',
-        //     password: bcrypt.hashSync('pass123', bcryptSalt),
-        //     role: 'student',
-        //     am: 'sdi2400222',
-        //     father: 'Φώτης',
-        //     mother: 'Άννα',
-        //     birth_date: '12/05/2006',
-        //     family: 'Άγαμη',
-        //     siblings: 1,
-        //     army: 'Όχι',
-        //     birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
-        //     ID: 'AK123123',
-        //     ID_location: 'Ηλιούπολης',
-        //     AMKA: 12050622222,
-        //     home: 'Δυδίτου 3',
-        //     city: 'Ηλιούπολη',
-        //     phone: 6912312312,
-        //     postal: 32154,
-        //     temp_home: '-',
-        //     temp_city: '-',
-        //     temp_phone: '-',
-        //     postal_temp: '-',
-        // });
+        const student4 = new User({
+            first_name: 'Μαρία',
+            last_name: 'Δημητρίου',
+            username: 'sdi2400222',
+            email: 'sdi2400222@example.com',
+            university: 'Πληροφορικής και Τηλεπικοινωνιών',
+            password: bcrypt.hashSync('pass123', bcryptSalt),
+            role: 'student',
+            am: 'sdi2400222',
+            father: 'Φώτης',
+            mother: 'Άννα',
+            birth_date: '12/05/2006',
+            family: 'Άγαμη',
+            siblings: 1,
+            army: 'Όχι',
+            birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
+            ID: 'AK123123',
+            ID_location: 'Ηλιούπολης',
+            AMKA: 12050622222,
+            home: 'Δυδίτου 3',
+            city: 'Ηλιούπολη',
+            phone: 6912312312,
+            postal: 32154,
+            temp_home: '-',
+            temp_city: '-',
+            temp_phone: '-',
+            postal_temp: '-',
+        });
 
-        // const student5 = new User({
-        //     first_name: 'Γιάννης',
-        //     last_name: 'Κόλιας',
-        //     username: 'sdi1500012',
-        //     email: 'sdi1500012@example.com',
-        //     university: 'Πληροφορικής και Τηλεπικοινωνιών',
-        //     password: bcrypt.hashSync('pass123', bcryptSalt),
-        //     role: 'student',
-        //     am: 'sdi1500012',
-        //     father: 'Βασίλης',
-        //     mother: 'Κατερίνα',
-        //     birth_date: '23/12/1997',
-        //     family: 'Άγαμος',
-        //     siblings: 1,
-        //     army: 'Ναί',
-        //     birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
-        //     ID: 'AK789789',
-        //     ID_location: 'Ελληνικό',
-        //     AMKA: 23129789977,
-        //     home: 'Άπρας 5',
-        //     city: 'Ελληνικό',
-        //     phone: 6978978978,
-        //     postal: 45677,
-        //     temp_home: '-',
-        //     temp_city: '-',
-        //     temp_phone: '-',
-        //     postal_temp: '-',
-        // });
+        const student5 = new User({
+            first_name: 'Γιάννης',
+            last_name: 'Κόλιας',
+            username: 'sdi1500012',
+            email: 'sdi1500012@example.com',
+            university: 'Πληροφορικής και Τηλεπικοινωνιών',
+            password: bcrypt.hashSync('pass123', bcryptSalt),
+            role: 'student',
+            am: 'sdi1500012',
+            father: 'Βασίλης',
+            mother: 'Κατερίνα',
+            birth_date: '23/12/1997',
+            family: 'Άγαμος',
+            siblings: 1,
+            army: 'Ναί',
+            birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
+            ID: 'AK789789',
+            ID_location: 'Ελληνικό',
+            AMKA: 23129789977,
+            home: 'Άπρας 5',
+            city: 'Ελληνικό',
+            phone: 6978978978,
+            postal: 45677,
+            temp_home: '-',
+            temp_city: '-',
+            temp_phone: '-',
+            postal_temp: '-',
+        });
 
-        // const student6 = new User({
-        //     first_name: 'Άννα',
-        //     last_name: 'Αρτεμίου',
-        //     username: 'sdi1900125',
-        //     email: 'sdi1900125@example.com',
-        //     university: 'Πληροφορικής και Τηλεπικοινωνιών',
-        //     password: bcrypt.hashSync('pass123', bcryptSalt),
-        //     role: 'student',
-        //     am: 'sdi1900125',
-        //     father: 'Βασίλης',
-        //     mother: 'Ελένη',
-        //     birth_date: 23 / 1 / 2001,
-        //     family: 'Άγαμη',
-        //     siblings: 1,
-        //     army: 'Ναί',
-        //     birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
-        //     ID: 'AK789789',
-        //     ID_location: 'Μαρούσι',
-        //     AMKA: 23010111111,
-        //     home: 'Μαρουσίου 5',
-        //     city: 'Μαρούσι',
-        //     phone: 6945632232,
-        //     postal: 45655,
-        //     temp_home: '-',
-        //     temp_city: '-',
-        //     temp_phone: '-',
-        //     postal_temp: '-',
-        // });
+        const student6 = new User({
+            first_name: 'Άννα',
+            last_name: 'Αρτεμίου',
+            username: 'sdi1900125',
+            email: 'sdi1900125@example.com',
+            university: 'Πληροφορικής και Τηλεπικοινωνιών',
+            password: bcrypt.hashSync('pass123', bcryptSalt),
+            role: 'student',
+            am: 'sdi1900125',
+            father: 'Βασίλης',
+            mother: 'Ελένη',
+            birth_date: 23 / 1 / 2001,
+            family: 'Άγαμη',
+            siblings: 1,
+            army: 'Ναί',
+            birth_location: 'ΑΘΗΝΩΝ ΑΤΤΙΚΗΣ',
+            ID: 'AK789789',
+            ID_location: 'Μαρούσι',
+            AMKA: 23010111111,
+            home: 'Μαρουσίου 5',
+            city: 'Μαρούσι',
+            phone: 6945632232,
+            postal: 45655,
+            temp_home: '-',
+            temp_city: '-',
+            temp_phone: '-',
+            postal_temp: '-',
+        });
 
         const professor2 = new User({
             first_name: 'Ιωάννα',

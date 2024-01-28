@@ -361,9 +361,34 @@ app.get('/students/declared/course/:course', async (req, res) => {
 
         if (studentsDeclarations.length > 0) {
             const students = studentsDeclarations.map(declaration => declaration.user);
-            res.json(students);
+            
+            const grades = await Grade.find({
+                course: course._id,
+                student: { $in: students },
+                exam: latestExam._id,
+            });
+        
+            // Create an object with studentId as keys and corresponding grades as values
+            const studentGradesMap = {};
+            grades.forEach(grade => {
+                studentGradesMap[grade.student.toString()] = grade;
+            });
+        
+            const result = students.map(student => {
+                const gradeInfo = studentGradesMap[student._id.toString()] || null;
+                const status = gradeInfo ? gradeInfo.status : null;
+
+                return {
+                    student,
+                    grade: gradeInfo,
+                    status,
+                };
+            });
+        
+            res.json(result);
         } else {
             console.log(`No student declarations found for the course ${course.title}`);
+            res.json([]);
         }
 
     } catch (error) {
@@ -372,18 +397,42 @@ app.get('/students/declared/course/:course', async (req, res) => {
     }
 });
 
-app.post('/save-grades/:courseId', verifyJWTuser, async (req, res) => {
+app.post('/save-grades/:courseId/:status', verifyJWTuser, async (req, res) => {
     try {
-        const { courseId } = req.params;
-        const gradesData = req.body.grades; // Assume grades is an array of { studentId, grade }
+        const { courseId, status } = req.params;  // Fix the destructuring here
+        const gradesData = req.body.grades;
+        
+        const latestExamSeason = await ExamsSeason.findOne({}).sort({ endData: -1 });
 
-        const gradeSaves = gradesData.map((grade) =>
-            new Grade({
-                student: grade.studentId,
-                course: courseId,
-                grade: grade.grade
-            }).save()
-        );
+        if (!latestExamSeason) {
+            return res.status(404).json({ error: 'No exam season found' });
+        }
+
+        const gradeSaves = gradesData.map(async (grade) => {
+            try {
+                const student = await User.findOne({ username: grade.studentId });
+
+                if (!student) {
+                    console.error(`User with username ${grade.studentId} not found`);
+                    return;
+                }
+
+                // Find and delete existing grade for the student, exam, and course
+                await Grade.findOneAndDelete({ exam: latestExamSeason._id, course: courseId, student: student._id });
+
+                // Save
+                await new Grade({
+                    student: student._id,
+                    course: courseId,
+                    grade: grade.grade,
+                    status: status,
+                    exam: latestExamSeason._id
+                }).save();
+
+            } catch (error) {
+                console.error('Error processing grade:', error);
+            }
+        });
 
         await Promise.all(gradeSaves);
         res.status(200).json({ message: 'Grades saved successfully' });

@@ -95,8 +95,12 @@ const ProfilePage = () => {
                     <div className="mt-16 lg:mt-0 flex-grow text-center lg:text-left">
                         <h2 className="text-black text-xl font-light"> Αριθμός μητρώου: {userData.username} </h2>
                         <h2 className="mt-2 text-black text-xl font-light"> Σχολή - Τμήμα: {userData.university} </h2>
-                        <h2 className="mt-2 text-black text-xl font-light"> Μέλος από: {registrationDate} </h2>
-                    </div>
+                        {user.role === "student" ? (
+                            <h2 className="mt-2 text-black text-xl font-light"> Εξάμηνο Φοίτησης: {userData.semester} </h2>
+                            ) : (
+                            <h2 className="mt-2 text-black text-xl font-light"> Μέλος από: {registrationDate} </h2>
+                        )}
+                        </div>
                 </div>
 
                 <div className="flex flex-col justify-between ml-20">

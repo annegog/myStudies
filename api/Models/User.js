@@ -29,7 +29,8 @@ const UserSchema = new Schema({
     temp_phone: String,
     postal_temp: String,
     ects: Number,
-    s_courses: Number
+    s_courses: Number,
+    semester: Number
 });
 
 const User = mongoose.model('User', UserSchema);

@@ -14,7 +14,7 @@ const CommonQuestions = () => {
     const { user } = useContext(UserContext);
     const [openQuestions, setOpenQuestions] = useState({});
     
-    const userRole = user && user.role ? user.role : "student";
+    const userRole = user && user.role ? user.role : "";
 
     const questionsStudents = [
         {
@@ -169,7 +169,7 @@ const CommonQuestions = () => {
                             )}
                         </div>
                     ))
-                ) : userRole === "professor" && (
+                ) : userRole === "professor" ? (
                     questionsProfessors.map((data, index) => (
                         <div key={index} className="w-full">
                             <button className="text-blue-900 text-xl font-semibold self-start max-md:max-w-full py-3"
@@ -187,6 +187,12 @@ const CommonQuestions = () => {
                             )}
                         </div>
                     ))
+                ) : (
+                    <div className="flex flex-col items-center">
+                        <h2 className="text-2xl font-serif text-blue-900 m-20">
+                            Απαιτείται σύνδεση. 
+                        </h2>
+                    </div>
                 )}
 
                 <button type="button" className="text-center text-white font-medium bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none rounded-lg text-base mt-36 px-5 py-3" 

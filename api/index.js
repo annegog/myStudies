@@ -13,7 +13,7 @@ const User = require('./Models/User');
 const Course = require('./Models/Course');
 const ExamsSeason = require('./Models/Examinations');
 const Declaration = require('./Models/Declarations');
-const CertificationRequest  = require('./Models/CertificationRequest');
+const CertificationRequest = require('./Models/CertificationRequest');
 
 const app = Express();
 const bcryptSalt = bcrypt.genSaltSync(8);
@@ -91,6 +91,22 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true);
 });
 
+app.post('/update-profile/:id', verifyJWTuser, async (req, res) => {
+    const { id } = req.params;
+    const updateData = req.body;
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(id, updateData, { new: true });
+        if (!updatedUser) {
+            return res.status(404).send('User not found');
+        }
+        res.json(updatedUser);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error updating user');
+    }
+});
+
 /************************************ Student ************************************/
 
 app.get('/student/profile', verifyJWTuser, (req, res) => {
@@ -140,7 +156,7 @@ app.get('/declaration-season/:userId', async (req, res) => {
 
         // Check if the declaration season is still open
         const isExamSeasonOngoing = !!ongoingExamSeason;
-        
+
         if (!latestDeclaration || !latestDeclaration.exam) {
             // No declaration found
             return res.json({
@@ -149,9 +165,9 @@ app.get('/declaration-season/:userId', async (req, res) => {
                 end_date: ongoingExamSeason ? ongoingExamSeason.endData : null
             });
         }
-        
+
         // Check if the last declaration's exam season is the same as the on going exam season
-        const isExamEndDateValid = latestDeclaration.exam._id ===  ongoingExamSeason._id;
+        const isExamEndDateValid = latestDeclaration.exam._id === ongoingExamSeason._id;
 
         if (!isExamEndDateValid && latestDeclaration.exam.open === false) {
             // No valid exam end date found
@@ -161,7 +177,7 @@ app.get('/declaration-season/:userId', async (req, res) => {
                 end_date: ongoingExamSeason ? ongoingExamSeason.endData : null
             });
         }
-        
+
         res.json({
             declaration: true,
             open: isExamSeasonOngoing,
@@ -265,7 +281,7 @@ app.get('/api/courses', verifyJWTuser, async (req, res) => {
 app.post('/certification-requests', verifyJWTuser, async (req, res) => {
     try {
         const certificationRequestData = req.body;
-        
+
         const certificationRequest = new CertificationRequest(certificationRequestData);
         const savedCertificationRequest = await certificationRequest.save();
         res.json(savedCertificationRequest);
@@ -876,7 +892,7 @@ app.get('/data', async (req, res) => {
         Promise.all(
             [
                 student1.save(), student2.save(), student3.save(), student4.save(), student5.save(), student6.save(), professor.save(),
-                professor2.save(), 
+                professor2.save(),
                 major2.save(), major3.save(), major4.save(), major5.save(), major6.save(), major7.save(), major8.save(),
                 choice1.save(), choice2.save(), choice3.save(), choice4.save(),
                 lab1.save(), lab2.save(), lab3.save(),

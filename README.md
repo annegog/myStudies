@@ -5,6 +5,8 @@
 - Ορέστης Θεοδώρου : sdi2000058 / 1115202000058 
 - Χρήστος Παπαστεργίου : sdi1600233 / 1115201600233
 
+https://github.com/annegog/myStudies
+
 ### What we are using in the app
 React, Vite, Tailwind, Express, MongoDB
 
@@ -68,6 +70,7 @@ Frontend :
 Backend:
 
     cd api
+    npm install
     node index.js
 
 ### Users

@@ -99,7 +99,6 @@ const Create = () => {
                 if (studentsData.length > 0 && studentsData[0].status === "final") {
                     setFinal(true);
                 }
-                console.log(studentsData[0].status, final);
 
             } catch (error) {
                 console.error('Error fetching students:', error);
@@ -125,7 +124,6 @@ const Create = () => {
             const response = await axios.post(`/save-grades/${course}/final`, {                
                 grades: grades.map(({ studentId, grade }) => ({ studentId, grade }))
             });
-            console.log(response.data.message);
         
         } catch (error) {
             console.error('Error saving grades:', error);    
@@ -139,7 +137,6 @@ const Create = () => {
             const response = await axios.post(`/save-grades/${course}/${options}`, {                
                 grades: grades.map(({ studentId, grade }) => ({ studentId, grade }))
             });
-            console.log(response.data.message);
         
         } catch (error) {
             console.error('Error saving grades:', error);    

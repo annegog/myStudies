@@ -119,12 +119,11 @@ const Create = () => {
     };
 
     const handleFinalization = async () => {
-        setSuccessMessage(successMessage + 1);
         try {
             const response = await axios.post(`/save-grades/final/${course}`, {                
                 grades: grades.map(({ studentId, grade }) => ({ studentId, grade }))
             });
-        
+            setSuccessMessage(successMessage + 1);
         } catch (error) {
             console.error('Error saving grades:', error);    
         }
@@ -135,7 +134,7 @@ const Create = () => {
             const response = await axios.post(`/save-grades/temporary/${course}`, {                
                 grades: grades.map(({ studentId, grade }) => ({ studentId, grade }))
             });
-        
+            setSuccessMessage(successMessage + 1);
         } catch (error) {
             console.error('Error saving grades:', error);    
         }

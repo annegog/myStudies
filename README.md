@@ -69,14 +69,14 @@ Backend:
 ### Users
 Students:
 - usernames:
-  ```sdi2400001
-  sdi1900125
-  sdi2400222```
+    - sdi2400001
+    - sdi1900125
+    - sdi2400222
 
 Professors:
 - usernames:
-    ``` ioikonomou
-    nickpetras```
+    - ioikonomou
+    - nickpetras
 
 - The password for every user is ```pass123```
 

@@ -108,36 +108,37 @@ const ProfilePage = () => {
                         <div className="text-black text-xl cursor-pointer font-medium self-stretch shrink basis-auto" onClick={() => setShowInfoFilters(!showInfoFilters)}>
                             <span> {showInfoFilters ? "▲" : "▼"} Προσωπικά Στοιχεία </span>
                             {showInfoFilters && (
-                                <div onClick={handleDetailsClick} className="bg-gray-50 justify-center m-2 p-4 w-full rounded-3xl shadow-sm hover:shadow-md">                                    <div className="justify-start text-black text-xl font-light whitespace-nowrap">
-                                    <p className="mb-2">Όνομα Πατέρα: {userData.father}</p>
-                                    <p className="mb-2">Όνομα Μητέρας: {userData.mother}</p>
-                                    <p className="mb-2">Ημερομηνία Γέννησης: {formatBirthDate(userData.birth_date)} </p>
-                                    <p className="mb-2">Οικογενειακή Κατάσταση: {editMode ? (<input
-                                        type="text"
-                                        name="family"
-                                        value={userData.family}
-                                        className="rounded-xl text-center"
-                                        onChange={handleInputChange}
-                                    />) : (userData.family === "married" ? "Παντρεμένος/η" : "Άγαμος/η")} </p>
-                                    <p className="mb-2">Αριθμός Αδελφών: {editMode ? <input
-                                        type="text"
-                                        name="siblings"
-                                        value={userData.siblings}
-                                        className="rounded-xl text-center"
-                                        onChange={handleInputChange}
-                                    /> : userData.siblings || "-"}</p>
-                                    <p className="mb-2">Εκπλήρωση Στρατιωτικής Θητείας: {editMode ? (<input
-                                        type="text"
-                                        name="army"
-                                        value={userData.army}
-                                        className="rounded-xl text-center"
-                                        onChange={handleInputChange}
-                                    />) : (userData.army === "yes" ? "Ναι" : "Όχι")} </p>
-                                    <p className="mb-2">Τόπος Γέννησης: {userData.birth_location}</p>
-                                    <p className="mb-2">Αριθμός Ταυτότητας: {userData.ID} </p>
-                                    <p className="mb-2">Εκδούσα Αρχή: {userData.ID_location} </p>
-                                    <p className="mb-2">AMKA: {userData.AMKA}</p>
-                                </div>
+                                <div onClick={handleDetailsClick} className="bg-gray-50 justify-center m-2 p-4 w-full rounded-3xl shadow-sm hover:shadow-md">                                    
+                                    <div className="justify-start text-black text-xl font-light whitespace-nowrap">
+                                        <p className="mb-2">Όνομα Πατέρα: {userData.father}</p>
+                                        <p className="mb-2">Όνομα Μητέρας: {userData.mother}</p>
+                                        <p className="mb-2">Ημερομηνία Γέννησης: {formatBirthDate(userData.birth_date)} </p>
+                                        <p className="mb-2">Οικογενειακή Κατάσταση: {editMode ? (<input
+                                            type="text"
+                                            name="family"
+                                            value={userData.family}
+                                            className="rounded-xl text-center"
+                                            onChange={handleInputChange}
+                                        />) : (userData.family === "married" ? "Παντρεμένος/η" : "Άγαμος/η")} </p>
+                                        <p className="mb-2">Αριθμός Αδελφών: {editMode ? <input
+                                            type="text"
+                                            name="siblings"
+                                            value={userData.siblings}
+                                            className="rounded-xl text-center"
+                                            onChange={handleInputChange}
+                                        /> : userData.siblings || "-"}</p>
+                                        <p className="mb-2">Εκπλήρωση Στρατιωτικής Θητείας: {editMode ? (<input
+                                            type="text"
+                                            name="army"
+                                            value={userData.army}
+                                            className="rounded-xl text-center"
+                                            onChange={handleInputChange}
+                                        />) : (userData.army === "yes" ? "Ναι" : "Όχι")} </p>
+                                        <p className="mb-2">Τόπος Γέννησης: {userData.birth_location}</p>
+                                        <p className="mb-2">Αριθμός Ταυτότητας: {userData.ID} </p>
+                                        <p className="mb-2">Εκδούσα Αρχή: {userData.ID_location} </p>
+                                        <p className="mb-2">AMKA: {userData.AMKA}</p>
+                                    </div>
                                     <div className="flex justify-center border-gray-200 border-t">
                                         <div className="flex justify-between items-center pt-5" />
                                         {editMode ? (

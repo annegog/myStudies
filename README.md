@@ -66,6 +66,20 @@ Backend:
     cd api
     node index.js
 
+### Users
+Students:
+- usernames:
+    - sdi2400001
+    - sdi1900125
+    - sdi2400222
+
+Professors:
+- usernames:
+    - ioikonomou
+    - nickpetras
+
+- password for every user is ```pass123```
+
 ----------------
 ### Notes
 - Για λόγους απλούσευσης της βάσης και των api requests θεωρούμε οτι υπάρχει μονο ένα τμήμα σε αυτη την σχολή και για αυτό και φέρνουμε απο την βάση όλα τα μαθήμτα που υπάρχουν και προσφέρονται στους φοιτητές.

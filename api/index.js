@@ -150,10 +150,10 @@ app.get('/declaration-season/:userId', async (req, res) => {
             });
         }
         
-        // Check if the last declaration's exam season is the same as thw on going exam season
-        const isExamEndDateValid = latestDeclaration.exam._id !==  ongoingExamSeason._id;
-        
-        if (!isExamEndDateValid) {
+        // Check if the last declaration's exam season is the same as the on going exam season
+        const isExamEndDateValid = latestDeclaration.exam._id ===  ongoingExamSeason._id;
+
+        if (!isExamEndDateValid && latestDeclaration.exam.open === false) {
             // No valid exam end date found
             return res.json({
                 declaration: false,
@@ -162,7 +162,6 @@ app.get('/declaration-season/:userId', async (req, res) => {
             });
         }
         
-
         res.json({
             declaration: true,
             open: isExamSeasonOngoing,
@@ -898,9 +897,10 @@ app.get('/data', async (req, res) => {
 app.get('/exams', async (req, res) => {
     try {
         const exam1 = new ExamsSeason({
-            endData: new Date('04/04/2024'),
-            examsSeason: 'Spring',
-            year: '2023-2024'
+            endData: new Date('12/12/2023'),
+            examsSeason: 'Winter',
+            year: '2023-2024',
+            open: false
         });
         // Save to the database
         Promise.all(

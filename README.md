@@ -1,5 +1,9 @@
 # MyStudies
-### Anna Googula 1115201800305 / Orestis / Christos
+
+### Ομάδα:
+- Άννα Γώγουλα : sdi1800305 / 1115201800305 
+- Orestis / 
+- Χρήστος Παπαστεργίου : sdi1600233 / 1115201600233
 
 ### What we are using in the app
 React, Vite, Tailwind, Express, MongoDB

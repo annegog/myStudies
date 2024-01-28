@@ -121,7 +121,7 @@ const Create = () => {
     const handleFinalization = async () => {
         setSuccessMessage(successMessage + 1);
         try {
-            const response = await axios.post(`/save-grades/${course}/final`, {                
+            const response = await axios.post(`/save-grades/final/${course}`, {                
                 grades: grades.map(({ studentId, grade }) => ({ studentId, grade }))
             });
         
@@ -132,9 +132,7 @@ const Create = () => {
 
     const handleTempSave = async () => {
         try {
-            setOptions("temporary");
-
-            const response = await axios.post(`/save-grades/${course}/${options}`, {                
+            const response = await axios.post(`/save-grades/temporary/${course}`, {                
                 grades: grades.map(({ studentId, grade }) => ({ studentId, grade }))
             });
         
@@ -142,9 +140,11 @@ const Create = () => {
             console.error('Error saving grades:', error);    
         }
     }
+
     const handleBack = () => {
         navigate(`/professor/grades/${id}`);
     };
+    
     return (
         <div>
         <Navbar />

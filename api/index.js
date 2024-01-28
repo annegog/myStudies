@@ -381,11 +381,11 @@ app.get('/students/declared/course/:course', async (req, res) => {
     }
 });
 
-app.post('/save-grades/:courseId/:status', verifyJWTuser, async (req, res) => {
+app.post('/save-grades/:status/:courseId', verifyJWTuser, async (req, res) => {
     try {
         const { courseId, status } = req.params;  // Fix the destructuring here
         const gradesData = req.body.grades;
-        
+        console.log(courseId, status);
         const latestExamSeason = await ExamsSeason.findOne({}).sort({ endData: -1 });
 
         if (!latestExamSeason) {

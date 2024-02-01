@@ -1,62 +1,56 @@
 # MyStudies
-
-### Ομάδα:
-- Άννα Γώγουλα : sdi1800305 / 1115201800305 
-- Ορέστης Θεοδώρου : sdi2000058 / 1115202000058 
-- Χρήστος Παπαστεργίου : sdi1600233 / 1115201600233
-
-https://github.com/annegog/myStudies
+This university project, assigned to us, involved substantial effort and collaboration. It aimed at revamping the existing University of Athens (UOA) website.
 
 ### What we are using in the app
 React, Vite, Tailwind, Express, MongoDB
 
-### Οργάνωση Κώδικα:
-- Η οργάνωση του κώδικα έχει γίνει με γνώμονα την εύκολη επέκταση του 
-    - components : Εργαλία / Σελίδες που μας χρειάζονται σε πολ/πλα σημεία στις σελίδες μας.
-    - Σελίδες οργανωμένες σε κατηγορίες σύμφωνα με το είδος τους.
+### Code Organization:
+- The code is organized with a focus on easy extensibility. 
+    - components : Tools/Pages needed in multiple places on our pages.
+    - Pages are organized into categories according to their type.
 
-- Φάκελοι με τις σελίδες που υλοποιήσαμε:
-    - Common : Κοινές σελίδες που χρησιμοποιούνται τόσο από τους μαθήτες όσο και στους καθηγητές
-        - Help : Σελίδες υποστήριξης σε διάφορες ερωτήσεις για την διευκόπλυνση των χρηστών
-            - Recovery.jsx : Ανάκτηση κωδικού.
-            - MobileApp.jsx : Διαφήμιση της εφαρμογής για κινητά.
-            - ConnectHelp.jsx : Βοήθεια σε χρήστη που δεν ξέρει πως να συνδεθεί στην πλατφόρμα.
-            - ContactAdmin.jsx : Επικοινωνία με τον διαχειριστή.
-            - CommonQuestions.jsx : Συχνές ερωτήσεις των χρηστών (μια για τους φοιτητές και μια για τους καθηγητές).
+- Folders with the pages we implemented:
+    - Common : Common pages used by both students and teachers.
+        - Help : Support pages for various questions to facilitate user assistance.
+            - Recovery.jsx : Password recovery.
+            - MobileApp.jsx : "Advertisement" of the mobile application.
+            - ConnectHelp.jsx : Assistance for users who do not know how to connect to the platform.
+            - ContactAdmin.jsx : Contacting the administrator.
+            - CommonQuestions.jsx :Frequently asked questions (one for students and one for teachers).
 
-        - Login.jsx : Σελίδα για την είσοδο του χρήστη στη πλατφόρμα του myStudies (γίνεται χρήση του component/Login όπου αυτό αναλαμβάνει και τη σύνδεση του χρήστη).
-        - Profile.jsx : Το προφίλ του χρήστη με τα στοιχεία του.
+        - Login.jsx : Page for user login to the myStudies platform (uses the Login component for user authentication).
+        - Profile.jsx : User profile with personal details.
 
-    - Student : Οι σελίδες των φοιτητών
-        - Certifications : Σελίδες για τα πιστοποιητικά
-            - Certifications.jsx : Σελίδα με τις διάφορες επιλογές που έχει ένας χρήστης όσον αφορά τα πιστοποιητικά (να κάνει αίτηση, να δεί το ιστορικό αιτήσεων ή να δει την κατάσταση).
-            - CertificationsStatus.jsx : Προβολή της κατάστασης των αιτήσεων που έχει αιτηθεί ένας φοιτητής.
-            - CertificationsHistory.jsx : Προβολή του ιστορικό των αιτήσεων που έχει αιτηθεί ένας φοιτητής.
-            - CertificationsRequest.jsx : Διαδικασία για την αίτηση ενός πιστοποιητικού με βήματα το τι πρέπει να κάνει ένας φοιτητής. 
+    - Student : Pages for students
+        - Certifications : Pages for certifications.
+            - Certifications.jsx : Page with various options for a user regarding certifications (apply, view application history, or check status).
+            - CertificationsStatus.jsx :View the status of applications made by a student.
+            - CertificationsHistory.jsx : View the history of applications made by a student.
+            - CertificationsRequest.jsx : Process for applying for a certification with steps a student needs to follow.
 
-        - CoursesProgram :Προβολή του προγράμματος σπουδών 
-            - Courses.jsx : Σελίδα για την προβολή προγράμματος των σπουδών της σχολής με τα μαθήματα που παρέχονται σε κάθε εξάμηνο.
+        - CoursesProgram : View of the study program
+            - Courses.jsx : Page for viewing the study program of the school with the courses offered in each semester.
             
-        - Declarations : Δήλωση μαθημάτων
-            - Declarations.jsx : Διαδικασία για την δήλωση των μαθημάτων που θέλει ένας φοιτητής να δώσει στο εξάμηνο με βήματα το τι πρέπει να κάνει ένας φοιτητής.
+        - Declarations : Course declarations
+            - Declarations.jsx : Process for declaring the courses a student wants to take in a semester with steps a student needs to follow.
 
-        - Grades : Προβολή βαθμών
-            - GradesStudent.jsx : Προβολή των βαθμών στα μαθήματα που έχει δώσει ένας φοιτητής με διάφορες επιλογές ή φίλτρα που μπορεί θα θέλει κάποιος. 
+        - Grades : View grades
+            - GradesStudent.jsx :View of grades in the courses taken by a student with various options or filters that someone might want. 
 
-        - HistoryDeclarations : Προβολή ιστορικού δηλώσεων
-            - History.jsx : Προβολή των δηλώσεων που έχει κάνει ένας χρήστης στο παρελθόν μέχρι και την τελευταία του.
+        - HistoryDeclarations : View of declaration history
+            - History.jsx : View of the declarations made by a user in the past up to the most recent.
 
-        - Home : Κεντρική φοιτητών
-            - Home.jsx : Κεντρική σελίδα που παρέχει χρήσιμες πληροφορίες ώς προς την πορεία του χρήστη στη σχολή.
+        - Home : Main Page for students
+            - Home.jsx : Central page providing useful information about the user's progress in school.
 
-    - Professor : Οι σελίδες των καθηγητών
-        - Grades : Σελίδες για την ενημέρωση ή την δήλωση βαθμών στα μαθήματα που έχει αναλάβει ένας καθηγητής στο εξάμηνο
-            - GradesProfessor.jsx : Παροχή των επιλογών που έχει ένας καθηγητής ώς προς την βαθμολογία των φοιτητών (καταγραφή βαθμών / προβολή παλιών βαθμών).
-            - GradesCreate.jsx : Σελίδα που ένας καθηγητής έχει τη δυνατότητα να καταγράψει τις βαθμολογίες των φοιτητών.
-            - GradesShow.jsx : Σελίδα που ένας καθηγητής έχει τη δυνατότητα να παλιές βαθμολογίες φοιτητών.
+    - Professor : Pages for teachers
+        - Grades : Pages for updating or declaring grades in the courses taught by a teacher in the semester.
+            - GradesProfessor.jsx : Providing options for a teacher regarding the grading of students (record grades/view old grades).
+            - GradesCreate.jsx :  Page where a teacher can record students' grades.
+            - GradesShow.jsx : Page where a teacher can view old grades.
 
-        - Home : Κεντρική καθηγητών
-            - Home.jsx : Κεντρική σελίδα που παρέχει τα μαθήματα που έχει αναλάβει ένας καθηγητής στο εξάμηνο
+        - Home : Main Page for teachers
+            - Home.jsx : Central page providing information about the courses a teacher has taken in the semester.
 
 ----------------
 
@@ -89,5 +83,5 @@ Professors:
 
 ----------------
 ### Notes
-- Για λόγους απλούσευσης της βάσης και των api requests θεωρούμε οτι υπάρχει μονο ένα τμήμα σε αυτη την σχολή και για αυτό και φέρνουμε απο την βάση όλα τα μαθήμτα που υπάρχουν και προσφέρονται στους φοιτητές.
-- Η τροποποίηση δήλωσης μαθημάτων γίνεται με τον ίδιο τρόπο που γίνετια η Δήλωση μάθηματων. Αν υπάρχει προηγούμενη δήλωση διαγράφεται και αποθηκέυεται η καινούργια. (Δεν είναι ήδη επιλεγμενα τα επιλεγμένα μαθήματα της προηγούμενης δήλωσης).
+- For the sake of simplifying the database and API requests, we assume that there is only one department in this school. Therefore, we fetch all the courses available and offered to students from the database.
+- Modifying course declarations is done in the same way as making a new course declaration. If there is a previous declaration, it is deleted, and the new one is stored. (The courses selected in the previous declaration are not automatically selected in the new one).

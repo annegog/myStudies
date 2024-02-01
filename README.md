@@ -1,5 +1,5 @@
 # MyStudies
-This university project, assigned to us, involved substantial effort and collaboration. It aimed at revamping the existing University of Athens (UOA) website.
+This university project, assigned to us, involved substantial effort and collaboration. It aimed at revamping the existing University of Athens (UOA) website (for declarations and grades).
 
 ### What we are using in the app
 React, Vite, Tailwind, Express, MongoDB

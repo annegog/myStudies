@@ -3,13 +3,14 @@ This university project, assigned to us, involved substantial effort and collabo
 
 ### What we are using in the app
 React, Vite, Tailwind, Express, MongoDB
+For the Prototype we used [Figma](https://www.figma.com/file/G9FXzjkKKNMqredxWsxKxR/Prototype---myStudies?type=design&mode=design&t=nKUkcNxNkejS2dJj-1)
 
 ### Code Organization:
 - The code is organized with a focus on easy extensibility. 
     - components : Tools/Pages needed in multiple places on our pages.
     - Pages are organized into categories according to their type.
 
-- Folders with the pages we implemented:
+- Folders containing the implemented pages:
     - Common : Common pages used by both students and teachers.
         - Help : Support pages for various questions to facilitate user assistance.
             - Recovery.jsx : Password recovery.
@@ -84,4 +85,4 @@ Professors:
 ----------------
 ### Notes
 - For the sake of simplifying the database and API requests, we assume that there is only one department in this school. Therefore, we fetch all the courses available and offered to students from the database.
-- Modifying course declarations is done in the same way as making a new course declaration. If there is a previous declaration, it is deleted, and the new one is stored. (The courses selected in the previous declaration are not automatically selected in the new one).
+- Modifying course declarations is accomplished similarly to creating a new course declaration. If there is a previous declaration, it is deleted, and the new one is stored. (The courses selected in the previous declaration are not automatically selected in the new one).

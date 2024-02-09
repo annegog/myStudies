@@ -3,6 +3,7 @@ This university project, assigned to us, involved substantial effort and collabo
 
 ### What we are using in the app
 React, Vite, Tailwind, Express, MongoDB
+
 For the Prototype we used [Figma](https://www.figma.com/file/G9FXzjkKKNMqredxWsxKxR/Prototype---myStudies?type=design&mode=design&t=nKUkcNxNkejS2dJj-1)
 
 ### Code Organization:
